@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Postgres: start", "type": "shell", "command": "npm run db:up", "problemMatcher": [] },
+    { "label": "Payments: migrate", "type": "shell", "command": "npm run db:migrate", "dependsOn": "Postgres: start", "problemMatcher": [] },
+    { "label": "Payments: dev server", "type": "shell", "command": "npm run dev", "isBackground": true, "problemMatcher": [] },
+    { "label": "Payments: test", "type": "shell", "command": "npm test", "group": { "kind": "test", "isDefault": true }, "dependsOn": "Postgres: start", "problemMatcher": [] },
+    { "label": "Payments: typecheck", "type": "shell", "command": "npm run typecheck", "group": "build", "problemMatcher": ["$tsc"] },
+    { "label": "Stripe: forward webhooks", "type": "shell", "command": "npm run stripe:listen", "isBackground": true, "problemMatcher": [] },
+    { "label": "Stripe: sandbox setup", "type": "shell", "command": "npm run stripe:setup", "problemMatcher": [] }
+  ]
+}

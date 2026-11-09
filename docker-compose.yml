@@ -1,0 +1,20 @@
+# Local Postgres for development and tests.  `npm run db:up`
+services:
+  db:
+    image: postgres:16
+    container_name: sendkoro-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sendkoro
+    ports:
+      - "5433:5432"   # 5433 on your machine, so it won't clash with a local Postgres
+    volumes:
+      - sendkoro_pg:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      retries: 20
+volumes:
+  sendkoro_pg:

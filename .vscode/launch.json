@@ -1,0 +1,76 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Payments: run & debug",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/services/payments",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "tsx",
+        "src/main.ts"
+      ],
+      "envFile": "${workspaceFolder}/services/payments/.env",
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Payments: debug this test file",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/services/payments",
+      "program": "${workspaceFolder}/services/payments/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "${file}"
+      ],
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "API: run & debug",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/services/api",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "tsx",
+        "src/main.ts"
+      ],
+      "envFile": "${workspaceFolder}/services/api/.env",
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "API: debug this test file",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/services/api",
+      "program": "${workspaceFolder}/services/api/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "${file}"
+      ],
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Payments + API",
+      "configurations": [
+        "Payments: run & debug",
+        "API: run & debug"
+      ]
+    }
+  ]
+}

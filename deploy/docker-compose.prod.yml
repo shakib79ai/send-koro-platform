@@ -1,0 +1,96 @@
+# Production stack for one VPS (Ubuntu 24.04, 2 vCPU / 4 GB is enough to start).
+#   cd /opt/send-koro/deploy && docker compose -f docker-compose.prod.yml --env-file .env up -d
+# Images are built by GitHub Actions and pulled from GHCR (see .github/workflows/deploy.yml).
+# Only Caddy is exposed to the internet. The payments service's internal API is never public;
+# Caddy forwards only Stripe's webhook paths to it.
+name: send-koro
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sendkoro
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+      POSTGRES_DB: sendkoro
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init-prod.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sendkoro"]
+      interval: 5s
+      retries: 20
+
+  payments:
+    image: ${REGISTRY:-ghcr.io/shakib79ai/send-koro-platform}/payments:${TAG:-latest}
+    restart: unless-stopped
+    env_file: ./payments.env
+    environment:
+      DATABASE_URL: postgres://sendkoro:${POSTGRES_PASSWORD}@db:5432/sendkoro_payments
+      PORT: "3000"
+    depends_on:
+      db: { condition: service_healthy }
+
+  api:
+    image: ${REGISTRY:-ghcr.io/shakib79ai/send-koro-platform}/api:${TAG:-latest}
+    restart: unless-stopped
+    env_file: ./api.env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgres://sendkoro:${POSTGRES_PASSWORD}@db:5432/sendkoro_api
+      PAYMENTS_URL: http://payments:3000
+      PORT: "3001"
+    depends_on:
+      db: { condition: service_healthy }
+      payments: { condition: service_healthy }
+
+  customer-web:
+    image: ${REGISTRY:-ghcr.io/shakib79ai/send-koro-platform}/customer-web:${TAG:-latest}
+    restart: unless-stopped
+    depends_on: [api]
+
+  restaurant-web:
+    image: ${REGISTRY:-ghcr.io/shakib79ai/send-koro-platform}/restaurant-web:${TAG:-latest}
+    restart: unless-stopped
+    depends_on: [api]
+
+  admin-web:
+    image: ${REGISTRY:-ghcr.io/shakib79ai/send-koro-platform}/admin-web:${TAG:-latest}
+    restart: unless-stopped
+    depends_on: [api]
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      API_DOMAIN: ${API_DOMAIN:?set API_DOMAIN in deploy/.env}
+      CUSTOMER_DOMAIN: ${CUSTOMER_DOMAIN:?set CUSTOMER_DOMAIN in deploy/.env}
+      RESTAURANT_DOMAIN: ${RESTAURANT_DOMAIN:?set RESTAURANT_DOMAIN in deploy/.env}
+      ADMIN_DOMAIN: ${ADMIN_DOMAIN:?set ADMIN_DOMAIN in deploy/.env}
+      ACME_EMAIL: ${ACME_EMAIL:?set ACME_EMAIL in deploy/.env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [api, payments, customer-web, restaurant-web, admin-web]
+
+  backup:
+    # Nightly pg_dump of both databases, kept 14 days. Copy ./backups off the server too.
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./backups:/backups
+    entrypoint: ["sh", "-c", "while true; do for d in sendkoro_api sendkoro_payments; do pg_dump -h db -U sendkoro -Fc $$d > /backups/$$d-$$(date +%F).dump; done; find /backups -name '*.dump' -mtime +14 -delete; sleep 86400; done"]
+    depends_on:
+      db: { condition: service_healthy }
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

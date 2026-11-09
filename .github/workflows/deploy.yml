@@ -1,0 +1,79 @@
+name: Deploy
+# Builds Docker images for both services, pushes them to GitHub Container Registry, then
+# updates the server over SSH. Runs on every push to main after CI passes, or by hand.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  images:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - { service: api, context: services/api }
+          - { service: payments, context: services/payments }
+          - { service: customer-web, context: apps/customer-web }
+          - { service: restaurant-web, context: apps/restaurant-web }
+          - { service: admin-web, context: apps/admin-web }
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          # Public, non-secret values for the web apps (Settings → Secrets and variables → Actions → Variables).
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ vars.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+            NEXT_PUBLIC_RESTAURANT_URL=${{ vars.NEXT_PUBLIC_RESTAURANT_URL }}
+          tags: |
+            ghcr.io/${{ github.repository }}/${{ matrix.service }}:latest
+            ghcr.io/${{ github.repository }}/${{ matrix.service }}:${{ github.event.workflow_run.head_sha || github.sha }}
+          cache-from: type=gha,scope=${{ matrix.service }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.service }}
+
+  server:
+    needs: images
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: appleboy/ssh-action@v1.2.0
+        env:
+          TAG: ${{ github.event.workflow_run.head_sha || github.sha }}
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          envs: TAG
+          script: |
+            set -e
+            cd /opt/send-koro
+            git fetch --quiet origin main && git checkout --quiet "$TAG" -- deploy
+            cd deploy
+            sed -i "s/^TAG=.*/TAG=$TAG/" .env
+            docker compose -f docker-compose.prod.yml --env-file .env pull
+            docker compose -f docker-compose.prod.yml --env-file .env up -d
+            docker image prune -f
+            sleep 10
+            curl -fsS "https://$(grep ^API_DOMAIN= .env | cut -d= -f2)/health"

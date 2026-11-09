@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "anthropic.claude-code",
+    "stripe.vscode-stripe",
+    "vitest.explorer",
+    "ms-azuretools.vscode-docker",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig"
+  ]
+}

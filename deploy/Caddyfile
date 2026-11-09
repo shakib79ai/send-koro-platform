@@ -1,0 +1,52 @@
+# Automatic HTTPS (Let's Encrypt). Point API_DOMAIN's DNS A record at this server first.
+{
+	email {$ACME_EMAIL}
+}
+
+{$API_DOMAIN} {
+	encode zstd gzip
+
+	# Stripe webhooks → payments service (signature-checked there). Nothing else of payments is public.
+	handle /webhooks/stripe* {
+		reverse_proxy payments:3000
+	}
+
+	# Everything else → core API (apps, Uber Direct / DoorDash webhooks, live updates).
+	handle {
+		reverse_proxy api:3001 {
+			# Server-Sent Events: don't buffer.
+			flush_interval -1
+		}
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+}
+
+# Customer web + PWA (www redirects to the bare domain)
+{$CUSTOMER_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy customer-web:3000
+}
+www.{$CUSTOMER_DOMAIN} {
+	redir https://{$CUSTOMER_DOMAIN}{uri} permanent
+}
+
+# Restaurant portal (web + PWA)
+{$RESTAURANT_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy restaurant-web:3000
+}
+
+# Admin console. Optional extra lock: uncomment to allow only your office/VPN IPs.
+{$ADMIN_DOMAIN} {
+	encode zstd gzip
+	# @blocked not remote_ip 203.0.113.10/32
+	# respond @blocked 403
+	header X-Robots-Tag "noindex, nofollow"
+	reverse_proxy admin-web:3000
+}

@@ -1,0 +1,34 @@
+name: send_koro_customer
+description: Send Koro — order from NYC restaurants that keep 100% of food sales.
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  shared_preferences: ^2.3.2
+  url_launcher: ^6.3.0
+  flutter_stripe: ^11.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter:
+  uses-material-design: true
+
+# App icon (Send Koro brand kit v1). Applied by tool/bootstrap.sh, or run: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/app-icon-1024.png
+  remove_alpha_ios: true
+  adaptive_icon_background: "#EEF3F8"
+  adaptive_icon_foreground: assets/icon/adaptive-foreground.png

@@ -1,0 +1,5 @@
+/.env
+/api.env
+/payments.env
+/backups/*
+!/backups/.gitkeep

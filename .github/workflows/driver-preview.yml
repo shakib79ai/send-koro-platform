@@ -1,0 +1,51 @@
+name: Flutter apps web preview
+# Builds the Flutter customer and driver apps for the web, for screenshots and quick reviews.
+# Run by hand: Actions → "Flutter apps web preview" → Run workflow.
+# Each build is also pushed to a branch (customer-web-preview, driver-web-preview).
+on:
+  workflow_dispatch:
+    inputs:
+      api_url:
+        description: Core API base URL baked into the builds
+        default: http://127.0.0.1:3931/v1
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - { app: driver-app, name: send_koro_driver, branch: driver-web-preview }
+          - { app: customer-app, name: send_koro_customer, branch: customer-web-preview }
+    defaults:
+      run:
+        working-directory: apps/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.32.x'
+          cache: true
+      - run: flutter create --org com.sendkoro --project-name ${{ matrix.name }} --platforms=web --no-pub .
+      - run: flutter pub get
+      # Serve CanvasKit from the build itself (no Google CDN).
+      - run: flutter build web --release --no-web-resources-cdn --dart-define=API_URL=${{ inputs.api_url }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.branch }}
+          path: apps/${{ matrix.app }}/build/web
+          retention-days: 7
+      - name: Push build to the ${{ matrix.branch }} branch
+        working-directory: apps/${{ matrix.app }}/build/web
+        run: |
+          git init -q -b ${{ matrix.branch }}
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "${{ matrix.app }} web preview (${{ github.sha }}, API ${{ inputs.api_url }})"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ${{ matrix.branch }}

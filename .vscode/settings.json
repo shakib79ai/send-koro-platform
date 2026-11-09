@@ -1,0 +1,9 @@
+{
+  "typescript.tsdk": "services/payments/node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": { "**/node_modules": true, "**/dist": true },
+  "search.exclude": { "**/node_modules": true, "**/dist": true, "**/package-lock.json": true },
+  "files.associations": { "CLAUDE.md": "markdown" },
+  "vitest.rootConfig": "services/payments/vitest.config.ts"
+}
