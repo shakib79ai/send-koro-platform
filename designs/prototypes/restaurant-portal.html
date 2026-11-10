@@ -1757,7 +1757,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       if (p.type === 'spend') off = F >= min ? toC(p.save) : 0;
       if (p.type === 'storewide') { off = F >= min ? Math.floor((F * (parseFloat(p.pct) || 0)) / 100) : 0; if (p.maxOff) off = Math.min(off, toC(p.maxOff)); }
       if (p.type === 'freeitem') { const fi = itemById(p.freeItem); if (fi && F >= min) { lines.push([fi.name + ' (free)', fi.price]); off = fi.price; } }
-      if (p.type === 'freedel') delOff = F >= min ? Math.min(848, Math.floor((F * 15) / 100)) : 0; } // NYC: restaurant's delivery share ≤ 15% of the food
+      if (p.type === 'freedel') delOff = F >= min ? 848 : 0; } // the restaurant pays the whole delivery fee as its delivery share
     const before = lines.reduce((a, l) => a + l[1], 0); const food = before - off; const taxC = Math.round((food * rate) / 1000000);
     return { lines, before, off, food, taxC, rate, delOff };
   }
@@ -1806,9 +1806,9 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       freeitem: `<b>Free dish</b>${itemPick(false)}<div class="row wrap">${inp('min', 'Minimum food subtotal ($)', '25.00', 220)}</div>`,
       spend: `<div class="row wrap">${inp('min', 'Spend at least ($)', '30.00', 180)}${inp('save', 'Customer saves ($)', '5.00', 180)}</div>`,
       storewide: `<div class="row wrap">${inp('pct', 'Percent off food', '15', 160, 'numeric')}${inp('min', 'Minimum subtotal ($, optional)', '0', 220)}${inp('maxOff', 'Most off per order ($, optional)', 'No cap', 220)}</div>`,
-      freedel: `<div class="row wrap">${inp('min', 'Minimum food subtotal ($)', '25.00', 220)}</div><span class="mut sm-t">The delivery fee is paid by you as your delivery share (same as the Delivery fee rule). In NYC your share is limited to 15% of the food on that order; when the limit applies, customers see “$X off delivery” instead of “Free delivery” and pay the rest.</span>`,
+      freedel: `<div class="row wrap">${inp('min', 'Minimum food subtotal ($)', '25.00', 220)}</div><span class="mut sm-t">The delivery fee is paid by you as your delivery share (same as the Delivery fee rule). Customers see “Free delivery” and pay $0.00 for delivery.</span>`,
     }[p.type];
-    const exRows = [...ex.lines.map((l) => [esc(l[0]), money(l[1])]), ['<b>Food before promotion</b>', money(ex.before)], ...(ex.off ? [[`${esc(S.profile.name)} offer`, '−' + money(ex.off)]] : []), ['<b>Food the customer pays</b>', `<b>${money(ex.food)}</b>`], [`Sales tax (${B().taxRate || '0'}%, on the price after the offer)`, money(ex.taxC)], ...(p.type === 'freedel' ? [['Delivery fee', '$8.48'], ...(ex.delOff ? [['You pay (your delivery share, NYC 15% cap)', '−' + money(ex.delOff)], ['<b>Customer pays for delivery</b>', `<b>${money(848 - ex.delOff)}</b>`]] : [])] : [])];
+    const exRows = [...ex.lines.map((l) => [esc(l[0]), money(l[1])]), ['<b>Food before promotion</b>', money(ex.before)], ...(ex.off ? [[`${esc(S.profile.name)} offer`, '−' + money(ex.off)]] : []), ['<b>Food the customer pays</b>', `<b>${money(ex.food)}</b>`], [`Sales tax (${B().taxRate || '0'}%, on the price after the offer)`, money(ex.taxC)], ...(p.type === 'freedel' ? [['Delivery fee', '$8.48'], ...(ex.delOff ? [['You pay (your delivery share, whole fee)', '−' + money(ex.delOff)], ['<b>Customer pays for delivery</b>', `<b>${money(848 - ex.delOff)}</b>`]] : [])] : [])];
     const prevItem = itemById(p.type === 'freeitem' ? p.freeItem : p.items[0]) || itemById('gcb');
     return `${head(p.isNew ? 'Create promotion' : 'Edit promotion', tl)}${body(`<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start">
       <div class="col" style="flex:3 1 460px;min-width:0">
@@ -3407,11 +3407,11 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     { id: 'delivery', t: 'orders', title: 'Delivery fee: who pays and how', sum: 'Choose your rule: customer pays, you pay all, split, or free above an amount.', go: 'delivery', scenes: [
       T('The delivery fee', 'Covers the courier, nothing else', 'The delivery fee only covers the courier. Send Koro adds no service fee, no small-order fee and no surge fee.'),
       ST('Choose your rule', ['Customer pays the full fee', 'You pay all (free delivery)', 'Split: you cover $ or %', 'Free above an order amount'], 'Choose who pays: the customer, you, a split, or free delivery above an order amount.'),
-      MO('Example: you pay $3', [['Delivery fee', '$8.48'], ['Brooklyn Bowl Co. pays part', '−$3.00'], ['Customer pays for delivery', '$5.48', 1]], 'For example, if you pay three dollars of an eight forty-eight fee, the customer pays five forty-eight.', 'In NYC your share is limited to 15% of the food on that order.'),
+      MO('Example: you pay $3', [['Delivery fee', '$8.48'], ['Brooklyn Bowl Co. pays part', '−$3.00'], ['Customer pays for delivery', '$5.48', 1]], 'For example, if you pay three dollars of an eight forty-eight fee, the customer pays five forty-eight.'),
       FL('Where your share comes from', [['Order paid', '$43.54 card charge'], ['Your share', 'Kept from your payment'], ['Courier', 'Paid in full + 100% tip']], 'Your share is kept from that order’s payment. The courier always gets full pay and the whole tip.'),
     ], body: [
       ['Your options', ol(['<b>Customer pays</b> the full delivery fee.', '<b>You pay all</b> (free delivery for customers).', '<b>Split</b>: you cover a fixed amount (for example $3) or a percent of the fee.', '<b>Free above an amount</b> (for example orders over $30), with optional help below it.'])],
-      ['Extra controls', ul(['A per-order cap: you never pay more than a set amount on one order.', 'A monthly budget: once it’s used up, customers pay the full fee.', 'In NYC, your share is limited to 15% of the food on that order.'])],
+      ['Extra controls', ul(['A per-order cap: you never pay more than a set amount on one order.', 'A monthly budget: once it’s used up, customers pay the full fee.'])],
       ['Example', tbl([['Food', '$30.00'], ['Delivery fee', '$8.48'], ['Your share (split $3)', '−$3.00'], ['Customer pays for delivery', '$5.48'], ['Tax 8.875%', '$2.66'], ['Tip (100% to courier)', '$5.40'], ['Customer card total', '$43.54', 1]])],
       ['Good to know', ul(['Customers see one line, “Delivery fee”, and then your discount (“Brooklyn Bowl Co. pays part”).', 'Delivery areas are set by Send Koro for each neighborhood.', 'Change your rule anytime on the <b>Delivery fee</b> page. Each change applies to new orders.'])],
     ] },

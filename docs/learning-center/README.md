@@ -4,8 +4,6 @@ Short guides with a short video each. They appear on the restaurant welcome page
 
 Source of truth for the content: the `LESSONS` list in `designs/source/restaurant.js`. These files are generated from it: edit the source, then run `node designs/source/learning-center-to-md.js <file with the LESSONS block> docs/learning-center`.
 
-**Needs confirmation before launch:** the lessons state that a restaurant’s delivery share is limited to 15% of the food on an order in NYC. The business model lists this as a proposed rule that needs a lawyer’s confirmation and isn’t enforced in the API yet.
-
 Each video is an animated walkthrough (scenes, captions, optional read-aloud). Each lesson also has a video script below, so a recorded or produced video can replace the animation later.
 
 ## Get started
