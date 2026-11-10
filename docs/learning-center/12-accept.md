@@ -1,6 +1,6 @@
 # Accepting an order
 
-_Orders and delivery · Lesson 12 of 19 · Video 0:25_
+_Orders and delivery · Lesson 12 of 19 · Video 0:34_
 
 Accept within 5 minutes; the card is charged only when you accept.
 
@@ -22,8 +22,9 @@ Accept within 5 minutes; the card is charged only when you accept.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:07 | 1 | A new order: phone screen “New order” with 2× Grilled Chicken Bowl $30.00 · Note No onions · Prep time 20 min · Time to answer 4:52 | When an order arrives, check the items and notes, and set the prep time. |
-| 0:07–0:16 | 2 | Accept or decline: Accept (Card is charged) → Decline (Customer pays nothing) → No answer in 5 min (Declined automatically) | Accept, and the customer’s card is charged. Decline, or let five minutes pass, and the customer pays nothing. |
-| 0:16–0:25 | 3 | After you accept: Start preparing · Adjust prep time if needed · Tap Ready when it’s packed | After accepting, start preparing, adjust the time if needed, and tap Ready when the order is packed. |
+| 0:00–0:08 | 1 | Real portal page “newOrder”: scrolls to and highlights “Customer note:” (A new order) | When an order arrives, read the items and the customer’s note first. |
+| 0:08–0:16 | 2 | Real portal page “newOrder”: scrolls to and highlights “Prep time (min)” (Set the prep time) | Choose how long it will take. Your usual prep time is already selected. |
+| 0:16–0:27 | 3 | Real portal page “newOrder”: scrolls to and highlights “Accept order” (Accept) | Tap Accept order. The customer’s card is charged now. Decline, or let five minutes pass, and the customer pays nothing. |
+| 0:27–0:34 | 4 | Real portal page “orders”: scrolls to and highlights “Mark ready” (Mark it ready) | The order moves to Preparing. When it’s packed, tap Mark ready. |
 
 In the portal: `newOrder` page.

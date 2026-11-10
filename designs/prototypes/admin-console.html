@@ -1317,6 +1317,40 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 .cx.navy .lc-brand .sk-name .k{color:#E3242B}
 .cx.navy .vp-scene h4,.cx.navy .vp-center h3{color:#FFFFFF!important}
 .vp-logo .mk-r,.vp-logo .mk-t{stroke:#FFFFFF!important}.vp-logo .mk-f{fill:#FFFFFF!important}.vp-logo .mk-a{stroke:#E3242B!important}.vp-logo .mk-h{fill:#E3242B!important;stroke:#E3242B!important}
+/* learning center: real-page video scenes, fullscreen */
+.vp-scene.vp-live{padding:2.4cqw 3cqw 10.5cqw;gap:0}
+.vp-dev{flex:1;min-height:0;display:flex;flex-direction:column;background:#FFFFFF;border-radius:1.4cqw;overflow:hidden;box-shadow:0 1.4cqw 4cqw rgba(8,45,85,.55)}
+.vp-dev.ph{align-self:center;width:36cqw;border-radius:3.2cqw;border:1cqw solid #0E1E33}
+.vp-dev-bar{flex:none;display:flex;align-items:center;gap:.7cqw;height:3.6cqw;padding:0 1.6cqw;background:#DCE5EF;color:#0E1E33;font-size:1.6cqw;font-weight:800}
+.vp-dev-bar i{width:1.1cqw;height:1.1cqw;border-radius:99px;background:#C9D6E4}.vp-dev-bar i:first-child{background:#E3242B}
+.vp-dev-bar span{margin-left:1cqw}.vp-dev.ph .vp-dev-bar{justify-content:center}.vp-dev.ph .vp-dev-bar span{margin:0}
+.vp-view{position:relative;flex:1;min-height:0;overflow:hidden;background:#EEF3F8}
+.vp-live-inner{position:absolute;left:0;top:0;transform-origin:0 0;transition:transform .9s cubic-bezier(.3,.7,.2,1);background:#EEF3F8;padding:14px 18px;pointer-events:none;color:#0E1E33;text-align:left}
+.vp-live-inner.phone{padding:10px 12px}
+.vp-hl{position:absolute;border:3px solid #E3242B;border-radius:10px;box-shadow:0 0 0 9999px rgba(14,30,51,.28);opacity:0;transition:all .7s cubic-bezier(.3,.7,.2,1);pointer-events:none}
+.vp-scene.hl-on .vp-hl{animation:vpPulse 1.6s ease-in-out infinite}
+@keyframes vpPulse{0%,100%{border-color:#E3242B}50%{border-color:#FFFFFF}}
+.vp-cursor{position:absolute;opacity:0;transition:all .9s cubic-bezier(.3,.7,.2,1);pointer-events:none;filter:drop-shadow(0 2px 3px rgba(14,30,51,.5))}
+.vp-tag{position:absolute;left:4.5cqw;top:4cqw;background:#E3242B;color:#FFFFFF;font-size:max(11px,1.9cqw);padding:.6cqw 1.6cqw;border-radius:99px;box-shadow:0 .6cqw 1.6cqw rgba(8,45,85,.4)}
+.vp-dev.ph~.vp-tag{left:auto;right:4cqw;top:auto;bottom:13cqw;max-width:26cqw;border-radius:1.4cqw;font-size:max(12px,2.4cqw);padding:1.2cqw 1.8cqw}
+.vp-sp{width:auto!important;padding:0 8px!important;border:1.5px solid #5B6B80!important;font-size:12px}
+.vp.max,.vp:fullscreen{position:fixed;inset:0;z-index:9999;border-radius:0;justify-content:center;background:#0E1E33;width:100vw;height:100vh;height:100dvh}
+.vp.max .vp-screen,.vp:fullscreen .vp-screen{width:min(100vw,calc((100dvh - 56px) * 16 / 9));margin:0 auto;flex:none}
+.vp.max .vp-ctrl,.vp:fullscreen .vp-ctrl{width:min(100vw,calc((100dvh - 56px) * 16 / 9));margin:0 auto}
+.vp-tall .vp-screen{aspect-ratio:4/5}
+.vp-tall .vp-scene{padding:6cqw 6cqw 22cqw}
+.vp-tall .vp-scene.vp-live{padding:4cqw 4cqw 22cqw}
+.vp-tall .vp-dev.ph{width:64cqw;border-width:1.6cqw;border-radius:5cqw}
+.vp-tall .vp-dev-bar{height:7cqw;font-size:3.2cqw}
+.vp-tall .vp-tag{display:none}
+.vp-tall .vp-cap{font-size:max(13px,3.8cqw);bottom:4cqw;padding:2cqw 3cqw;border-radius:3cqw}
+.vp-tall .vp-scene h4{font-size:7cqw}.vp-tall .vp-steps li{font-size:4.4cqw;gap:3cqw}.vp-tall .vp-steps b{width:7cqw;height:7cqw;font-size:3.8cqw}
+.vp-tall .vp-row{font-size:4.2cqw}.vp-tall .vp-row.tot{font-size:4.8cqw}.vp-tall .vp-receipt{max-width:none;padding:2cqw 4cqw;border-radius:3cqw}
+.vp-tall .vp-note{font-size:3.8cqw}.vp-tall .vp-center h3{font-size:9cqw}.vp-tall .vp-center p{font-size:4.4cqw}.vp-tall .vp-logo{width:18cqw;height:18cqw}
+.vp-tall .vp-flow{flex-direction:column;gap:2cqw}.vp-tall .vp-arrow{transform:rotate(90deg);font-size:5cqw;line-height:1}
+.vp-tall .vp-node{padding:2.6cqw 3.4cqw;border-radius:3cqw}.vp-tall .vp-node b{font-size:4.4cqw}.vp-tall .vp-node span{font-size:3.6cqw}
+.vp-tall .vp-split{grid-template-columns:1fr;gap:3cqw}.vp-tall .vp-phone{border-width:1.6cqw;border-radius:4cqw;padding:2cqw}.vp-tall .vp-ui{font-size:3.6cqw;padding:2cqw}.vp-tall .vp-ph-bar{font-size:3.8cqw;padding:2cqw}.vp-tall .vp-ph-btn{font-size:3.8cqw;padding:2cqw}.vp-tall .vp-side{display:none}
+.vp-tall.max .vp-screen,.vp-tall:fullscreen .vp-screen,.vp-tall.max .vp-ctrl,.vp-tall:fullscreen .vp-ctrl{width:min(100vw,calc((100dvh - 56px) * 4 / 5))}
 
 </style>
 <div id="app"></div>

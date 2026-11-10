@@ -1,6 +1,6 @@
 # Referral and promo credit
 
-_Money · Lesson 19 of 19 · Video 0:30_
+_Money · Lesson 19 of 19 · Video 0:44_
 
 Customers use Send Koro credit; we pay you back in full.
 
@@ -37,7 +37,8 @@ Customers use Send Koro credit; we pay you back in full.
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
 | 0:00–0:09 | 1 | Send Koro credit: Paid by Send Koro, never by you | Customers can use Send Koro credit from referrals and promo codes. Send Koro pays for it, never you. |
-| 0:09–0:19 | 2 | An order with $10 credit: Customer’s order total $42.98 · Send Koro credit −$10.00 · Card charged now $32.98 · Paid back to you on your invoice $10.00 | With ten dollars of credit, the card is charged ten dollars less, and Send Koro pays you that ten dollars back. |
-| 0:19–0:30 | 3 | How you’re paid back: Monthly run (On the 1st) → Invoice line (−credit used) → More than your plan? (Rest sent to your Stripe) | Each month the credit used lowers your plan invoice. If it’s more than the plan, the rest goes straight to your Stripe account. |
+| 0:09–0:20 | 2 | An order with $10 credit: Customer’s order total $42.98 · Send Koro credit −$10.00 · Card charged now $32.98 · Paid back to you on your invoice $10.00 | With ten dollars of credit, the card is charged ten dollars less, and Send Koro pays you that ten dollars back. |
+| 0:20–0:32 | 3 | Real portal page “subscription”: scrolls to and highlights “Send Koro promo credit this month” (Paid back on your invoice) | On the Subscription page, the promo credit card lists every order where customers used credit. It comes off your next invoice. |
+| 0:32–0:44 | 4 | How you’re paid back: Monthly run (On the 1st) → Invoice line (−credit used) → More than your plan? (Rest sent to your Stripe) | Each month the credit used lowers your plan invoice. If it’s more than the plan, the rest goes straight to your Stripe account. |
 
 In the portal: `subscription` page.

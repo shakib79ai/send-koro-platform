@@ -1,6 +1,6 @@
 # Handing the order to the courier
 
-_Orders and delivery · Lesson 13 of 19 · Video 0:27_
+_Orders and delivery · Lesson 13 of 19 · Video 0:33_
 
 Check the order number, hand it over, done.
 
@@ -21,8 +21,9 @@ Check the order number, hand it over, done.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:10 | 1 | Pickup to door: You tap Ready (Packed and sealed) → Courier arrives (Shows the order number) → Handed over (Order is on its way) | When you tap Ready, a courier is on the way. Check the order number they show, then hand it over. |
-| 0:10–0:18 | 2 | Packing checklist: Match the order number on the bag · Check items and notes · Seal the bag · Include utensils only if asked | Before handing over, match the order number, check items and notes, and seal the bag. |
-| 0:18–0:27 | 3 | At the door: Leave at door: courier takes a photo · Hand it to me: customer gives a 4-digit PIN | The courier completes the delivery with a photo at the door or a four-digit PIN from the customer. |
+| 0:00–0:07 | 1 | Real portal page “orders”: scrolls to and highlights “Ready” (Ready for the courier) | Ready orders wait in the Ready column until the courier arrives. |
+| 0:07–0:15 | 2 | Packing checklist: Match the order number on the bag · Check items and notes · Seal the bag · Include utensils only if asked | Before handing over, match the order number, check items and notes, and seal the bag. |
+| 0:15–0:24 | 3 | Real portal page “orders”: scrolls to and highlights “Handed to courier” (Hand it over) | When the courier shows the matching order number, hand it over and tap Handed to courier. |
+| 0:24–0:33 | 4 | At the door: Leave at door: courier takes a photo · Hand it to me: customer gives a 4-digit PIN | The courier completes the delivery with a photo at the door or a four-digit PIN from the customer. |
 
 In the portal: `orders` page.

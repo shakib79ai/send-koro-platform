@@ -1,6 +1,6 @@
 # Card processing fees
 
-_Money · Lesson 15 of 19 · Video 0:28_
+_Money · Lesson 15 of 19 · Video 0:40_
 
 What you pay on each order, with a worked example.
 
@@ -28,8 +28,9 @@ What you pay on each order, with a worked example.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:09 | 1 | Card processing: 2.9% + 30¢ · only on your part of the order | Card processing is Stripe’s standard 2.9% plus 30 cents. You pay it only on your part of the order. |
-| 0:09–0:20 | 2 | One $30 order: Card charge (whole order) $43.54 · Stripe fee on it $1.57 · Paid by the delivery money −$0.39 · Your part of the fee $1.18 | On a forty-three fifty-four order, Stripe’s fee is one fifty-seven. The delivery money pays thirty-nine cents, so your part is one eighteen. |
-| 0:20–0:28 | 3 | Never charged: No commission · No card fee to customers · No fee on the delivery money for you | Customers never pay a card fee, and you never pay processing on the delivery money. |
+| 0:00–0:10 | 1 | Card processing: 2.9% + 30¢ · only on your part of the order | Card processing is Stripe’s standard 2.9% plus 30 cents. You pay it only on your part of the order. |
+| 0:10–0:21 | 2 | One $30 order: Card charge (whole order) $43.54 · Stripe fee on it $1.57 · Paid by the delivery money −$0.39 · Your part of the fee $1.18 | On a forty-three fifty-four order, Stripe’s fee is one fifty-seven. The delivery money pays thirty-nine cents, so your part is one eighteen. |
+| 0:21–0:32 | 3 | Real portal page “orderMoney”: scrolls to and highlights “You get” (See it on every order) | Open any order’s money breakdown to see the card processing on your part, your delivery share, and what you get. |
+| 0:32–0:40 | 4 | Never charged: No commission · No card fee to customers · No fee on the delivery money for you | Customers never pay a card fee, and you never pay processing on the delivery money. |
 
 In the portal: `earnings` page.

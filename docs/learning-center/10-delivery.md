@@ -1,6 +1,6 @@
 # Delivery fee: who pays and how
 
-_Orders and delivery · Lesson 10 of 19 · Video 0:36_
+_Orders and delivery · Lesson 10 of 19 · Video 0:51_
 
 Choose your rule: customer pays, you pay all, split, or free above an amount.
 
@@ -39,8 +39,9 @@ Choose your rule: customer pays, you pay all, split, or free above an amount.
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
 | 0:00–0:10 | 1 | The delivery fee: Covers the courier, nothing else | The delivery fee only covers the courier. Send Koro adds no service fee, no small-order fee and no surge fee. |
-| 0:10–0:18 | 2 | Choose your rule: Customer pays the full fee · You pay all (free delivery) · Split: you cover $ or % · Free above an order amount | Choose who pays: the customer, you, a split, or free delivery above an order amount. |
-| 0:18–0:27 | 3 | Example: you pay $3: Delivery fee $8.48 · Brooklyn Bowl Co. pays part −$3.00 · Customer pays for delivery $5.48 | For example, if you pay three dollars of an eight forty-eight fee, the customer pays five forty-eight. |
-| 0:27–0:36 | 4 | Where your share comes from: Order paid ($43.54 card charge) → Your share (Kept from your payment) → Courier (Paid in full + 100% tip) | Your share is kept from that order’s payment. The courier always gets full pay and the whole tip. |
+| 0:10–0:20 | 2 | Real portal page “delivery”: scrolls to and highlights “Who pays the delivery fee?” (Choose your rule) | Open Delivery fee and choose who pays: the customer, you, a split, or free delivery above an amount. |
+| 0:20–0:31 | 3 | Real portal page “delivery”: scrolls to and highlights “You pay ($)” (Split it) | With Split, you pay a fixed amount or a percent of each delivery fee, and the customer pays the rest. |
+| 0:31–0:40 | 4 | Example: you pay $3: Delivery fee $8.48 · Brooklyn Bowl Co. pays part −$3.00 · Customer pays for delivery $5.48 | For example, if you pay three dollars of an eight forty-eight fee, the customer pays five forty-eight. |
+| 0:40–0:51 | 5 | Real portal page “delivery”: scrolls to and highlights “Monthly budget ($)” (Stay in control) | Set a maximum per order and a monthly budget. When the budget is used up, customers pay the full fee. |
 
 In the portal: `delivery` page.

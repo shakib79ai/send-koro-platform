@@ -1,6 +1,6 @@
 # Managing orders
 
-_Orders and delivery · Lesson 11 of 19 · Video 0:24_
+_Orders and delivery · Lesson 11 of 19 · Video 0:37_
 
 The live orders board, alerts, and busy-time controls.
 
@@ -21,8 +21,9 @@ The live orders board, alerts, and busy-time controls.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:08 | 1 | Live orders: phone screen “Live orders” with SK1052 · New 4:38 left · SK1051 · Preparing Ready in 12 min · SK1050 · Ready Courier arriving | The live orders board shows new orders, orders you’re preparing, and orders ready for pickup. |
-| 0:08–0:15 | 2 | Never miss an order: A sound repeats every 10 seconds · Phone notifications and tab alerts · Keep the screen awake on a tablet | New orders ring every ten seconds until someone answers, with phone notifications too. |
-| 0:15–0:24 | 3 | Busy?: Raise prep time for new orders · Pause: stop accepting orders · Close early for the day | If you get busy, raise prep time, pause new orders, or close early, instead of letting orders time out. |
+| 0:00–0:09 | 1 | Real portal page “orders”: scrolls to and highlights “New” (Live orders) | The Live orders page shows new orders, orders you are preparing, and orders ready for pickup. |
+| 0:09–0:17 | 2 | Real portal page “orders”: scrolls to and highlights “[data-cd]” (Answer in time) | Each new order has a five-minute timer. Answer before it runs out. |
+| 0:17–0:27 | 3 | Real portal page “notifications”: scrolls to and highlights “Keep ringing until answered” (Never miss an order) | In Notifications, keep the sound ringing until someone answers, and get a text if no one does. |
+| 0:27–0:37 | 4 | Busy?: Raise prep time for new orders · Pause: stop accepting orders · Close early for the day | If you get busy, raise prep time, pause new orders, or close early, instead of letting orders time out. |
 
 In the portal: `orders` page.

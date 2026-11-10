@@ -1,6 +1,6 @@
 # Getting paid (payouts)
 
-_Money · Lesson 16 of 19 · Video 0:26_
+_Money · Lesson 16 of 19 · Video 0:37_
 
 How order money reaches your bank.
 
@@ -31,8 +31,9 @@ How order money reaches your bank.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:09 | 1 | From order to bank: You accept (Card is charged) → Stripe balance (Food + tax − fees) → Your bank (Stripe payout) | When you accept, the payment lands in your Stripe balance. Stripe then pays your bank on your payout schedule. |
-| 0:09–0:17 | 2 | What reaches you on a $30 order: Food + tax $32.66 · Your delivery share −$3.00 · Your part of card processing −$1.18 · Commission $0.00 · You receive $28.48 | On a thirty dollar order with three dollars of delivery help, twenty-eight forty-eight reaches you. |
-| 0:17–0:26 | 3 | Payout schedule: Set in your Stripe Dashboard · Daily, weekly or monthly · See every payout in the Stripe tab | Choose daily, weekly or monthly payouts in your Stripe Dashboard, and see every payout in the Stripe tab. |
+| 0:00–0:10 | 1 | From order to bank: You accept (Card is charged) → Stripe balance (Food + tax − fees) → Your bank (Stripe payout) | When you accept, the payment lands in your Stripe balance. Stripe then pays your bank on your payout schedule. |
+| 0:10–0:18 | 2 | What reaches you on a $30 order: Food + tax $32.66 · Your delivery share −$3.00 · Your part of card processing −$1.18 · Commission $0.00 · You receive $28.48 | On a thirty dollar order with three dollars of delivery help, twenty-eight forty-eight reaches you. |
+| 0:18–0:28 | 3 | Real portal page “stripe”: scrolls to and highlights “Every day (2 days to arrive)” (Your payout schedule) | In the Stripe tab you see your payout schedule and bank. Change the schedule in your Stripe Dashboard. |
+| 0:28–0:37 | 4 | Real portal page “payouts”: scrolls to and highlights “Nov 3” (Every payout) | On Payouts, open any payout to see the orders, fees and refunds in it. |
 
 In the portal: `payouts` page.

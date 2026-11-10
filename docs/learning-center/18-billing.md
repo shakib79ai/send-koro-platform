@@ -1,6 +1,6 @@
 # Paying your subscription
 
-_Money · Lesson 18 of 19 · Video 0:26_
+_Money · Lesson 18 of 19 · Video 0:30_
 
 One invoice on the 1st, card or bank, and what happens if a payment fails.
 
@@ -29,8 +29,8 @@ One invoice on the 1st, card or bank, and what happens if a payment fails.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:09 | 1 | Your monthly invoice: phone screen “Invoice · December” with Park Slope plan $150.00 · Williamsburg (first month) $0.00 · Send Koro promo credit −$15.00 · Total $135.00 | On the first of each month at noon Eastern, you get one invoice with a line for each location. |
-| 0:09–0:17 | 2 | How to pay: Add a card or US bank account · Charged automatically on the 1st · Invoices and receipts by email | Add a card or bank account once. It’s charged automatically, and invoices are emailed to you. |
-| 0:17–0:26 | 3 | If a payment fails: Stripe retries up to 4 times in 2 weeks · You get an email each time · Update your card on the Subscription page | If a payment fails, Stripe retries it and emails you. Update your card on the Subscription page. |
+| 0:00–0:09 | 1 | Real portal page “subscription”: scrolls to and highlights “Invoices” (Your invoices) | Every invoice is listed on the Subscription page, with one line for each location. |
+| 0:09–0:21 | 2 | Real portal page “subscription”: scrolls to and highlights “Update card” (How you pay) | Add or update your billing card or bank account here. It’s charged automatically on the first of the month at noon Eastern. |
+| 0:21–0:30 | 3 | If a payment fails: Stripe retries up to 4 times in 2 weeks · You get an email each time · Update your card on the Subscription page | If a payment fails, Stripe retries it and emails you. Update your card on the Subscription page. |
 
 In the portal: `subscription` page.

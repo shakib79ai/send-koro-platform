@@ -2168,14 +2168,102 @@
       ['Good to know', ul(['Credit doesn’t lower your net food sales, so it never changes your plan.', 'Each order shows the credit and the amount paid back later, under <b>Earnings → Order money</b>.', 'The “Promo credit this month” card on the Subscription page lists every order.'])],
     ] },
   ];
-  const sceneDur = (sc) => Math.max(5, Math.round(sc.cap.split(/\s+/).length / 2.4 + 1.5));
+  // ---- Videos show the real portal pages: each “live” scene renders the actual screen, scrolls to the part being explained,
+  // moves a pointer to it and rings it, while the caption (and optional voice) explains it.
+  const LV = (screen, target, h, cap) => ({ k: 'live', screen, target, h, cap });
+  const LIVE_SCENES = {
+    start: (o) => [o[0], LV('signup', 'text:Your full name', 'Create your account', 'Tap Create account. Enter your name, mobile number and email. You sign in with a text code, so there are no passwords.'), LV('setup', 'text:Go live', 'Store setup checklist', 'Then open Store setup. Finish each step for your business and for each location. Every step has its own lesson here.'), o[3]],
+    licenses: (o) => [o[0], LV('legal', 'text:What Send Koro asks for', 'Licenses and legal', 'Open Licenses and legal. At the top you see exactly what Send Koro asks for.'), LV('legal', 'text:Legal business name', 'Business details', 'Enter your business details once: legal name, doing-business-as name, entity type, EIN and the owner.'), LV('legal', 'text:NYC Food Service Establishment Permit', 'Each location', 'Then for each location, add the food permit with its number, expiry date and a photo, and the sales tax ID.'), o[2]],
+    setup: () => [LV('profile', 'text:Restaurant name', 'Store profile', 'In Store profile, add your restaurant name, a short description and a wide cover photo.'), LV('profile', 'text:Cuisines', 'Cuisines', 'Pick up to three cuisines. The first one is your main cuisine, and customers can find you by it.'), LV('hours', 'text:Weekly hours', 'Hours', 'In Hours, set your opening times for each day, and add closures for holidays.'), LV('team', 'text:What each role can do', 'Team', 'In Team, invite your staff by phone. Owners see everything, managers run orders and the menu, and staff see live orders.'), LV('notifications', 'text:Keep ringing until answered', 'Order alerts', 'In Notifications, keep the order sound on. It rings every ten seconds until someone answers.')],
+    branches: (o) => [LV('locations', 'text:+ Add location', 'Locations', 'Open Locations to see every branch. Tap Add location to open a new one.'), LV('locations', 'text:Finish setup', 'Each location sets up on its own', 'Each location finishes its own setup: permit, sales tax, hours, delivery fee rule and payouts.'), o[1]],
+    tax: (o) => [o[0], LV('tax', 'text:Sales tax rate for Park Slope', 'Your rate, per location', 'Open Sales tax. Choose the location and check its rate. We suggest one from the address, and you confirm it.'), o[1], LV('tax', 'text:Tax collected by month', 'Help with filing', 'Below, you see the tax collected each month, and you can copy it for your accountant.')],
+    stripe: (o) => [o[0], LV('setup', 'text:Connect Stripe', 'Connect Stripe', 'In Store setup, tap Connect Stripe. Stripe asks for your business, the owner’s ID and your bank, on its own secure page.'), LV('stripe', 'text:Active', 'The Stripe tab', 'When Stripe says Active, you can take orders. The Stripe tab shows your balance, payout schedule and bank.'), LV('stripe', 'text:Recent payouts', 'Payouts', 'Scroll down to see recent payouts, and use the other tabs for payments, statements and tax forms.')],
+    menusetup: (o) => [LV('menu', 'text:Set up your menu faster', 'Start fast', 'On the Menu page, pick a template for your type of restaurant, or tap Import menu and we build it for you.'), o[1], LV('editItem', 'text:Price by size', 'Add an item', 'For each item, add a photo, name and description, then one price, or a price for each size.'), LV('editItem', 'text:+ Add a group', 'Choices', 'Add option groups for choices like protein, spice level or milk. Use Preview to see it as customers will.')],
+    menuedit: () => [LV('menu', 'text:Sold out today', 'Sold out in one tap', 'To stop selling an item, turn off its switch. Choose sold out for today, or until you turn it back on.'), LV('menu', '.m2-check', 'Change many at once', 'Tick several items to mark them sold out, move them to a category, or change prices by a percent or an amount.'), LV('menu', 'select.m2-locsel', 'One location only', 'Pick a location at the top to change prices or sold out items at just that location.'), LV('mods', 'text:Ready-made groups', 'Option groups', 'On Option groups, edit a group once and every item using it updates. Add ready-made groups for your type of restaurant.')],
+    pricing: (o) => [o[0], LV('editItem', 'text:Price (USD)', 'Your price', 'In the item editor, set the price customers pay before tax. There is no commission to cover.'), LV('editItem', 'text:Pickup price (optional)', 'Pickup price', 'Add an optional lower pickup price. Each location can also have its own price, further down.'), o[2]],
+    delivery: (o) => [o[0], LV('delivery', 'text:Who pays the delivery fee?', 'Choose your rule', 'Open Delivery fee and choose who pays: the customer, you, a split, or free delivery above an amount.'), LV('delivery', 'text:You pay ($)', 'Split it', 'With Split, you pay a fixed amount or a percent of each delivery fee, and the customer pays the rest.'), o[2], LV('delivery', 'text:Monthly budget ($)', 'Stay in control', 'Set a maximum per order and a monthly budget. When the budget is used up, customers pay the full fee.')],
+    ordersmgmt: (o) => [LV('orders', 'text:New', 'Live orders', 'The Live orders page shows new orders, orders you are preparing, and orders ready for pickup.'), LV('orders', '[data-cd]', 'Answer in time', 'Each new order has a five-minute timer. Answer before it runs out.'), LV('notifications', 'text:Keep ringing until answered', 'Never miss an order', 'In Notifications, keep the sound ringing until someone answers, and get a text if no one does.'), o[2]],
+    accept: (o) => [LV('newOrder', 'text:Customer note:', 'A new order', 'When an order arrives, read the items and the customer’s note first.'), LV('newOrder', 'text:Prep time (min)', 'Set the prep time', 'Choose how long it will take. Your usual prep time is already selected.'), LV('newOrder', 'text:Accept order', 'Accept', 'Tap Accept order. The customer’s card is charged now. Decline, or let five minutes pass, and the customer pays nothing.'), LV('orders', 'text:Mark ready', 'Mark it ready', 'The order moves to Preparing. When it’s packed, tap Mark ready.')],
+    handoff: (o) => [LV('orders', 'text:Ready', 'Ready for the courier', 'Ready orders wait in the Ready column until the courier arrives.'), o[1], LV('orders', 'text:Handed to courier', 'Hand it over', 'When the courier shows the matching order number, hand it over and tap Handed to courier.'), o[2]],
+    refunds: (o) => [LV('history', 'text:SK1049', 'Find the order', 'Open Order history and tap the order with the problem.'), LV('orderDetail', 'text:Report a problem', 'Report a problem', 'Tap Report a problem: missing item, wrong order, courier issue or a complaint. Our team reviews it and refunds the customer.'), o[1], o[2]],
+    processing: (o) => [o[0], o[1], LV('orderMoney', 'text:You get', 'See it on every order', 'Open any order’s money breakdown to see the card processing on your part, your delivery share, and what you get.'), o[2]],
+    payouts: (o) => [o[0], o[1], LV('stripe', 'text:Every day (2 days to arrive)', 'Your payout schedule', 'In the Stripe tab you see your payout schedule and bank. Change the schedule in your Stripe Dashboard.'), LV('payouts', 'text:Nov 3', 'Every payout', 'On Payouts, open any payout to see the orders, fees and refunds in it.')],
+    plans: (o) => [o[0], o[1], LV('subscription', 'text:Plan by location', 'Your plan by location', 'On the Subscription page, you see this month’s plan for each location, and an estimate of next month’s.'), o[2]],
+    billing: (o) => [LV('subscription', 'text:Invoices', 'Your invoices', 'Every invoice is listed on the Subscription page, with one line for each location.'), LV('subscription', 'text:Update card', 'How you pay', 'Add or update your billing card or bank account here. It’s charged automatically on the first of the month at noon Eastern.'), o[2]],
+    credit: (o) => [o[0], o[1], LV('subscription', 'text:Send Koro promo credit this month', 'Paid back on your invoice', 'On the Subscription page, the promo credit card lists every order where customers used credit. It comes off your next invoice.'), o[2]],
+  };
+  LESSONS.forEach((l) => { if (LIVE_SCENES[l.id]) l.scenes = LIVE_SCENES[l.id](l.scenes); });
+  const refundsLesson = LESSONS.find((l) => l.id === 'refunds');
+  refundsLesson.sum = 'Report a problem on the order; Send Koro handles the refund.';
+  refundsLesson.body[0] = ['Steps', ol(['Open the order in <b>Live orders</b> or <b>Order history</b>.', 'Tap <b>Report a problem</b> and choose what happened: missing or wrong item, order not delivered, courier issue, or a customer complaint.', 'The Send Koro team reviews it, talks to the customer and refunds the right parts. You see the refund on the order’s money breakdown.', 'The customer sees the refund on their card in 5–10 business days.'])];
+  refundsLesson.body[2] = ['Good to know', ul(['Refunds are never done in Stripe, so every part (food, tax, delivery, tip) is returned correctly.', 'Refunds lower your net food sales in the month they’re made, which can lower next month’s plan.'])];
+
+  const LIVE_W = () => (PHONE ? 390 : 1040);
+  function livePrep(k) {
+    S.signedIn = true; S.modal = null; S.stack = []; S.screen = k;
+    if (k === 'newOrder' || k === 'orders') { const o = S.orders.find((x) => x.status === 'new'); if (o) S.newId = o.id; }
+    if (k === 'orderDetail') S.detailId = (S.orders.find((o) => o.status === 'preparing') || S.orders[0] || PAST[0]).id;
+    if (k === 'editItem') { ensure2(); S.attachPick = false; S.edit = editFrom2(S.menu[0].items[0]); }
+    if (k === 'menu' || k === 'mods') { ensure2(); S.itemQ = ''; S.itemCat = 'all'; S.bulk = {}; S.modQ = ''; }
+    if (k === 'orderMoney') S.moneyId = 'SK1049';
+    if (k === 'delivery') S.ruleDraft = null;
+    if (k === 'payouts') { S.payBranch = S.branches[0].id; S.payoutOpen = null; }
+    if (k === 'stripe') S.stripeTab = 'overview';
+    if (k === 'legal') { S.licBranch = null; S.licOpen = null; }
+    if (k === 'setup') S.branchId = S.branches[S.branches.length - 1].id;
+    if (k === 'signup' && !S.signup) S.signup = { step: 1, owner: '', phone: '', email: '', code: '', name: '', address: '', cuisines: [], locs: '1', agree: false, tax: false };
+    if (k === 'signup') S.signup = { ...S.signup, step: 1 };
+  }
+  function liveHTML(k) {
+    const snap = { ...S }; let html = '';
+    try { livePrep(k); if (k === 'newOrder' && !S.orders.some((o) => o.status === 'new')) S.screen = k = 'orders'; html = (V[k] || V.home)(); } catch (e) { html = `<div class="card pad">Preview of this page isn’t available.</div>`; }
+    Object.keys(S).forEach((key) => { if (!(key in snap)) delete S[key]; }); Object.assign(S, snap);
+    return html.replace(/\sid="[^"]*"/g, '').replace(/\sdata-(a|m|live|rr|photo)="/g, ' data-x$1="').replace(/\sautofocus/g, '');
+  }
+  const liveCache = {};
+  function liveScene(sc, i, on) {
+    const key = sc.screen + (PHONE ? ':p' : ':w'); if (!liveCache[key]) liveCache[key] = liveHTML(sc.screen);
+    return `<div class="vp-scene vp-live ${on ? 'on' : ''}" data-i="${i}" aria-hidden="${!on}"><div class="vp-dev ${PHONE ? 'ph' : 'web'}"><div class="vp-dev-bar">${PHONE ? '' : '<i></i><i></i><i></i>'}<span>${esc(PAGES.find((p) => p[0] === sc.screen) ? PAGES.find((p) => p[0] === sc.screen)[1] : sc.h)}</span></div><div class="vp-view"><div class="vp-live-inner ${PHONE ? 'phone' : 'web'}" inert style="width:${LIVE_W()}px">${liveCache[key]}</div><div class="vp-hl"></div><div class="vp-cursor"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8-6 1.5L10 19z" fill="#FFFFFF" stroke="#0E1E33" stroke-width="1.6" stroke-linejoin="round"/></svg></div></div></div><div class="vp-tag"><b>${esc(sc.h)}</b></div></div>`;
+  }
+  function liveFind(inner, spec) {
+    if (!spec.startsWith('text:')) return inner.querySelector(spec);
+    const t = spec.slice(5); let best = null;
+    inner.querySelectorAll('button,label,b,h1,h2,h3,span,a,div,td,strong').forEach((e) => { const tx = e.textContent.replace(/\s+/g, ' ').trim(); if (tx.startsWith(t) || (tx.includes(t) && tx.length < t.length + 40)) { if (!best || e.textContent.length < best.textContent.length) best = e; } });
+    return best;
+  }
+  function liveLayout(scene, sc) {
+    const view = scene.querySelector('.vp-view'); const inner = scene.querySelector('.vp-live-inner'); if (!view || !inner) return;
+    const scale = view.clientWidth / LIVE_W(); inner.style.transform = `scale(${scale})`;
+    const tgt = liveFind(inner, sc.target); const hl = scene.querySelector('.vp-hl'); const cur = scene.querySelector('.vp-cursor');
+    let y = 0; let box = null;
+    if (tgt) { const ir = inner.getBoundingClientRect(); const r = tgt.getBoundingClientRect(); box = { x: (r.left - ir.left) / scale, y: (r.top - ir.top) / scale, w: r.width / scale, h: r.height / scale };
+      const viewH = view.clientHeight / scale; y = Math.max(0, Math.min(box.y - viewH * 0.32, inner.scrollHeight - viewH)); }
+    inner.style.transform = `translateY(${-y * scale}px) scale(${scale})`;
+    if (box) { const pad = 6; Object.assign(hl.style, { left: (box.x - pad) * scale + 'px', top: (box.y - y - pad) * scale + 'px', width: (box.w + pad * 2) * scale + 'px', height: (box.h + pad * 2) * scale + 'px', opacity: 1 });
+      Object.assign(cur.style, { left: (box.x + Math.min(box.w * 0.6, 120)) * scale + 'px', top: (box.y - y + box.h * 0.7) * scale + 'px', opacity: 1 }); }
+    else { hl.style.opacity = 0; cur.style.opacity = 0; }
+  }
+  function liveLayoutAll() { const el = vpEl(); if (!el) return; const l = lessonById(VP.id); el.querySelectorAll('.vp-scene.vp-live').forEach((s) => { const sc = l.scenes[+s.dataset.i]; s.classList.remove('hl-on'); liveLayout(s, sc); }); const on = el.querySelector('.vp-scene.on.vp-live'); if (on) { void on.offsetWidth; setTimeout(() => on.classList.add('hl-on'), 650); } }
+
+  // ---- Voice: pick the most natural voice the device has, speak slower, wait for each sentence to finish.
+  const VOICE_PREF = [/natural/i, /neural/i, /premium/i, /enhanced/i, /google us english/i, /\b(ava|samantha|allison|susan|zoe|aria|jenny|emma|michelle)\b/i];
+  function bestVoice() {
+    try { const vs = (window.speechSynthesis.getVoices() || []).filter((v) => /^en(-|_)?(US|GB)?/i.test(v.lang));
+      if (VP.voiceName) { const v = vs.find((x) => x.name === VP.voiceName); if (v) return v; }
+      for (const re of VOICE_PREF) { const v = vs.find((x) => re.test(x.name) && /en.?US/i.test(x.lang)) || vs.find((x) => re.test(x.name)); if (v) return v; }
+      return vs.find((x) => /en.?US/i.test(x.lang)) || vs[0] || null; } catch (e) { return null; }
+  }
+  try { if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = () => {}; } catch (e) { /* no speech */ }
+  const SPEEDS = [[0.85, 'Slow'], [1, 'Normal'], [1.15, 'Fast']];
+  const sceneDur = (sc) => Math.max(5, Math.round((sc.cap.split(/\s+/).length / 2.3 + (sc.k === 'live' ? 2.5 : 1.5)) / (VP.speed || 1)));
   const lessonDur = (l) => l.scenes.reduce((a, sc) => a + sceneDur(sc), 0);
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
   const lessonById = (id) => LESSONS.find((l) => l.id === id) || LESSONS[0];
-  const IC = { play: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>', pause: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>', prev: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z" fill="currentColor"/></svg>', next: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z" fill="currentColor"/></svg>', vol: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' };
-  const VP = { id: null, i: 0, t: 0, playing: false, cc: true, voice: false, timer: null, started: false };
+  const IC = { play: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>', pause: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>', prev: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z" fill="currentColor"/></svg>', next: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z" fill="currentColor"/></svg>', full: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>', vol: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' };
+  const VP = { id: null, i: 0, t: 0, playing: false, cc: true, voice: false, timer: null, started: false, speed: 1, speaking: false, hold: 0, voiceName: '' };
 
   function sceneHTML(sc, i, on) {
+    if (sc.k === 'live') return liveScene(sc, i, on);
     const d = (n) => `style="--d:${n}s"`;
     let inner = '';
     if (sc.k === 'title') inner = `<div class="vp-center">${LOGO('', 60).replace('class="sk-mark"', 'class="sk-mark vp-in vp-logo"')}<h3 class="vp-in" ${d(0.2)}>${sc.h}</h3><p class="vp-in" ${d(0.6)}>${sc.sub}</p></div>`;
@@ -2188,20 +2276,21 @@
   function playerHTML(l) {
     if (VP.id !== l.id) { vpStop(); Object.assign(VP, { id: l.id, i: 0, t: 0, playing: false, started: false }); }
     const total = lessonDur(l); const before = l.scenes.slice(0, VP.i).reduce((a, sc) => a + sceneDur(sc), 0);
-    return `<div class="vp" data-lesson="${l.id}"><div class="vp-screen" data-a="vpToggle" role="region" aria-label="Video: ${esc(l.title)}">${l.scenes.map((sc, i) => sceneHTML(sc, i, i === VP.i)).join('')}
+    setTimeout(liveLayoutAll, 80);
+    return `<div class="vp ${PHONE ? 'vp-tall' : ''}" data-lesson="${l.id}"><div class="vp-screen" data-a="vpToggle" role="region" aria-label="Video: ${esc(l.title)}">${l.scenes.map((sc, i) => sceneHTML(sc, i, i === VP.i)).join('')}
       <div class="vp-cap ${VP.cc ? '' : 'off'}" aria-live="polite">${l.scenes[VP.i].cap}</div>
       ${VP.started ? '' : `<button class="vp-big" data-a="vpToggle" aria-label="Play video"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#FFFFFF"/></svg></button><span class="vp-len">${mmss(total)}</span>`}</div>
       <div class="vp-ctrl"><button class="vp-b" data-a="vpToggle" aria-label="${VP.playing ? 'Pause' : 'Play'}">${VP.playing ? IC.pause : IC.play}</button><button class="vp-b" data-a="vpStep" data-d="-1" aria-label="Previous scene">${IC.prev}</button><button class="vp-b" data-a="vpStep" data-d="1" aria-label="Next scene">${IC.next}</button>
         <div class="vp-segs">${l.scenes.map((sc, i) => `<button class="vp-seg" data-a="vpSeek" data-i="${i}" aria-label="Scene ${i + 1}" style="flex:${sceneDur(sc)}"><i style="width:${i < VP.i ? 100 : i === VP.i ? Math.min(100, (VP.t / sceneDur(sc)) * 100) : 0}%"></i></button>`).join('')}</div>
-        <span class="vp-time">${mmss(before + VP.t)} / ${mmss(total)}</span><button class="vp-b vp-t ${VP.cc ? 'on' : ''}" data-a="vpCC" aria-pressed="${VP.cc}">CC</button><button class="vp-b vp-t ${VP.voice ? 'on' : ''}" data-a="vpVoice" aria-pressed="${VP.voice}" aria-label="Read captions aloud">${IC.vol}</button></div></div>`;
+        <span class="vp-time">${mmss(before + VP.t)} / ${mmss(total)}</span><button class="vp-b vp-t ${VP.cc ? 'on' : ''}" data-a="vpCC" aria-pressed="${VP.cc}">CC</button><button class="vp-b vp-t ${VP.voice ? 'on' : ''}" data-a="vpVoice" aria-pressed="${VP.voice}" aria-label="Read captions aloud">${IC.vol}</button><button class="vp-b vp-sp" data-a="vpSpeed" aria-label="Speed">${(SPEEDS.find((x) => x[0] === VP.speed) || SPEEDS[1])[1]}</button><button class="vp-b" data-a="vpFull" aria-label="Full screen">${IC.full}</button></div></div>`;
   }
   function vpEl() { return root.querySelector(`.vp[data-lesson="${VP.id}"]`); }
   function vpStop() { clearInterval(VP.timer); VP.timer = null; VP.playing = false; try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { /* no speech */ } }
-  function vpSay() { if (!VP.voice) return; try { const s = window.speechSynthesis; if (!s) return; s.cancel(); const u = new SpeechSynthesisUtterance(lessonById(VP.id).scenes[VP.i].cap.replace(/<[^>]+>/g, '')); u.lang = 'en-US'; u.rate = 1.02; s.speak(u); } catch (e) { /* no speech */ } }
+  function vpSay() { VP.speaking = false; if (!VP.voice) return; try { const s = window.speechSynthesis; if (!s) return; s.cancel(); const u = new SpeechSynthesisUtterance(lessonById(VP.id).scenes[VP.i].cap.replace(/<[^>]+>/g, '')); const v = bestVoice(); if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-US'; u.rate = 0.9 * VP.speed; u.pitch = 1; const me = VP.i; u.onend = () => { if (VP.i === me) VP.speaking = false; }; u.onerror = u.onend; VP.speaking = true; VP.hold = 0; s.speak(u); } catch (e) { VP.speaking = false; } }
   function vpPaint(sceneChanged) {
     const el = vpEl(); if (!el) { vpStop(); return; }
     const l = lessonById(VP.id); const total = lessonDur(l); const before = l.scenes.slice(0, VP.i).reduce((a, sc) => a + sceneDur(sc), 0);
-    if (sceneChanged) { el.querySelectorAll('.vp-scene').forEach((s) => { const on = +s.dataset.i === VP.i; s.classList.toggle('on', on); s.setAttribute('aria-hidden', String(!on)); }); el.querySelector('.vp-cap').innerHTML = l.scenes[VP.i].cap; }
+    if (sceneChanged) { el.querySelectorAll('.vp-scene').forEach((s) => { const on = +s.dataset.i === VP.i; s.classList.toggle('on', on); s.setAttribute('aria-hidden', String(!on)); }); el.querySelector('.vp-cap').innerHTML = l.scenes[VP.i].cap; liveLayoutAll(); }
     el.querySelectorAll('.vp-seg i').forEach((b, i) => { b.style.width = (i < VP.i ? 100 : i === VP.i ? Math.min(100, (VP.t / sceneDur(l.scenes[i])) * 100) : 0) + '%'; });
     el.querySelector('.vp-time').textContent = `${mmss(before + VP.t)} / ${mmss(total)}`;
     const pb = el.querySelector('.vp-ctrl .vp-b'); pb.innerHTML = VP.playing ? IC.pause : IC.play; pb.setAttribute('aria-label', VP.playing ? 'Pause' : 'Play');
@@ -2215,6 +2304,7 @@
     VP.timer = setInterval(() => {
       if (!vpEl()) { vpStop(); return; }
       VP.t += 0.1; const d = sceneDur(l.scenes[VP.i]);
+      if (VP.t >= d && VP.speaking && VP.hold < 12) { VP.hold += 0.1; VP.t = d; vpPaint(false); return; }
       if (VP.t >= d) { if (VP.i < l.scenes.length - 1) { VP.i++; VP.t = 0; vpPaint(true); vpSay(); return; } VP.t = d; vpStop(); vpPaint(false); S.learnDone[VP.id] = true; return; }
       vpPaint(false);
     }, 100);
@@ -2258,10 +2348,17 @@
     vpToggle: () => { if (VP.playing) { vpStop(); vpPaint(false); } else vpPlay(); },
     vpStep: (d) => { VP.started = true; vpGo(VP.i + +d.d); },
     vpSeek: (d) => { VP.started = true; vpGo(+d.i); },
+    vpSpeed: () => { const ix = SPEEDS.findIndex((x) => x[0] === VP.speed); VP.speed = SPEEDS[(ix + 1) % SPEEDS.length][0]; VP.t = 0; const el = vpEl(); if (el) { el.querySelector('.vp-sp').textContent = SPEEDS.find((x) => x[0] === VP.speed)[1]; const l = lessonById(VP.id); el.querySelectorAll('.vp-seg').forEach((b, i) => { b.style.flex = sceneDur(l.scenes[i]); }); } vpPaint(false); if (VP.playing) vpSay(); },
+    vpFull: () => { const el = vpEl(); if (!el) return; const fsOn = document.fullscreenElement === el; if (fsOn || el.classList.contains('max')) { if (fsOn) document.exitFullscreen().catch(() => {}); el.classList.remove('max'); setTimeout(liveLayoutAll, 200); return; }
+      let p = null; try { p = el.requestFullscreen ? el.requestFullscreen() : null; } catch (e) { p = null; }
+      if (p && p.then) p.then(() => setTimeout(liveLayoutAll, 200)).catch(() => { el.classList.add('max'); setTimeout(liveLayoutAll, 200); }); else { el.classList.add('max'); setTimeout(liveLayoutAll, 200); } },
     vpCC: () => { VP.cc = !VP.cc; const el = vpEl(); if (el) { el.querySelector('.vp-cap').classList.toggle('off', !VP.cc); const b = el.querySelector('[data-a="vpCC"]'); b.classList.toggle('on', VP.cc); b.setAttribute('aria-pressed', String(VP.cc)); } },
     vpVoice: () => { VP.voice = !VP.voice; const el = vpEl(); if (el) { const b = el.querySelector('[data-a="vpVoice"]'); b.classList.toggle('on', VP.voice); b.setAttribute('aria-pressed', String(VP.voice)); } if (VP.voice && VP.playing) vpSay(); if (!VP.voice) { try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { /* no speech */ } } },
   });
 
+  window.addEventListener('resize', () => { if (vpEl()) liveLayoutAll(); });
+  document.addEventListener('fullscreenchange', () => setTimeout(liveLayoutAll, 150));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const el = vpEl(); if (el && el.classList.contains('max')) { el.classList.remove('max'); setTimeout(liveLayoutAll, 150); } } });
   A.page = (d) => openPage(d.k);
   const h = (location.hash || '').slice(1);
   const hit = PAGES.find((p) => hashOf(p[0]) === h);

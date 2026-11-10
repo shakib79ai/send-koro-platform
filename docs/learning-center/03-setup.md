@@ -1,6 +1,6 @@
 # Store setup
 
-_Get started · Lesson 3 of 19 · Video 0:24_
+_Get started · Lesson 3 of 19 · Video 0:50_
 
 Profile, photos, hours, prep time, team and alerts.
 
@@ -21,8 +21,10 @@ Profile, photos, hours, prep time, team and alerts.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:08 | 1 | Your store profile: phone screen “Store profile” with Name Brooklyn Bowl Co. · Cuisines Bowls · Salads · Halal · Cover photo Uploaded · About Fresh grain bowls… | Start with your store profile: name, cover photo, up to three cuisines and a short description. |
-| 0:08–0:15 | 2 | Hours and prep time: phone screen “Hours” with Mon–Thu 11:00 AM – 10:00 PM · Fri–Sat 11:00 AM – 11:30 PM · Closures Thanksgiving · Prep time 20 min | Set your weekly hours, add holiday closures, and choose your usual prep time. |
-| 0:15–0:24 | 3 | Team and alerts: Owner: everything, including money · Manager: orders, menu, hours · Staff: live orders only · Turn on order sounds, texts and emails | Invite your team with the right role, and turn on order alerts so you never miss an order. |
+| 0:00–0:09 | 1 | Real portal page “profile”: scrolls to and highlights “Restaurant name” (Store profile) | In Store profile, add your restaurant name, a short description and a wide cover photo. |
+| 0:09–0:20 | 2 | Real portal page “profile”: scrolls to and highlights “Cuisines” (Cuisines) | Pick up to three cuisines. The first one is your main cuisine, and customers can find you by it. |
+| 0:20–0:29 | 3 | Real portal page “hours”: scrolls to and highlights “Weekly hours” (Hours) | In Hours, set your opening times for each day, and add closures for holidays. |
+| 0:29–0:41 | 4 | Real portal page “team”: scrolls to and highlights “What each role can do” (Team) | In Team, invite your staff by phone. Owners see everything, managers run orders and the menu, and staff see live orders. |
+| 0:41–0:50 | 5 | Real portal page “notifications”: scrolls to and highlights “Keep ringing until answered” (Order alerts) | In Notifications, keep the order sound on. It rings every ten seconds until someone answers. |
 
 In the portal: `profile` page.

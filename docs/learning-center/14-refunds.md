@@ -1,14 +1,15 @@
 # Refunds
 
-_Orders and delivery · Lesson 14 of 19 · Video 0:29_
+_Orders and delivery · Lesson 14 of 19 · Video 0:39_
 
-Refund an item or a whole order from the order screen.
+Report a problem on the order; Send Koro handles the refund.
 
 ## Steps
 
-1. Open the order (Live orders or Order history).
-2. Tap **Refund**, choose items or the whole order, and the reason.
-3. Confirm. The customer sees the refund on their card in 5–10 business days.
+1. Open the order in **Live orders** or **Order history**.
+2. Tap **Report a problem** and choose what happened: missing or wrong item, order not delivered, courier issue, or a customer complaint.
+3. The Send Koro team reviews it, talks to the customer and refunds the right parts. You see the refund on the order’s money breakdown.
+4. The customer sees the refund on their card in 5–10 business days.
 
 ## Who pays what
 
@@ -19,15 +20,16 @@ Refund an item or a whole order from the order screen.
 
 ## Good to know
 
-- Always refund in Send Koro, not in Stripe, so every part is returned correctly.
+- Refunds are never done in Stripe, so every part (food, tax, delivery, tip) is returned correctly.
 - Refunds lower your net food sales in the month they’re made, which can lower next month’s plan.
 
 ## Video script
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:09 | 1 | Refund from the order: Open the order · Choose items or the whole order · Pick a reason · Confirm | Refunds are done from the order screen: pick the items or the whole order, choose a reason, and confirm. |
-| 0:09–0:18 | 2 | Who pays back what: Food and tax (From your Stripe balance) → Delivery part (From Send Koro) → Tip (Returned if refunded) | Food and tax come back from your Stripe balance. The delivery part is returned by Send Koro. |
-| 0:18–0:29 | 3 | Card fee on a refund: Card processing on the order kept by Stripe · Delivery’s share of that fee credited on your next invoice | Stripe keeps its card fee on refunds. The delivery’s share of that fee is credited back to you on your next invoice. |
+| 0:00–0:07 | 1 | Real portal page “history”: scrolls to and highlights “SK1049” (Find the order) | Open Order history and tap the order with the problem. |
+| 0:07–0:19 | 2 | Real portal page “orderDetail”: scrolls to and highlights “Report a problem” (Report a problem) | Tap Report a problem: missing item, wrong order, courier issue or a complaint. Our team reviews it and refunds the customer. |
+| 0:19–0:28 | 3 | Who pays back what: Food and tax (From your Stripe balance) → Delivery part (From Send Koro) → Tip (Returned if refunded) | Food and tax come back from your Stripe balance. The delivery part is returned by Send Koro. |
+| 0:28–0:39 | 4 | Card fee on a refund: Card processing on the order kept by Stripe · Delivery’s share of that fee credited on your next invoice | Stripe keeps its card fee on refunds. The delivery’s share of that fee is credited back to you on your next invoice. |
 
 In the portal: `history` page.

@@ -1,6 +1,6 @@
 # Locations (branches)
 
-_Get started · Lesson 4 of 19 · Video 0:20_
+_Get started · Lesson 4 of 19 · Video 0:29_
 
 Run several locations with their own hours, prices, tax and plan.
 
@@ -21,7 +21,8 @@ Run several locations with their own hours, prices, tax and plan.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:09 | 1 | One account, many locations: Park Slope (Live) → Williamsburg (Setting up) → + Add location | One account can run many locations. Each one is set up and goes live on its own. |
-| 0:09–0:20 | 2 | What each location has: Its own address, phone and hours · Its own sales tax rate and permit · Its own prices and sold-out items (optional) · Its own monthly plan, from its own sales · Its own Stripe account (optional) | Each location has its own hours, tax rate, permit and plan, and can have its own prices and its own Stripe account. |
+| 0:00–0:09 | 1 | Real portal page “locations”: scrolls to and highlights “+ Add location” (Locations) | Open Locations to see every branch. Tap Add location to open a new one. |
+| 0:09–0:18 | 2 | Real portal page “locations”: scrolls to and highlights “Finish setup” (Each location sets up on its own) | Each location finishes its own setup: permit, sales tax, hours, delivery fee rule and payouts. |
+| 0:18–0:29 | 3 | What each location has: Its own address, phone and hours · Its own sales tax rate and permit · Its own prices and sold-out items (optional) · Its own monthly plan, from its own sales · Its own Stripe account (optional) | Each location has its own hours, tax rate, permit and plan, and can have its own prices and its own Stripe account. |
 
 In the portal: `locations` page.

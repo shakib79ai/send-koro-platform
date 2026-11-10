@@ -1,6 +1,6 @@
 # How to get started
 
-_Get started · Lesson 1 of 19 · Video 0:36_
+_Get started · Lesson 1 of 19 · Video 0:43_
 
 From sign-up to your first order in about a day.
 
@@ -30,8 +30,8 @@ From sign-up to your first order in about a day.
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
 | 0:00–0:09 | 1 | Welcome to Send Koro: $0 commission · a flat monthly plan · first month free | Welcome to Send Koro. You keep your food sales, pay no commission, and your first month is free. |
-| 0:09–0:18 | 2 | Create your account: Your name, mobile and email · Verify the 6-digit text code · Restaurant name, address, cuisines · Accept the partner agreement | Create your account in four short steps. You sign in with a text code, so there are no passwords. |
-| 0:18–0:26 | 3 | Finish store setup: Business details and licenses · Sales tax rate · Menu (at least 5 items) · Opening hours · Delivery fee rule · Connect Stripe for payouts | Then finish the store setup checklist. Each item has a short guide in this learning center. |
-| 0:26–0:36 | 4 | Go live: Setup done (All green) → We review (Usually within 1 business day) → You’re live (Orders start coming in) | When every item is green, we review your permit and turn your store on. Then the orders start coming in. |
+| 0:09–0:21 | 2 | Real portal page “signup”: scrolls to and highlights “Your full name” (Create your account) | Tap Create account. Enter your name, mobile number and email. You sign in with a text code, so there are no passwords. |
+| 0:21–0:33 | 3 | Real portal page “setup”: scrolls to and highlights “Go live” (Store setup checklist) | Then open Store setup. Finish each step for your business and for each location. Every step has its own lesson here. |
+| 0:33–0:43 | 4 | Go live: Setup done (All green) → We review (Usually within 1 business day) → You’re live (Orders start coming in) | When every item is green, we review your permit and turn your store on. Then the orders start coming in. |
 
 In the portal: `setup` page.

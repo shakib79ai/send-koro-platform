@@ -1,6 +1,6 @@
 # Set up your menu
 
-_Menu and prices · Lesson 7 of 19 · Video 0:27_
+_Menu and prices · Lesson 7 of 19 · Video 0:42_
 
 Templates, categories, items, sizes and photos.
 
@@ -22,8 +22,9 @@ Templates, categories, items, sizes and photos.
 
 | Time | Scene | On screen | Voice-over and captions |
 |---|---|---|---|
-| 0:00–0:09 | 1 | Start fast: Pick a template for your type of restaurant · Or import: photos, PDF or a CSV · Or add items one by one | Start from a template for your type of restaurant, import your menu, or add items one by one. |
-| 0:09–0:18 | 2 | How a menu is built: Menu (All day · Lunch) → Category (Curries) → Item (Tikka masala) → Option groups (Protein · Spice · Naan) | Every menu is built the same way: menus with hours, categories, items, and option groups for choices. |
-| 0:18–0:27 | 3 | Add an item: phone screen “Add item” with Name Tikka masala · Price $15.99 · Category Curries · Option groups Protein · Spice level | For each item add a name, description, photo and price, then attach option groups like protein and spice level. |
+| 0:00–0:12 | 1 | Real portal page “menu”: scrolls to and highlights “Set up your menu faster” (Start fast) | On the Menu page, pick a template for your type of restaurant, or tap Import menu and we build it for you. |
+| 0:12–0:21 | 2 | How a menu is built: Menu (All day · Lunch) → Category (Curries) → Item (Tikka masala) → Option groups (Protein · Spice · Naan) | Every menu is built the same way: menus with hours, categories, items, and option groups for choices. |
+| 0:21–0:31 | 3 | Real portal page “editItem”: scrolls to and highlights “Price by size” (Add an item) | For each item, add a photo, name and description, then one price, or a price for each size. |
+| 0:31–0:42 | 4 | Real portal page “editItem”: scrolls to and highlights “+ Add a group” (Choices) | Add option groups for choices like protein, spice level or milk. Use Preview to see it as customers will. |
 
 In the portal: `menu` page.

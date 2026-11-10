@@ -1,6 +1,6 @@
 # Subscription plans
 
-_Money · Lesson 17 of 19 · Video 0:28_
+_Money · Lesson 17 of 19 · Video 0:38_
 
 A flat plan for each location, from its last month’s food sales.
 
@@ -28,6 +28,7 @@ A flat plan for each location, from its last month’s food sales.
 |---|---|---|---|
 | 0:00–0:08 | 1 | A flat monthly plan: No commission · first month free | Instead of commission, each location pays a flat monthly plan. The first month is free. |
 | 0:08–0:17 | 2 | Plans by last month’s food sales: Up to $2,500 $50 · $2,500.01 – $5,000 $100 · $5,000.01 – $7,500 $150 · $7,500.01 – $10,000 $250 · $10,000.01 – $15,000 $350 · Over $15,000 $500 | The plan comes from that location’s net food sales last month, from fifty to five hundred dollars. |
-| 0:17–0:28 | 3 | Example: Park Slope: October net food sales $6,240.00 · November plan $150.00 | For example, six thousand two hundred forty dollars of food sales in October means a one hundred fifty dollar plan in November. |
+| 0:17–0:27 | 3 | Real portal page “subscription”: scrolls to and highlights “Plan by location” (Your plan by location) | On the Subscription page, you see this month’s plan for each location, and an estimate of next month’s. |
+| 0:27–0:38 | 4 | Example: Park Slope: October net food sales $6,240.00 · November plan $150.00 | For example, six thousand two hundred forty dollars of food sales in October means a one hundred fifty dollar plan in November. |
 
 In the portal: `subscription` page.
