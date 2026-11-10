@@ -151,8 +151,8 @@
   // ---------- roles ----------
   const ACCESS = {
     owner: null,
-    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'settings', 'more', 'noAccess'],
-    staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'learn', 'lesson', 'more', 'noAccess'],
+    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'settings', 'more', 'noAccess'],
+    staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'more', 'noAccess'],
   };
   const can = (s) => !ACCESS[S.role] || ACCESS[S.role].includes(s);
   const ROLE = { owner: 'Owner', manager: 'Manager', staff: 'Staff' };
@@ -672,7 +672,7 @@
       ['Orders', PHONE ? [['history', 'Order history', 'Search past orders'], ['newOrder', 'New order screen', 'Full-screen alert for new orders']] : []],
       ['Money', PHONE ? [['earnings', 'Earnings', 'Net sales and order money'], ['payouts', 'Payouts', 'Weekly payouts to your bank'], ['stripe', 'Stripe', 'Balance, payments, payouts, statements, bank'], ['subscription', 'Subscription', 'A plan for each location, from its own sales']] : []],
       ['Store', [['setup', 'Store setup', S.branches.every((b) => b.status === 'live') ? 'All locations live ✓' : 'Finish setup for ' + S.branches.filter((b) => b.status !== 'live').map((b) => b.name).join(', ')], ['locations', 'Locations', S.branches.length + ' branches'], ['profile', 'Store profile', 'Name, photos, cuisines, extra charges'], ['hours', 'Hours', 'Weekly hours and closures'], ['team', 'Team and roles', `${S.team.length} people`], ['delivery', 'Delivery fee', 'Who pays the delivery fee'], ['tax', 'Sales tax', `${B().taxRate || '—'}% · you file and pay it`], ['legal', 'Licenses and legal', 'Permits, certificates, business details'], ['notifications', 'Notifications', 'Sounds, texts and emails']]],
-      ['Support', [['learn', 'Learning center', 'Short videos and guides for every part of Send Koro'], ['help', 'Help', 'Contact the Send Koro team']]],
+      ['Support', [['learn', 'Learning center', 'Short videos and guides for every part of Send Koro'], ['legalList', 'Legal documents', 'Partner agreement, privacy, refunds, guidelines'], ['help', 'Help', 'Contact the Send Koro team']]],
     ];
     return `${head(PHONE ? 'More' : 'Settings', S.profile.name)}${body(`
       ${groups.map(([g, ls]) => { const inner = ls.map((x) => link(...x)).join(''); return inner ? `<b class="mut sm-t" style="letter-spacing:.08em;text-transform:uppercase">${g}</b><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(${PHONE ? 260 : 300}px,1fr));gap:10px">${inner}</div>` : ''; }).join('')}
@@ -908,7 +908,7 @@
         <span class="mut sm-t">Rules for a location come from its address. Change the address on the location to see that state’s list.</span></div>
       <div class="card pad col"><b style="font-size:17px">Partner agreement</b><span class="mut sm-t">Required once for your whole business. This written agreement is what lets Send Koro list you; New York City requires one before a delivery app lists a restaurant.</span>
         ${[['signed', 'I accept the Send Koro partner agreement and marketplace terms on behalf of ' + esc(bz.legal) + '.'], ['licenses', 'We hold, and will keep current, every license and permit our locations need, including food manager certificates and food handler cards where required.'], ['food', 'We follow food safety rules and show allergen and ingredient information accurately on our menu.'], ['bathroom', 'Delivery workers picking up our orders may use our restroom (New York City rule).']].map(([k, t]) => `<label class="row" style="align-items:flex-start;border-top:1px solid var(--line);padding:10px 0"><input type="checkbox" data-a="agree" data-k="${k}" ${S.agree[k] ? 'checked' : ''} style="width:20px;height:20px;margin-top:1px"><span>${t}</span></label>`).join('')}
-        <div class="row wrap">${[['agreement', 'Read the agreement'], ['privacy', 'Privacy and data use'], ['terms', 'Marketplace terms']].map(([k, l]) => `<button class="btn gh" data-a="info" data-k="${k}" style="min-height:32px;padding:0 6px">${l}</button>`).join('')}</div><span class="mut sm-t">Accepted Oct 1, 2026 by ${esc(bz.owner)}.</span></div>
+        <div class="row wrap">${[['agreement', 'Read the agreement'], ['privacy', 'Privacy and data use'], ['usage', 'Community guidelines'], ['refunds', 'Refund policy']].map(([k, l]) => `<button class="btn gh" data-a="info" data-k="${k}" style="min-height:32px;padding:0 6px">${l}</button>`).join('')}</div><span class="mut sm-t">Accepted Oct 1, 2026 by ${esc(bz.owner)}.</span></div>
       <p class="mut sm-t" style="margin:0">This is the usual minimum and a general guide, not legal advice. Cities and counties can add their own rules (for example a sidewalk café or signage permit). Check with the agencies or a lawyer before opening.</p>`))}`;
   };
   V.setup = () => {
@@ -994,7 +994,7 @@
     if (u.step === 4) inner = `<h1 style="font-size:26px;color:var(--ink)">Almost done</h1>
       <div class="card pad col" style="gap:4px;background:var(--bg)"><b>${esc(u.name)}</b><span class="mut sm-t">${esc(u.address)}</span><span class="sm-t">${u.cuisines.map(esc).join(' · ')} · ${esc(u.locs)} location${u.locs === '1' ? '' : 's'}</span><span class="sm-t">${esc(u.owner)} · ${esc(u.phone)} · ${esc(u.email)}</span></div>
       <div class="card pad col" style="gap:4px"><b>Your plan</b><span class="sm-t">First month free. Then each location pays $50 to $500 a month based on its own net food sales last month. $0 commission.</span></div>
-      <label class="row" style="align-items:flex-start"><input type="checkbox" data-m="signup.agree" data-rr="1" ${u.agree ? 'checked' : ''} style="width:20px;height:20px;margin-top:2px"><span>I accept the Send Koro <button class="btn gh" data-a="info" data-k="agreement" style="min-height:0;padding:0;font-size:15px">partner agreement</button> and marketplace terms.</span></label>
+      <label class="row" style="align-items:flex-start"><input type="checkbox" data-m="signup.agree" data-rr="1" ${u.agree ? 'checked' : ''} style="width:20px;height:20px;margin-top:2px"><span>I accept the Send Koro <button class="lg-link" data-a="legalOpen" data-id="restaurantTerms">Restaurant Partner Agreement</button>, the <button class="lg-link" data-a="legalOpen" data-id="usage">Community Guidelines</button> and the <button class="lg-link" data-a="legalOpen" data-id="privacy">Privacy Policy</button>, and agree to get text codes and order alerts (<button class="lg-link" data-a="legalOpen" data-id="sms">Text Message Terms</button>).</span></label>
       <label class="row" style="align-items:flex-start"><input type="checkbox" data-m="signup.tax" data-rr="1" ${u.tax ? 'checked' : ''} style="width:20px;height:20px;margin-top:2px"><span>I’m responsible for charging, reporting and paying sales tax.</span></label>
       <button class="btn" data-a="suCreate">Create account</button><button class="btn gh" data-a="suBack">Back</button>
       <span class="mut sm-t">Next you’ll finish store setup: menu, hours, food permit, sales tax ID, Stripe payouts. You can save and come back any time.</span>`;
@@ -1031,8 +1031,8 @@
   }
 
   // ---------- frame ----------
-  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center']]]];
-  const PARENT = { lesson: 'learn', branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
+  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center'], ['legalList', 'Legal documents']]]];
+  const PARENT = { lesson: 'learn', legalDoc: 'legal', legalList: 'legal', branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
   function sidebar() {
     const cur = PARENT[S.screen] || S.screen;
     const nNew = S.orders.filter((o) => o.status === 'new').length;
@@ -1053,10 +1053,10 @@
         <div class="col" style="gap:6px"><span class="logo" style="color:var(--ink)">${LOGO('', 34)}${WORD} for restaurants</span><span class="mut sm-t">$0 commission. Flat monthly plan. Your food money goes straight to your Stripe account.</span></div>
         <div class="col" style="gap:6px"><b>Run your store</b>${[['orders', 'Live orders'], ['menu', 'Menu'], ['hours', 'Hours']].filter(([k]) => can(k)).map(([k, l]) => `<button class="flink" data-a="tabTo" data-to="${k}" style="color:var(--gx)">${l}</button>`).join('')}</div>
         <div class="col" style="gap:6px"><b>Support</b><button class="flink" data-a="tabTo" data-to="help" style="color:var(--gx)">Help center</button><span class="sm-t">Restaurant line <b style="user-select:all">(718) 555-0150</b></span>${L('status', 'System status')}</div>
-        <div class="col" style="gap:6px"><b>Legal</b>${L('agreement', 'Partner agreement')}${L('privacy', 'Privacy')}${L('terms', 'Terms')}</div>
+        <div class="col" style="gap:6px"><b>Legal</b>${L('agreement', 'Partner agreement')}${L('privacy', 'Privacy')}${L('refunds', 'Refund policy')}${L('usage', 'Community guidelines')}${L('sms', 'Text messages')}</div>
       </div><span class="mut sm-t">© 2026 Send Koro · New York, NY · Payments by Stripe</span></footer>`;
   }
-  function miniFooter() { return `<div class="col" style="gap:6px;padding:14px 4px;border-top:1px solid var(--line);font-size:13px"><span class="mut">Send Koro for restaurants · $0 commission</span><div class="row wrap" style="gap:14px">${[['agreement', 'Partner agreement'], ['privacy', 'Privacy'], ['terms', 'Terms'], ['status', 'System status']].map(([k, l]) => `<button class="flink" data-a="info" data-k="${k}" style="color:var(--gx);font-size:13px">${l}</button>`).join('')}</div><span class="mut">© 2026 Send Koro · New York, NY</span></div>`; }
+  function miniFooter() { return `<div class="col" style="gap:6px;padding:14px 4px;border-top:1px solid var(--line);font-size:13px"><span class="mut">Send Koro for restaurants · $0 commission</span><div class="row wrap" style="gap:14px">${[['agreement', 'Partner agreement'], ['privacy', 'Privacy'], ['refunds', 'Refunds'], ['usage', 'Guidelines'], ['status', 'System status']].map(([k, l]) => `<button class="flink" data-a="info" data-k="${k}" style="color:var(--gx);font-size:13px">${l}</button>`).join('')}</div><span class="mut">© 2026 Send Koro · New York, NY</span></div>`; }
   function tabBar() {
     const T = [['home', 'Home'], ['orders', 'Orders'], ['menu', 'Menu'], ['more', 'More']].filter(([k]) => can(k));
     const map = { editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', promos: 'menu', editPromo: 'menu', newOrder: 'orders', orderDetail: 'orders', history: 'orders' };
@@ -1065,21 +1065,21 @@
     return `<nav aria-label="Main" style="flex:none;height:72px;padding:6px 6px 12px;background:var(--g);display:grid;grid-template-columns:repeat(${T.length},1fr)">${T.map(([k, l]) => `<button data-a="tab" data-to="${k}" aria-current="${cur === k ? 'page' : 'false'}" style="position:relative;border:0;background:transparent;font-size:13px;font-weight:800;color:${cur === k ? '#FCE910' : '#C9D3CD'}">${l}${k === 'orders' && nNew ? `<span style="position:absolute;top:6px;right:22%;min-width:18px;height:18px;border-radius:99px;background:#FF7A2E;color:var(--ink);font-size:11px;display:flex;align-items:center;justify-content:center">${nNew}</span>` : ''}</button>`).join('')}</nav>`;
   }
   const PAGES = PHONE
-    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
-    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
+    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
+    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
   function pagesBar() {
     return `<nav class="pages" aria-label="Open a page"><span class="pages-l">Open a page</span>${PAGES.map(([k, l], i) => `<button data-a="page" data-k="${k}" class="${S.screen === k ? 'on' : ''}" aria-current="${S.screen === k ? 'page' : 'false'}">${i + 1}. ${l}</button>`).join('')}</nav>`;
   }
 
   let lastScreen;
   function render(top) {
-    const content = (!S.signedIn && ['signin', 'signup', 'learn', 'lesson'].includes(S.screen) ? pubHead(S.screen) : '') + (V[S.screen] || V.home)();
+    const content = (!S.signedIn && ['signin', 'signup', 'learn', 'lesson', 'legalDoc', 'legalList'].includes(S.screen) ? pubHead(S.screen) : '') + (V[S.screen] || V.home)();
     const scr = root.querySelector('.scr');
     const keep = !top && lastScreen === S.screen && scr ? scr.scrollTop : 0;
     const winKeep = !top && lastScreen === S.screen ? window.scrollY : 0;
     const act = document.activeElement && document.activeElement.id; let caret = null; try { caret = act ? document.activeElement.selectionStart : null; } catch (e) { caret = null; }
     const ov = modal() + (S.toast ? `<div class="toast" role="status">${esc(S.toast)}</div>` : '');
-    const pub = !S.signedIn && ['signin', 'signup', 'learn', 'lesson'].includes(S.screen);
+    const pub = !S.signedIn && ['signin', 'signup', 'learn', 'lesson', 'legalDoc', 'legalList'].includes(S.screen);
     const signin = S.screen === 'signin' || S.screen === 'signup' || pub;
     if (PHONE) root.innerHTML = `<div class="stage">${pagesBar()}<div class="device"><div class="scr">${content}</div>${signin ? '' : tabBar()}${ov}</div><p class="stage-note">${esc(M.note || '')}</p></div>`;
     else if (signin) root.innerHTML = `<div class="web">${pagesBar()}${content}${ov}</div>`;
@@ -1343,6 +1343,8 @@
   function openPage(k) {
     S.modal = null; S.stack = [];
     if (k !== 'signin' && k !== 'signup' && k !== 'learn' && k !== 'lesson') S.signedIn = true;
+    if (k === 'legalDoc') S.legalId = 'restaurantTerms';
+    if (k === 'legalDoc' || k === 'legalList') S.stack = PHONE && S.signedIn ? ['more'] : [];
     if (k === 'learn' || k === 'lesson') { S.signedIn = false; S.learnQ = ''; S.learnTrack = 'all'; if (k === 'lesson') S.lessonId = 'delivery'; }
     if (['overview', 'home'].includes(k)) S.branchId = (S.branches.find((b) => b.status === 'live') || S.branches[0]).id;
     if (!can(k)) S.role = 'owner';
@@ -2359,6 +2361,19 @@
   window.addEventListener('resize', () => { if (vpEl()) liveLayoutAll(); });
   document.addEventListener('fullscreenchange', () => setTimeout(liveLayoutAll, 150));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { const el = vpEl(); if (el && el.classList.contains('max')) { el.classList.remove('max'); setTimeout(liveLayoutAll, 150); } } });
+  // ---- Legal documents (shared texts in legal.js) ----
+  const LG = window.SK_LEGAL;
+  const LG_KEY = { agreement: 'restaurantTerms', terms: 'restaurantTerms', privacy: 'privacy', refunds: 'refunds', usage: 'usage', sms: 'sms' };
+  V.legalList = () => { const inner = `${S.signedIn ? head('Legal documents', 'For your restaurant') : ''}${body(narrow(`${S.signedIn ? '' : '<h1 class="lc-title">Legal documents</h1>'}<span class="mut">The agreement and policies that apply to restaurants on Send Koro.</span><div class="card col lg-list" style="padding:4px 16px">${LG.listHTML('restaurant')}</div><span class="mut sm-t">Last updated ${LG.UPDATED}. Questions: legal@sendkoro.com</span>`))}`; return S.signedIn ? inner : `<div class="lc-page">${inner}</div>`; };
+  V.legalDoc = () => { const d = LG.DOCS[S.legalId] || LG.DOCS.restaurantTerms;
+    const inner = `${S.signedIn ? head(d.title, 'Legal') : ''}${body(narrow(`${S.signedIn ? '' : `<button class="btn gh" data-a="lgBack" style="align-self:flex-start;padding:0">← Back</button><h1 class="lc-title">${d.title}</h1>`}${LG.docHTML(S.legalId)}`))}`;
+    return S.signedIn ? inner : `<div class="lc-page">${inner}</div>`; };
+  Object.assign(A, {
+    legalOpen: (d) => { S.modal = null; if (S.screen === 'legalDoc') { S.legalId = d.id; render(true); return; } S.legalPrev = S.screen; if (S.signedIn) go('legalDoc', { legalId: d.id }); else { S.legalId = d.id; S.screen = 'legalDoc'; render(true); } },
+    lgBack: () => { S.screen = S.legalPrev && S.legalPrev !== 'legalDoc' ? S.legalPrev : 'signin'; render(true); },
+    legalJump: (d, el, e) => { if (e) e.preventDefault(); const t = root.querySelector('#lg-' + S.legalId + '-' + d.i); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+  });
+  const infoOld = A.info; A.info = (d) => (LG_KEY[d.k] ? A.legalOpen({ id: LG_KEY[d.k] }) : infoOld(d));
   A.page = (d) => openPage(d.k);
   const h = (location.hash || '').slice(1);
   const hit = PAGES.find((p) => hashOf(p[0]) === h);

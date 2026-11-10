@@ -36,6 +36,12 @@ Both must get the same features. Match `customer-web.html` (desktop), `customer-
 | 5c | Learning center | Public tab on the welcome page (Sign in · Create account · Learning center) and inside the portal (sidebar → Learn; PWA → More). 19 lessons in 4 tracks, each with a short video (animated scenes, captions, optional read-aloud, play/pause, scene seek) and an article; search, progress, mark as done, “Open this in the portal”. Content: `docs/learning-center/` | Content as static pages (or CMS) at `/learn` and `/learn/:lesson`, public and indexable. Replace animated videos with recorded videos later using the video scripts in each lesson file; keep captions. Lesson progress per user: `learning_progress (user_id, lesson_id, done_at)` |
 | 6 | Toggle switches | Switch knob drawn as its own element (the old CSS-only knob broke on iPhone Safari) | — |
 
+## Legal (all apps)
+
+| # | Feature | Design details | Backend |
+|---|---|---|---|
+| L | Legal documents (all apps) | Terms of Service, Privacy Policy, Refund and Cancellation Policy, Community Guidelines and Acceptable Use Policy, Text Message Terms, Restaurant Partner Agreement, Courier Agreement (drafts in `docs/legal/`). Customers: consent at sign-in and checkout, footer, Account → Legal and Privacy center (marketing choices, cookies, download data, delete account). Restaurants: sign-up Agree step, footer, Licenses and legal, Legal documents page. Couriers: sign-in consent, application agreement step, Account → Legal and Your data | Serve the texts from one source at `/legal/:doc` (public pages), version them, and store each user’s acceptance: `legal_acceptances (user_id, doc_id, version, accepted_at, ip, user_agent)`. Ask users to accept again when a document version changes materially. Data download and account deletion endpoints. **Attorney review before launch** |
+
 ## Driver app (`apps/driver-app`)
 
 | # | Feature | Design details | Backend |
