@@ -1172,6 +1172,65 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 .pm-name b{white-space:nowrap}
 .pm-sub{display:block;white-space:nowrap}
 .pm-acts{grid-column:2;display:flex;flex-wrap:wrap;gap:16px}
+/* ---- restaurant menu editor v2 ---- */
+.switch.k{display:inline-block;vertical-align:middle}.switch.k input{display:block}.switch.k input::after{display:none}
+.switch.k i{position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:99px;background:#FFFFFF;pointer-events:none;transition:left .15s;box-shadow:0 1px 3px rgba(14,30,51,.3)}
+.switch.k input:checked+i{left:21px}.switch.k input:disabled{opacity:.45}.switch.k input:disabled+i{opacity:.8}
+.m2-tabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:#FFFFFF;border:1px solid #DCE5EF;overflow-x:auto;max-width:100%;scrollbar-width:none;flex:none;align-self:flex-start}
+.m2-tabs::-webkit-scrollbar{display:none}
+.m2-tabs button{flex:none;height:38px;padding:0 14px;border:0;border-radius:9px;font-weight:800;font-size:14px;background:transparent;color:#0E1E33;white-space:nowrap}
+.m2-tabs button.on{background:#0B3B6E;color:#FFFFFF}
+.m2-seg{display:flex;flex-wrap:wrap;gap:6px}
+.m2-seg button{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid #C9D6E4;background:#FFFFFF;color:#0E1E33;font-weight:700;font-size:14px}
+.m2-seg button.on{background:#0B3B6E;border-color:#0B3B6E;color:#FFFFFF}
+.m2-bar{display:flex;gap:8px;flex-wrap:wrap}
+.m2-search{display:flex;align-items:center;gap:8px;flex:none;min-width:0;height:46px;padding:0 12px;border-radius:10px;border:1.5px solid #C9D6E4;background:#FFFFFF}
+.m2-search input{border:0;outline:0;flex:1;min-width:0;background:transparent;font-size:15px;color:#0E1E33}
+.m2-locsel{flex:0 1 200px;height:46px;min-width:0}
+.m2-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;max-width:100%}.m2-chips.wrap{flex-wrap:wrap;overflow:visible}
+.m2-chips .chip{height:36px;font-size:13.5px}
+.cx.navy .m2-chips .chip.on,.cx.navy .m2-pick .chip.on{background:#0B3B6E;border-color:#0B3B6E;color:#FFFFFF}
+.m2-quick{border:1.5px dashed #C9D6E4;background:#EAF1F8}
+.m2-bulk{position:sticky;top:0;z-index:4;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 12px;border-radius:12px;background:#0E1E33;color:#FFFFFF}
+.m2-bulk .btn.ln{background:#FFFFFF}
+.m2-cathead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 2px}.m2-cathead b{font-size:17px}
+.m2-list{padding:0;overflow:hidden}
+.m2-item{display:grid;grid-template-columns:auto 60px minmax(0,1fr);gap:12px;align-items:start;padding:12px;border-top:1px solid #DCE5EF}
+.m2-item:first-child{border-top:0}.m2-item.off .m2-thumb,.m2-item.off .m2-name{opacity:.55}
+.m2-check{width:20px;height:20px;margin-top:20px;accent-color:#0B3B6E}
+.m2-thumb{width:60px;height:60px;border-radius:10px;object-fit:cover;display:block}
+.m2-nophoto{display:flex;align-items:center;justify-content:center;background:#EEF3F8;color:#5B6B80;font-size:11px;font-weight:800;text-align:center;border-radius:10px}
+.m2-main{display:flex;flex-direction:column;gap:4px;min-width:0}.m2-name{font-size:15.5px;overflow-wrap:anywhere}
+.m2-tags{display:flex;flex-wrap:wrap;gap:4px}.m2-pill{font-size:11px!important;white-space:nowrap}
+.m2-acts{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:2px}
+.m2-h{font-size:17px}
+.m2-photo{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;align-items:center}
+.m2-photo img,.m2-photo .m2-nophoto{width:96px;height:96px;border-radius:12px;object-fit:cover}
+.m2-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.m2-grid3{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end}
+.m2-size{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) auto;gap:8px;align-items:end}
+.m2-mini{display:flex;gap:2px;flex:none}.m2-mini .btn{min-height:44px;width:40px;padding:0;font-size:16px}
+.m2-cardhead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.m2-group,.m2-choice,.m2-loc,.m2-pick{display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;border:1px solid #DCE5EF;background:#EEF3F8}
+.m2-loc.dim{opacity:.55}
+.m2-flag{display:flex;align-items:center;gap:8px;min-height:48px;font-size:13.5px;font-weight:700;color:#0E1E33}
+.m2-flag>input[type=checkbox]{width:20px;height:20px;accent-color:#0B3B6E;flex:none}
+.m2-save{display:flex;gap:8px;flex-wrap:wrap}.m2-save .btn{min-width:0}
+.m2-pv{display:flex;flex-direction:column;gap:10px}.m2-pvimg{width:100%;height:170px;object-fit:cover;border-radius:12px}
+.m2-pvg{display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid #DCE5EF}
+.m2-pvc{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px}.m2-pvc input{width:20px;height:20px;accent-color:#0B3B6E;flex:none}
+.m2-pvc .btn{min-height:36px;width:36px;padding:0;font-size:18px}.m2-pvc.dim{opacity:.5}
+@media (max-width:420px){.m2-grid3{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.m2-grid3>:first-child{grid-column:1/-1}}
+
+.cx.navy .m2-mini .btn.gh,.cx.navy .m2-pvc .btn.gh,.cx.navy .btn.gh.m2-iconbtn{text-decoration:none;border:1.5px solid #C9D6E4;border-radius:999px;background:#FFFFFF;min-height:40px;width:40px;padding:0;font-size:16px!important}
+.m2-mini{width:88px;justify-content:flex-end}.m2-mini .m2-gap{width:40px;flex:none}
+.cx.navy .m2-pvc .btn.gh{min-height:36px;width:36px}
+.cx.navy .m2-pvc .btn.gh:disabled{opacity:.4}
+.m2-gacts{display:flex;align-items:center;gap:8px}
+.cx.navy .m2-gacts .btn.gh{padding:0 6px}
+.m2-bar .m2-search{flex:1 1 220px}
+.cx.navy .m2-bulk .btn.gh{color:#FFFFFF!important;text-decoration-color:#E3242B}
+.cx.navy .btn.gh.m2-iconbtn:disabled{opacity:.35}
 
 </style>
 <div id="app"></div>
@@ -1254,6 +1313,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     modal: null, toast: '',
   };
   S.branches.forEach((b) => { b.week = S.week.map((d) => [...d]); });
+  const M2MODAL = {};
   const bIdx = () => Math.max(0, S.branches.findIndex((b) => b.id === S.branchId));
   const B = () => S.branches[bIdx()];
   const tax = (food) => Math.round((food * Math.round((parseFloat(B().taxRate) || 0) * 1000)) / 100000);
@@ -1328,7 +1388,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   // ---------- roles ----------
   const ACCESS = {
     owner: null,
-    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'settings', 'more', 'noAccess'],
+    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'settings', 'more', 'noAccess'],
     staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'more', 'noAccess'],
   };
   const can = (s) => !ACCESS[S.role] || ACCESS[S.role].includes(s);
@@ -1384,7 +1444,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   const head = (title, sub, right = '') => PHONE ? `<div class="row" style="background:var(--g);color:#fff;padding:12px;position:sticky;top:0;z-index:5">${S.stack.length ? `<button data-a="back" aria-label="Back" style="width:44px;height:44px;border:0;background:transparent;color:#fff;font-size:24px">‹</button>` : '<span style="width:8px"></span>'}<div class="grow"><b style="font-size:18px">${esc(title)}</b>${sub ? `<div style="font-size:12px;color:#C9D3CD">${esc(sub)}</div>` : ''}</div>${right}</div>` : `${S.stack.length ? '<button class="btn gh" data-a="back" style="align-self:flex-start;padding:0;min-height:32px">← Back</button>' : ''}<div class="row between wrap"><div><h1 style="font-size:30px;color:var(--ink)">${esc(title)}</h1>${sub ? `<div class="mut">${esc(sub)}</div>` : ''}</div><div class="row wrap">${right}</div></div>`;
   const body = (inner) => PHONE ? `<div class="col" style="padding:14px 14px 24px;gap:12px">${inner}</div>` : inner;
   const narrow = (inner) => `<div class="col" style="${PHONE ? '' : 'max-width:760px'}">${inner}</div>`;
-  const sw = (attrs, on, label) => `<span class="switch"><input type="checkbox" role="switch" aria-label="${esc(label)}" ${attrs} ${on ? 'checked' : ''}></span>`;
+  const sw = (attrs, on, label) => `<span class="switch k"><input type="checkbox" role="switch" aria-label="${esc(label)}" ${attrs} ${on ? 'checked' : ''}><i aria-hidden="true"></i></span>`;
 
   function itemsList(o) { return o.lines.map((l) => `<div class="rw" style="padding:2px 0"><span><b>${l[1]}×</b> ${esc(l[0])}${l[3] ? `<span class="mut sm-t" style="display:block">${esc(l[3])}</span>` : ''}</span><span>${money(l[1] * l[2])}</span></div>`).join(''); }
   function actions(o) {
@@ -1562,7 +1622,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   const daysText = (ds) => (ds.length === 7 ? 'Every day' : ds.join() === '1,2,3,4,5' ? 'Mon–Fri' : DAYS.filter(([k]) => ds.includes(k)).map(([, l]) => l).join(', '));
   const timeOK = (t) => /^([01]\d|2[0-3]):[0-5]\d$/.test(String(t));
   const dayChips = (path, ds) => `<div class="chips" style="flex-wrap:wrap">${DAYS.map(([k, l]) => `<button class="chip ${ds.includes(k) ? 'on' : ''}" data-a="dayToggle" data-p="${path}" data-v="${k}" aria-pressed="${ds.includes(k)}">${l}</button>`).join('')}</div>`;
-  const menuTabs = (cur) => `<div class="row" role="tablist" style="padding:4px;border-radius:12px;background:var(--card);border:1px solid var(--line);align-self:flex-start;flex-wrap:wrap">${[['menu', 'Items'], ['menus', PHONE ? 'Menus' : 'Menus and hours'], ['promos', 'Promotions']].map(([k, l]) => `<button role="tab" aria-selected="${cur === k}" data-a="${cur === k ? 'noop' : 'menuSwitch'}" data-to="${k}" style="height:38px;padding:0 ${PHONE ? 12 : 16}px;border:0;border-radius:9px;font-weight:700;background:${cur === k ? 'var(--g)' : 'transparent'};color:${cur === k ? '#fff' : 'inherit'}">${l}</button>`).join('')}</div>`;
+  const menuTabs = (cur) => menuTabs2(cur);
   const dietBadges = (it) => it.diet.filter((d) => !['nuts', 'dairy'].includes(d)).map((d) => `<span class="pill p-n" style="font-size:11px">${DIET.find((x) => x[0] === d)[1]}</span>`).join('');
 
   // ---------- promotions (restaurant-funded, Send Koro charges nothing to run them) ----------
@@ -1622,10 +1682,9 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       ${S.menus.map((m, mi) => `<div class="card pad col"><div class="row wrap between"><label class="f grow" style="min-width:200px">Menu name<input class="in" id="mn-${mi}" data-m="menus.${mi}.name" value="${esc(m.name)}"></label>${S.menus.length > 1 ? `<button class="btn gh" data-a="delMenu" data-i="${mi}" style="color:var(--red)">Delete menu</button>` : ''}</div>
         <b class="sm-t">Days</b>${dayChips('menus.' + mi + '.days', m.days)}
         <div class="row wrap"><label class="f" style="width:150px">From<input class="in" type="time" id="mf-${mi}" data-m="menus.${mi}.from" value="${esc(m.from)}"></label><label class="f" style="width:150px">To<input class="in" type="time" id="mt-${mi}" data-m="menus.${mi}.to" value="${esc(m.to)}"></label></div>
-        <b class="sm-t">Sections in this menu</b><div class="chips" style="flex-wrap:wrap">${S.menu.map((s, si) => `<button class="chip ${s.menus.includes(m.id) ? 'on' : ''}" data-a="secMenu" data-s="${si}" data-m="${m.id}" aria-pressed="${s.menus.includes(m.id)}">${esc(s.s)}</button>`).join('')}</div>
+        <b class="sm-t">Categories in this menu</b><div class="chips" style="flex-wrap:wrap">${S.menu.map((s, si) => `<button class="chip ${s.menus.includes(m.id) ? 'on' : ''}" data-a="secMenu" data-s="${si}" data-m="${m.id}" aria-pressed="${s.menus.includes(m.id)}">${esc(s.s)}</button>`).join('')}</div>
         <span class="mut sm-t">${daysText(m.days)} · ${timeOK(m.from) && timeOK(m.to) ? t12(m.from) + ' – ' + t12(m.to) : 'set times'}</span></div>`).join('')}
-      <div class="card pad col"><div class="row between"><b style="font-size:17px">Sections</b><button class="btn ln sm" data-a="addSection">+ Section</button></div><span class="mut sm-t">The order here is the order customers see.</span>
-        ${S.menu.map((s, si) => `<div class="row wrap" style="border-top:1px solid var(--line);padding-top:10px"><label class="f grow" style="min-width:160px">Name<input class="in" id="sn-${si}" data-m="menu.${si}.s" value="${esc(s.s)}"></label><label class="f grow" style="min-width:200px">Description (optional)<input class="in" id="sd-${si}" data-m="menu.${si}.desc" value="${esc(s.desc)}" placeholder="e.g. Served with house sauce"></label><div class="row"><button class="btn gh" data-a="secMove" data-i="${si}" data-d="-1" aria-label="Move ${esc(s.s)} up" ${si ? '' : 'disabled'}>↑</button><button class="btn gh" data-a="secMove" data-i="${si}" data-d="1" aria-label="Move ${esc(s.s)} down" ${si < S.menu.length - 1 ? '' : 'disabled'}>↓</button></div><span class="mut sm-t" style="width:100%">${s.items.length} dishes · in ${S.menus.filter((m) => s.menus.includes(m.id)).map((m) => esc(m.name)).join(', ') || '<b style="color:var(--red)">no menu (hidden)</b>'}</span></div>`).join('')}</div>
+      <div class="note n-g sm-t">Rename, reorder or hide categories on the <button class="btn gh" data-a="menuSwitch" data-to="cats" style="min-height:0;padding:0;font-size:13px">Categories</button> tab.</div>
       <button class="btn" data-a="saveMenus" style="align-self:flex-start">Save menus</button>`)}`;
   };
 
@@ -2193,10 +2252,11 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   function modal() {
     const md = S.modal; if (!md) return '';
     const wrap = (inner) => `<div class="overlay"><div class="sheet" role="dialog" aria-modal="true">${inner}</div></div>`;
+    if (M2MODAL[md.type]) return wrap(M2MODAL[md.type](md));
     if (md.type === 'decline') return wrap(`<h2 style="font-size:22px">Decline ${md.id}?</h2><p class="mut" style="margin:0">The customer's hold is released and they pay nothing.</p>${['Too busy right now', 'Item sold out', 'Closing soon', 'Other'].map((r) => `<label class="opt ${md.reason === r ? 'on' : ''}"><input type="radio" name="dr" data-a="declineReason" data-v="${r}" ${md.reason === r ? 'checked' : ''}>${r}</label>`).join('')}<button class="btn" data-a="declineDo" style="background:var(--red)">Decline order</button><button class="btn gh" data-a="closeModal">Keep order</button>`);
     if (md.type === 'invite') return wrap(`<h2 style="font-size:22px">Invite a team member</h2><label class="f">Name<input class="in" id="iv-name" data-m="modal.name" value="${esc(md.name)}"></label><label class="f">Mobile number<input class="in" id="iv-phone" data-m="modal.phone" inputmode="tel" value="${esc(md.phone)}" placeholder="(718) 555-0100"></label><div class="row">${['manager', 'staff'].map((r) => `<button class="chip ${md.role === r ? 'on' : ''}" data-a="inviteRole" data-v="${r}">${ROLE[r]}</button>`).join('')}</div><button class="btn" data-a="inviteDo">Send invite by text</button><button class="btn gh" data-a="closeModal">Cancel</button>`);
-    if (md.type === 'soldOut') { const it = S.menu[S.menuTab].items[md.i]; return wrap(`<h2 style="font-size:22px">Mark ${esc(it.name)} sold out?</h2>${[['today', 'For today', 'Back on automatically when you open tomorrow'], ['off', 'Until I turn it back on', 'For dishes you’ve stopped making for a while']].map(([k, l, x]) => `<label class="opt ${md.v === k ? 'on' : ''}"><input type="radio" name="so" data-a="soldOutPick" data-v="${k}" ${md.v === k ? 'checked' : ''}><span class="grow"><b>${l}</b><span class="mut sm-t" style="display:block">${x}</span></span></label>`).join('')}<span class="mut sm-t">All locations. To mark it sold out at one location only, pick that location on the Menu page.</span><button class="btn" data-a="soldOutDo">Mark sold out</button><button class="btn gh" data-a="closeModal">Cancel</button>`); }
-    if (md.type === 'section') return wrap(`<h2 style="font-size:22px">New menu section</h2><label class="f">Section name<input class="in" id="sec-name" data-m="modal.name" value="${esc(md.name)}" placeholder="e.g. Desserts"></label><button class="btn" data-a="sectionDo">Add section</button><button class="btn gh" data-a="closeModal">Cancel</button>`);
+    if (md.type === 'soldOut') { const it = md.id ? itemById(md.id) : S.menu[S.menuTab].items[md.i]; return wrap(`<h2 style="font-size:22px">Mark ${esc(it.name)} sold out?</h2>${[['today', 'For today', 'Back on automatically when you open tomorrow'], ['off', 'Until I turn it back on', 'For dishes you’ve stopped making for a while']].map(([k, l, x]) => `<label class="opt ${md.v === k ? 'on' : ''}"><input type="radio" name="so" data-a="soldOutPick" data-v="${k}" ${md.v === k ? 'checked' : ''}><span class="grow"><b>${l}</b><span class="mut sm-t" style="display:block">${x}</span></span></label>`).join('')}<span class="mut sm-t">All locations. To mark it sold out at one location only, pick that location on the Menu page.</span><button class="btn" data-a="soldOutDo">Mark sold out</button><button class="btn gh" data-a="closeModal">Cancel</button>`); }
+    if (md.type === 'section') return wrap(`<h2 style="font-size:22px">New category</h2><label class="f">Category name<input class="in" id="sec-name" data-m="modal.name" value="${esc(md.name)}" placeholder="e.g. Desserts"></label><button class="btn" data-a="sectionDo">Add category</button><button class="btn gh" data-a="closeModal">Cancel</button>`);
     if (md.type === 'info') { const [t, h] = INFO[md.k]; return wrap(`<div class="row between"><h2 style="font-size:22px">${t}</h2><button class="btn gh" data-a="closeModal" aria-label="Close">✕</button></div><div class="col info">${h}</div><button class="btn" data-a="closeModal">Done</button>`); }
     if (md.type === 'invoice') { const iv = INVOICES.find((x) => x.id === md.id); return wrap(`<div class="row between"><h2 style="font-size:22px">Invoice · ${iv.month}</h2><button class="btn gh" data-a="closeModal" aria-label="Close">✕</button></div><div class="mut">${esc(S.business.legal || S.profile.name)}</div><div class="card pad col" style="gap:2px">${iv.lines.map((l) => `<div class="rw"><span><b>${esc(l[0])}</b><span class="mut sm-t" style="display:block">${esc(l[1])}</span></span><span>${money(l[2])}</span></div>`).join('')}<div class="rw"><span class="mut">Commission</span><span>$0.00</span></div><div class="rw tot"><span>Total</span><span>${money(iv.amount)}</span></div></div><div class="sm-t">${iv.status} · ${iv.date}</div><button class="btn" data-a="closeModal">Done</button>`); }
     if (md.type === 'cancelSub') return wrap(`<h2 style="font-size:22px">Cancel your subscription?</h2><p style="margin:0">All ${S.branches.length} locations stop taking orders after <b>November 30, 2026</b>. You won’t be billed on December 1. There’s no partial refund for November.</p><button class="btn" data-a="cancelSubDo" style="background:var(--red)">Cancel at end of month</button><button class="btn gh" data-a="closeModal">Keep my subscription</button>`);
@@ -2208,7 +2268,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 
   // ---------- frame ----------
   const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]]];
-  const PARENT = { branchEdit: 'locations', editItem: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
+  const PARENT = { branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
   function sidebar() {
     const cur = PARENT[S.screen] || S.screen;
     const nNew = S.orders.filter((o) => o.status === 'new').length;
@@ -2235,14 +2295,14 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   function miniFooter() { return `<div class="col" style="gap:6px;padding:14px 4px;border-top:1px solid var(--line);font-size:13px"><span class="mut">Send Koro for restaurants · $0 commission</span><div class="row wrap" style="gap:14px">${[['agreement', 'Partner agreement'], ['privacy', 'Privacy'], ['terms', 'Terms'], ['status', 'System status']].map(([k, l]) => `<button class="flink" data-a="info" data-k="${k}" style="color:var(--gx);font-size:13px">${l}</button>`).join('')}</div><span class="mut">© 2026 Send Koro · New York, NY</span></div>`; }
   function tabBar() {
     const T = [['home', 'Home'], ['orders', 'Orders'], ['menu', 'Menu'], ['more', 'More']].filter(([k]) => can(k));
-    const map = { editItem: 'menu', newOrder: 'orders', orderDetail: 'orders', history: 'orders' };
+    const map = { editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', promos: 'menu', editPromo: 'menu', newOrder: 'orders', orderDetail: 'orders', history: 'orders' };
     const cur = T.some((t) => t[0] === S.screen) ? S.screen : map[S.screen] || 'more';
     const nNew = S.orders.filter((o) => o.status === 'new').length;
     return `<nav aria-label="Main" style="flex:none;height:72px;padding:6px 6px 12px;background:var(--g);display:grid;grid-template-columns:repeat(${T.length},1fr)">${T.map(([k, l]) => `<button data-a="tab" data-to="${k}" aria-current="${cur === k ? 'page' : 'false'}" style="position:relative;border:0;background:transparent;font-size:13px;font-weight:800;color:${cur === k ? '#FCE910' : '#C9D3CD'}">${l}${k === 'orders' && nNew ? `<span style="position:absolute;top:6px;right:22%;min-width:18px;height:18px;border-radius:99px;background:#FF7A2E;color:var(--ink);font-size:11px;display:flex;align-items:center;justify-content:center">${nNew}</span>` : ''}</button>`).join('')}</nav>`;
   }
   const PAGES = PHONE
-    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
-    : [['signin', 'Sign in'], ['signup', 'Create account'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
+    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
+    : [['signin', 'Sign in'], ['signup', 'Create account'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
   function pagesBar() {
     return `<nav class="pages" aria-label="Open a page"><span class="pages-l">Open a page</span>${PAGES.map(([k, l], i) => `<button data-a="page" data-k="${k}" class="${S.screen === k ? 'on' : ''}" aria-current="${S.screen === k ? 'page' : 'false'}">${i + 1}. ${l}</button>`).join('')}</nav>`;
   }
@@ -2275,7 +2335,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     if (t.dataset.branch) { A.switchBranch({ id: t.value }); return; }
     if (t.dataset.licfile) { const fl = t.files && t.files[0]; if (fl) { getPath(t.dataset.licfile).file = fl.name; toast('Document attached: ' + fl.name); render(); } return; }
     if (t.dataset.roleof) { const m = S.team[+t.dataset.roleof]; m.role = t.value; toast(`${m.name} is now ${ROLE[m.role]}.`); return; }
-    if (t.dataset.photo) { const f = t.files && t.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { if (t.dataset.photo === 'edit') S.edit.img = rd.result; else S.profile.cover = rd.result; toast('Photo added.'); render(); }; rd.readAsDataURL(f); return; }
+    if (t.dataset.photo) { const f = t.files && t.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { if (t.dataset.photo === 'import') { S.modal = null; toast('Menu received. Our team builds it within 48 hours; you approve it before it goes live.'); return; } if (t.dataset.photo === 'edit') S.edit.img = rd.result; else S.profile.cover = rd.result; toast('Photo added.'); render(); }; rd.readAsDataURL(f); return; }
     if (t.dataset.m && t.tagName === 'SELECT') { setPath(t.dataset.m, t.value); if (t.dataset.rr) render(); }
   });
 
@@ -2523,7 +2583,10 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     if ((k === 'orders' || k === 'newOrder') && !S.orders.some((o) => o.status === 'new')) S.orders.unshift(mkOrder(FIRST[firstIdx++ % FIRST.length], 0));
     if (k === 'newOrder' || k === 'orderDetail') S.stack = ['orders'];
     if (k === 'orderDetail') S.detailId = (S.orders.find((o) => o.status === 'preparing') || S.orders[0] || PAST[0]).id;
-    if (k === 'editItem') { S.menuTab = 0; ensureMenus(); S.edit = editFrom(S.menu[0].items[1], 1, 0); S.stack = ['menu']; }
+    if (k === 'editItem') { ensure2(); S.attachPick = false; S.edit = editFrom2(S.menu[0].items[0]); S.stack = ['menu']; }
+    if (k === 'cats' || k === 'mods') { ensure2(); S.stack = PHONE ? ['menu'] : []; }
+    if (k === 'editGroup') { ensure2(); S.gdraft = groupDraft(S.mods[0]); S.stack = PHONE ? ['menu', 'mods'] : ['mods']; }
+    if (k === 'menu') ensure2();
     if (k === 'menus' || k === 'promos') { ensureMenus(); S.promoPick = false; S.stack = PHONE ? ['menu'] : []; }
     if (k === 'editPromo') { ensureMenus(); S.pdraft = promoBlank('bogo'); S.pdraft.items = ['gcb']; S.stack = PHONE ? ['menu', 'promos'] : ['promos']; }
     if (k === 'orderMoney') { S.moneyId = 'SK1049'; S.stack = PHONE ? ['more', 'earnings'] : ['earnings']; }
@@ -2541,6 +2604,456 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     if (k === 'profile') S.cuisineQ = '';
     S.screen = k; setHash(k); render(true);
   }
+  // ================= Menu editor v2 =================
+  // Modelled on Uber Eats Menu Maker, DoorDash Merchant Portal and Grubhub for Restaurants:
+  // categories, items with sizes, a shared library of option groups (modifiers) with nested choices,
+  // labels, allergens, templates for coffee shops / juice bars / bakeries / pizza / burgers, bulk edits and a customer preview.
+  const ALLERGENS = [['milk', 'Milk'], ['egg', 'Eggs'], ['fish', 'Fish'], ['shellfish', 'Shellfish'], ['treenuts', 'Tree nuts'], ['peanuts', 'Peanuts'], ['wheat', 'Wheat'], ['soy', 'Soy'], ['sesame', 'Sesame']];
+  const DIET2 = [['veg', 'Vegetarian'], ['vegan', 'Vegan'], ['gf', 'Gluten-free'], ['df', 'Dairy-free'], ['halal', 'Halal'], ['kosher', 'Kosher'], ['keto', 'Keto'], ['organic', 'Organic']];
+  const SPICE = [['', 'Not spicy'], ['mild', 'Mild'], ['medium', 'Medium'], ['hot', 'Hot']];
+  const LABELS = [['popular', 'Popular'], ['new', 'New'], ['chef', 'Chef’s pick'], ['seasonal', 'Seasonal']];
+  // [name, min, max, free, each, [[choice, cents, default, nextGroupName]]]
+  const TPL_GROUPS = {
+    coffee: ['Coffee shop', [
+      ['Hot or iced', 1, 1, 0, 1, [['Hot', 0, 1], ['Iced', 0]]],
+      ['Milk', 1, 1, 0, 1, [['Whole milk', 0, 1], ['2% milk', 0], ['Skim milk', 0], ['Oat milk', 75], ['Almond milk', 75], ['Soy milk', 75], ['No milk', 0]]],
+      ['Espresso shots', 0, 4, 0, 4, [['Extra shot', 100], ['Decaf shot', 100]]],
+      ['Flavor syrups', 0, 3, 0, 2, [['Vanilla', 75], ['Caramel', 75], ['Hazelnut', 75], ['Sugar-free vanilla', 75]]],
+      ['Sweetener', 0, 2, 0, 2, [['Sugar', 0], ['Raw sugar', 0], ['Honey', 0], ['Stevia', 0]]],
+      ['Ice', 0, 1, 0, 1, [['Light ice', 0], ['Regular ice', 0, 1], ['Extra ice', 0], ['No ice', 0]]],
+      ['Toppings', 0, 3, 0, 1, [['Whipped cream', 50], ['Cold foam', 125], ['Caramel drizzle', 50], ['Cinnamon', 0]]],
+    ]],
+    juice: ['Juice and smoothie bar', [
+      ['Base', 1, 1, 0, 1, [['Apple juice', 0, 1], ['Almond milk', 0], ['Oat milk', 50], ['Coconut water', 100]]],
+      ['Boosts', 0, 3, 0, 1, [['Protein', 150], ['Chia seeds', 100], ['Spirulina', 150], ['Collagen', 200], ['Flax seeds', 100]]],
+      ['Add fruit', 0, 3, 0, 2, [['Banana', 75], ['Strawberry', 75], ['Mango', 75], ['Pineapple', 75]]],
+      ['Sweetness', 1, 1, 0, 1, [['No added sugar', 0], ['Light', 0], ['Regular', 0, 1], ['Extra honey', 50]]],
+      ['Wellness shot', 0, 2, 0, 1, [['Ginger shot', 300], ['Turmeric shot', 300], ['Wheatgrass shot', 350]]],
+    ]],
+    bakery: ['Bakery and café', [
+      ['Warm it up', 0, 1, 0, 1, [['Warmed', 0]]],
+      ['Spread', 0, 2, 0, 1, [['Butter', 0], ['Cream cheese', 100], ['Jam', 50]]],
+    ]],
+    pizza: ['Pizza', [
+      ['Crust', 1, 1, 0, 1, [['Hand-tossed', 0, 1], ['Thin crust', 0], ['Gluten-free crust', 300]]],
+      ['Pizza toppings', 0, 10, 0, 2, [['Pepperoni', 200], ['Sausage', 200], ['Mushrooms', 150], ['Onions', 100], ['Peppers', 150], ['Extra cheese', 200]]],
+    ]],
+    burger: ['Burgers', [
+      ['Cook it', 1, 1, 0, 1, [['Medium', 0, 1], ['Medium well', 0], ['Well done', 0]]],
+      ['Cheese', 0, 1, 0, 1, [['American', 100], ['Cheddar', 100], ['Swiss', 100]]],
+      ['Burger add-ons', 0, 5, 0, 2, [['Bacon', 250], ['Avocado', 200], ['Fried egg', 150]]],
+      ['Choose a drink', 1, 1, 0, 1, [['Coke', 0, 1], ['Diet Coke', 0], ['Sprite', 0], ['Water', 0]]],
+      ['Make it a meal', 0, 1, 0, 1, [['Add fries and a drink', 499, 0, 'Choose a drink']]],
+    ]],
+    bowls: ['Bowls and salads', [
+      ['Base', 1, 1, 0, 1, [['White rice', 0, 1], ['Brown rice', 0], ['Quinoa', 100], ['Greens', 0]]],
+      ['Protein', 1, 2, 0, 1, [['Chicken', 0, 1], ['Tofu', 0], ['Steak', 300], ['Salmon', 400]]],
+      ['Bowl toppings', 0, 6, 3, 1, [['Corn', 50], ['Cucumber', 50], ['Pickled onions', 50], ['Edamame', 75], ['Avocado', 200]]],
+      ['Sauce', 0, 2, 1, 1, [['House sauce', 0], ['Spicy mayo', 50], ['Tahini', 50]]],
+    ]],
+  };
+  // Starter menus: [category, [[name, description, price cents or [[size, cents]], [group names]]]]
+  const SHOPS = {
+    coffee: ['Coffee shop', 'Espresso drinks, cold brew, tea and pastries, with sizes, milk, shots and syrups', [
+      ['Espresso drinks', [['Latte', 'Espresso and steamed milk', [['Small (12 oz)', 475], ['Medium (16 oz)', 525], ['Large (20 oz)', 575]], ['Hot or iced', 'Milk', 'Espresso shots', 'Flavor syrups', 'Toppings']], ['Cappuccino', 'Espresso with steamed milk and thick foam', [['Small (12 oz)', 450], ['Medium (16 oz)', 500]], ['Milk', 'Espresso shots', 'Flavor syrups']], ['Americano', 'Espresso and hot water', [['Small (12 oz)', 375], ['Medium (16 oz)', 425], ['Large (20 oz)', 475]], ['Hot or iced', 'Espresso shots', 'Sweetener']]]],
+      ['Cold brew and iced', [['Cold brew', 'Steeped for 18 hours, smooth and strong', [['Medium (16 oz)', 475], ['Large (24 oz)', 550]], ['Milk', 'Flavor syrups', 'Sweetener', 'Ice', 'Toppings']]]],
+      ['Tea', [['Matcha latte', 'Stone-ground matcha and milk', [['Medium (16 oz)', 550], ['Large (20 oz)', 600]], ['Hot or iced', 'Milk', 'Sweetener']]]],
+      ['Bakery', [['Butter croissant', 'Baked fresh every morning', 395, ['Warm it up', 'Spread']]]],
+    ]],
+    juice: ['Juice and smoothie bar', 'Cold-pressed juices, smoothies, acai bowls and shots, with boosts and add-ins', [
+      ['Fresh juices', [['Green juice', 'Kale, cucumber, celery, apple, lemon', [['16 oz', 899], ['24 oz', 1149]], ['Wellness shot']], ['Fresh orange juice', 'Squeezed to order', [['12 oz', 599], ['16 oz', 749]], []]]],
+      ['Smoothies', [['Berry blast', 'Strawberry, blueberry, banana', [['16 oz', 899], ['24 oz', 1149]], ['Base', 'Boosts', 'Add fruit', 'Sweetness']]]],
+      ['Acai bowls', [['Classic acai bowl', 'Acai, granola, banana, berries, honey', 1350, ['Boosts', 'Add fruit']]]],
+      ['Wellness shots', [['Ginger shot', 'Ginger, lemon and a pinch of cayenne', 400, []]]],
+    ]],
+    bakery: ['Bakery and café', 'Pastries, breads and bagels, with warming and spreads', [
+      ['Pastries', [['Almond croissant', 'Filled with almond cream', 475, ['Warm it up']], ['Blueberry muffin', 'Fresh blueberries, crumb top', 375, ['Warm it up']]]],
+      ['Bagels', [['Everything bagel', 'Hand-rolled, boiled and baked', 250, ['Warm it up', 'Spread']]]],
+    ]],
+    pizza: ['Pizza', 'Pies by size, crusts and toppings', [
+      ['Pizza', [['Margherita', 'Tomato, mozzarella, basil', [['12 inch', 1600], ['16 inch', 2100], ['18 inch', 2400]], ['Crust', 'Pizza toppings']], ['Cheese slice', 'Classic New York slice', 350, ['Pizza toppings']]]],
+    ]],
+    burger: ['Burgers', 'Burgers with cooking level, cheese, add-ons and a meal option', [
+      ['Burgers', [['Classic burger', 'Beef patty, lettuce, tomato, pickles, house sauce', 1200, ['Cook it', 'Cheese', 'Burger add-ons', 'Make it a meal']]]],
+      ['Sides', [['Fries', 'Crispy, sea salt', [['Regular', 450], ['Large', 600]], []]]],
+    ]],
+  };
+  const minOf = (it) => (it.sizes && it.sizes.length ? Math.min(...it.sizes.map((s) => s.p)) : it.price);
+  const priceText = (it, L) => (it.sizes && it.sizes.length > 1 ? `From ${money(minOf(it))}` : money(L && L !== 'all' ? priceAt(it, L) : it.price));
+  const modById = (id) => (S.mods || []).find((g) => g.id === id);
+  const usedBy = (gid) => allItems().filter((it) => (it.mods || []).includes(gid));
+  const ruleText = (g) => { const min = +g.min || 0; const max = +g.max || 1; const free = +g.free || 0;
+    return `${min > 0 ? 'Required' : 'Optional'} · ${min > 0 && min === max ? `pick ${min}` : min > 0 ? `pick ${min} to ${max}` : `pick up to ${max}`}${free ? ` · first ${free} free` : ''}${(+g.each || 1) > 1 ? ` · up to ${g.each} of each` : ''}`; };
+  const choicePreview = (g) => g.choices.slice(0, 5).map((c) => esc(c.n) + (toCents(c.p) ? ` +${money(toCents(c.p))}` : '')).join(', ') + (g.choices.length > 5 ? ` and ${g.choices.length - 5} more` : '');
+  const catOf = (it) => S.menu.findIndex((s) => s.items.includes(it));
+  const field = (label, inner, style = '') => `<label class="f" style="min-width:0;${style}">${label}${inner}</label>`;
+  const seg = (opts, cur, act, extra = '') => `<div class="m2-seg" role="group">${opts.map(([k, l]) => `<button type="button" class="${cur === k ? 'on' : ''}" aria-pressed="${cur === k}" data-a="${act}" data-v="${k}" ${extra}>${l}</button>`).join('')}</div>`;
+  const tick = (path, on, label) => `<button class="chip ${on ? 'on' : ''}" data-a="m2Flip" data-p="${path}" aria-pressed="${on}">${on ? '✓ ' : ''}${label}</button>`;
+
+  function addTplGroup(name) {
+    const have = S.mods.find((g) => g.name.toLowerCase() === name.toLowerCase()); if (have) return have.id;
+    let def; Object.values(TPL_GROUPS).forEach(([, gs]) => gs.forEach((g) => { if (g[0] === name) def = g; }));
+    if (!def) return null;
+    const id = 'g' + Date.now().toString(36) + S.mods.length;
+    const g = { id, name: def[0], min: def[1], max: def[2], free: def[3], each: def[4], choices: def[5].map((c) => ({ n: c[0], p: c[1], def: !!c[2], out: false, next: '' })) };
+    S.mods.push(g);
+    def[5].forEach((c, i) => { if (c[3]) g.choices[i].next = addTplGroup(c[3]) || ''; });
+    return id;
+  }
+  function ensure2() {
+    ensureMenus();
+    if (S.m2) return; S.m2 = true;
+    S.menu.forEach((s, i) => { if (!s.id) s.id = 'c' + (i + 1); if (s.hidden == null) s.hidden = false; });
+    S.mods = []; const seen = {};
+    allItems().forEach((it) => {
+      it.mods = (it.groups || []).map((g) => {
+        const k = JSON.stringify([g.name, +g.min, +g.max, g.choices.map((c) => [c[0], c[1]])]);
+        if (!seen[k]) { const id = 'g' + (S.mods.length + 1); seen[k] = id; S.mods.push({ id, name: g.name, min: +g.min || 0, max: +g.max || 1, free: +g.free || 0, each: +g.each || 1, choices: g.choices.map((c) => ({ n: c[0], p: c[1], def: !!c[2], out: !!c[3], next: '' })) }); }
+        return seen[k];
+      });
+      it.allergens = []; if (it.diet.includes('nuts')) it.allergens.push('treenuts'); if (it.diet.includes('dairy')) it.allergens.push('milk');
+      it.spice = it.diet.includes('spicy') ? 'medium' : ''; it.diet = it.diet.filter((d) => !['nuts', 'dairy', 'spicy'].includes(d));
+      it.labels = it.popular ? ['popular'] : []; it.sizes = null; it.also = []; it.notes = true; it.code = ''; it.serves = ''; it.extraPrep = '';
+    });
+    const sweet = addTplGroup('Sweetener'); const ice = addTplGroup('Ice');
+    const igt = itemById('igt'); if (igt) { igt.mods = [sweet, ice]; igt.sizes = [{ n: '16 oz', p: 350 }, { n: '24 oz', p: 450 }]; igt.price = 350; }
+    const lmd = itemById('lmd'); if (lmd) { lmd.mods = [ice]; lmd.sizes = [{ n: '16 oz', p: 450 }, { n: '24 oz', p: 575 }]; lmd.labels = ['new']; }
+    Object.assign(S, { itemQ: '', itemCat: 'all', bulk: {}, modQ: '', attachPick: false, tplOpen: false });
+  }
+  const menuTabs2 = (cur) => `<div class="m2-tabs" role="tablist">${[['menu', 'Items'], ['cats', 'Categories'], ['mods', 'Option groups'], ['menus', 'Menus and hours'], ['promos', 'Promotions']].map(([k, l]) => `<button role="tab" aria-selected="${cur === k}" class="${cur === k ? 'on' : ''}" data-a="${cur === k ? 'noop' : 'menuSwitch'}" data-to="${k}">${l}</button>`).join('')}</div>`;
+  const tagRow = (it) => [...(it.labels || []).map((l) => `<span class="pill p-r m2-pill">${LABELS.find((x) => x[0] === l)[1]}</span>`), ...(it.diet || []).filter((d) => DIET2.some((x) => x[0] === d)).map((d) => `<span class="pill p-n m2-pill">${DIET2.find((x) => x[0] === d)[1]}</span>`), ...(it.spice ? [`<span class="pill p-o m2-pill">🌶 ${SPICE.find((x) => x[0] === it.spice)[1]}</span>`] : []), ...(it.sample ? ['<span class="pill p-o m2-pill">Sample · check price</span>'] : [])].join('');
+
+  V.menu = () => {
+    ensure2();
+    const L = S.menuLoc || 'all'; const isAll = L === 'all'; const br = S.branches.find((b) => b.id === L); if (!isAll && !br) S.menuLoc = 'all';
+    const q = S.itemQ.trim().toLowerCase(); const total = allItems().length;
+    const cats = S.menu.map((s, si) => ({ s, si, items: s.items.filter((it) => !q || (it.name + ' ' + it.desc).toLowerCase().includes(q)) })).filter((c) => S.itemCat === 'all' || c.s.id === S.itemCat);
+    const nSel = Object.keys(S.bulk).filter((k) => S.bulk[k]).length;
+    const row = (it) => {
+      const sold = isAll || soldAt(it, L); const on = isAll ? it.on : onAt(it, L);
+      const nm = (it.mods || []).length; const ns = it.sizes ? it.sizes.length : 0;
+      return `<div class="m2-item ${sold && on ? '' : 'off'}">
+        <input type="checkbox" class="m2-check" data-a="m2Sel" data-id="${it.id}" ${S.bulk[it.id] ? 'checked' : ''} aria-label="Select ${esc(it.name)}">
+        ${it.img ? `<img src="${IMG(it.img)}" alt="" class="m2-thumb">` : '<span class="m2-thumb m2-nophoto">No photo</span>'}
+        <div class="m2-main"><b class="m2-name">${esc(it.name)}</b>${tagRow(it) ? `<div class="m2-tags">${tagRow(it)}</div>` : ''}
+          <span class="mut sm-t">${priceText(it, L)}${ns > 1 ? ` · ${ns} sizes` : ''}${nm ? ` · ${nm} option group${nm > 1 ? 's' : ''}` : ''}${promoFor(it) ? ` · <b style="color:var(--red)">${esc(badgeText(promoFor(it)))}</b>` : ''}</span>
+          <div class="m2-acts">${sold ? `<label class="row sm-t" style="gap:8px">${sw(`data-a="${isAll ? 'toggleItem' : 'toggleItemLoc'}" data-id="${it.id}"`, on, it.name + ' available')}<span>${on ? 'Available' : isAll && it.soldUntil === 'off' ? 'Sold out' : 'Sold out today'}</span></label>` : `<button class="btn ln sm" data-a="sellHere" data-id="${it.id}">Sell here</button>`}<button class="btn ln sm" data-a="editItem" data-id="${it.id}">Edit</button></div></div></div>`;
+    };
+    return `${head('Menu', isAll ? `All locations · ${total} items` : `${esc(br.name)} only`, PHONE ? '<button class="btn sm" data-a="newItem">+ Item</button>' : '<button class="btn ln sm" data-a="m2Import">Import menu</button><button class="btn ln sm" data-a="m2Tpl">Templates</button><button class="btn sm" data-a="newItem">+ Add item</button>')}${body(`
+      ${menuTabs2('menu')}
+      <div class="m2-bar"><label class="m2-search"><span class="mut" aria-hidden="true">⌕</span><input id="m2-q" data-m="itemQ" data-live="1" placeholder="Search items" value="${esc(S.itemQ)}"></label>
+        <select class="in m2-locsel" data-m="menuLoc" data-rr="1" aria-label="Location">${[['all', 'All locations'], ...S.branches.map((b) => [b.id, b.name])].map(([k, l]) => `<option value="${k}" ${L === k ? 'selected' : ''}>${esc(l)}</option>`).join('')}</select></div>
+      <div class="m2-chips">${[['all', `All (${total})`], ...S.menu.map((s) => [s.id, `${s.s} (${s.items.length})`])].map(([k, l]) => `<button class="chip ${S.itemCat === k ? 'on' : ''}" data-a="m2Cat" data-v="${k}">${esc(l)}</button>`).join('')}</div>
+      ${isAll ? '' : `<div class="note n-w sm-t">Editing <b>${esc(br.name)}</b> only: sold out and price changes here don’t affect other locations.</div>`}
+      ${PHONE ? '<div class="row wrap" style="gap:8px"><button class="btn ln sm" data-a="m2Tpl">Templates</button><button class="btn ln sm" data-a="m2Import">Import menu</button></div>' : ''}
+      ${total < 12 ? `<div class="card pad col m2-quick"><b>Coffee shop, juice bar, bakery or pizza place?</b><span class="mut sm-t">Start from a template: we add categories, sizes and option groups (milk, shots, syrups, boosts, toppings…) with sample items. Then change names and prices.</span><div class="row wrap" style="gap:8px">${Object.entries(SHOPS).map(([k, v]) => `<button class="chip" data-a="m2TplApply" data-v="${k}">${esc(v[0])}</button>`).join('')}</div></div>` : ''}
+      ${nSel ? `<div class="m2-bulk"><b>${nSel} selected</b><div class="row wrap" style="gap:6px"><button class="btn ln sm" data-a="m2BulkOn" data-v="off">Sold out today</button><button class="btn ln sm" data-a="m2BulkOn" data-v="on">Available</button><button class="btn ln sm" data-a="m2BulkMove">Move to…</button><button class="btn ln sm" data-a="m2BulkPrice">Change price</button><button class="btn ln sm" data-a="m2BulkDel" style="color:var(--red);border-color:var(--red)">Delete</button><button class="btn gh" data-a="m2BulkClear">Clear</button></div></div>` : ''}
+      ${cats.map((c) => `<section class="col" style="gap:8px"><div class="m2-cathead"><b>${esc(c.s.s)}</b><span class="mut sm-t">${c.s.items.length} item${c.s.items.length === 1 ? '' : 's'}${c.s.hidden ? ' · hidden from customers' : ''}</span><span class="grow"></span><button class="btn gh" data-a="m2NewIn" data-v="${c.si}" style="padding:0;min-height:30px">+ Add item</button></div>
+        <div class="card m2-list">${c.items.map(row).join('') || `<div class="mut sm-t" style="padding:14px">${q ? 'No matches.' : 'No items yet.'}</div>`}</div></section>`).join('')}`)}`;
+  };
+
+  function editFrom2(it) {
+    const si = catOf(it); const over = {}; S.branches.forEach((b) => { const o = ovr(it, b.id); over[b.id] = { price: o.price != null ? (o.price / 100).toFixed(2) : '', on: o.on !== false }; });
+    const some = !!(it.where && it.where !== 'all'); const set = {}; S.branches.forEach((b) => { set[b.id] = some ? it.where.includes(b.id) : true; });
+    return { id: it.id, isNew: false, sec: String(si), orig: si, name: it.name, desc: it.desc, priceMode: it.sizes && it.sizes.length ? 'sizes' : 'one', price: (it.price / 100).toFixed(2), sizes: (it.sizes || []).map((s) => ({ n: s.n, p: (s.p / 100).toFixed(2) })), pickupPrice: it.pickupPrice != null ? (it.pickupPrice / 100).toFixed(2) : '', labels: [...(it.labels || [])], diet: [...it.diet], allergens: [...(it.allergens || [])], spice: it.spice || '', cal: it.cal, serves: it.serves || '', taxable: it.taxable !== false, state: it.on ? 'on' : it.soldUntil === 'off' ? 'off' : 'today', avail: it.avail, availDays: [...it.availDays], availFrom: it.availFrom, availTo: it.availTo, img: it.img, mods: [...(it.mods || [])], also: [...(it.also || [])], notes: it.notes !== false, code: it.code || '', extraPrep: it.extraPrep || '', over, whereSome: some, whereSet: set };
+  }
+  function newEdit2(si) {
+    const over = {}; const set = {}; S.branches.forEach((b) => { over[b.id] = { price: '', on: true }; set[b.id] = S.menuLoc && S.menuLoc !== 'all' ? b.id === S.menuLoc : true; });
+    return { isNew: true, sec: String(si != null ? si : Math.max(0, S.menu.findIndex((s) => s.id === S.itemCat))), name: '', desc: '', priceMode: 'one', price: '', sizes: [{ n: 'Small', p: '' }, { n: 'Large', p: '' }], pickupPrice: '', labels: [], diet: [], allergens: [], spice: '', cal: '', serves: '', taxable: true, state: 'on', avail: 'menu', availDays: ['1', '2', '3', '4', '5'], availFrom: '11:00', availTo: '15:00', img: '', mods: [], also: [], notes: true, code: '', extraPrep: '', over, whereSome: !!(S.menuLoc && S.menuLoc !== 'all'), whereSet: set };
+  }
+  function locCard2(e) {
+    const sizes = e.priceMode === 'sizes';
+    return `<div class="card pad col"><b class="m2-h">Locations and prices</b>
+      ${[['all', 'Sell at all locations', 'Also added to any new location'], ['some', 'Only at some locations', 'Pick the locations below']].map(([k, l, x]) => `<label class="opt ${(k === 'some') === !!e.whereSome ? 'on' : ''}"><input type="radio" name="ew" data-a="editWhere" data-v="${k}" ${(k === 'some') === !!e.whereSome ? 'checked' : ''}><span class="grow"><b>${l}</b><span class="mut sm-t" style="display:block">${x}</span></span></label>`).join('')}
+      ${S.branches.map((b) => { const sold = !e.whereSome || e.whereSet[b.id]; const o = e.over[b.id] || (e.over[b.id] = { price: '', on: true }); return `<div class="m2-loc ${sold ? '' : 'dim'}">
+        <div class="row" style="gap:10px">${e.whereSome ? `<input type="checkbox" data-a="editWhereLoc" data-id="${b.id}" ${e.whereSet[b.id] ? 'checked' : ''} aria-label="Sell at ${esc(b.name)}" style="width:20px;height:20px;flex:none">` : ''}<b class="grow">${esc(b.name)}</b><span class="mut sm-t">Tax ${b.taxRate ? b.taxRate + '%' : 'not set'}</span></div>
+        <div class="m2-grid2">${sizes ? '<span class="mut sm-t" style="align-self:center">Uses the size prices</span>' : field('Price here', `<input class="in" id="eo-${b.id}-p" data-m="edit.over.${b.id}.price" inputmode="decimal" value="${esc(o.price)}" placeholder="${esc(e.price || '0.00')}" ${sold ? '' : 'disabled'}>`)}
+          <label class="row" style="gap:10px;align-self:end;min-height:48px">${sw(`data-m="edit.over.${b.id}.on" ${sold ? '' : 'disabled'}`, o.on, 'Available at ' + b.name)}<span class="sm-t">Available here</span></label></div></div>`; }).join('')}
+      <span class="mut sm-t">Leave “Price here” empty to use the main price. Turning off “Available here” marks the item sold out at that location only.</span></div>`;
+  }
+  V.editItem = () => {
+    ensure2();
+    const e = S.edit; const sizes = e.priceMode === 'sizes';
+    const unset = S.branches.filter((b) => !b.taxRate);
+    const rates = S.branches.map((b) => `${esc(b.name)} ${b.taxRate ? b.taxRate + '%' : '<b style="color:var(--red)">not set</b>'}`).join(' · ');
+    const attached = e.mods.map(modById).filter(Boolean);
+    const free = S.mods.filter((g) => !e.mods.includes(g.id));
+    return `${head(e.isNew ? 'Add item' : 'Edit item', esc((S.menu[+e.sec] || S.menu[0]).s))}${body(narrow(`
+      <div class="card pad col"><b class="m2-h">Item</b>
+        <div class="m2-photo">${e.img ? `<img src="${IMG(e.img)}" alt="">` : '<span class="m2-nophoto">No photo</span>'}<div class="col" style="gap:6px;min-width:0"><span class="mut sm-t">A real photo of the item. JPG or PNG, at least 1200 × 800. Items with photos get more orders.</span><div class="row wrap" style="gap:8px"><label class="btn ln sm" style="cursor:pointer;position:relative">${e.img ? 'Change photo' : 'Upload photo'}<input type="file" accept="image/*" data-photo="edit" style="position:absolute;width:1px;height:1px;opacity:0"></label>${e.img ? '<button class="btn gh" data-a="removePhoto" style="color:var(--red);padding:0 4px">Remove</button>' : ''}</div></div></div>
+        ${field('Name', `<input class="in" id="e-name" data-m="edit.name" value="${esc(e.name)}" maxlength="60" placeholder="e.g. Iced caramel latte">`)}
+        ${field('Description', `<textarea class="in" id="e-desc" data-m="edit.desc" maxlength="300" placeholder="Main ingredients, how it’s made, portion size">${esc(e.desc)}</textarea>`)}</div>
+
+      <div class="card pad col"><b class="m2-h">Price</b>
+        ${seg([['one', 'One price'], ['sizes', 'Price by size']], e.priceMode, 'm2PriceMode')}
+        ${sizes ? `<span class="mut sm-t">For drinks and dishes sold in sizes (12 oz / 16 oz, small / large, 12" / 16"). The first size is selected for customers by default.</span>
+          ${e.sizes.map((s, i) => `<div class="m2-size">${field(i ? '' : 'Size name', `<input class="in" id="sz-${i}-n" data-m="edit.sizes.${i}.n" value="${esc(s.n)}" placeholder="e.g. Medium (16 oz)">`)}${field(i ? '' : 'Price', `<input class="in" id="sz-${i}-p" data-m="edit.sizes.${i}.p" inputmode="decimal" value="${esc(s.p)}" placeholder="0.00">`)}<div class="m2-mini">${i ? `<button class="btn gh" data-a="m2SizeMove" data-i="${i}" aria-label="Move up">↑</button>` : '<span class="m2-gap"></span>'}<button class="btn gh" data-a="m2SizeDel" data-i="${i}" aria-label="Remove size" style="color:var(--red)">✕</button></div></div>`).join('')}
+          <button class="btn gh" data-a="m2SizeAdd" style="align-self:flex-start;padding:0">+ Add size</button>`
+        : `<div class="m2-grid2">${field('Price (USD)', `<input class="in" id="e-price" data-m="edit.price" inputmode="decimal" value="${esc(e.price)}" placeholder="0.00">`)}${field('Pickup price (optional)', `<input class="in" id="e-pprice" data-m="edit.pickupPrice" inputmode="decimal" value="${esc(e.pickupPrice)}" placeholder="Same">`)}</div>`}</div>
+
+      <div class="card pad col"><b class="m2-h">Category</b>
+        ${field('Main category', `<select class="in" id="e-sec" data-m="edit.sec" data-rr="1">${S.menu.map((s, i) => `<option value="${i}" ${i === +e.sec ? 'selected' : ''}>${esc(s.s)}</option>`).join('')}</select>`)}
+        ${S.menu.length > 1 ? `<b class="sm-t">Also show in</b><div class="m2-chips wrap">${S.menu.map((s, i) => (i === +e.sec ? '' : tick('also.' + s.id, e.also.includes(s.id), esc(s.s)))).join('')}</div><span class="mut sm-t">Like Uber Eats and DoorDash, one item can appear in several categories (for example “Popular” and “Iced drinks”). Edit it once; it changes everywhere.</span>` : ''}
+        <button class="btn gh" data-a="addSection" style="align-self:flex-start;padding:0">+ New category</button></div>
+
+      <div class="card pad col"><div class="m2-cardhead"><b class="m2-h">Option groups</b><span class="mut sm-t">${attached.length} added</span></div>
+        <span class="mut sm-t">Choices customers make: milk, shots, syrups, toppings, sides, sauces. Groups are shared, so “Milk” can be added to every coffee and edited in one place.</span>
+        ${attached.map((g, i) => `<div class="m2-group"><div class="m2-cardhead"><b>${esc(g.name)}</b><span class="pill ${+g.min > 0 ? 'p-r' : 'p-n'} m2-pill">${ruleText(g)}</span></div><span class="mut sm-t">${choicePreview(g)}</span>
+          <div class="m2-gacts"><button class="btn ln sm" data-a="m2GroupEdit" data-id="${g.id}">Edit group</button><span class="grow"></span>${i ? `<button class="btn gh m2-iconbtn" data-a="m2ModMove" data-i="${i}" aria-label="Move ${esc(g.name)} up">↑</button>` : ''}<button class="btn gh" data-a="m2ModDel" data-i="${i}">Remove</button></div></div>`).join('') || '<div class="mut sm-t">No option groups. Customers order the item as is.</div>'}
+        <div class="row wrap" style="gap:8px"><button class="btn ln sm" data-a="m2Attach">+ Add a group</button><button class="btn ln sm" data-a="m2GroupNew" data-attach="1">+ Create new group</button></div>
+        ${S.attachPick ? `<div class="m2-pick"><b class="sm-t">Your groups</b><div class="m2-chips wrap">${free.map((g) => `<button class="chip" data-a="m2AttachDo" data-id="${g.id}">${esc(g.name)} · ${g.choices.length}</button>`).join('') || '<span class="mut sm-t">All your groups are already on this item.</span>'}</div>
+          <b class="sm-t">Ready-made groups</b>${Object.entries(TPL_GROUPS).map(([k, [lbl, gs]]) => `<div class="col" style="gap:4px"><span class="mut sm-t">${esc(lbl)}</span><div class="m2-chips wrap">${gs.map((g) => `<button class="chip" data-a="m2AttachTpl" data-v="${esc(g[0])}">+ ${esc(g[0])}</button>`).join('')}</div></div>`).join('')}</div>` : ''}</div>
+
+      <div class="card pad col"><b class="m2-h">Labels, dietary and allergens</b>
+        <b class="sm-t">Labels</b><div class="m2-chips wrap">${LABELS.map(([k, l]) => tick('labels.' + k, e.labels.includes(k), l)).join('')}</div>
+        <b class="sm-t">Dietary</b><div class="m2-chips wrap">${DIET2.map(([k, l]) => tick('diet.' + k, e.diet.includes(k), l)).join('')}</div>
+        <b class="sm-t">Spice level</b>${seg(SPICE, e.spice, 'm2Spice')}
+        <b class="sm-t">Contains (allergens)</b><div class="m2-chips wrap">${ALLERGENS.map(([k, l]) => tick('allergens.' + k, e.allergens.includes(k), l)).join('')}</div>
+        <div class="m2-grid2">${field('Calories (optional)', `<input class="in" id="e-cal" data-m="edit.cal" inputmode="numeric" value="${esc(e.cal)}" placeholder="e.g. 220">`)}${field('Serves (optional)', `<input class="in" id="e-serves" data-m="edit.serves" inputmode="numeric" value="${esc(e.serves)}" placeholder="e.g. 2">`)}</div>
+        <span class="mut sm-t">Only tick what you can stand behind. Allergens show on the item so customers with allergies can check before ordering.</span></div>
+
+      <div class="card pad col"><b class="m2-h">Availability</b>
+        ${[['on', 'Available'], ['today', 'Sold out today', 'Back on automatically when you open tomorrow'], ['off', 'Sold out until I turn it back on']].map(([k, l, x]) => `<label class="opt ${e.state === k ? 'on' : ''}"><input type="radio" name="est" data-a="editState" data-v="${k}" ${e.state === k ? 'checked' : ''}><span class="grow"><b>${l}</b>${x ? `<span class="mut sm-t" style="display:block">${x}</span>` : ''}</span></label>`).join('')}
+        <b class="sm-t">When it can be ordered</b>${seg([['menu', 'Whenever its menu is open'], ['custom', 'Certain days and times']], e.avail, 'editAvail')}
+        ${e.avail === 'custom' ? `${dayChips('edit.availDays', e.availDays)}<div class="m2-grid2">${field('From', `<input class="in" type="time" id="e-af" data-m="edit.availFrom" value="${esc(e.availFrom)}">`)}${field('To', `<input class="in" type="time" id="e-at" data-m="edit.availTo" value="${esc(e.availTo)}">`)}</div>` : ''}</div>
+
+      <div class="card pad col"><b class="m2-h">Sales tax</b>
+        ${[[true, 'Taxable', `Charged at each location’s rate: ${rates}`], [false, 'Not taxable', 'No sales tax is charged on this item']].map(([k, l, x]) => `<label class="opt ${e.taxable === k ? 'on' : ''}"><input type="radio" name="etx" data-a="editTax" data-v="${k}" ${e.taxable === k ? 'checked' : ''}><span class="grow"><b>${l}</b><span class="mut sm-t" style="display:block">${x}</span></span></label>`).join('')}
+        ${unset.length ? `<div class="note n-w sm-t">${unset.map((b) => esc(b.name)).join(', ')} ${unset.length > 1 ? 'have' : 'has'} no sales tax rate yet, so no tax would be charged there. <button class="btn gh" data-a="m2TaxGo" data-id="${unset[0].id}" style="min-height:0;padding:0;font-size:13px">Set the rate</button></div>` : ''}
+        <span class="mut sm-t">You decide and you file. Restaurant food and drinks in NY are normally taxable; ask your accountant before marking anything not taxable.</span></div>
+
+      ${locCard2(e)}
+
+      <div class="card pad col"><b class="m2-h">More settings</b>
+        <label class="row" style="gap:10px">${sw('data-m="edit.notes"', e.notes, 'Allow special instructions')}<span>Customers can add special instructions</span></label>
+        <div class="m2-grid2">${field('Extra prep (minutes)', `<input class="in" id="e-prep" data-m="edit.extraPrep" inputmode="numeric" value="${esc(e.extraPrep)}" placeholder="0">`)}${field('POS code (optional)', `<input class="in" id="e-code" data-m="edit.code" value="${esc(e.code)}" placeholder="e.g. LAT-16">`)}</div></div>
+
+      <div class="note n-g sm-t">You set your own prices; Send Koro takes $0 commission. Want to run a deal on this item? Use <button class="btn gh" data-a="menuSwitch" data-to="promos" style="min-height:0;padding:0;font-size:13px">Promotions</button>.</div>
+      <div class="m2-save"><button class="btn ln" data-a="m2Preview">Preview</button><button class="btn grow" data-a="saveItem">Save item</button>${e.isNew ? '' : '<button class="btn ln" data-a="delItem" style="color:var(--red);border-color:var(--red)">Delete</button>'}</div>`))}`;
+  };
+
+  V.mods = () => {
+    ensure2();
+    const q = S.modQ.trim().toLowerCase(); const list = S.mods.filter((g) => !q || (g.name + ' ' + g.choices.map((c) => c.n).join(' ')).toLowerCase().includes(q));
+    return `${head('Option groups', 'Also called modifiers · build once, use on many items', `<button class="btn sm" data-a="m2GroupNew">+ New group</button>`)}${body(`
+      ${menuTabs2('mods')}
+      <label class="m2-search"><span class="mut" aria-hidden="true">⌕</span><input id="m2-mq" data-m="modQ" data-live="1" placeholder="Search groups or choices" value="${esc(S.modQ)}"></label>
+      ${list.map((g) => { const u = usedBy(g.id); return `<div class="card pad col" style="gap:6px"><div class="m2-cardhead"><b style="font-size:17px">${esc(g.name)}</b><span class="pill ${+g.min > 0 ? 'p-r' : 'p-n'} m2-pill">${ruleText(g)}</span></div>
+        <span class="sm-t">${choicePreview(g)}</span>
+        <span class="mut sm-t">${u.length ? `Used in ${u.length} item${u.length > 1 ? 's' : ''}: ${u.slice(0, 4).map((it) => esc(it.name)).join(', ')}${u.length > 4 ? '…' : ''}` : 'Not used on any item yet'}${g.choices.some((c) => c.next) ? ' · has follow-up questions' : ''}${g.choices.some((c) => c.out) ? ' · some choices out of stock' : ''}</span>
+        <div class="row wrap" style="gap:6px"><button class="btn ln sm" data-a="m2GroupEdit" data-id="${g.id}">Edit</button><button class="btn gh" data-a="m2GroupDup" data-id="${g.id}">Duplicate</button></div></div>`; }).join('') || '<div class="card empty">No groups match.</div>'}
+      <div class="card pad col"><b style="font-size:17px">Ready-made groups</b><span class="mut sm-t">Add a group with typical choices and prices, then edit it.</span>
+        ${Object.entries(TPL_GROUPS).map(([k, [lbl, gs]]) => `<div class="col" style="gap:4px"><b class="sm-t">${esc(lbl)}</b><div class="m2-chips wrap">${gs.map((g) => { const has = S.mods.some((m) => m.name.toLowerCase() === g[0].toLowerCase()); return `<button class="chip ${has ? 'on' : ''}" data-a="m2TplGroup" data-v="${esc(g[0])}" ${has ? 'aria-disabled="true"' : ''}>${has ? '✓ ' : '+ '}${esc(g[0])}</button>`; }).join('')}</div></div>`).join('')}</div>`)}`;
+  };
+
+  function groupDraft(g, attach) {
+    const items = {}; allItems().forEach((it) => { items[it.id] = g ? (it.mods || []).includes(g.id) : false; });
+    if (attach && S.edit && S.edit.id) items[S.edit.id] = true;
+    return { id: g ? g.id : '', name: g ? g.name : '', req: g && +g.min > 0 ? 'req' : 'opt', min: String(g ? Math.max(1, +g.min || 1) : 1), max: String(g ? g.max : 1), free: String(g ? g.free || 0 : 0), each: String(g ? g.each || 1 : 1), repeat: !!(g && +g.each > 1), choices: g ? g.choices.map((c) => ({ n: c.n, p: (toCents(c.p) / 100).toFixed(2), def: !!c.def, out: !!c.out, next: c.next || '' })) : [{ n: '', p: '0.00', def: false, out: false, next: '' }, { n: '', p: '0.00', def: false, out: false, next: '' }], items, attach: !!attach };
+  }
+  V.editGroup = () => {
+    ensure2();
+    const d = S.gdraft; const req = d.req === 'req';
+    const others = S.mods.filter((g) => g.id !== d.id);
+    const sum = ruleText({ min: req ? d.min : 0, max: d.max, free: d.free, each: d.repeat ? d.each : 1 });
+    return `${head(d.id ? 'Edit option group' : 'New option group', d.id ? `Used in ${usedBy(d.id).length} items` : 'Choices customers pick')}${body(narrow(`
+      <div class="card pad col"><b class="m2-h">Group</b>
+        ${field('Name customers see', `<input class="in" id="gd-name" data-m="gdraft.name" value="${esc(d.name)}" placeholder="e.g. Choose your milk" maxlength="50">`)}
+        <b class="sm-t">Do customers have to choose?</b>${seg([['req', 'Required'], ['opt', 'Optional']], d.req, 'm2Req')}
+        <div class="m2-grid2">${req ? field('Pick at least', `<input class="in" id="gd-min" data-m="gdraft.min" data-live="1" inputmode="numeric" value="${esc(d.min)}">`) : ''}${field('Pick up to', `<input class="in" id="gd-max" data-m="gdraft.max" data-live="1" inputmode="numeric" value="${esc(d.max)}">`)}${field('Free choices', `<input class="in" id="gd-free" data-m="gdraft.free" data-live="1" inputmode="numeric" value="${esc(d.free)}">`)}</div>
+        <label class="row" style="gap:10px">${sw('data-m="gdraft.repeat" data-rr="1"', d.repeat, 'Same choice more than once')}<span>Customers can pick the same choice more than once (e.g. 3 extra shots)</span></label>
+        ${d.repeat ? `<div class="m2-grid2">${field('Most of each choice', `<input class="in" id="gd-each" data-m="gdraft.each" data-live="1" inputmode="numeric" value="${esc(d.each)}">`)}</div>` : ''}
+        <div class="note n-g sm-t"><b>Customers see:</b> ${esc(d.name || 'Group name')} · ${sum}. ${+d.free > 0 ? `The ${d.free} cheapest picks are free; extra picks cost their price.` : ''}</div></div>
+
+      <div class="card pad col"><div class="m2-cardhead"><b class="m2-h">Choices</b><span class="mut sm-t">${d.choices.length}</span></div>
+        ${d.choices.map((c, ci) => `<div class="m2-choice">
+          <div class="row" style="gap:8px">${field(ci ? '' : 'Choice', `<input class="in" id="ch-${ci}-n" data-m="gdraft.choices.${ci}.n" value="${esc(c.n)}" placeholder="e.g. Oat milk">`, 'flex:1')}<div class="m2-mini" style="align-self:flex-end;margin-bottom:4px">${ci ? `<button class="btn gh" data-a="m2ChMove" data-i="${ci}" aria-label="Move up">↑</button>` : '<span class="m2-gap"></span>'}<button class="btn gh" data-a="m2ChDel" data-i="${ci}" aria-label="Remove choice" style="color:var(--red)">✕</button></div></div>
+          <div class="m2-grid3">${field('Extra price', `<input class="in" id="ch-${ci}-p" data-m="gdraft.choices.${ci}.p" inputmode="decimal" value="${esc(c.p)}" placeholder="0.00">`)}
+            <label class="m2-flag"><input type="checkbox" data-a="m2ChDef" data-i="${ci}" ${c.def ? 'checked' : ''}><span>Pre-selected</span></label>
+            <label class="m2-flag">${sw(`data-a="m2ChOut" data-i="${ci}"`, !c.out, 'In stock')}<span>${c.out ? 'Out of stock' : 'In stock'}</span></label></div>
+          ${others.length ? field('Then ask (optional)', `<select class="in" data-m="gdraft.choices.${ci}.next" data-rr="1"><option value="">Nothing else</option>${others.map((g) => `<option value="${g.id}" ${c.next === g.id ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select>`) : ''}
+        </div>`).join('')}
+        <button class="btn gh" data-a="m2ChAdd" style="align-self:flex-start;padding:0">+ Add choice</button>
+        <span class="mut sm-t">“Then ask” opens another group when this choice is picked, like DoorDash nested options (e.g. “Make it a meal” → choose a drink).</span></div>
+
+      <div class="card pad col"><b class="m2-h">Use on these items</b><span class="mut sm-t">Changes to this group apply to every item it’s on.</span>
+        ${S.menu.map((s) => s.items.length ? `<div class="col" style="gap:4px"><span class="mut sm-t">${esc(s.s)}</span><div class="m2-chips wrap">${s.items.map((it) => `<button class="chip ${d.items[it.id] ? 'on' : ''}" data-a="m2GdItem" data-id="${it.id}" aria-pressed="${!!d.items[it.id]}">${d.items[it.id] ? '✓ ' : ''}${esc(it.name)}</button>`).join('')}</div></div>` : '').join('')}</div>
+
+      <div class="m2-save"><button class="btn grow" data-a="m2GroupSave">Save group</button>${d.id ? '<button class="btn ln" data-a="m2GroupDel" style="color:var(--red);border-color:var(--red)">Delete</button>' : ''}<button class="btn gh" data-a="back">Cancel</button></div>`))}`;
+  };
+
+  V.cats = () => {
+    ensure2();
+    return `${head('Categories', 'How your menu is grouped for customers', '<button class="btn sm" data-a="addSection">+ Category</button>')}${body(`
+      ${menuTabs2('cats')}
+      <div class="note n-g sm-t">Customers see categories in this order. Put your best sellers first. An item can be in more than one category.</div>
+      ${S.menu.map((s, si) => `<div class="card pad col">
+        <div class="m2-grid2">${field('Name', `<input class="in" id="cn-${si}" data-m="menu.${si}.s" value="${esc(s.s)}">`)}${field('Description (optional)', `<input class="in" id="cd-${si}" data-m="menu.${si}.desc" value="${esc(s.desc)}" placeholder="e.g. All drinks come in 16 or 24 oz">`)}</div>
+        <b class="sm-t">Shows in menus</b><div class="m2-chips wrap">${S.menus.map((m) => `<button class="chip ${s.menus.includes(m.id) ? 'on' : ''}" data-a="secMenu" data-s="${si}" data-m="${m.id}" aria-pressed="${s.menus.includes(m.id)}">${esc(m.name)}</button>`).join('')}</div>
+        <div class="row wrap" style="gap:10px"><label class="row" style="gap:10px">${sw(`data-a="m2CatHide" data-i="${si}"`, !s.hidden, 'Show to customers')}<span class="sm-t">${s.hidden ? 'Hidden' : 'Shown to customers'}</span></label><span class="grow"></span><span class="mut sm-t">${s.items.length} items</span>
+          <button class="btn gh m2-iconbtn" data-a="secMove" data-i="${si}" data-d="-1" ${si ? '' : 'disabled'} aria-label="Move up">↑</button><button class="btn gh m2-iconbtn" data-a="secMove" data-i="${si}" data-d="1" ${si < S.menu.length - 1 ? '' : 'disabled'} aria-label="Move down">↓</button><button class="btn gh" data-a="m2CatDel" data-i="${si}" style="color:var(--red)">Delete</button></div></div>`).join('')}
+      <button class="btn" data-a="m2CatSave" style="align-self:flex-start">Save categories</button>`)}`;
+  };
+
+  // ----- customer preview of the item being edited -----
+  function pvGroups() { const e = S.edit; const out = []; const add = (gid, depth) => { const g = gid === '__draft' ? null : modById(gid); if (!g) return; out.push([g, depth]); const p = S.pv.picks[g.id] || {}; g.choices.forEach((c, ci) => { if (p[ci] && c.next) add(c.next, depth + 1); }); }; e.mods.forEach((id) => add(id, 0)); return out; }
+  function pvTotal() {
+    const e = S.edit; const sizes = e.priceMode === 'sizes'; let base = sizes ? toCents((e.sizes[S.pv.size] || e.sizes[0] || { p: 0 }).p) : toCents(e.price);
+    let extra = 0; let missing = '';
+    pvGroups().forEach(([g]) => { const p = S.pv.picks[g.id] || {}; const picks = []; g.choices.forEach((c, ci) => { for (let k = 0; k < (p[ci] || 0); k++) picks.push(toCents(c.p)); }); picks.sort((a, b) => a - b); extra += picks.slice(+g.free || 0).reduce((a, b) => a + b, 0); if (picks.length < (+g.min || 0) && !missing) missing = g.name; });
+    return { total: base + extra, missing };
+  }
+  M2MODAL.preview = () => {
+    const e = S.edit; const sizes = e.priceMode === 'sizes'; const t = pvTotal();
+    return `<div class="m2-pv">${e.img ? `<img src="${IMG(e.img)}" alt="" class="m2-pvimg">` : ''}<div class="row between"><h2 style="font-size:22px;margin:0">${esc(e.name || 'Item name')}</h2><button class="btn gh" data-a="closeModal" aria-label="Close preview">✕</button></div>
+      <span class="mut sm-t">${esc(e.desc || '')}</span><span class="sm-t">${tagRow({ labels: e.labels, diet: e.diet, spice: e.spice })}</span>
+      ${e.allergens.length ? `<span class="mut sm-t">Contains: ${e.allergens.map((a) => ALLERGENS.find((x) => x[0] === a)[1]).join(', ')}</span>` : ''}
+      ${sizes ? `<div class="m2-pvg"><div class="row between"><b>Size</b><span class="pill p-r m2-pill">Required</span></div>${e.sizes.map((s, i) => `<label class="m2-pvc"><input type="radio" name="pvs" data-a="m2PvSize" data-i="${i}" ${S.pv.size === i ? 'checked' : ''}><span class="grow">${esc(s.n || 'Size')}</span><span>${money(toCents(s.p))}</span></label>`).join('')}</div>` : ''}
+      ${pvGroups().map(([g, depth]) => { const p = S.pv.picks[g.id] || {}; const n = Object.values(p).reduce((a, b) => a + b, 0); const single = +g.max === 1 && (+g.each || 1) === 1;
+        return `<div class="m2-pvg" style="${depth ? 'margin-left:14px;border-left:3px solid var(--red);padding-left:10px' : ''}"><div class="row between"><b>${esc(g.name)}</b><span class="pill ${+g.min > 0 ? 'p-r' : 'p-n'} m2-pill">${+g.min > 0 ? 'Required' : 'Optional'}</span></div><span class="mut sm-t">${ruleText(g).replace(/^(Required|Optional) · /, '')}</span>
+        ${g.choices.map((c, ci) => { const cnt = p[ci] || 0; const pr = toCents(c.p); const dis = c.out || (!cnt && !single && n >= +g.max);
+          return (+g.each || 1) > 1 ? `<div class="m2-pvc ${c.out ? 'dim' : ''}"><span class="grow">${esc(c.n)}${c.out ? ' · sold out' : ''}</span><span class="mut">${pr ? '+' + money(pr) : ''}</span><button class="btn gh" data-a="m2PvStep" data-g="${g.id}" data-i="${ci}" data-d="-1" ${cnt ? '' : 'disabled'} aria-label="Less">−</button><b>${cnt}</b><button class="btn gh" data-a="m2PvStep" data-g="${g.id}" data-i="${ci}" data-d="1" ${dis || cnt >= +g.each ? 'disabled' : ''} aria-label="More">+</button></div>`
+          : `<label class="m2-pvc ${c.out ? 'dim' : ''}"><input type="${single ? 'radio' : 'checkbox'}" name="pv-${g.id}" data-a="m2PvPick" data-g="${g.id}" data-i="${ci}" ${cnt ? 'checked' : ''} ${dis ? 'disabled' : ''}><span class="grow">${esc(c.n)}${c.out ? ' · sold out' : ''}${c.next ? ' <span class="mut sm-t">› more choices</span>' : ''}</span><span class="mut">${pr ? '+' + money(pr) : ''}</span></label>`; }).join('')}</div>`; }).join('')}
+      ${e.notes ? '<label class="f">Special instructions<textarea class="in" placeholder="e.g. No onions" rows="2"></textarea></label>' : ''}
+      <button class="btn" data-a="closeModal" ${t.missing ? 'disabled' : ''}>${t.missing ? `Choose ${esc(t.missing)}` : `Add to cart · ${money(t.total)}`}</button>
+      <span class="mut sm-t" style="text-align:center">Preview only. This is how the item opens in the customer app.</span></div>`;
+  };
+  M2MODAL.m2tpl = () => `<h2 style="font-size:22px">Start from a template</h2><span class="mut sm-t">Adds categories, sample items with sizes, and option groups. Nothing is removed. Change names and prices after.</span>
+    ${Object.entries(SHOPS).map(([k, [l, d]]) => `<button class="card pad col" data-a="m2TplApply" data-v="${k}" style="text-align:left;gap:4px;cursor:pointer"><b>${esc(l)}</b><span class="mut sm-t">${esc(d)}</span></button>`).join('')}<button class="btn gh" data-a="closeModal">Cancel</button>`;
+  M2MODAL.m2import = () => `<h2 style="font-size:22px">Import your menu</h2>
+    <div class="card pad col"><b>Send us your menu</b><span class="mut sm-t">Photos or a PDF of your printed or website menu. Our team builds it for free within 48 hours, and you check everything before it goes live.</span><label class="btn ln sm" style="align-self:flex-start;cursor:pointer;position:relative">Upload photos or PDF<input type="file" accept="image/*,.pdf" data-photo="import" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
+    <div class="card pad col"><b>Upload a spreadsheet</b><span class="mut sm-t">CSV with columns: category, item, description, price, size, option group, choice, choice price. Items are added as drafts for you to review.</span><label class="btn ln sm" style="align-self:flex-start;cursor:pointer;position:relative">Upload CSV<input type="file" accept=".csv,text/csv" data-photo="import" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
+    <div class="card pad col"><b>Moving from Uber Eats, DoorDash or Grubhub?</b><span class="mut sm-t">Send us your menu export or a link to your store page and we’ll copy items, sizes, options and photos you own.</span></div>
+    <button class="btn gh" data-a="closeModal">Close</button>`;
+  M2MODAL.m2move = () => `<h2 style="font-size:22px">Move to a category</h2>${S.menu.map((s, i) => `<button class="opt" data-a="m2BulkMoveDo" data-i="${i}" style="text-align:left"><b>${esc(s.s)}</b></button>`).join('')}<button class="btn gh" data-a="closeModal">Cancel</button>`;
+  M2MODAL.m2price = (md) => `<h2 style="font-size:22px">Change prices</h2><span class="mut sm-t">For ${Object.keys(S.bulk).filter((k) => S.bulk[k]).length} selected items, including every size.</span>
+    ${seg([['up', 'Increase'], ['down', 'Decrease']], md.dir, 'm2PriceDir')}${seg([['pct', 'By percent'], ['amt', 'By amount']], md.mode, 'm2PriceBy')}
+    ${field(md.mode === 'pct' ? 'Percent' : 'Amount ($)', `<input class="in" id="bp-v" data-m="modal.v" inputmode="decimal" value="${esc(md.v)}">`)}
+    <span class="mut sm-t">Prices are rounded to the nearest cent.</span><button class="btn" data-a="m2BulkPriceDo">Apply</button><button class="btn gh" data-a="closeModal">Cancel</button>`;
+  M2MODAL.m2del = () => `<h2 style="font-size:22px">Delete ${Object.keys(S.bulk).filter((k) => S.bulk[k]).length} items?</h2><span class="mut">This removes them from every location. Past orders keep their details.</span><button class="btn" data-a="m2BulkDelDo" style="background:var(--red)">Delete items</button><button class="btn gh" data-a="closeModal">Cancel</button>`;
+  M2MODAL.m2gdel = () => { const u = usedBy(S.gdraft.id); return `<h2 style="font-size:22px">Delete “${esc(S.gdraft.name)}”?</h2><span class="mut">${u.length ? `It’s removed from ${u.length} item${u.length > 1 ? 's' : ''}: ${u.map((it) => esc(it.name)).join(', ')}.` : 'It isn’t used on any item.'}</span><button class="btn" data-a="m2GroupDelDo" style="background:var(--red)">Delete group</button><button class="btn gh" data-a="closeModal">Cancel</button>`; };
+
+  const selIds = () => Object.keys(S.bulk).filter((k) => S.bulk[k]);
+  Object.assign(A, {
+    m2Cat: (d) => { S.itemCat = d.v; render(); },
+    m2Sel: (d) => { S.bulk[d.id] = !S.bulk[d.id]; render(); },
+    m2BulkClear: () => { S.bulk = {}; render(); },
+    m2BulkOn: (d) => { selIds().forEach((id) => { const it = itemById(id); it.on = d.v === 'on'; it.soldUntil = it.on ? null : 'today'; }); toast(`${selIds().length} items ${d.v === 'on' ? 'are available' : 'are sold out today'}.`); S.bulk = {}; render(); },
+    m2BulkMove: () => { S.modal = { type: 'm2move' }; render(); },
+    m2BulkMoveDo: (d) => { const to = S.menu[+d.i]; const ids = selIds(); ids.forEach((id) => { const it = itemById(id); const from = S.menu[catOf(it)]; from.items.splice(from.items.indexOf(it), 1); to.items.push(it); }); S.modal = null; S.bulk = {}; toast(`Moved ${ids.length} items to ${to.s}.`); render(); },
+    m2BulkPrice: () => { S.modal = { type: 'm2price', dir: 'up', mode: 'pct', v: '5' }; render(); },
+    m2PriceDir: (d) => { S.modal.dir = d.v; render(); }, m2PriceBy: (d) => { S.modal.mode = d.v; render(); },
+    m2BulkPriceDo: () => { const md = S.modal; const v = parseFloat(md.v); if (!(v > 0)) return toast('Enter a number above 0.'); const sign = md.dir === 'up' ? 1 : -1;
+      const f = (c) => Math.max(1, md.mode === 'pct' ? Math.round(c * (1 + (sign * v) / 100)) : c + sign * Math.round(v * 100));
+      const ids = selIds(); for (const id of ids) { const it = itemById(id); if (f(it.price) < 1) return toast('That would make a price zero.'); }
+      ids.forEach((id) => { const it = itemById(id); it.price = f(it.price); if (it.sizes) it.sizes.forEach((s) => { s.p = f(s.p); }); it.sample = false; });
+      S.modal = null; S.bulk = {}; toast(`Updated prices on ${ids.length} items.`); render(); },
+    m2BulkDel: () => { S.modal = { type: 'm2del' }; render(); },
+    m2BulkDelDo: () => { const ids = selIds(); ids.forEach((id) => { const it = itemById(id); const s = S.menu[catOf(it)]; s.items.splice(s.items.indexOf(it), 1); }); S.modal = null; S.bulk = {}; toast(`Deleted ${ids.length} items.`); render(); },
+    m2Tpl: () => { S.modal = { type: 'm2tpl' }; render(); },
+    m2Import: () => { S.modal = { type: 'm2import' }; render(); },
+    m2TplApply: (d) => {
+      const [label, , cats] = SHOPS[d.v]; let n = 0;
+      cats.forEach(([cname, items]) => {
+        let cat = S.menu.find((s) => s.s.toLowerCase() === cname.toLowerCase());
+        if (!cat) { cat = { id: 'c' + Date.now().toString(36) + S.menu.length, s: cname, desc: '', menus: [S.menus[0].id], hidden: false, items: [] }; S.menu.push(cat); }
+        items.forEach(([name, desc, price, groups]) => {
+          if (allItems().some((it) => it.name === name)) return;
+          const sizes = Array.isArray(price) ? price.map(([sn, sp]) => ({ n: sn, p: sp })) : null;
+          const it = { id: 'i' + Date.now().toString(36) + n, name, desc, price: sizes ? sizes[0].p : price, img: '', on: true, groups: [], diet: [], allergens: [], spice: '', labels: [], sizes, also: [], notes: true, code: '', serves: '', extraPrep: '', cal: '', pickupPrice: null, taxable: true, popular: false, soldUntil: null, avail: 'menu', availDays: ['1', '2', '3', '4', '5'], availFrom: '11:00', availTo: '15:00', where: 'all', over: {}, sample: true, mods: groups.map(addTplGroup).filter(Boolean) };
+          cat.items.push(it); n++;
+        });
+      });
+      S.modal = null; S.itemCat = 'all'; toast(`${label} template added: ${n} sample items. Check names and prices.`); render();
+    },
+    m2NewIn: (d) => go('editItem', { edit: newEdit2(+d.v), attachPick: false }),
+    newItem: () => go('editItem', { edit: newEdit2(), attachPick: false }),
+    editItem: (d) => { const it = d.id ? itemById(d.id) : S.menu[S.menuTab].items[+d.i]; go('editItem', { edit: editFrom2(it), attachPick: false }); },
+    toggleItem: (d) => { const it = itemById(d.id); if (!it.on) { it.on = true; it.soldUntil = null; toast(`${it.name} is available again at all locations.`); render(); return; } S.modal = { type: 'soldOut', id: d.id, v: 'today' }; render(); },
+    soldOutDo: () => { const it = S.modal.id ? itemById(S.modal.id) : S.menu[S.menuTab].items[S.modal.i]; it.on = false; it.soldUntil = S.modal.v; S.modal = null; toast(it.soldUntil === 'today' ? `${it.name} is sold out today. It comes back when you open tomorrow.` : `${it.name} is sold out until you turn it back on.`); render(); },
+    toggleItemLoc: (d) => { const it = itemById(d.id); const L = S.menuLoc; const b = S.branches.find((x) => x.id === L); if (!it.on) { toast(`${it.name} is off at all locations. Turn it on in “All locations” first.`); render(); return; } it.over = it.over || {}; const o = it.over[L] = { ...(it.over[L] || {}) }; o.on = o.on === false; toast(`${it.name} is now ${o.on ? 'available' : 'sold out'} at ${b.name} only.`); render(); },
+    sellHere: (d) => { const it = itemById(d.id); const L = S.menuLoc; if (Array.isArray(it.where) && !it.where.includes(L)) it.where.push(L); toast(`${it.name} is now sold at ${S.branches.find((x) => x.id === L).name}.`); render(); },
+    m2Flip: (d) => { const [k, v] = d.p.split('.'); const arr = S.edit[k]; const i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); render(); },
+    m2Spice: (d) => { S.edit.spice = d.v; render(); },
+    m2PriceMode: (d) => { const e = S.edit; e.priceMode = d.v; if (d.v === 'sizes' && !e.sizes.some((s) => String(s.p).trim())) { e.sizes = [{ n: 'Small', p: e.price || '' }, { n: 'Large', p: '' }]; } render(); },
+    m2SizeAdd: () => { S.edit.sizes.push({ n: '', p: '' }); render(); },
+    m2SizeDel: (d) => { if (S.edit.sizes.length <= 1) return toast('Keep at least one size, or switch to “One price”.'); S.edit.sizes.splice(+d.i, 1); render(); },
+    m2SizeMove: (d) => { const a = S.edit.sizes; const i = +d.i; [a[i - 1], a[i]] = [a[i], a[i - 1]]; render(); },
+    m2Attach: () => { S.attachPick = !S.attachPick; render(); },
+    m2AttachDo: (d) => { S.edit.mods.push(d.id); toast(`Added “${modById(d.id).name}”.`); render(); },
+    m2AttachTpl: (d) => { const id = addTplGroup(d.v); if (!S.edit.mods.includes(id)) S.edit.mods.push(id); toast(`Added “${d.v}”. Edit it to change choices or prices.`); render(); },
+    m2ModDel: (d) => { S.edit.mods.splice(+d.i, 1); render(); },
+    m2ModMove: (d) => { const a = S.edit.mods; const i = +d.i; [a[i - 1], a[i]] = [a[i], a[i - 1]]; render(); },
+    m2TaxGo: (d) => { S.branchId = d.id; S.stack.push(S.screen); S.screen = 'tax'; render(true); },
+    m2Preview: () => { S.pv = { size: 0, picks: {} }; S.edit.mods.forEach((gid) => { const g = modById(gid); if (!g) return; const p = {}; g.choices.forEach((c, ci) => { if (c.def && !c.out) p[ci] = 1; }); S.pv.picks[gid] = p; }); S.modal = { type: 'preview' }; render(); },
+    m2PvSize: (d) => { S.pv.size = +d.i; render(); },
+    m2PvPick: (d) => { const g = modById(d.g); const p = S.pv.picks[d.g] || (S.pv.picks[d.g] = {}); const i = +d.i; if (+g.max === 1) { const was = p[i]; Object.keys(p).forEach((k) => delete p[k]); if (!was || +g.min > 0) p[i] = 1; } else if (p[i]) delete p[i]; else p[i] = 1; render(); },
+    m2PvStep: (d) => { const g = modById(d.g); const p = S.pv.picks[d.g] || (S.pv.picks[d.g] = {}); const i = +d.i; const n = Object.values(p).reduce((a, b) => a + b, 0); if (+d.d > 0 && n >= +g.max) return; p[i] = Math.max(0, (p[i] || 0) + +d.d); if (!p[i]) delete p[i]; render(); },
+    m2GroupNew: (d) => go('editGroup', { gdraft: groupDraft(null, d && d.attach) }),
+    m2GroupEdit: (d) => go('editGroup', { gdraft: groupDraft(modById(d.id)) }),
+    m2GroupDup: (d) => { const g = modById(d.id); const c = JSON.parse(JSON.stringify(g)); c.id = 'g' + Date.now().toString(36); c.name = g.name + ' (copy)'; S.mods.push(c); toast(`Duplicated “${g.name}”.`); render(); },
+    m2TplGroup: (d) => { if (S.mods.some((m) => m.name.toLowerCase() === d.v.toLowerCase())) return toast(`You already have “${d.v}”.`); addTplGroup(d.v); toast(`Added “${d.v}”. Open it to add it to items.`); render(); },
+    m2Req: (d) => { S.gdraft.req = d.v; if (d.v === 'req' && !(+S.gdraft.min >= 1)) S.gdraft.min = '1'; render(); },
+    m2ChAdd: () => { S.gdraft.choices.push({ n: '', p: '0.00', def: false, out: false, next: '' }); render(); },
+    m2ChDel: (d) => { if (S.gdraft.choices.length <= 1) return toast('A group needs at least one choice.'); S.gdraft.choices.splice(+d.i, 1); render(); },
+    m2ChMove: (d) => { const a = S.gdraft.choices; const i = +d.i; [a[i - 1], a[i]] = [a[i], a[i - 1]]; render(); },
+    m2ChDef: (d) => { const c = S.gdraft.choices[+d.i]; c.def = !c.def; render(); },
+    m2ChOut: (d) => { const c = S.gdraft.choices[+d.i]; c.out = !c.out; render(); },
+    m2GdItem: (d) => { S.gdraft.items[d.id] = !S.gdraft.items[d.id]; render(); },
+    m2GroupSave: () => {
+      const d = S.gdraft; const name = String(d.name).trim(); if (name.length < 2) return toast('Name the group, like “Choose your milk”.');
+      const choices = d.choices.filter((c) => String(c.n).trim()).map((c) => ({ n: String(c.n).trim(), p: toCents(c.p), def: !!c.def, out: !!c.out, next: c.next || '' }));
+      if (!choices.length) return toast('Add at least one choice.');
+      if (choices.some((c) => c.p < 0)) return toast('Extra prices can’t be negative.');
+      const min = d.req === 'req' ? parseInt(d.min, 10) || 0 : 0; const max = parseInt(d.max, 10) || 0; const free = parseInt(d.free, 10) || 0; const each = d.repeat ? parseInt(d.each, 10) || 1 : 1;
+      if (d.req === 'req' && min < 1) return toast('Required groups need “Pick at least” of 1 or more.');
+      if (max < 1) return toast('“Pick up to” must be at least 1.');
+      if (min > max) return toast('“Pick at least” can’t be more than “Pick up to”.');
+      if (min > choices.filter((c) => !c.out).length * each) return toast(`Not enough choices in stock to pick ${min}.`);
+      if (free > max) return toast('Free choices can’t be more than “Pick up to”.');
+      if (choices.filter((c) => c.def).length > max) return toast(`Too many pre-selected choices for “Pick up to ${max}”.`);
+      if (d.id && choices.some((c) => c.next === d.id)) return toast('A choice can’t open its own group.');
+      let g = d.id ? modById(d.id) : null;
+      if (g) Object.assign(g, { name, min, max, free, each, choices }); else { g = { id: 'g' + Date.now().toString(36), name, min, max, free, each, choices }; S.mods.push(g); }
+      allItems().forEach((it) => { it.mods = it.mods || []; const has = it.mods.includes(g.id); if (d.items[it.id] && !has) it.mods.push(g.id); if (!d.items[it.id] && has) it.mods = it.mods.filter((x) => x !== g.id); });
+      if (S.edit && S.stack[S.stack.length - 1] === 'editItem') { const inDraft = S.edit.mods.includes(g.id); if ((d.items[S.edit.id] || (d.attach && S.edit.isNew)) && !inDraft) S.edit.mods.push(g.id); if (S.edit.id && !d.items[S.edit.id] && inDraft) S.edit.mods = S.edit.mods.filter((x) => x !== g.id); }
+      const n = usedBy(g.id).length; toast(`Saved “${name}”${n ? ` · on ${n} item${n > 1 ? 's' : ''}` : ''}.`); back();
+    },
+    m2GroupDel: () => { S.modal = { type: 'm2gdel' }; render(); },
+    m2GroupDelDo: () => { const id = S.gdraft.id; S.mods = S.mods.filter((g) => g.id !== id); allItems().forEach((it) => { it.mods = (it.mods || []).filter((x) => x !== id); }); S.mods.forEach((g) => g.choices.forEach((c) => { if (c.next === id) c.next = ''; })); if (S.edit) S.edit.mods = S.edit.mods.filter((x) => x !== id); S.modal = null; toast('Group deleted.'); back(); },
+    m2CatHide: (d) => { const s = S.menu[+d.i]; s.hidden = !s.hidden; toast(`${s.s} is ${s.hidden ? 'hidden from' : 'shown to'} customers.`); render(); },
+    m2CatDel: (d) => { const s = S.menu[+d.i]; if (S.menu.length === 1) return toast('Keep at least one category.'); if (s.items.length) return toast(`Move or delete the ${s.items.length} items in “${s.s}” first.`); S.menu.splice(+d.i, 1); S.itemCat = 'all'; toast(`Deleted “${s.s}”.`); render(); },
+    m2CatSave: () => { for (const s of S.menu) { if (String(s.s).trim().length < 2) return toast('Every category needs a name.'); if (!s.menus.length) return toast(`“${s.s}” isn’t in any menu, so customers can’t see it.`); } toast('Categories saved.'); render(); },
+    sectionDo: () => { const n = S.modal.name.trim(); if (n.length < 2) return toast('Name the category.'); S.menu.push({ id: 'c' + Date.now().toString(36), s: n, desc: '', hidden: false, menus: [(S.menus || [{ id: 'm1' }])[0].id], items: [] }); S.modal = null; if (S.edit && S.screen === 'editItem') S.edit.sec = String(S.menu.length - 1); toast(`Added category “${n}”.`); render(); },
+    saveItem: () => {
+      const e = S.edit; const sizesOn = e.priceMode === 'sizes';
+      if (String(e.name).trim().length < 2) return toast('Give the item a name.');
+      let sizes = null; let cents;
+      if (sizesOn) { sizes = e.sizes.filter((s) => String(s.n).trim() || String(s.p).trim()).map((s) => ({ n: String(s.n).trim(), p: Math.round(parseFloat(s.p) * 100) }));
+        if (sizes.length < 2) return toast('Add at least 2 sizes, or switch to “One price”.');
+        if (sizes.some((s) => !s.n)) return toast('Name every size.'); if (sizes.some((s) => !(s.p > 0))) return toast('Enter a price for every size, like 4.75.');
+        if (new Set(sizes.map((s) => s.n.toLowerCase())).size !== sizes.length) return toast('Two sizes have the same name.');
+        cents = sizes[0].p;
+      } else { cents = Math.round(parseFloat(e.price) * 100); if (!(cents > 0)) return toast('Enter a price, like 12.50.'); }
+      const pp = sizesOn ? '' : String(e.pickupPrice || '').trim(); const ppc = pp ? Math.round(parseFloat(pp) * 100) : null;
+      if (pp && !(ppc > 0)) return toast('Check the pickup price, or leave it empty.');
+      if (String(e.cal).trim() && !/^\d{1,4}(\s*-\s*\d{1,4})?$/.test(String(e.cal).trim())) return toast('Calories: a number like 220, or a range like 180-260.');
+      if (String(e.serves).trim() && !/^\d{1,2}$/.test(String(e.serves).trim())) return toast('Serves: a number like 2.');
+      if (String(e.extraPrep).trim() && !/^\d{1,3}$/.test(String(e.extraPrep).trim())) return toast('Extra prep time: minutes, like 5.');
+      if (e.avail === 'custom') { if (!e.availDays.length) return toast('Pick at least one day the item is offered.'); if (!timeOK(e.availFrom) || !timeOK(e.availTo) || e.availFrom >= e.availTo) return toast('Check the item’s from and to times.'); }
+      const where = e.whereSome ? S.branches.filter((b) => e.whereSet[b.id]).map((b) => b.id) : 'all';
+      if (e.whereSome && !where.length) return toast('Pick at least one location, or choose “Sell at all locations”.');
+      const over = {};
+      for (const b of S.branches) { const o = e.over[b.id] || {}; const p = sizesOn ? '' : String(o.price || '').trim(); const pc = p ? Math.round(parseFloat(p) * 100) : null; if (p && !(pc > 0)) return toast(`Check the price for ${b.name}.`); over[b.id] = { price: pc != null && pc !== cents ? pc : null, on: o.on !== false }; }
+      const on = e.state === 'on'; const sec = +e.sec;
+      const item = { id: e.id || 'i' + Date.now().toString(36), name: String(e.name).trim(), desc: String(e.desc).trim(), price: cents, sizes, pickupPrice: ppc != null && ppc !== cents ? ppc : null, labels: [...e.labels], popular: e.labels.includes('popular'), diet: [...e.diet], allergens: [...e.allergens], spice: e.spice, cal: String(e.cal).trim(), serves: String(e.serves).trim(), taxable: e.taxable !== false, on, soldUntil: on ? null : e.state, avail: e.avail, availDays: [...e.availDays], availFrom: e.availFrom, availTo: e.availTo, img: e.img, groups: [], mods: [...e.mods], also: e.also.filter((id) => id !== (S.menu[sec] || {}).id), notes: !!e.notes, code: String(e.code).trim(), extraPrep: String(e.extraPrep).trim(), where, over, sample: false };
+      if (e.isNew) S.menu[sec].items.push(item);
+      else { const old = itemById(e.id); const from = S.menu[catOf(old)]; const at = from.items.indexOf(old); from.items.splice(at, 1); if (from === S.menu[sec]) S.menu[sec].items.splice(at, 0, item); else S.menu[sec].items.push(item); }
+      const ng = item.mods.length; toast(`Saved “${item.name}” · ${sizes ? `${sizes.length} sizes from ${money(Math.min(...sizes.map((s) => s.p)))}` : money(cents)}${ng ? ` · ${ng} option group${ng > 1 ? 's' : ''}` : ''}.`); back();
+    },
+    delItem: () => { const it = itemById(S.edit.id); const s = S.menu[catOf(it)]; s.items.splice(s.items.indexOf(it), 1); toast(`Deleted “${it.name}”.`); back(); },
+  });
+
   A.page = (d) => openPage(d.k);
   const h = (location.hash || '').slice(1);
   const hit = PAGES.find((p) => hashOf(p[0]) === h);
