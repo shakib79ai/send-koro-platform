@@ -2679,6 +2679,177 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       ['Sides', [['Fries', 'Crispy, sea salt', [['Regular', 450], ['Large', 600]], []]]],
     ]],
   };
+  // ---- Cuisine packs: every cuisine uses the same building blocks (category → item → sizes → option groups → choices → follow-up groups),
+  // exactly like Uber Eats and DoorDash. Packs only pre-fill typical choices. Group keys are unique; the 7th field is the name customers see.
+  const TPL_ORDER = [['Cafés and drinks', ['coffee', 'donut', 'juice', 'bakery']], ['Fast food', ['ffburger', 'chicken', 'pizza', 'burger']], ['Cuisines', ['indian', 'bangla', 'mexican', 'chinese', 'thai', 'japanese', 'halal', 'italian', 'american', 'steak', 'bowls']], ['For any restaurant', ['common']]];
+  Object.assign(TPL_GROUPS, {
+    common: ['Any restaurant', [
+      ['Remove ingredients', 0, 6, 0, 1, [['No onions', 0], ['No tomatoes', 0], ['No lettuce', 0], ['No pickles', 0], ['No cheese', 0], ['No sauce', 0]]],
+      ['Spice level', 1, 1, 0, 1, [['Mild', 0, 1], ['Medium', 0], ['Hot', 0], ['Extra hot', 0]]],
+      ['Choose a side', 1, 1, 0, 1, [['Fries', 0, 1], ['Side salad', 0], ['Onion rings', 150], ['Sweet potato fries', 150]]],
+      ['Choose 2 sides', 2, 2, 2, 1, [['Fries', 0], ['Mashed potatoes', 0], ['Mac and cheese', 0], ['Coleslaw', 0], ['Side salad', 0], ['Seasonal vegetables', 0]], 'Choose 2 sides'],
+      ['Choose a drink', 1, 1, 0, 1, [['Coke', 0, 1], ['Diet Coke', 0], ['Sprite', 0], ['Water', 0]]],
+      ['Add a drink', 0, 2, 0, 2, [['Coke', 250], ['Diet Coke', 250], ['Sprite', 250], ['Bottled water', 200]]],
+      ['Add a dessert', 0, 2, 0, 2, [['Cookie', 250], ['Brownie', 350], ['Cheesecake slice', 550]]],
+      ['Utensils and extras', 0, 3, 0, 1, [['Extra napkins', 0], ['Extra sauce', 50], ['Plastic utensils', 0]]],
+    ]],
+    donut: ['Coffee and donuts', [
+      ['Pick 6 donuts', 6, 6, 0, 6, [['Glazed', 0], ['Chocolate frosted', 0], ['Boston kreme', 50], ['Jelly', 50], ['Strawberry sprinkle', 0], ['Old fashioned', 0]], 'Pick your 6 donuts'],
+      ['Pick 12 donuts', 12, 12, 0, 12, [['Glazed', 0], ['Chocolate frosted', 0], ['Boston kreme', 50], ['Jelly', 50], ['Strawberry sprinkle', 0], ['Old fashioned', 0]], 'Pick your 12 donuts'],
+      ['Sandwich bread', 1, 1, 0, 1, [['Croissant', 0, 1], ['English muffin', 0], ['Bagel', 0], ['Sourdough', 0]], 'Choose your bread'],
+      ['Breakfast meat', 1, 1, 0, 1, [['Bacon', 0, 1], ['Sausage', 0], ['Turkey sausage', 0], ['No meat', -0]], 'Choose your meat'],
+    ]],
+    ffburger: ['Fast-food burgers', [
+      ['Meal size', 1, 1, 0, 1, [['Sandwich only', 0, 1], ['Medium meal (fries + drink)', 350, 0, 'Meal side'], ['Large meal (fries + drink)', 450, 0, 'Meal side']], 'Make it a meal?'],
+      ['Meal side', 1, 1, 0, 1, [['Fries', 0, 1, 'Meal drink'], ['Onion rings', 50, 0, 'Meal drink'], ['Apple slices', 0, 0, 'Meal drink']], 'Choose your side'],
+      ['Meal drink', 1, 1, 0, 1, [['Coke', 0, 1], ['Diet Coke', 0], ['Sprite', 0], ['Iced tea', 0], ['Shake', 150]], 'Choose your drink'],
+      ['Burger extras', 0, 6, 0, 2, [['Extra patty', 200], ['Bacon', 150], ['Cheese slice', 50], ['Extra pickles', 0], ['Extra sauce', 0]], 'Add extras'],
+      ['Nugget sauces', 1, 2, 2, 1, [['BBQ', 0, 1], ['Honey mustard', 0], ['Sweet and sour', 0], ['Ranch', 0], ['Buffalo', 0]], 'Choose dipping sauces'],
+    ]],
+    chicken: ['Fried chicken', [
+      ['Chicken recipe', 1, 1, 0, 1, [['Original', 0, 1], ['Spicy', 0], ['Half original, half spicy', 0]], 'Choose your recipe'],
+      ['Chicken pieces', 1, 1, 0, 1, [['Mixed (white and dark)', 0, 1], ['All white meat', 200], ['All dark meat', 0]], 'White or dark meat'],
+      ['Bucket sides', 2, 2, 2, 1, [['Mashed potatoes and gravy', 0], ['Coleslaw', 0], ['Mac and cheese', 0], ['Corn', 0], ['Fries', 0], ['Biscuits (4)', 0]], 'Choose 2 large sides'],
+      ['Dipping sauce', 0, 3, 1, 1, [['Honey mustard', 50], ['BBQ', 50], ['Ranch', 50], ['Hot sauce', 50]], 'Dipping sauces'],
+    ]],
+    indian: ['Indian', [
+      ['Indian spice', 1, 1, 0, 1, [['Mild', 0], ['Medium', 0, 1], ['Hot', 0], ['Indian hot', 0]], 'Spice level'],
+      ['Curry protein', 1, 1, 0, 1, [['Chicken', 0, 1], ['Lamb', 300], ['Goat', 300], ['Shrimp', 400], ['Paneer', 0], ['Mixed vegetables', 0]], 'Choose your protein'],
+      ['Naan', 0, 3, 0, 2, [['Plain naan', 300], ['Butter naan', 350], ['Garlic naan', 400], ['Cheese naan', 450], ['Tandoori roti', 300]], 'Add bread'],
+      ['Rice choice', 1, 1, 0, 1, [['Basmati rice', 0, 1], ['Jeera rice', 100], ['Biryani rice', 300], ['No rice', 0]], 'Choose your rice'],
+      ['Indian sides', 0, 3, 0, 1, [['Raita', 250], ['Mango chutney', 150], ['Papadum', 200], ['Onion salad', 100]], 'Add sides'],
+    ]],
+    bangla: ['Bangladeshi', [
+      ['Plate size', 1, 1, 0, 1, [['Half plate', 0, 1], ['Full plate', 600]], 'Choose plate size'],
+      ['Bangla spice', 1, 1, 0, 1, [['Less spicy', 0], ['Regular', 0, 1], ['Extra jhal', 0]], 'Spice (jhal) level'],
+      ['Bangla add-ons', 0, 4, 0, 2, [['Boiled egg', 150], ['Extra meat piece', 400], ['Aloo (potato)', 100], ['Salad', 100], ['Borhani', 300]], 'Add-ons'],
+      ['Bangla bread', 0, 3, 0, 3, [['Paratha', 200], ['Naan', 250], ['Luchi (2 pcs)', 250]], 'Add bread'],
+      ['Fish choice', 1, 1, 0, 1, [['Rui', 0, 1], ['Pabda', 200], ['Hilsa (ilish)', 600]], 'Choose your fish'],
+    ]],
+    mexican: ['Mexican', [
+      ['Mex protein', 1, 1, 0, 1, [['Chicken', 0, 1], ['Steak', 250], ['Carnitas', 100], ['Barbacoa', 250], ['Al pastor', 100], ['Veggie', 0]], 'Choose your protein'],
+      ['Mex rice', 0, 1, 0, 1, [['White rice', 0, 1], ['Brown rice', 0], ['No rice', 0]], 'Rice'],
+      ['Mex beans', 0, 1, 0, 1, [['Black beans', 0, 1], ['Pinto beans', 0], ['No beans', 0]], 'Beans'],
+      ['Salsa', 0, 3, 3, 1, [['Pico de gallo (mild)', 0], ['Salsa verde (medium)', 0], ['Salsa roja (hot)', 0], ['Corn salsa', 0]], 'Choose salsas'],
+      ['Mex toppings', 0, 6, 0, 1, [['Cheese', 0], ['Sour cream', 0], ['Lettuce', 0], ['Guacamole', 275], ['Queso', 175], ['Jalapeños', 0]], 'Toppings'],
+      ['Tortilla', 1, 1, 0, 1, [['Corn tortilla', 0, 1], ['Flour tortilla', 0]], 'Tortilla'],
+    ]],
+    chinese: ['Chinese', [
+      ['Chinese rice', 1, 1, 0, 1, [['White rice', 0, 1], ['Brown rice', 0], ['Fried rice', 200], ['Lo mein', 250]], 'Choose rice or noodles'],
+      ['Lunch combo', 1, 1, 0, 1, [['Egg roll', 0, 1], ['Spring roll', 0], ['Egg drop soup', 0], ['Wonton soup', 50], ['Hot and sour soup', 50]], 'Choose 1 side'],
+      ['Chinese protein', 1, 1, 0, 1, [['Chicken', 0, 1], ['Beef', 200], ['Shrimp', 300], ['Tofu', 0], ['Vegetables', 0]], 'Choose your protein'],
+    ]],
+    thai: ['Thai', [
+      ['Thai spice', 1, 1, 0, 1, [['Not spicy', 0], ['Mild', 0, 1], ['Medium', 0], ['Hot', 0], ['Thai hot', 0]], 'Spice level'],
+      ['Thai protein', 1, 1, 0, 1, [['Chicken', 0, 1], ['Tofu', 0], ['Beef', 200], ['Shrimp', 300], ['Duck', 500]], 'Choose your protein'],
+    ]],
+    japanese: ['Japanese and sushi', [
+      ['Roll extras', 0, 4, 0, 1, [['Add avocado', 150], ['Soy paper', 100], ['Brown rice', 100], ['Spicy mayo', 50], ['Eel sauce', 50]], 'Roll extras'],
+      ['Sushi sides', 0, 4, 0, 2, [['Miso soup', 300], ['Seaweed salad', 500], ['Edamame', 450], ['Extra ginger', 0], ['Extra wasabi', 0]], 'Add sides'],
+      ['Ramen add-ons', 0, 5, 0, 2, [['Soft-boiled egg', 200], ['Extra chashu', 400], ['Corn', 100], ['Extra noodles', 300], ['Nori', 100]], 'Add toppings'],
+    ]],
+    halal: ['Halal cart and Mediterranean', [
+      ['Platter protein', 1, 1, 0, 1, [['Chicken', 0, 1], ['Lamb gyro', 100], ['Combo (chicken + lamb)', 150], ['Falafel', 0]], 'Choose your protein'],
+      ['Platter base', 1, 1, 0, 1, [['Over rice', 0, 1], ['Over salad', 0], ['Half rice, half salad', 0], ['In a pita', 0]], 'Choose your base'],
+      ['Sauces', 0, 3, 3, 1, [['White sauce', 0, 1], ['Hot sauce (spicy)', 0], ['Tahini', 0], ['BBQ', 0]], 'Choose sauces'],
+    ]],
+    italian: ['Italian and European', [
+      ['Pasta shape', 1, 1, 0, 1, [['Spaghetti', 0, 1], ['Penne', 0], ['Rigatoni', 0], ['Fettuccine', 0], ['Gluten-free penne', 300]], 'Choose your pasta'],
+      ['Pasta protein', 0, 2, 0, 1, [['Grilled chicken', 450], ['Shrimp', 650], ['Meatballs', 500], ['Italian sausage', 450]], 'Add protein'],
+      ['Salad dressing', 1, 1, 0, 1, [['Caesar', 0, 1], ['Balsamic vinaigrette', 0], ['Lemon and olive oil', 0], ['Ranch', 0]], 'Choose dressing'],
+    ]],
+    american: ['American diner', [
+      ['Eggs style', 1, 1, 0, 1, [['Scrambled', 0, 1], ['Over easy', 0], ['Sunny side up', 0], ['Over hard', 0], ['Egg whites', 100]], 'How do you want your eggs?'],
+      ['Toast', 1, 1, 0, 1, [['White', 0, 1], ['Wheat', 0], ['Rye', 0], ['Sourdough', 0], ['English muffin', 0]], 'Choose your toast'],
+      ['Wing sauce', 1, 2, 2, 1, [['Buffalo (hot)', 0, 1], ['BBQ', 0], ['Honey garlic', 0], ['Lemon pepper (dry rub)', 0]], 'Choose up to 2 sauces'],
+      ['Wing dip', 1, 1, 0, 1, [['Ranch', 0, 1], ['Blue cheese', 0], ['No dip', 0]], 'Dipping sauce'],
+    ]],
+    steak: ['Steakhouse', [
+      ['Steak temperature', 1, 1, 0, 1, [['Rare', 0], ['Medium rare', 0, 1], ['Medium', 0], ['Medium well', 0], ['Well done', 0]], 'How would you like it cooked?'],
+      ['Steak sauce', 0, 2, 1, 1, [['Peppercorn', 300], ['Béarnaise', 300], ['Chimichurri', 300], ['Red wine jus', 300]], 'Sauces'],
+      ['Steak add-ons', 0, 3, 0, 1, [['Grilled shrimp', 900], ['Lobster tail', 2400], ['Sautéed mushrooms', 500], ['Blue cheese crust', 400]], 'Add to your steak'],
+    ]],
+  });
+  // Items keyed by group keys. Prices are examples only; sample items are flagged “check price”.
+  Object.assign(SHOPS, {
+    donut: ['Coffee and donuts', 'Hot and iced coffee, donuts by the half dozen or dozen, breakfast sandwiches', [
+      ['Donuts', [['Donut', 'Pick any flavor', 179, []], ['Half dozen donuts', 'Mix and match 6 donuts', 1099, ['Pick 6 donuts']], ['Dozen donuts', 'Mix and match 12 donuts', 1899, ['Pick 12 donuts']]]],
+      ['Hot coffee', [['Hot coffee', 'Freshly brewed', [['Small', 249], ['Medium', 299], ['Large', 349]], ['Milk', 'Flavor syrups', 'Sweetener']]]],
+      ['Iced drinks', [['Iced coffee', 'Brewed hot, poured over ice', [['Small', 299], ['Medium', 349], ['Large', 399]], ['Milk', 'Flavor syrups', 'Sweetener', 'Ice']]]],
+      ['Breakfast sandwiches', [['Egg and cheese sandwich', 'Egg and American cheese', 499, ['Sandwich bread', 'Breakfast meat', 'Hot or iced']]]],
+    ]],
+    ffburger: ['Fast-food burgers', 'Burgers, chicken sandwiches and nuggets with meal upgrades (side + drink)', [
+      ['Burgers', [['Flame-grilled burger', 'Beef patty, lettuce, tomato, onion, pickles, mayo', 599, ['Meal size', 'Burger extras', 'Remove ingredients']], ['Double cheeseburger', 'Two patties, two cheese slices', 449, ['Meal size', 'Burger extras', 'Remove ingredients']]]],
+      ['Chicken', [['Chicken nuggets', 'Crispy white-meat nuggets', [['6 pieces', 399], ['10 pieces', 599], ['20 pieces', 999]], ['Nugget sauces', 'Meal size']]]],
+      ['Sides', [['Fries', 'Salted, golden and crispy', [['Small', 259], ['Medium', 359], ['Large', 429]], []]]],
+      ['Drinks', [['Fountain drink', 'Your choice of soda', [['Small', 199], ['Medium', 229], ['Large', 259]], ['Choose a drink']]]],
+    ]],
+    chicken: ['Fried chicken', 'Buckets by piece count, recipes, white or dark meat, sides and sauces', [
+      ['Buckets and meals', [['Chicken bucket', 'Bone-in fried chicken with sides and biscuits', [['8 pieces', 2699], ['12 pieces', 3599], ['16 pieces', 4499]], ['Chicken recipe', 'Chicken pieces', 'Bucket sides']], ['Chicken tenders', 'Hand-breaded tenders', [['3 pieces', 699], ['5 pieces', 999]], ['Chicken recipe', 'Dipping sauce', 'Add a drink']]]],
+      ['Sandwiches', [['Fried chicken sandwich', 'Crispy fillet, pickles, mayo on a brioche bun', 649, ['Chicken recipe', 'Remove ingredients', 'Add a drink']]]],
+    ]],
+    indian: ['Indian', 'Curries with protein and spice level, biryani, tandoor, naan and lassi', [
+      ['Curries', [['Tikka masala', 'Creamy tomato and fenugreek sauce, served with basmati rice', 1599, ['Curry protein', 'Indian spice', 'Rice choice', 'Naan']], ['Saag', 'Spinach cooked with ginger and garlic', 1499, ['Curry protein', 'Indian spice', 'Naan']]]],
+      ['Biryani', [['Biryani', 'Basmati rice layered with spices, served with raita', 1699, ['Curry protein', 'Indian spice', 'Indian sides']]]],
+      ['Appetizers', [['Samosa', 'Crisp pastry, spiced potatoes and peas', [['2 pieces', 599], ['4 pieces', 999]], ['Indian sides']]]],
+      ['Breads', [['Garlic naan', 'Baked in the tandoor', 400, []]]],
+      ['Drinks', [['Mango lassi', 'Yogurt, mango, cardamom', [['12 oz', 499], ['16 oz', 599]], []]]],
+    ]],
+    bangla: ['Bangladeshi', 'Kacchi biryani by half or full plate, bhuna, fish curries, paratha and borhani', [
+      ['Biryani and polao', [['Kacchi biryani', 'Mutton and aromatic rice slow-cooked together, with aloo', 1399, ['Plate size', 'Bangla spice', 'Bangla add-ons']], ['Morog polao', 'Chicken with fragrant polao rice', 1299, ['Plate size', 'Bangla add-ons']]]],
+      ['Curries and bhuna', [['Beef bhuna', 'Slow-cooked beef in thick spiced gravy', 1499, ['Bangla spice', 'Bangla bread', 'Bangla add-ons']], ['Fish curry (macher jhol)', 'Light curry with potato and tomato', 1599, ['Fish choice', 'Bangla spice', 'Bangla bread']]]],
+      ['Breakfast', [['Paratha and egg', 'Two parathas with an omelette and dal', 899, ['Bangla spice']]]],
+      ['Drinks and sweets', [['Borhani', 'Spiced yogurt drink', 399, []], ['Mishti doi', 'Sweet set yogurt', 499, []]]],
+    ]],
+    mexican: ['Mexican', 'Build-your-own burritos, bowls and tacos with protein, rice, beans, salsas and toppings', [
+      ['Burritos and bowls', [['Burrito', 'Flour tortilla, your choice of fillings', 1199, ['Mex protein', 'Mex rice', 'Mex beans', 'Salsa', 'Mex toppings']], ['Burrito bowl', 'All the burrito fillings in a bowl', 1199, ['Mex protein', 'Mex rice', 'Mex beans', 'Salsa', 'Mex toppings']]]],
+      ['Tacos', [['Tacos', 'Topped with onion and cilantro', [['3 tacos', 1099], ['5 tacos', 1699]], ['Mex protein', 'Tortilla', 'Salsa']]]],
+      ['Sides', [['Chips and guacamole', 'Fresh tortilla chips, made-to-order guac', 699, []]]],
+    ]],
+    chinese: ['Chinese', 'Entrées with rice or noodles, protein choice, lunch specials with a side', [
+      ['Entrées', [['General Tso’s', 'Crispy, sweet and spicy sauce', 1495, ['Chinese protein', 'Chinese rice', 'Spice level']], ['Lo mein', 'Stir-fried egg noodles and vegetables', 1295, ['Chinese protein']]]],
+      ['Lunch specials', [['Lunch special', 'Any entrée with rice and a side, 11 AM to 3 PM', 1095, ['Chinese protein', 'Chinese rice', 'Lunch combo']]]],
+      ['Appetizers', [['Dumplings', 'Pork and chive', [['6 pieces', 799], ['12 pieces', 1399]], []]]],
+    ]],
+    thai: ['Thai', 'Noodles and curries with spice level and protein', [
+      ['Noodles', [['Pad thai', 'Rice noodles, egg, bean sprouts, peanuts', 1495, ['Thai protein', 'Thai spice']]]],
+      ['Curries', [['Green curry', 'Coconut milk, Thai basil, bamboo shoots, with jasmine rice', 1595, ['Thai protein', 'Thai spice']]]],
+    ]],
+    japanese: ['Japanese and sushi', 'Rolls, sushi combos and ramen with extras and sides', [
+      ['Rolls', [['Spicy tuna roll', 'Tuna, spicy mayo, cucumber (8 pieces)', 899, ['Roll extras', 'Sushi sides']], ['California roll', 'Crab, avocado, cucumber (8 pieces)', 799, ['Roll extras', 'Sushi sides']]]],
+      ['Ramen', [['Tonkotsu ramen', 'Pork broth, chashu, scallions, egg noodles', 1695, ['Ramen add-ons', 'Spice level']]]],
+    ]],
+    halal: ['Halal cart and Mediterranean', 'Platters over rice or salad, gyros and falafel with white and hot sauce', [
+      ['Platters', [['Chicken and rice platter', 'Spiced chicken over yellow rice with salad', [['Regular', 1099], ['Large', 1399]], ['Platter protein', 'Platter base', 'Sauces']]]],
+      ['Sandwiches', [['Gyro', 'In a warm pita with lettuce and tomato', 899, ['Platter protein', 'Sauces']]]],
+      ['Sides', [['Falafel (6)', 'Crispy chickpea fritters with tahini', 599, []]]],
+    ]],
+    italian: ['Italian and European', 'Pastas, salads and mains with shape, protein and dressing choices', [
+      ['Pasta', [['Pasta pomodoro', 'San Marzano tomatoes, basil, parmesan', 1695, ['Pasta shape', 'Pasta protein']], ['Fettuccine Alfredo', 'Butter, cream and parmesan', 1795, ['Pasta protein']]]],
+      ['Salads', [['Caesar salad', 'Romaine, croutons, parmesan', 1295, ['Salad dressing', 'Pasta protein']]]],
+      ['Mains', [['Chicken parmesan', 'Breaded cutlet, marinara, mozzarella, with spaghetti', 2195, []]]],
+    ]],
+    american: ['American diner', 'Breakfast all day, burgers, wings by count, sandwiches and shakes', [
+      ['Breakfast', [['Two-egg breakfast', 'Two eggs, home fries, toast, bacon or sausage', 1195, ['Eggs style', 'Toast', 'Breakfast meat']], ['Pancakes', 'Three buttermilk pancakes', [['Short stack (2)', 899], ['Full stack (3)', 1099]], []]]],
+      ['Wings', [['Chicken wings', 'Crispy bone-in wings', [['6 wings', 999], ['12 wings', 1799], ['24 wings', 3299]], ['Wing sauce', 'Wing dip']]]],
+      ['Burgers and sandwiches', [['Diner burger', 'Beef patty, lettuce, tomato, onion', 1399, ['Cook it', 'Cheese', 'Choose a side', 'Remove ingredients']]]],
+      ['Shakes', [['Milkshake', 'Hand-spun', [['Regular', 699], ['Large', 899]], []]]],
+    ]],
+    steak: ['Steakhouse', 'Steaks by cut and weight, cooking temperature, sauces, add-ons and two sides', [
+      ['Steaks', [['Ribeye', 'Dry-aged, char-grilled', [['12 oz', 4800], ['16 oz', 5900]], ['Steak temperature', 'Choose 2 sides', 'Steak sauce', 'Steak add-ons']], ['Filet mignon', 'Center-cut tenderloin', [['8 oz', 4900], ['10 oz', 5600]], ['Steak temperature', 'Choose 2 sides', 'Steak sauce', 'Steak add-ons']]]],
+      ['Sides', [['Creamed spinach', 'For the table', 1200, []], ['Truffle fries', 'Parmesan and herbs', 1100, []]]],
+    ]],
+    bowls: ['Bowls and salads', 'Build-your-own bowls with base, protein, toppings and sauce', [
+      ['Build your own', [['Build your own bowl', 'Pick a base, protein, toppings and sauce', 1295, ['Base', 'Protein', 'Bowl toppings', 'Sauce']]]],
+    ]],
+  });
+  // Customer-facing name and template key for a pack group.
+  const tplDef = (key) => { let def = null; Object.values(TPL_GROUPS).forEach(([, gs]) => gs.forEach((g) => { if (g[0] === key) def = g; })); return def; };
+  const tplLabel = (key) => { const d = tplDef(key); return d && d[6] ? d[6] : key; };
+  const tplPicker = (act) => { const pk = S.tplPack || 'coffee';
+    return `<div class="m2-pick"><b class="sm-t">Ready-made groups by type of restaurant</b><select class="in" data-m="tplPack" data-rr="1" aria-label="Type of restaurant">${TPL_ORDER.map(([h, ks]) => `<optgroup label="${esc(h)}">${ks.map((k) => `<option value="${k}" ${pk === k ? 'selected' : ''}>${esc(TPL_GROUPS[k][0])}</option>`).join('')}</optgroup>`).join('')}</select>
+      <div class="m2-chips wrap">${TPL_GROUPS[pk][1].map((g) => { const has = S.mods.some((m) => m.tpl === g[0]); return `<button class="chip ${has && act === 'm2TplGroup' ? 'on' : ''}" data-a="${act}" data-v="${esc(g[0])}">${has && act === 'm2TplGroup' ? '✓ ' : '+ '}${esc(g[6] || g[0])}</button>`; }).join('')}</div>
+      <span class="mut sm-t">${TPL_GROUPS[pk][1].map((g) => `<b>${esc(g[6] || g[0])}</b>: ${g[5].slice(0, 4).map((c) => esc(c[0])).join(', ')}${g[5].length > 4 ? '…' : ''}`).join(' · ')}</span></div>`; };
   const minOf = (it) => (it.sizes && it.sizes.length ? Math.min(...it.sizes.map((s) => s.p)) : it.price);
   const priceText = (it, L) => (it.sizes && it.sizes.length > 1 ? `From ${money(minOf(it))}` : money(L && L !== 'all' ? priceAt(it, L) : it.price));
   const modById = (id) => (S.mods || []).find((g) => g.id === id);
@@ -2692,11 +2863,10 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   const tick = (path, on, label) => `<button class="chip ${on ? 'on' : ''}" data-a="m2Flip" data-p="${path}" aria-pressed="${on}">${on ? '✓ ' : ''}${label}</button>`;
 
   function addTplGroup(name) {
-    const have = S.mods.find((g) => g.name.toLowerCase() === name.toLowerCase()); if (have) return have.id;
-    let def; Object.values(TPL_GROUPS).forEach(([, gs]) => gs.forEach((g) => { if (g[0] === name) def = g; }));
-    if (!def) return null;
+    const def = tplDef(name); if (!def) return null;
+    const have = S.mods.find((g) => g.tpl === name) || S.mods.find((g) => !g.tpl && g.name.toLowerCase() === (def[6] || def[0]).toLowerCase()); if (have) return have.id;
     const id = 'g' + Date.now().toString(36) + S.mods.length;
-    const g = { id, name: def[0], min: def[1], max: def[2], free: def[3], each: def[4], choices: def[5].map((c) => ({ n: c[0], p: c[1], def: !!c[2], out: false, next: '' })) };
+    const g = { id, tpl: def[0], name: def[6] || def[0], min: def[1], max: def[2], free: def[3], each: def[4], choices: def[5].map((c) => ({ n: c[0], p: c[1], def: !!c[2], out: false, next: '' })) };
     S.mods.push(g);
     def[5].forEach((c, i) => { if (c[3]) g.choices[i].next = addTplGroup(c[3]) || ''; });
     return id;
@@ -2719,7 +2889,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     const sweet = addTplGroup('Sweetener'); const ice = addTplGroup('Ice');
     const igt = itemById('igt'); if (igt) { igt.mods = [sweet, ice]; igt.sizes = [{ n: '16 oz', p: 350 }, { n: '24 oz', p: 450 }]; igt.price = 350; }
     const lmd = itemById('lmd'); if (lmd) { lmd.mods = [ice]; lmd.sizes = [{ n: '16 oz', p: 450 }, { n: '24 oz', p: 575 }]; lmd.labels = ['new']; }
-    Object.assign(S, { itemQ: '', itemCat: 'all', bulk: {}, modQ: '', attachPick: false, tplOpen: false });
+    Object.assign(S, { itemQ: '', itemCat: 'all', bulk: {}, modQ: '', attachPick: false, tplOpen: false, tplPack: 'coffee', tplQ: '' });
   }
   const menuTabs2 = (cur) => `<div class="m2-tabs" role="tablist">${[['menu', 'Items'], ['cats', 'Categories'], ['mods', 'Option groups'], ['menus', 'Menus and hours'], ['promos', 'Promotions']].map(([k, l]) => `<button role="tab" aria-selected="${cur === k}" class="${cur === k ? 'on' : ''}" data-a="${cur === k ? 'noop' : 'menuSwitch'}" data-to="${k}">${l}</button>`).join('')}</div>`;
   const tagRow = (it) => [...(it.labels || []).map((l) => `<span class="pill p-r m2-pill">${LABELS.find((x) => x[0] === l)[1]}</span>`), ...(it.diet || []).filter((d) => DIET2.some((x) => x[0] === d)).map((d) => `<span class="pill p-n m2-pill">${DIET2.find((x) => x[0] === d)[1]}</span>`), ...(it.spice ? [`<span class="pill p-o m2-pill">🌶 ${SPICE.find((x) => x[0] === it.spice)[1]}</span>`] : []), ...(it.sample ? ['<span class="pill p-o m2-pill">Sample · check price</span>'] : [])].join('');
@@ -2747,7 +2917,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       <div class="m2-chips">${[['all', `All (${total})`], ...S.menu.map((s) => [s.id, `${s.s} (${s.items.length})`])].map(([k, l]) => `<button class="chip ${S.itemCat === k ? 'on' : ''}" data-a="m2Cat" data-v="${k}">${esc(l)}</button>`).join('')}</div>
       ${isAll ? '' : `<div class="note n-w sm-t">Editing <b>${esc(br.name)}</b> only: sold out and price changes here don’t affect other locations.</div>`}
       ${PHONE ? '<div class="row wrap" style="gap:8px"><button class="btn ln sm" data-a="m2Tpl">Templates</button><button class="btn ln sm" data-a="m2Import">Import menu</button></div>' : ''}
-      ${total < 12 ? `<div class="card pad col m2-quick"><b>Coffee shop, juice bar, bakery or pizza place?</b><span class="mut sm-t">Start from a template: we add categories, sizes and option groups (milk, shots, syrups, boosts, toppings…) with sample items. Then change names and prices.</span><div class="row wrap" style="gap:8px">${Object.entries(SHOPS).map(([k, v]) => `<button class="chip" data-a="m2TplApply" data-v="${k}">${esc(v[0])}</button>`).join('')}</div></div>` : ''}
+      ${total < 12 ? `<div class="card pad col m2-quick"><b>Set up your menu faster</b><span class="mut sm-t">Pick your type of restaurant. We add categories, sizes or piece counts, and option groups (spice level, protein, sides, meal upgrades, milk, toppings…) with sample items. Then change names and prices.</span><div class="m2-chips wrap">${['coffee', 'indian', 'bangla', 'mexican', 'ffburger', 'chicken', 'steak', 'pizza'].map((k) => `<button class="chip" data-a="m2TplApply" data-v="${k}">${esc(SHOPS[k][0])}</button>`).join('')}<button class="chip on" data-a="m2Tpl">All ${Object.keys(SHOPS).length} types…</button></div></div>` : ''}
       ${nSel ? `<div class="m2-bulk"><b>${nSel} selected</b><div class="row wrap" style="gap:6px"><button class="btn ln sm" data-a="m2BulkOn" data-v="off">Sold out today</button><button class="btn ln sm" data-a="m2BulkOn" data-v="on">Available</button><button class="btn ln sm" data-a="m2BulkMove">Move to…</button><button class="btn ln sm" data-a="m2BulkPrice">Change price</button><button class="btn ln sm" data-a="m2BulkDel" style="color:var(--red);border-color:var(--red)">Delete</button><button class="btn gh" data-a="m2BulkClear">Clear</button></div></div>` : ''}
       ${cats.map((c) => `<section class="col" style="gap:8px"><div class="m2-cathead"><b>${esc(c.s.s)}</b><span class="mut sm-t">${c.s.items.length} item${c.s.items.length === 1 ? '' : 's'}${c.s.hidden ? ' · hidden from customers' : ''}</span><span class="grow"></span><button class="btn gh" data-a="m2NewIn" data-v="${c.si}" style="padding:0;min-height:30px">+ Add item</button></div>
         <div class="card m2-list">${c.items.map(row).join('') || `<div class="mut sm-t" style="padding:14px">${q ? 'No matches.' : 'No items yet.'}</div>`}</div></section>`).join('')}`)}`;
@@ -2801,9 +2971,10 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
         <span class="mut sm-t">Choices customers make: milk, shots, syrups, toppings, sides, sauces. Groups are shared, so “Milk” can be added to every coffee and edited in one place.</span>
         ${attached.map((g, i) => `<div class="m2-group"><div class="m2-cardhead"><b>${esc(g.name)}</b><span class="pill ${+g.min > 0 ? 'p-r' : 'p-n'} m2-pill">${ruleText(g)}</span></div><span class="mut sm-t">${choicePreview(g)}</span>
           <div class="m2-gacts"><button class="btn ln sm" data-a="m2GroupEdit" data-id="${g.id}">Edit group</button><span class="grow"></span>${i ? `<button class="btn gh m2-iconbtn" data-a="m2ModMove" data-i="${i}" aria-label="Move ${esc(g.name)} up">↑</button>` : ''}<button class="btn gh" data-a="m2ModDel" data-i="${i}">Remove</button></div></div>`).join('') || '<div class="mut sm-t">No option groups. Customers order the item as is.</div>'}
-        <div class="row wrap" style="gap:8px"><button class="btn ln sm" data-a="m2Attach">+ Add a group</button><button class="btn ln sm" data-a="m2GroupNew" data-attach="1">+ Create new group</button></div>
+        <div class="row wrap" style="gap:8px"><button class="btn ln sm" data-a="m2Attach">${S.attachPick ? 'Close' : '+ Add a group'}</button><button class="btn ln sm" data-a="m2GroupNew" data-attach="1">+ Create new group</button></div>
+        <div class="col" style="gap:4px"><span class="mut sm-t">Quick add (works for any cuisine)</span><div class="m2-chips wrap">${['Meal size', 'Choose a side', 'Choose 2 sides', 'Add a drink', 'Add a dessert', 'Remove ingredients', 'Spice level'].map((k) => `<button class="chip" data-a="m2AttachTpl" data-v="${k}">+ ${esc(tplLabel(k))}</button>`).join('')}</div></div>
         ${S.attachPick ? `<div class="m2-pick"><b class="sm-t">Your groups</b><div class="m2-chips wrap">${free.map((g) => `<button class="chip" data-a="m2AttachDo" data-id="${g.id}">${esc(g.name)} · ${g.choices.length}</button>`).join('') || '<span class="mut sm-t">All your groups are already on this item.</span>'}</div>
-          <b class="sm-t">Ready-made groups</b>${Object.entries(TPL_GROUPS).map(([k, [lbl, gs]]) => `<div class="col" style="gap:4px"><span class="mut sm-t">${esc(lbl)}</span><div class="m2-chips wrap">${gs.map((g) => `<button class="chip" data-a="m2AttachTpl" data-v="${esc(g[0])}">+ ${esc(g[0])}</button>`).join('')}</div></div>`).join('')}</div>` : ''}</div>
+          ${tplPicker('m2AttachTpl')}</div>` : ''}</div>
 
       <div class="card pad col"><b class="m2-h">Labels, dietary and allergens</b>
         <b class="sm-t">Labels</b><div class="m2-chips wrap">${LABELS.map(([k, l]) => tick('labels.' + k, e.labels.includes(k), l)).join('')}</div>
@@ -2843,8 +3014,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
         <span class="sm-t">${choicePreview(g)}</span>
         <span class="mut sm-t">${u.length ? `Used in ${u.length} item${u.length > 1 ? 's' : ''}: ${u.slice(0, 4).map((it) => esc(it.name)).join(', ')}${u.length > 4 ? '…' : ''}` : 'Not used on any item yet'}${g.choices.some((c) => c.next) ? ' · has follow-up questions' : ''}${g.choices.some((c) => c.out) ? ' · some choices out of stock' : ''}</span>
         <div class="row wrap" style="gap:6px"><button class="btn ln sm" data-a="m2GroupEdit" data-id="${g.id}">Edit</button><button class="btn gh" data-a="m2GroupDup" data-id="${g.id}">Duplicate</button></div></div>`; }).join('') || '<div class="card empty">No groups match.</div>'}
-      <div class="card pad col"><b style="font-size:17px">Ready-made groups</b><span class="mut sm-t">Add a group with typical choices and prices, then edit it.</span>
-        ${Object.entries(TPL_GROUPS).map(([k, [lbl, gs]]) => `<div class="col" style="gap:4px"><b class="sm-t">${esc(lbl)}</b><div class="m2-chips wrap">${gs.map((g) => { const has = S.mods.some((m) => m.name.toLowerCase() === g[0].toLowerCase()); return `<button class="chip ${has ? 'on' : ''}" data-a="m2TplGroup" data-v="${esc(g[0])}" ${has ? 'aria-disabled="true"' : ''}>${has ? '✓ ' : '+ '}${esc(g[0])}</button>`; }).join('')}</div></div>`).join('')}</div>`)}`;
+      <div class="card pad col"><b style="font-size:17px">Ready-made groups</b><span class="mut sm-t">Pick your type of restaurant and add groups with typical choices and prices, then edit them.</span>${tplPicker('m2TplGroup')}</div>`)}`;
   };
 
   function groupDraft(g, attach) {
@@ -2919,8 +3089,11 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       <button class="btn" data-a="closeModal" ${t.missing ? 'disabled' : ''}>${t.missing ? `Choose ${esc(t.missing)}` : `Add to cart · ${money(t.total)}`}</button>
       <span class="mut sm-t" style="text-align:center">Preview only. This is how the item opens in the customer app.</span></div>`;
   };
-  M2MODAL.m2tpl = () => `<h2 style="font-size:22px">Start from a template</h2><span class="mut sm-t">Adds categories, sample items with sizes, and option groups. Nothing is removed. Change names and prices after.</span>
-    ${Object.entries(SHOPS).map(([k, [l, d]]) => `<button class="card pad col" data-a="m2TplApply" data-v="${k}" style="text-align:left;gap:4px;cursor:pointer"><b>${esc(l)}</b><span class="mut sm-t">${esc(d)}</span></button>`).join('')}<button class="btn gh" data-a="closeModal">Cancel</button>`;
+  M2MODAL.m2tpl = () => { const q = String(S.tplQ || '').trim().toLowerCase();
+    return `<h2 style="font-size:22px">Start from a template</h2><span class="mut sm-t">Pick your type of restaurant. We add categories, sample items (with sizes or piece counts) and option groups. Nothing is removed; change names and prices after.</span>
+    <label class="m2-search"><span class="mut" aria-hidden="true">⌕</span><input id="tpl-q" data-m="tplQ" data-live="1" placeholder="Search: Indian, tacos, donuts, steak…" value="${esc(S.tplQ || '')}"></label>
+    ${TPL_ORDER.filter(([, ks]) => ks.some((k) => SHOPS[k])).map(([h, ks]) => { const list = ks.filter((k) => SHOPS[k] && (!q || (SHOPS[k][0] + ' ' + SHOPS[k][1]).toLowerCase().includes(q))); return list.length ? `<b class="sm-t" style="margin-top:4px">${esc(h)}</b>${list.map((k) => `<button class="card pad col" data-a="m2TplApply" data-v="${k}" style="text-align:left;gap:4px;cursor:pointer"><b>${esc(SHOPS[k][0])}</b><span class="mut sm-t">${esc(SHOPS[k][1])}</span></button>`).join('')}` : ''; }).join('') || '<span class="mut sm-t">No match. Try another word, or start from “Any restaurant” groups on the Option groups tab.</span>'}
+    <button class="btn gh" data-a="closeModal">Cancel</button>`; };
   M2MODAL.m2import = () => `<h2 style="font-size:22px">Import your menu</h2>
     <div class="card pad col"><b>Send us your menu</b><span class="mut sm-t">Photos or a PDF of your printed or website menu. Our team builds it for free within 48 hours, and you check everything before it goes live.</span><label class="btn ln sm" style="align-self:flex-start;cursor:pointer;position:relative">Upload photos or PDF<input type="file" accept="image/*,.pdf" data-photo="import" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
     <div class="card pad col"><b>Upload a spreadsheet</b><span class="mut sm-t">CSV with columns: category, item, description, price, size, option group, choice, choice price. Items are added as drafts for you to review.</span><label class="btn ln sm" style="align-self:flex-start;cursor:pointer;position:relative">Upload CSV<input type="file" accept=".csv,text/csv" data-photo="import" style="position:absolute;width:1px;height:1px;opacity:0"></label></div>
@@ -2951,7 +3124,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       S.modal = null; S.bulk = {}; toast(`Updated prices on ${ids.length} items.`); render(); },
     m2BulkDel: () => { S.modal = { type: 'm2del' }; render(); },
     m2BulkDelDo: () => { const ids = selIds(); ids.forEach((id) => { const it = itemById(id); const s = S.menu[catOf(it)]; s.items.splice(s.items.indexOf(it), 1); }); S.modal = null; S.bulk = {}; toast(`Deleted ${ids.length} items.`); render(); },
-    m2Tpl: () => { S.modal = { type: 'm2tpl' }; render(); },
+    m2Tpl: () => { S.tplQ = ''; S.modal = { type: 'm2tpl' }; render(); },
     m2Import: () => { S.modal = { type: 'm2import' }; render(); },
     m2TplApply: (d) => {
       const [label, , cats] = SHOPS[d.v]; let n = 0;
@@ -2982,7 +3155,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     m2SizeMove: (d) => { const a = S.edit.sizes; const i = +d.i; [a[i - 1], a[i]] = [a[i], a[i - 1]]; render(); },
     m2Attach: () => { S.attachPick = !S.attachPick; render(); },
     m2AttachDo: (d) => { S.edit.mods.push(d.id); toast(`Added “${modById(d.id).name}”.`); render(); },
-    m2AttachTpl: (d) => { const id = addTplGroup(d.v); if (!S.edit.mods.includes(id)) S.edit.mods.push(id); toast(`Added “${d.v}”. Edit it to change choices or prices.`); render(); },
+    m2AttachTpl: (d) => { const id = addTplGroup(d.v); if (!S.edit.mods.includes(id)) S.edit.mods.push(id); toast(`Added “${tplLabel(d.v)}”. Edit it to change choices or prices.`); render(); },
     m2ModDel: (d) => { S.edit.mods.splice(+d.i, 1); render(); },
     m2ModMove: (d) => { const a = S.edit.mods; const i = +d.i; [a[i - 1], a[i]] = [a[i], a[i - 1]]; render(); },
     m2TaxGo: (d) => { S.branchId = d.id; S.stack.push(S.screen); S.screen = 'tax'; render(true); },
@@ -2993,7 +3166,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     m2GroupNew: (d) => go('editGroup', { gdraft: groupDraft(null, d && d.attach) }),
     m2GroupEdit: (d) => go('editGroup', { gdraft: groupDraft(modById(d.id)) }),
     m2GroupDup: (d) => { const g = modById(d.id); const c = JSON.parse(JSON.stringify(g)); c.id = 'g' + Date.now().toString(36); c.name = g.name + ' (copy)'; S.mods.push(c); toast(`Duplicated “${g.name}”.`); render(); },
-    m2TplGroup: (d) => { if (S.mods.some((m) => m.name.toLowerCase() === d.v.toLowerCase())) return toast(`You already have “${d.v}”.`); addTplGroup(d.v); toast(`Added “${d.v}”. Open it to add it to items.`); render(); },
+    m2TplGroup: (d) => { if (S.mods.some((m) => m.tpl === d.v)) return toast(`You already have “${tplLabel(d.v)}”.`); addTplGroup(d.v); toast(`Added “${tplLabel(d.v)}”. Open it to add it to items.`); render(); },
     m2Req: (d) => { S.gdraft.req = d.v; if (d.v === 'req' && !(+S.gdraft.min >= 1)) S.gdraft.min = '1'; render(); },
     m2ChAdd: () => { S.gdraft.choices.push({ n: '', p: '0.00', def: false, out: false, next: '' }); render(); },
     m2ChDel: (d) => { if (S.gdraft.choices.length <= 1) return toast('A group needs at least one choice.'); S.gdraft.choices.splice(+d.i, 1); render(); },
