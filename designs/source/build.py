@@ -4,6 +4,7 @@ G = P.parent / 'prototypes'
 css = (P / 'common.css').read_text()
 js = {k: (P / f'{k}.js').read_text() for k in ['customer', 'restaurant', 'shared', 'admin', 'driver']}
 legal = (P / 'legal.js').read_text()
+reviews = (P / 'reviews.js').read_text()
 pages = {
     'cweb': ('Send Koro Customer Web', 'customer', {'theme': 'navy', 'layout': 'web', 'label': 'Try: search, add dishes, check out (any 6-digit code signs you in), then watch the order move.'}),
     'cpwa': ('Send Koro Customer PWA', 'customer', {'theme': 'navy', 'layout': 'phone', 'pwa': True, 'note': 'Customer PWA in the phone browser. Install it, sign in with any 6-digit code, order and track.'}),
@@ -24,6 +25,7 @@ for name, (title, app, mode) in pages.items():
 <script>window.SK_MODE = {json.dumps(mode)};</script>
 <script>
 {legal if app in ('customer', 'restaurant', 'driver') else ''}
+{reviews if app in ('customer', 'restaurant', 'admin') else ''}
 </script>
 <script>
 {js[app]}

@@ -81,7 +81,7 @@
         { id: 'marg', name: 'Margherita (16")', desc: 'Tomato, mozzarella, basil', price: 1600, img: 'pizza' },
       ] },
     ] },
-    { id: 'wings', name: 'Flatbush Wings', cuisine: 'Wings', tags: ['halal'], area: 'Flatbush', addr: '1102 Flatbush Ave', rating: '4.5', reviews: '400+', eta: '30–40', etaMax: 40, img: 'spicy', rule: { type: 'split', cents: 300 }, menu: [
+    { id: 'wings', name: 'Flatbush Wings', cuisine: 'Wings', tags: ['halal'], area: 'Flatbush', addr: '1102 Flatbush Ave', rating: '4.1', reviews: '410', eta: '30–40', etaMax: 40, img: 'spicy', rule: { type: 'split', cents: 300 }, menu: [
       { s: 'Wings', items: [{ id: 'gochu', name: 'Gochujang Wings (10)', desc: 'Sweet and spicy', price: 1500, img: 'spicy' }, { id: 'soy', name: 'Soy Garlic Wings (10)', desc: 'Savory, sticky', price: 1500, img: 'spicy' }] },
     ] },
     { id: 'green', name: 'Green Leaf Salads', cuisine: 'Salads', tags: ['vegetarian'], area: 'Cobble Hill', addr: '190 Court St', rating: '4.6', reviews: '300+', eta: '15–25', etaMax: 25, img: 'salad', rule: { type: 'customer' }, menu: [
@@ -468,7 +468,7 @@
       seedOrder('SK1047', 'dhaka', [mkLine('dhaka', 'kac', { size: 'reg', ex: { raita: true } }), mkLine('dhaka', 'lassi', {}, 2)], 'delivered', 'Oct 30, 8:10 PM'),
       { ...seedOrder('SK1029', 'atl', [mkLine('atl', 'pep')], 'declined', 'Oct 24, 6:02 PM'), declineReason: 'Restaurant was too busy' },
     ],
-    activeId: null, ordersTab: 'past', receiptId: null,
+    activeId: null, ordersTab: 'past', receiptId: null, myReviews: [], rvF: 'all',
     notif: { updates: true, sms: true, offers: false },
     help: { orderId: 'SK1047', issue: 'missing', items: {}, note: '', sent: [] },
     installed: false, bannerHidden: false,
@@ -790,7 +790,7 @@
     const minNote = minR ? `<div class="note n-w sm-t">Delivery to ${esc(addr().label)} has a <b>${money(minR)} minimum</b>${inCartFood ? ` · your cart: ${money(inCartFood)}${inCartFood >= minR ? ' ✓' : `, add ${money(minR - inCartFood)} more`}` : ''}.</div>` : '';
     const fbar = r.closed ? '' : fulfilButtons(r);
     const deal = { free: 'Free', freeOver: 'Free $30+', split: '$3 off', customer: `~${money(estFee(r))}` }[r.rule.type];
-    const strip = `<div class="rx-strip"><div><b>★ ${r.rating}</b><span>${esc(r.reviews)} ratings</span></div><div><b>${S.fulfil === 'pickup' ? '15' : r.eta}</b><span>min ${S.fulfil === 'pickup' ? 'to ready' : 'delivery'}</span></div>${S.fulfil === 'delivery' && delivers(r) ? `<div><b>${esc(deal)}</b><span>${r.rule.type === 'split' ? `delivery · ~${money(estFee(r))}` : r.rule.type === 'customer' ? 'delivery fee' : 'delivery'}</span></div>` : `<div><b>$0</b><span>pickup fee</span></div>`}${minR ? `<div><b>${money(minR)}</b><span>minimum</span></div>` : ''}</div>`;
+    const rvs = RV.summary(r.id, S.myReviews); const strip = `<div class="rx-strip"><div><button class="rv-btn" data-a="go" data-to="reviews" aria-label="See ratings and reviews"><b>★ ${rvs ? rvs.rating.toFixed(1) : r.rating}</b><span>${rvs ? rvs.count.toLocaleString('en-US') : esc(r.reviews)} ratings ›</span></button></div><div><b>${S.fulfil === 'pickup' ? '15' : r.eta}</b><span>min ${S.fulfil === 'pickup' ? 'to ready' : 'delivery'}</span></div>${S.fulfil === 'delivery' && delivers(r) ? `<div><b>${esc(deal)}</b><span>${r.rule.type === 'split' ? `delivery · ~${money(estFee(r))}` : r.rule.type === 'customer' ? 'delivery fee' : 'delivery'}</span></div>` : `<div><b>$0</b><span>pickup fee</span></div>`}${minR ? `<div><b>${money(minR)}</b><span>minimum</span></div>` : ''}</div>`;
     const minBar = minR && inCartFood ? `<div class="rx-min"><div class="row between sm-t"><span>${inCartFood >= minR ? '<b style="color:var(--gx)">Minimum reached ✓</b>' : `Add <b>${money(minR - inCartFood)}</b> more for delivery`}</span><span class="mut">${money(inCartFood)} / ${money(minR)}</span></div><i><em style="width:${Math.min(100, Math.round((inCartFood / minR) * 100))}%"></em></i></div>` : '';
     const tabs = `<div class="chips" role="tablist">${r.menu.map((s, i) => `<button class="chip ${i === S.tab ? 'on' : ''}" role="tab" aria-selected="${i === S.tab}" data-a="tabMenu" data-i="${i}">${esc(s.s)}</button>`).join('')}</div>`;
     const cartPanel = q ? `<div class="card pad col" style="gap:6px"><b style="font-size:18px">Your order</b>${S.cart.lines.map((l, i) => `<div class="row" style="gap:8px"><div class="grow"><b class="sm-t" style="font-size:14px">${esc(l.name)}</b>${l.desc ? `<div class="mut sm-t">${esc(l.desc)}</div>` : ''}</div><span class="qty"><button data-a="qty" data-i="${i}" data-d="-1" aria-label="Remove one">−</button><b>${l.qty}</b><button data-a="qty" data-i="${i}" data-d="1" aria-label="Add one">+</button></span><b style="width:64px;text-align:right">${money(l.unit * l.qty)}</b></div>`).join('')}<div style="height:1px;background:var(--line);margin:4px 0"></div>${receiptRows({ ...q, tip: 0, total: q.food + q.fee - q.share }, r, S.fulfil).replace(/<div class="rw"><span class="mut">Tax[\s\S]*$/, '')}<span class="mut sm-t">Tax and tip are added at checkout.</span><button class="btn" data-a="go" data-to="cart">Go to cart · ${money(q.food + q.fee - q.share)}</button></div>` : `<div class="card pad col"><b style="font-size:18px">Your order</b><span class="mut">Your cart is empty. Tap Add on any dish.</span></div>`;
@@ -892,6 +892,27 @@
     const change = pickedUp ? '' : `<details class="sm-t"><summary><b>Change drop-off</b></summary><div class="col" style="gap:8px;margin-top:8px">${dropChoices(o.dropoff, 'setDrop', o.id)}</div></details>`;
     return pinBox + change;
   }
+  const RV = window.SK_REVIEWS;
+  const myReview = (o) => S.myReviews.find((x) => x.order === o.id);
+  const rateBtn = (o) => { if (!['delivered', 'collected'].includes(o.status)) return ''; const m = myReview(o); return m ? `<button class="btn gh sm" data-a="rvView" data-rid="${o.rid}">You rated ${'★'.repeat(m.stars)} · View</button>` : `<button class="btn sm" data-a="rateOpen" data-id="${o.id}">Rate order</button>`; };
+  const rateCta = (o) => { const m = myReview(o); const r = rest(o.rid);
+    return m ? `<div class="card pad rv-rate-cta"><b class="grow">Thanks for rating ${esc(r.name)} ${'★'.repeat(m.stars)}</b><button class="btn ln sm" data-a="rvView" data-rid="${o.rid}">See reviews</button></div>`
+      : `<div class="card pad col" style="gap:8px"><b>How was your order from ${esc(r.name)}?</b><div class="rv-rate-cta"><div class="rv-pick">${[1, 2, 3, 4, 5].map((n) => `<button data-a="rateOpen" data-id="${o.id}" data-n="${n}" aria-label="${n} star${n > 1 ? 's' : ''}">★</button>`).join('')}</div></div><span class="mut sm-t">Your rating helps other customers. Problems can be reported privately to Send Koro.</span></div>`; };
+  V.reviews = () => {
+    const r = rest(S.rid) || R[0]; const sm = RV.summary(r.id, S.myReviews);
+    const all = [...S.myReviews.filter((x) => x.loc === r.id), ...RV.SEED.filter((x) => x.loc === r.id)];
+    const f = S.rvF; const list = all.filter((x) => f === 'all' || (f === 'complaints' ? x.issues.length : f === 'top' ? x.stars >= 4 : x.stars <= 3));
+    const tabs = [['all', 'All'], ['top', '4–5 stars'], ['low', '1–3 stars'], ['complaints', 'With complaints']];
+    return `${topbar('Ratings and reviews')}<div class="col" style="padding:${PHONE ? '14px 16px 24px' : 0};gap:14px;${PHONE ? '' : 'max-width:860px'}">
+      ${PHONE ? '' : `${webBack('Back')}<h1 style="font-size:32px;color:var(--ink)">${esc(r.name)} · ratings and reviews</h1>`}
+      ${PHONE ? `<b style="font-size:20px;color:var(--ink)">${esc(r.name)} · ${esc(r.area)}</b>` : ''}
+      <div class="card pad col" style="gap:14px">${sm ? RV.summaryHTML(sm) : ''}</div>
+      <div class="card pad">${sm ? RV.complaintsHTML(sm) : ''}</div>
+      <div class="chips" role="tablist">${tabs.map(([k, l]) => `<button class="chip ${f === k ? 'on' : ''}" role="tab" aria-selected="${f === k}" data-a="rvFilter" data-v="${k}">${l}</button>`).join('')}</div>
+      <div class="rv-list">${list.map((x) => RV.cardHTML(x, 'customer')).join('') || '<span class="mut">No reviews here yet.</span>'}</div>
+      <span class="mut sm-t">Only customers who completed an order can rate it, once, within 14 days. Reviews that break the ${'<button class="lg-link" data-a="legalOpen" data-id="usage">Community Guidelines</button>'} are removed.</span>
+    </div>`; };
+
   V.track = () => {
     const o = S.orders.find((x) => x.id === S.activeId); if (!o) return V.orders();
     const r = rest(o.rid); const steps = stepsFor(o);
@@ -913,6 +934,7 @@
         <ol class="card pad col" style="list-style:none;margin:0;gap:12px">${(o.status === 'declined' ? [...steps.slice(0, 1), ['declined', 'Declined: ' + o.declineReason, 'Hold released, you paid nothing']] : steps).map((s, i) => { const t = o.timeline.find((x) => x[0] === s[0]); const state = o.status === 'declined' ? (i === 0 || s[0] === 'declined' ? 'done' : 'todo') : i < idx || (i === idx && done) ? 'done' : i === idx ? 'now' : 'todo'; return `<li class="row" style="align-items:flex-start"><span style="width:24px;height:24px;flex:none;border-radius:99px;display:flex;align-items:center;justify-content:center;${state === 'done' ? `background:${s[0] === 'declined' ? 'var(--red)' : '#B9862F'}` : state === 'now' ? 'border:3px solid var(--o)' : 'border:2px solid var(--line2)'}">${state === 'done' ? ic.check : ''}</span><span class="grow"><b style="${state === 'todo' ? 'color:var(--mut)' : ''}">${esc(s[1])}</b>${s[2] && state !== 'todo' ? `<span class="mut sm-t" style="display:block">${esc(s[2])}</span>` : ''}</span><span class="mut sm-t">${t ? t[1] : state === 'now' ? 'Now' : ''}</span></li>`; }).join('')}</ol>
         ${!done && o.status !== 'declined' ? `<div class="row wrap"><button class="btn ln sm" data-a="skip" data-id="${o.id}">Skip to next step</button>${o.status === 'waiting' ? `<button class="btn ln sm" data-a="simDecline" data-id="${o.id}">Restaurant declines</button>` : ''}</div>` : ''}
         <div class="card pad col" style="gap:2px"><b style="margin-bottom:6px">Receipt</b>${receiptRows(o.q, r, o.fulfil)}${o.status === 'waiting' ? '<span class="mut sm-t">Held on your card, not charged yet.</span>' : o.status === 'declined' ? '<span class="sm-t" style="color:var(--gx);font-weight:700">Hold released. You were not charged.</span>' : ''}</div>
+        ${done ? rateCta(o) : ''}
         <button class="btn gh" data-a="helpFor" data-id="${o.id}" style="align-self:flex-start;padding:0">Problem with this order? Get help</button>
       </div></div></div>`;
   };
@@ -925,7 +947,7 @@
     return `${PHONE ? pageHero('Orders', { noBack: true }) : '<h1 style="font-size:34px;color:var(--ink)">My orders</h1>'}
       <div class="col" style="padding:${PHONE ? '14px 16px 24px' : 0};gap:12px">
         <div class="cx-seg" role="tablist" style="align-self:${PHONE ? 'stretch' : 'flex-start'};min-width:${PHONE ? 0 : 340}px">${[['active', 'Active', active.length], ['past', 'Past', past.length]].map(([k, l, n]) => `<button role="tab" class="opt ${S.ordersTab === k ? 'on' : ''}" aria-selected="${S.ordersTab === k}" data-a="ordersTab" data-v="${k}"><span class="cx-seg-t">${l} (${n})</span></button>`).join('')}</div>
-        ${list.length ? list.map((o) => { const r = rest(o.rid); return `<div class="card pad col cx-order"><div class="row" style="gap:14px"><img src="${IMG(r.img)}" alt="" style="width:76px;height:76px;border-radius:18px;object-fit:cover;box-shadow:0 8px 18px -10px rgba(0,0,0,.4)"><div class="grow col" style="gap:3px;min-width:0"><b class="cx-serif" style="font-size:18px">${esc(r.name)}</b><div class="mut sm-t">${o.id} · ${esc(o.when)}</div>${pill(o)}</div><b>${o.status === 'declined' ? '$0.00' : money(o.q.total)}</b></div><div class="mut sm-t">${o.lines.map((l) => `${l.qty}× ${esc(l.name)}`).join(', ')}</div><div class="row wrap">${S.ordersTab === 'active' ? `<button class="btn sm" data-a="track" data-id="${o.id}">Track</button>` : `<button class="btn sm" data-a="reorder" data-id="${o.id}">Reorder</button>`}<button class="btn ln sm" data-a="receipt" data-id="${o.id}">Receipt</button><button class="btn ln sm" data-a="helpFor" data-id="${o.id}">Help</button></div></div>`; }).join('') : `<div class="card empty col" style="align-items:center"><b style="color:var(--ink)">${S.ordersTab === 'active' ? 'No active orders' : 'No past orders yet'}</b><button class="btn" data-a="tab" data-to="home">Browse restaurants</button></div>`}
+        ${list.length ? list.map((o) => { const r = rest(o.rid); return `<div class="card pad col cx-order"><div class="row" style="gap:14px"><img src="${IMG(r.img)}" alt="" style="width:76px;height:76px;border-radius:18px;object-fit:cover;box-shadow:0 8px 18px -10px rgba(0,0,0,.4)"><div class="grow col" style="gap:3px;min-width:0"><b class="cx-serif" style="font-size:18px">${esc(r.name)}</b><div class="mut sm-t">${o.id} · ${esc(o.when)}</div>${pill(o)}</div><b>${o.status === 'declined' ? '$0.00' : money(o.q.total)}</b></div><div class="mut sm-t">${o.lines.map((l) => `${l.qty}× ${esc(l.name)}`).join(', ')}</div><div class="row wrap">${S.ordersTab === 'active' ? `<button class="btn sm" data-a="track" data-id="${o.id}">Track</button>` : `<button class="btn sm" data-a="reorder" data-id="${o.id}">Reorder</button>`}<button class="btn ln sm" data-a="receipt" data-id="${o.id}">Receipt</button><button class="btn ln sm" data-a="helpFor" data-id="${o.id}">Help</button>${rateBtn(o)}</div></div>`; }).join('') : `<div class="card empty col" style="align-items:center"><b style="color:var(--ink)">${S.ordersTab === 'active' ? 'No active orders' : 'No past orders yet'}</b><button class="btn" data-a="tab" data-to="home">Browse restaurants</button></div>`}
       </div>`;
   };
 
@@ -1071,6 +1093,22 @@
       ${c.id ? '' : `<label class="row"><input type="checkbox" id="cd-def" data-m="modal.def" ${c.def ? 'checked' : ''}>Make this my default card</label>`}
       <button class="btn" data-a="saveCard">${c.id ? 'Save changes' : 'Save card'}</button><button class="btn gh" data-a="closeModal">Cancel</button><span class="mut sm-t" style="text-align:center">Secured by Stripe. Prototype: no real card is saved.</span></div></div>`; }
     if (md.type === 'delCard') { const c = cardById(md.id); return `<div class="overlay"><div class="sheet" role="dialog" aria-modal="true"><h2 style="font-size:22px">Remove ${esc(c.brand)} •••• ${c.last4}?</h2><p class="mut" style="margin:0">You can add it again any time.</p><button class="btn" data-a="confirmDelCard" data-id="${c.id}" style="background:#C81E24">Remove card</button><button class="btn gh" data-a="closeModal">Keep it</button></div></div>`; }
+    if (md.type === 'rate') { const o = S.orders.find((x) => x.id === md.id); const r = rest(o.rid); const low = md.stars && md.stars <= 3; const showIssues = low || md.more;
+      const chip = ([k, l], kind) => `<button class="rv-chip ${kind}${md[kind === 'bad' ? 'issues' : 'praise'].includes(k) ? ' on' : ''}" data-a="rateTag" data-kind="${kind}" data-k="${k}" aria-pressed="${md[kind === 'bad' ? 'issues' : 'praise'].includes(k)}">${l}</button>`;
+      const serious = md.issues.some((k) => RV.SERIOUS.includes(k));
+      return `<div class="overlay" data-a="closeModal" data-self="1"><div class="sheet" role="dialog" aria-modal="true" aria-label="Rate your order" style="gap:12px">
+        <div class="row between"><h2 style="font-size:22px">Rate ${esc(r.name)}</h2><button class="btn gh" data-a="closeModal" aria-label="Close">✕</button></div>
+        <span class="mut sm-t" style="margin-top:-6px">${o.id} · ${esc(o.when)}</span>
+        <div class="rv-pick">${[1, 2, 3, 4, 5].map((n) => `<button class="${n <= md.stars ? 'on' : ''}" data-a="rateStar" data-n="${n}" aria-label="${n} star${n > 1 ? 's' : ''}" aria-pressed="${n <= md.stars}">★</button>`).join('')}</div>
+        <b style="text-align:center;color:var(--ink)">${['Tap a star to rate', 'Very bad', 'Bad', 'OK', 'Good', 'Excellent'][md.stars]}</b>
+        ${md.stars >= 4 ? `<b class="sm-t">What did you like?</b><div class="rv-tags">${RV.PRAISE.map((t) => chip(t, 'good')).join('')}</div>${md.more ? '' : '<button class="btn gh sm" data-a="rateMore" style="align-self:flex-start;padding:0">Something wasn’t right?</button>'}` : ''}
+        ${md.stars && showIssues ? `<b class="sm-t">What went wrong?</b><div class="rv-tags">${RV.ISSUES.map((t) => chip(t, 'bad')).join('')}</div>` : ''}
+        ${md.stars ? `<label class="f">Your review (optional, public)<textarea class="in" id="rv-text" data-m="modal.text" maxlength="500" placeholder="Tell other customers about the food">${esc(md.text)}</textarea></label>` : ''}
+        ${md.stars && (md.issues.length || low) ? `<div class="card pad col" style="gap:8px;background:#FFF6F6;border-color:#F6C4C6"><label class="row" style="gap:10px;align-items:flex-start"><input type="checkbox" data-a="rateComplain" ${md.complain || serious ? 'checked' : ''} ${serious ? 'disabled' : ''}><span><b>Also send a complaint to Send Koro</b><span class="mut sm-t" style="display:block">Private. Our team checks it with the restaurant and can take action against it. ${serious ? 'Allergen and hygiene problems are always sent.' : ''}</span></span></label>
+          ${md.complain || serious ? `<label class="f">What happened? (private)<textarea class="in" id="rv-detail" data-m="modal.detail" maxlength="800" placeholder="Details for Send Koro, e.g. which item was missing">${esc(md.detail)}</textarea></label>` : ''}
+          ${md.issues.some((k) => ['missing', 'wrong', 'cold', 'packaging', 'quality'].includes(k)) ? `<span class="sm-t">Want a refund? <button class="lg-link" data-a="helpFor" data-id="${o.id}">Get help with this order</button></span>` : ''}</div>` : ''}
+        <button class="btn" data-a="rateSubmit" ${md.stars ? '' : 'disabled'}>Post rating</button>
+        <span class="mut sm-t" style="text-align:center">Your first name and last initial are shown with your review. The restaurant can reply.</span></div></div>`; }
     if (md.type === 'name') return `<div class="overlay"><div class="sheet" role="dialog" aria-modal="true"><h2 style="font-size:22px">Edit your name</h2><label class="f">Name<input class="in" id="md-name" data-m="modal.value" value="${esc(md.value)}"></label><button class="btn" data-a="saveName">Save</button><button class="btn gh" data-a="closeModal">Cancel</button></div></div>`;
     return '';
   }
@@ -1160,7 +1198,7 @@
     </div>${PHONE ? phoneFooter() : ''}`; };
   const PAGES = [
     ...(PHONE && !M.pwa ? [['welcome', 'Welcome']] : []), ...(M.pwa ? [['install', 'Install']] : []),
-    ['signin', 'Sign in'], ['addresses', 'Address'], ['home', 'Home'], ['search', 'Search'], ['restaurant', 'Restaurant'], ['item', 'Item options'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Order placed'], ['track', 'Tracking'], ['orders', 'Orders'], ['account', 'Account'], ['profile', 'Profile'], ['wallet', 'Wallet'], ['payments', 'Payment methods'], ['refer', 'Refer a friend'], ['legal', 'Legal'], ['legalDoc', 'Terms of Service'], ['privacyCenter', 'Privacy center'], ['addrForm', 'New address'], ['help', 'Help'],
+    ['signin', 'Sign in'], ['addresses', 'Address'], ['home', 'Home'], ['search', 'Search'], ['restaurant', 'Restaurant'], ['reviews', 'Ratings and reviews'], ['item', 'Item options'], ['cart', 'Cart'], ['checkout', 'Checkout'], ['confirm', 'Order placed'], ['track', 'Tracking'], ['orders', 'Orders'], ['account', 'Account'], ['profile', 'Profile'], ['wallet', 'Wallet'], ['payments', 'Payment methods'], ['refer', 'Refer a friend'], ['legal', 'Legal'], ['legalDoc', 'Terms of Service'], ['privacyCenter', 'Privacy center'], ['addrForm', 'New address'], ['help', 'Help'],
   ];
   function pagesBar() {
     const cur = S.sheet ? 'item' : S.screen;
@@ -1233,6 +1271,19 @@
 
   // ---------- actions ----------
   const A = {
+    rateOpen: (d) => { S.modal = { type: 'rate', id: d.id, stars: +(d.n || 0), praise: [], issues: [], text: '', detail: '', complain: false, more: false }; render(); },
+    rateStar: (d) => { const m = S.modal; m.stars = +d.n; if (m.stars >= 4 && !m.more) m.issues = []; if (m.stars <= 3) m.praise = []; render(); },
+    rateTag: (d) => { const m = S.modal; const key = d.kind === 'bad' ? 'issues' : 'praise'; const i = m[key].indexOf(d.k); if (i >= 0) m[key].splice(i, 1); else m[key].push(d.k); render(); },
+    rateMore: () => { S.modal.more = true; render(); },
+    rateComplain: (d, t) => { S.modal.complain = t.checked; render(); },
+    rateSubmit: () => { const m = S.modal; const o = S.orders.find((x) => x.id === m.id); if (!m.stars) return toast('Tap a star to rate.');
+      const complain = m.complain || m.issues.some((k) => RV.SERIOUS.includes(k));
+      if (complain && !m.issues.length) return toast('Choose what went wrong so we can look into it.');
+      const parts = S.user.name.trim().split(/\s+/);
+      S.myReviews.unshift({ id: 'my-' + o.id, loc: o.rid, order: o.id, who: `${parts[0]} ${parts.length > 1 ? parts[parts.length - 1][0] + '.' : ''}`.trim(), date: 'Today', stars: m.stars, praise: m.praise.slice(), issues: m.issues.slice(), text: m.text.trim(), reply: null, verified: true, mine: true, complaint: complain ? { status: 'open', detail: m.detail.trim() || 'No details given.', action: '' } : null });
+      S.modal = null; toast(complain ? 'Thanks. Your rating is posted and your complaint was sent to Send Koro. We’ll reply within 24 hours.' : 'Thanks! Your rating is posted.'); render(); },
+    rvView: (d) => go('reviews', { rid: d.rid, rvF: 'all' }),
+    rvFilter: (d) => { S.rvF = d.v; render(); },
     back, go: (d) => go(d.to), tab: (d) => tabTo(d.to),
     legalOpen: (d) => { S.modal = null; S.sheet = null; if (S.screen === 'legalDoc') { S.legalId = d.id; render(true); } else go('legalDoc', { legalId: d.id }); },
     legalJump: (d, el, e) => { if (e) e.preventDefault(); const t = root.querySelector('#lg-' + S.legalId + '-' + d.i); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); },

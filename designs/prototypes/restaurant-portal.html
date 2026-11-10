@@ -1366,6 +1366,40 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 .lg-tbl table{border-collapse:collapse;width:100%;min-width:420px;font-size:14px}.lg-tbl th,.lg-tbl td{text-align:left;vertical-align:top;padding:9px 12px;border-top:1px solid #DCE5EF}.lg-tbl th{background:#EAF1F8;border-top:0;font-weight:800}
 .lg-draft{margin-top:22px!important;padding:10px 12px;border-radius:10px;background:#EEF3F8;color:#5B6B80;font-size:13px}
 @media (max-width:480px){.lg-doc{padding:16px;font-size:14.5px}}
+/* ===== ratings, reviews and complaints ===== */
+.rv-stars{display:inline-flex;gap:1px;flex:none;font-size:15px;line-height:1}
+.rv-stars i{font-style:normal;color:#C9D6E4}
+.rv-stars i.on{color:#E3242B}
+.rv-stars.big{font-size:20px}
+.rv-sum{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.rv-avg{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:120px}
+.rv-avg>b{font-size:44px;line-height:1;color:#0E1E33;letter-spacing:-.02em}
+.rv-hist{flex:1 1 220px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.rv-bar{display:grid;grid-template-columns:30px 1fr 40px;gap:8px;align-items:center;font-size:13px;color:#0E1E33}
+.rv-bar i{height:8px;border-radius:99px;background:#EAF1F8;overflow:hidden;display:block}
+.rv-bar em{display:block;height:100%;background:#0B3B6E;border-radius:99px}
+.rv-cmp{display:flex;flex-direction:column;gap:8px}
+.rv-tags{display:flex;flex-wrap:wrap;gap:6px}
+.rv-tag{display:inline-flex;align-items:center;min-height:26px;padding:0 10px;border-radius:99px;font-size:13px;font-weight:700;background:#EAF1F8;color:#0B3B6E}
+.rv-tag.bad{background:#FDECEC;color:#C81E24}
+.rv-tag.serious{background:#C81E24;color:#fff}
+.rv-list{display:flex;flex-direction:column;gap:10px}
+.rv-card{display:flex;flex-direction:column;gap:8px;padding:14px 16px;border:1px solid #DCE5EF;border-radius:16px;background:#fff;color:#0E1E33;min-width:0}
+.rv-card.removed{opacity:.6}
+.rv-text{margin:0;font-size:15px;line-height:1.5;overflow-wrap:anywhere}
+.rv-reply{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;background:#EEF3F8;border-left:3px solid #0B3B6E}
+.rv-private{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:12px;background:#FFF6F6;border:1px dashed #F6C4C6}
+.rv-btn{border:0;background:transparent;padding:0;font:inherit;cursor:pointer;text-align:left;color:inherit}
+.rv-pick{display:flex;gap:6px;justify-content:center}
+.rv-pick button{width:48px;height:48px;border:0;border-radius:12px;background:#EEF3F8;font-size:28px;line-height:1;color:#C9D6E4;cursor:pointer}
+.rv-pick button.on{color:#E3242B;background:#FDECEC}
+.rv-chip{min-height:36px;padding:0 12px;border-radius:99px;border:1.5px solid #C9D6E4;background:#fff;color:#0E1E33;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.rv-chip.on{border-color:#0B3B6E;background:#0B3B6E;color:#fff}
+.rv-chip.bad.on{border-color:#C81E24;background:#C81E24}
+.rv-rate-cta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rv-rate-cta .rv-pick button{width:40px;height:40px;font-size:24px}
+.rx-strip .rv-btn{display:flex;flex-direction:column;align-items:center;gap:1px;width:100%;min-height:40px}
+.rx-strip .rv-btn span{text-decoration:underline;text-underline-offset:2px}
 
 </style>
 <div id="app"><p style="padding:24px;font-family:Inter,system-ui,sans-serif;color:#5E6560">Loading the restaurant portal…</p></div>
@@ -1397,7 +1431,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       ['Delivery and pickup', ul(['Delivery times are estimates. Weather, traffic and restaurant volume can cause delays.', 'Be available at the delivery address. Couriers complete delivery by leaving the order at your door with a photo, or by handing it to you after you give a 4-digit PIN, depending on what you choose.', 'If the courier can’t reach you or can’t access the address, the order may be left in a safe place or returned, and may not be refunded.', 'For pickup orders, collect your order from the restaurant and show your order number.', 'Send Koro does not deliver alcohol, tobacco, cannabis or other age-restricted items at this time.'])],
       ['Food safety, allergens and dietary information', p('Restaurants provide menu descriptions, dietary labels and allergen information. Send Koro does not verify this information and cannot guarantee that food is free of any allergen. If you have a food allergy or a dietary need, contact the restaurant before ordering and add a note to your order.')],
       ['Send Koro credit, promotions and referrals', ul(['Send Koro credit comes from promo codes and the “Refer a friend” program. Credit is a promotional benefit, has no cash value, can’t be transferred or sold, and is not a gift card.', 'Credit is available only to customers with a verified US mobile number and expires 30 days after it is issued, unless stated otherwise.', 'Credit can be used only at checkout, toward food and tax. At least $0.50 of each order must be paid by card.', 'Referral rewards: the new customer receives their reward on sign-up with a valid code; the referrer receives theirs after the new customer’s first completed order. One reward per person, phone number and payment card. Monthly limits may apply.', 'Restaurant promotions (such as buy one get one, or a percentage off) are offered and paid for by the restaurant and may have their own conditions.', 'We may change or end promotions at any time, and may cancel credit obtained through fraud, abuse or breach of these Terms.'])],
-      ['Ratings, reviews and content', p('If you leave a rating, review, photo or other content, it must be honest and follow the Community Guidelines. You give Send Koro a worldwide, royalty-free license to use, display and remove that content in connection with the Services. We may remove content that breaks our rules.')],
+      ['Ratings, reviews and complaints', ul(['After a completed order you can rate the restaurant once, within 14 days, with stars, tags and an optional review. Your rating, review and first name with last initial are shown publicly on the restaurant’s page, and the restaurant can reply publicly.', 'You can also send a <b>private complaint</b> to Send Koro about the order. Complaint details are shared only with Send Koro and, where needed to resolve it, the restaurant. The complaint category (for example “Missing item”) is counted, anonymously, in the restaurant’s public complaint summary.', 'Send Koro reviews complaints and may refund you, warn the restaurant, pause it or end its partnership. Allergen and hygiene complaints are always reviewed by a person.', 'Ratings, reviews, photos and complaints must be honest, about your own order, and follow the Community Guidelines. No paid or incentivised reviews. You give Send Koro a worldwide, royalty-free license to use, display and remove that content in connection with the Services. We may remove content that breaks our rules.'])],
       ['Acceptable use', p(`You agree to follow the ${link('usage', 'Community Guidelines and Acceptable Use Policy')}. Don’t misuse the Services: no fraud, no fake accounts, no abuse of couriers, restaurant staff or support agents, no scraping, and no interfering with the Services.`)],
       ['Text messages', p(`We text you sign-in codes and order updates. See the ${link('sms', 'Text Message Terms')}. Message and data rates may apply. Reply STOP to stop non-essential texts.`)],
       ['Third-party services', p('The Services use third-party providers, including Stripe for payments, map and address providers, and delivery partners. Their terms and privacy policies also apply to their services. Send Koro is not responsible for third-party services beyond what the law requires.')],
@@ -1466,6 +1500,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       ['Your responsibilities', ul(['Hold and keep current all licenses and permits needed to prepare and sell food at each location, and maintain food safety standards.', 'Keep menu items, prices, descriptions, dietary labels and allergen information accurate. Prices you set are your own.', '<b>Sales tax:</b> you set your tax rate and are solely responsible for collecting, reporting and paying sales tax. Send Koro does not collect, file or pay sales tax for you.', 'Accept or decline orders within 5 minutes; prepare accepted orders on time and package them securely.', 'Hand orders only to the courier with the matching order number.', 'Comply with the Community Guidelines and applicable laws, including labor and health laws.'])],
       ['Refunds, disputes and chargebacks', p(`Refunds follow the ${link('refunds', 'Refund and Cancellation Policy')}. You request refunds through “Report a problem”; Send Koro issues them. You pay for refunds of food, tax and your charges; Send Koro pays for the delivery part. Card disputes on food are handled in your Stripe account; Send Koro provides order evidence on request.`)],
       ['Promotions and Send Koro credit', ul(['Restaurant promotions are funded 100% by you and lower the food price; Send Koro charges nothing to run them.', 'Send Koro promo credit used by customers on your orders is funded by Send Koro. The card charge on the order is lower by the credit; Send Koro pays the credit back on your next monthly invoice as a negative line, and sends any amount above your plan to your Stripe account in the same monthly run.'])],
+      ['Ratings and complaints', ul(['Customers who complete an order can rate each location, leave a review and send a private complaint to Send Koro. Your rating, the complaint categories with counts, reviews and your public replies are shown to customers.', 'You can reply publicly to reviews and report reviews that break the Community Guidelines. You must not offer anything in return for reviews, review your own store, or contact customers about their reviews outside Send Koro.', 'Send Koro reviews every complaint with you before acting. Depending on how serious and how frequent complaints are, Send Koro may require corrective steps, issue a warning, pause a location or end this Agreement. Two confirmed allergen or hygiene complaints within 90 days, or a complaint rate above 5% of orders for a month, pauses the location until you meet with Send Koro. A rating alone never deactivates a location.', 'Refunds for complaints follow the Refund and Cancellation Policy.'])],
       ['Customer data', p('You receive customer information only to fulfil orders. You must not use it to market to customers, sell it or share it, except as required by law or with the customer’s consent, and must protect it with reasonable security.')],
       ['Content and brand license', p('You grant Send Koro a non-exclusive, royalty-free license to use your name, logos, menu and photos to list and promote your restaurant on Send Koro. You confirm you have the rights to the content you upload. Send Koro may edit content for formatting and accuracy.')],
       ['Term and termination', p('This Agreement continues until ended. You may close a location or your account with 30 days’ notice in the portal; the plan for the current month remains due. Send Koro may suspend a location for safety, legal or payment reasons (an unpaid plan deactivates locations automatically as described under Fees), end this Agreement with 30 days’ notice, or end it immediately for serious breach, fraud or a plan that remains unpaid for 60 days. Amounts owed before the end remain due.')],
@@ -1498,6 +1533,85 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       <p class="lg-draft">${ENTITY} · ${ADDRESS} · info@sendkoro.com</p></article>`; };
   const listHTML = (set) => SETS[set].map((id) => `<button class="lg-row" data-a="legalOpen" data-id="${id}"><span><b>${DOCS[id].title}</b><span>${DOCS[id].short}</span></span><i aria-hidden="true">›</i></button>`).join('');
   window.SK_LEGAL = { DOCS, SETS, docHTML, listHTML, UPDATED };
+})();
+
+// Send Koro ratings, reviews and complaints: shared by the customer, restaurant and admin prototypes.
+(function () {
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const PRAISE = [['tasty', 'Tasty'], ['fresh', 'Hot and fresh'], ['packed', 'Well packed'], ['portion', 'Good portions'], ['accurate', 'Order was right'], ['value', 'Good value']];
+  const ISSUES = [['missing', 'Missing item'], ['wrong', 'Wrong item'], ['cold', 'Food was cold'], ['quality', 'Food quality'], ['packaging', 'Spilled or poor packaging'], ['late', 'Long wait for food'], ['price', 'Price different from menu'], ['allergen', 'Allergen or dietary issue'], ['hygiene', 'Hygiene concern']];
+  const SERIOUS = ['allergen', 'hygiene'];
+  const LABEL = Object.fromEntries([...PRAISE, ...ISSUES]);
+  // One row per location. ids are the customer app's restaurant ids; admin = admin console id; branch = restaurant portal branch id.
+  const LOCS = {
+    bbc: { admin: 'bbc-ps', branch: 'b1', name: 'Brooklyn Bowl Co.', area: 'Park Slope', rating: 4.8, count: 1240, dist: [82, 11, 4, 1, 2], orders90: 1960, complaints: { missing: 6, cold: 3, packaging: 2, late: 2 } },
+    'bbc-wb': { admin: 'bbc-wb', branch: 'b2', name: 'Brooklyn Bowl Co.', area: 'Williamsburg', rating: 4.7, count: 310, dist: [78, 13, 5, 2, 2], orders90: 540, complaints: { missing: 2, late: 1 } },
+    dhaka: { admin: 'dk-ken', name: 'Dhaka Kitchen', area: 'Kensington', rating: 4.8, count: 930, dist: [84, 9, 3, 2, 2], orders90: 2410, complaints: { missing: 4, wrong: 2, late: 3 } },
+    'dhaka-jh': { admin: 'dk-jh', name: 'Dhaka Kitchen', area: 'Jackson Heights', rating: 4.9, count: 1120, dist: [90, 6, 2, 1, 1], orders90: 610, complaints: { missing: 1 } },
+    koro: { admin: 'koro', name: 'Koro Ramen', area: 'Prospect Heights', rating: 4.7, count: 520, dist: [79, 12, 5, 2, 2], orders90: 1520, complaints: { cold: 4, packaging: 3 } },
+    burger: { admin: 'bbg', name: 'Brooklyn Burger Co.', area: 'Fort Greene', rating: 4.6, count: 940, dist: [74, 14, 6, 3, 3], orders90: 2280, complaints: { wrong: 5, missing: 4, allergen: 1, cold: 2 } },
+    atl: { admin: 'atl', name: 'Atlantic Pizza Co.', area: 'Boerum Hill', rating: 4.7, count: 1260, dist: [80, 12, 4, 2, 2], orders90: 3900, complaints: { late: 6, cold: 3, missing: 2 } },
+    wings: { admin: 'fw', name: 'Flatbush Wings', area: 'Flatbush', rating: 4.1, count: 410, dist: [58, 16, 9, 6, 11], orders90: 690, complaints: { quality: 7, hygiene: 2, cold: 5, missing: 4, price: 2 } },
+    green: { admin: 'gl', name: 'Green Leaf Salads', area: 'Cobble Hill', rating: 4.6, count: 320, dist: [76, 14, 5, 2, 3], orders90: 1120, complaints: { missing: 2, quality: 1 } },
+  };
+  const R = (id, loc, order, who, date, stars, praise, issues, text, extra = {}) => ({ id, loc, order, who, date, stars, praise, issues, text, reply: null, complaint: null, verified: true, ...extra });
+  const SEED = [
+    R('rv1', 'bbc', 'SK1052', 'Maya R.', 'Nov 9', 5, ['tasty', 'fresh', 'packed'], [], 'Best chicken bowl in Park Slope. Still warm when it arrived and nothing spilled.', { reply: { text: 'Thank you, Maya! See you next time.', date: 'Nov 9' } }),
+    R('rv2', 'bbc', 'SK1049', 'Jordan T.', 'Nov 8', 2, [], ['missing'], 'No avocado even though I paid for it. Rest of the bowl was good.', { complaint: { status: 'resolved', detail: 'Paid $2.50 for avocado, it was not in the bag.', action: 'Send Koro refunded $2.50 (paid by the restaurant). Restaurant reminded to check add-ons.' } }),
+    R('rv3', 'bbc', 'SK1044', 'Priya S.', 'Nov 6', 4, ['portion', 'value'], [], 'Big portions for the price. Salmon was a bit dry this time.'),
+    R('rv4', 'bbc', 'SK1041', 'Chris D.', 'Nov 5', 1, [], ['cold', 'packaging'], 'Lid came off, sauce everywhere and the food was cold.', { complaint: { status: 'open', detail: 'Bag was soaked, could not eat half of it.', action: '' } }),
+    R('rv5', 'bbc', 'SK1037', 'Ana L.', 'Nov 3', 5, ['accurate', 'tasty'], [], 'Exactly what I ordered, and the harvest salad is great.'),
+    R('rv6', 'bbc', 'SK1031', 'Sam K.', 'Oct 31', 3, [], ['late'], 'Tasty but the food took 40 minutes to be ready.', { reply: { text: 'Sorry about the wait, Sam. We had a rush that night and have added a second cook on Fridays.', date: 'Nov 1' } }),
+    R('rv7', 'dhaka', 'SK1040', 'Rashed A.', 'Nov 7', 5, ['tasty', 'portion'], [], 'Kacchi tastes like home. Generous portion.'),
+    R('rv8', 'dhaka', 'SK1033', 'Leah M.', 'Nov 2', 2, [], ['wrong'], 'Got beef tehari instead of chicken.', { complaint: { status: 'resolved', detail: 'Wrong main dish.', action: 'Send Koro refunded the dish (paid by the restaurant).' } }),
+    R('rv9', 'dhaka-jh', 'SK1046', 'Imran H.', 'Nov 8', 5, ['fresh', 'accurate'], [], 'Fast and hot.'),
+    R('rv10', 'koro', 'SK1043', 'Ken W.', 'Nov 6', 4, ['tasty'], ['packaging'], 'Great broth, a little spilled.'),
+    R('rv11', 'burger', 'SK1048', 'Tara B.', 'Nov 8', 1, [], ['allergen'], 'Asked for no cheese (allergy) and it came with cheese.', { complaint: { status: 'open', detail: 'Dairy allergy written in the kitchen note. Burger had cheese. I did not eat it.', action: '' } }),
+    R('rv12', 'burger', 'SK1039', 'Omar F.', 'Nov 4', 5, ['tasty', 'fresh'], [], 'Smash burger was perfect.'),
+    R('rv13', 'atl', 'SK1045', 'Nina P.', 'Nov 7', 4, ['tasty', 'value'], ['late'], 'Great pizza, slow on a Friday.'),
+    R('rv14', 'wings', 'SK1042', 'Devon J.', 'Nov 7', 1, [], ['hygiene', 'quality'], 'Found a hair in the wings. Not ordering again.', { complaint: { status: 'warned', detail: 'Hair in the food, photo attached.', action: 'Refunded. Warning sent to the restaurant on Nov 8.' } }),
+    R('rv15', 'wings', 'SK1036', 'Bea C.', 'Nov 3', 2, [], ['cold', 'quality'], 'Wings were soggy and cold.', { complaint: { status: 'open', detail: 'Second bad order in a week.', action: '' } }),
+    R('rv16', 'green', 'SK1038', 'Lily Z.', 'Nov 5', 5, ['fresh', 'packed'], [], 'Crisp and fresh.'),
+  ];
+  const NOTICES = [{ loc: 'wings', date: 'Nov 8', text: 'Warning: a hygiene complaint (hair in food) was confirmed. Another confirmed hygiene complaint within 90 days pauses this location for review.' }];
+  const STATUS = { open: ['p-r', 'Send Koro is reviewing'], resolved: ['p-g', 'Resolved'], warned: ['p-o', 'Warning issued'], removed: ['p-n', 'Review removed'], dismissed: ['p-n', 'Closed, no action'] };
+
+  const starRow = (n, big) => `<span class="rv-stars${big ? ' big' : ''}" role="img" aria-label="${n} out of 5 stars">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= Math.round(n) ? 'on' : ''}">★</i>`).join('')}</span>`;
+  const fmtCount = (n) => n.toLocaleString('en-US');
+  // extra = reviews written in this session (customer prototype)
+  function summary(loc, extra = []) {
+    const L = LOCS[loc]; if (!L) return null;
+    const mine = extra.filter((r) => r.loc === loc);
+    const count = L.count + mine.length;
+    const rating = mine.length ? (L.rating * L.count + mine.reduce((a, r) => a + r.stars, 0)) / count : L.rating;
+    const c = { ...L.complaints }; mine.forEach((r) => r.issues.forEach((k) => { c[k] = (c[k] || 0) + 1; }));
+    const list = Object.entries(c).sort((a, b) => b[1] - a[1]);
+    const total = list.reduce((a, x) => a + x[1], 0);
+    return { loc, name: L.name, area: L.area, rating: Math.round(rating * 10) / 10, count, dist: L.dist, complaints: list, total, orders: L.orders90 + mine.length, rate: (total / (L.orders90 + mine.length)) * 100 };
+  }
+  function summaryHTML(s) {
+    return `<div class="rv-sum"><div class="rv-avg"><b>${s.rating.toFixed(1)}</b>${starRow(s.rating, true)}<span class="mut sm-t">${fmtCount(s.count)} ratings</span></div>
+      <div class="rv-hist">${[5, 4, 3, 2, 1].map((n, i) => `<div class="rv-bar"><span>${n}★</span><i><em style="width:${s.dist[i]}%"></em></i><span class="mut">${s.dist[i]}%</span></div>`).join('')}</div></div>`;
+  }
+  function complaintsHTML(s) {
+    return `<div class="rv-cmp"><div class="row between wrap" style="gap:6px"><b>Complaints in the last 90 days</b><span class="pill ${s.rate > 2 ? 'p-r' : s.rate > 1 ? 'p-o' : 'p-g'}">${s.total} from ${fmtCount(s.orders)} orders · ${s.rate.toFixed(1)}%</span></div>
+      <div class="rv-tags">${s.complaints.length ? s.complaints.map(([k, n]) => `<span class="rv-tag bad${SERIOUS.includes(k) ? ' serious' : ''}">${esc(LABEL[k])} · ${n}</span>`).join('') : '<span class="mut sm-t">No complaints.</span>'}</div>
+      <span class="mut sm-t">Complaints come only from customers with a completed order and are checked by Send Koro.</span></div>`;
+  }
+  // view: 'customer' | 'restaurant' | 'admin'
+  function cardHTML(rv, view = 'customer', o = {}) {
+    const L = LOCS[rv.loc] || {};
+    if (rv.complaint && rv.complaint.status === 'removed' && view === 'customer') return '';
+    const tags = [...rv.praise.map((k) => `<span class="rv-tag good">${esc(LABEL[k])}</span>`), ...rv.issues.map((k) => `<span class="rv-tag bad${SERIOUS.includes(k) ? ' serious' : ''}">${esc(LABEL[k])}</span>`)].join('');
+    const st = rv.complaint && STATUS[rv.complaint.status];
+    return `<article class="rv-card${rv.complaint && rv.complaint.status === 'removed' ? ' removed' : ''}"><div class="row between" style="gap:8px;align-items:flex-start"><span class="col" style="gap:2px;min-width:0"><b>${esc(rv.who)}${rv.mine ? ' (you)' : ''}</b><span class="mut sm-t">${esc(rv.date)}${rv.verified ? ' · Verified order' : ''}${view !== 'customer' ? ` · ${esc(rv.order)}` : ''}${view === 'admin' || o.showLoc ? ` · ${esc(L.name)} · ${esc(L.area)}` : ''}</span></span>${starRow(rv.stars)}</div>
+      ${tags ? `<div class="rv-tags">${tags}</div>` : ''}${rv.text ? `<p class="rv-text">${esc(rv.text)}</p>` : ''}
+      ${rv.complaint && view !== 'customer' ? `<div class="rv-private"><div class="row between wrap" style="gap:6px"><b class="sm-t">Complaint to Send Koro (not public)</b><span class="pill ${st[0]}">${st[1]}</span></div><span class="sm-t">${esc(rv.complaint.detail)}</span>${rv.complaint.action ? `<span class="sm-t mut">${esc(rv.complaint.action)}</span>` : ''}</div>` : ''}
+      ${rv.complaint && view === 'customer' && rv.mine ? `<span class="sm-t mut">Your complaint was sent to Send Koro privately. ${esc(STATUS[rv.complaint.status][1])}.</span>` : ''}
+      ${rv.reply ? `<div class="rv-reply"><b class="sm-t">Response from ${esc(L.name)}</b><span class="sm-t">${esc(rv.reply.text)}</span><span class="mut sm-t">${esc(rv.reply.date)}</span></div>` : ''}
+      ${o.actions || ''}</article>`;
+  }
+  window.SK_REVIEWS = { PRAISE, ISSUES, SERIOUS, LABEL, LOCS, SEED, NOTICES, STATUS, starRow, summary, summaryHTML, complaintsHTML, cardHTML, clone: () => JSON.parse(JSON.stringify(SEED)) };
 })();
 
 </script>
@@ -1574,7 +1688,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     licAccount: {},
     signup: { step: 1, owner: '', phone: '', email: '', code: '', name: '', address: '', cuisines: [], locs: '1', agree: false, tax: false },
     taxAccepted: true, stripe: true, agree: { signed: true, licenses: true, food: true, bathroom: true },
-    sub: { cancel: false, unpaid: false, card: 'Visa •••• 4242 · expires 08/28' },
+    rv: { loc: 'all', f: 'all', replyId: null, draft: '' }, sub: { cancel: false, unpaid: false, card: 'Visa •••• 4242 · expires 08/28' },
     help: { topic: 'order', order: '', msg: '', sent: [] },
     modal: null, toast: '',
   };
@@ -1655,7 +1769,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   // ---------- roles ----------
   const ACCESS = {
     owner: null,
-    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'settings', 'more', 'noAccess'],
+    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'reviews', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'settings', 'more', 'noAccess'],
     staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'more', 'noAccess'],
   };
   const can = (s) => !ACCESS[S.role] || ACCESS[S.role].includes(s);
@@ -1739,6 +1853,29 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     ${S.codeSent ? `<label class="f">6-digit code<input class="in" id="r-code" data-m="code" inputmode="numeric" maxlength="6" value="${esc(S.code)}" style="font-size:22px;letter-spacing:.4em;text-align:center;font-weight:800"></label><button class="btn" data-a="verify">Sign in</button><button class="btn gh" data-a="changePhone">Use a different number</button>` : `<label class="f">Mobile number<input class="in" id="r-phone" data-m="phone" inputmode="tel" placeholder="(718) 555-0100" value="${esc(S.phone)}"></label><button class="btn" data-a="sendCode">Text me a code</button>`}
     <div class="note n-g row wrap" style="gap:8px"><span class="grow"><b>New to Send Koro?</b> List your restaurant: $0 commission, first month free.</span><button class="btn sm" data-a="toSignup">Create account</button></div><button class="btn ln" data-a="lcTab" data-to="learn" style="white-space:normal;line-height:1.25;padding-block:10px">How Send Koro works: Learning center</button></div></div>`;
 
+  const RV = window.SK_REVIEWS;
+  const RV_LOCS = Object.entries(RV.LOCS).filter(([, L]) => L.branch).map(([k, L]) => [k, L]);
+  if (!S.reviews) S.reviews = RV.clone().filter((r) => RV_LOCS.some(([k]) => k === r.loc));
+  const rvLocKey = (bid) => (RV_LOCS.find(([, L]) => L.branch === bid) || [])[0];
+  const rvMini = () => { const k = rvLocKey(B().id); const sm = k && RV.summary(k); if (!sm || B().status !== 'live') return '';
+    const open = S.reviews.filter((r) => r.loc === k && r.complaint && r.complaint.status === 'open').length; const noReply = S.reviews.filter((r) => r.loc === k && !r.reply).length;
+    return `<button class="card pad row wrap" data-a="${PHONE ? 'go' : 'tabTo'}" data-to="reviews" style="text-align:left;width:100%;gap:12px;align-items:center"><span class="col" style="gap:2px"><span class="mut sm-t">Customer rating · ${esc(B().name)}</span><b style="font-size:24px;color:var(--ink)">★ ${sm.rating.toFixed(1)} <span class="mut sm-t" style="font-weight:600">${sm.count.toLocaleString('en-US')} ratings</span></b></span><span class="grow"></span><span class="pill ${open ? 'p-r' : 'p-g'}">${open} open complaint${open === 1 ? '' : 's'}</span><span class="pill p-n">${noReply} without a reply</span><span class="mut">›</span></button>`; };
+  V.reviews = () => {
+    const st = S.rv; const locs = RV_LOCS.filter(([, L]) => S.branches.some((b) => b.id === L.branch));
+    const keys = st.loc === 'all' ? locs.map(([k]) => k) : [st.loc];
+    const list = S.reviews.filter((r) => keys.includes(r.loc)).filter((r) => st.f === 'all' || (st.f === 'complaints' ? r.complaint : st.f === 'low' ? r.stars <= 3 : !r.reply));
+    const sums = keys.map((k) => RV.summary(k)).filter(Boolean);
+    const notices = RV.NOTICES.filter((n) => keys.includes(n.loc));
+    const actions = (r) => st.replyId === r.id ? `<div class="col" style="gap:8px"><label class="f">Public reply<textarea class="in" id="rv-reply" data-m="rv.draft" maxlength="600" placeholder="Thank the customer or explain what you’re doing about it">${esc(st.draft)}</textarea></label><div class="row wrap"><button class="btn sm" data-a="rvReplySave" data-id="${r.id}">Post reply</button><button class="btn gh sm" data-a="rvReplyCancel">Cancel</button></div><span class="mut sm-t">Replies are public. Don’t share personal details or argue; refunds go through “Report a problem”.</span></div>`
+      : `<div class="row wrap" style="gap:8px">${r.reply ? `<button class="btn gh sm" data-a="rvReplyOpen" data-id="${r.id}">Edit reply</button>` : `<button class="btn ln sm" data-a="rvReplyOpen" data-id="${r.id}">Reply</button>`}${r.reported ? '<span class="pill p-n">Reported to Send Koro</span>' : `<button class="btn gh sm" data-a="rvReport" data-id="${r.id}">Report review</button>`}</div>`;
+    return `${head('Ratings and reviews', 'What customers say about your store · complaints and replies')}${body(`
+      ${notices.map((n) => `<div class="note n-r"><b>Notice from Send Koro · ${esc(n.date)}</b><br>${esc(n.text)}</div>`).join('')}
+      ${locs.length > 1 ? `<div class="chips" role="tablist">${[['all', 'All locations'], ...locs.map(([k, L]) => [k, L.area])].map(([k, l]) => `<button class="chip ${st.loc === k ? 'on' : ''}" role="tab" aria-selected="${st.loc === k}" data-a="rvLoc" data-v="${k}">${esc(l)}</button>`).join('')}</div>` : ''}
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(${PHONE ? 260 : 340}px,1fr));gap:12px">${sums.map((sm) => `<div class="card pad col" style="gap:12px"><b style="font-size:18px">${esc(sm.area)}</b>${RV.summaryHTML(sm)}${RV.complaintsHTML(sm)}</div>`).join('')}</div>
+      <div class="note n-w sm-t">Customers see your rating, the complaint categories and counts, the reviews and your replies. Complaint details go only to Send Koro. Repeated or serious complaints (allergen, hygiene) can lead to a warning, a pause or deactivation (Partner Agreement, “Ratings and complaints”).</div>
+      <div class="chips" role="tablist">${[['all', 'All'], ['complaints', 'Complaints'], ['low', '1–3 stars'], ['noreply', 'Needs a reply']].map(([k, l]) => `<button class="chip ${st.f === k ? 'on' : ''}" role="tab" aria-selected="${st.f === k}" data-a="rvF" data-v="${k}">${l}</button>`).join('')}</div>
+      <div class="rv-list">${list.map((r) => RV.cardHTML(r, 'restaurant', { showLoc: st.loc === 'all' && locs.length > 1, actions: actions(r) })).join('') || '<span class="mut">Nothing here.</span>'}</div>`)}`;
+  };
   V.overview = V.home = () => {
     const L = ledgerCalc(LEDGER.oct);
     const today = allOrders().filter((o) => o.status === 'completed' && fmtDay(o.placed) === 'Today');
@@ -1751,6 +1888,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       ${openCard()}
       ${nw.length ? `<button class="note" data-a="${PHONE ? 'go' : 'tabTo'}" data-to="${PHONE ? 'newOrder' : 'orders'}" style="border:0;text-align:left;background:var(--o);color:#fff;font-size:17px;width:100%"><b>${nw.length} new order${nw.length > 1 ? 's' : ''} waiting</b> · answer before the timer ends →</button>` : ''}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(${PHONE ? 150 : 200}px,1fr));gap:12px">${tiles.map(([l, v]) => `<div class="card pad"><div class="mut sm-t">${l}</div><b style="font-size:24px;color:var(--ink)">${v}</b></div>`).join('')}</div>
+      ${rvMini()}
       ${PHONE ? '<button class="btn" data-a="simNew">Simulate a new order</button>' : ''}
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start">
       <div class="card pad col" style="flex:2 1 340px"><div class="row between"><b style="font-size:18px">Live orders</b><button class="btn gh" data-a="tabTo" data-to="orders" style="min-height:0">See all →</button></div>${S.orders.length ? S.orders.map((o) => `<button data-a="detail" data-id="${o.id}" class="row" style="border:0;border-top:1px solid var(--line);background:none;padding:10px 0;text-align:left;width:100%"><b style="width:70px">${o.id}</b><span class="grow">${esc(o.customer)} · ${o.lines.reduce((a, l) => a + l[1], 0)} items</span>${o.status === 'new' ? `<b data-cd="${o.deadline}">5:00</b>` : statusPill(o)}</button>`).join('') : '<div class="empty">No live orders.</div>'}</div>
@@ -2173,7 +2311,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   V.settings = V.more = () => {
     const link = (to, l, d) => can(to) ? `<button class="row card pad" data-a="go" data-to="${to}" style="text-align:left;width:100%"><span class="grow"><b>${l}</b><span class="mut sm-t" style="display:block">${d}</span></span><span class="mut">›</span></button>` : '';
     const groups = [
-      ['Orders', PHONE ? [['history', 'Order history', 'Search past orders'], ['newOrder', 'New order screen', 'Full-screen alert for new orders']] : []],
+      ['Orders', PHONE ? [['reviews', 'Ratings and reviews', 'What customers say, complaints and your replies'], ['history', 'Order history', 'Search past orders'], ['newOrder', 'New order screen', 'Full-screen alert for new orders']] : []],
       ['Money', PHONE ? [['earnings', 'Earnings', 'Net sales and order money'], ['payouts', 'Payouts', 'Weekly payouts to your bank'], ['stripe', 'Stripe', 'Balance, payments, payouts, statements, bank'], ['subscription', 'Subscription', 'A plan for each location, from its own sales']] : []],
       ['Store', [['setup', 'Store setup', S.branches.every((b) => b.status === 'live') ? 'All locations live ✓' : 'Finish setup for ' + S.branches.filter((b) => b.status !== 'live').map((b) => b.name).join(', ')], ['locations', 'Locations', S.branches.length + ' branches'], ['profile', 'Store profile', 'Name, photos, cuisines, extra charges'], ['hours', 'Hours', 'Weekly hours and closures'], ['team', 'Team and roles', `${S.team.length} people`], ['delivery', 'Delivery fee', 'Who pays the delivery fee'], ['tax', 'Sales tax', `${B().taxRate || '—'}% · you file and pay it`], ['legal', 'Licenses and legal', 'Permits, certificates, business details'], ['notifications', 'Notifications', 'Sounds, texts and emails']]],
       ['Support', [['learn', 'Learning center', 'Short videos and guides for every part of Send Koro'], ['legalList', 'Legal documents', 'Partner agreement, privacy, refunds, guidelines'], ['help', 'Help', 'Contact the Send Koro team']]],
@@ -2535,7 +2673,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   }
 
   // ---------- frame ----------
-  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center'], ['legalList', 'Legal documents']]]];
+  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['reviews', 'Ratings and reviews'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center'], ['legalList', 'Legal documents']]]];
   const PARENT = { lesson: 'learn', legalDoc: 'legal', legalList: 'legal', branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
   function sidebar() {
     const cur = PARENT[S.screen] || S.screen;
@@ -2569,8 +2707,8 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     return `<nav aria-label="Main" style="flex:none;height:72px;padding:6px 6px 12px;background:var(--g);display:grid;grid-template-columns:repeat(${T.length},1fr)">${T.map(([k, l]) => `<button data-a="tab" data-to="${k}" aria-current="${cur === k ? 'page' : 'false'}" style="position:relative;border:0;background:transparent;font-size:13px;font-weight:800;color:${cur === k ? '#FCE910' : '#C9D3CD'}">${l}${k === 'orders' && nNew ? `<span style="position:absolute;top:6px;right:22%;min-width:18px;height:18px;border-radius:99px;background:#FF7A2E;color:var(--ink);font-size:11px;display:flex;align-items:center;justify-content:center">${nNew}</span>` : ''}</button>`).join('')}</nav>`;
   }
   const PAGES = PHONE
-    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
-    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
+    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['reviews', 'Ratings and reviews'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
+    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['reviews', 'Ratings and reviews'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
   function pagesBar() {
     return `<nav class="pages" aria-label="Open a page"><span class="pages-l">Open a page</span>${PAGES.map(([k, l], i) => `<button data-a="page" data-k="${k}" class="${S.screen === k ? 'on' : ''}" aria-current="${S.screen === k ? 'page' : 'false'}">${i + 1}. ${l}</button>`).join('')}</nav>`;
   }
@@ -2611,6 +2749,12 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   const find = (id) => S.orders.find((o) => o.id === id);
   const toCents = (v) => (typeof v === 'number' ? v : Math.round((parseFloat(v) || 0) * 100));
   const A = {
+    rvLoc: (d) => { S.rv.loc = d.v; render(); },
+    rvF: (d) => { S.rv.f = d.v; render(); },
+    rvReplyOpen: (d) => { const r = S.reviews.find((x) => x.id === d.id); S.rv.replyId = d.id; S.rv.draft = r.reply ? r.reply.text : ''; render(); },
+    rvReplyCancel: () => { S.rv.replyId = null; render(); },
+    rvReplySave: (d) => { const t = S.rv.draft.trim(); if (t.length < 5) return toast('Write a short reply first.'); const r = S.reviews.find((x) => x.id === d.id); r.reply = { text: t, date: 'Today' }; S.rv.replyId = null; toast('Reply posted. Customers can see it under the review.'); render(); },
+    rvReport: (d) => { const r = S.reviews.find((x) => x.id === d.id); r.reported = true; toast('Sent to Send Koro. We remove reviews that break the Community Guidelines (abuse, personal details, not about the order).'); render(); },
     back, go: (d) => go(d.to), tab: (d) => tabTo(d.to), tabTo: (d) => tabTo(d.to), toastMsg: (d) => toast(d.msg),
     info: (d) => { S.modal = { type: 'info', k: d.k }; render(); },
     sendCode: () => { if (S.phone.replace(/\D/g, '').length !== 10) return toast('Enter a 10-digit mobile number.'); S.codeSent = true; toast('Code sent (prototype: any 6 digits work).'); render(); },

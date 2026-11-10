@@ -60,9 +60,12 @@ Restaurants provide menu descriptions, dietary labels and allergen information. 
 - Restaurant promotions (such as buy one get one, or a percentage off) are offered and paid for by the restaurant and may have their own conditions.
 - We may change or end promotions at any time, and may cancel credit obtained through fraud, abuse or breach of these Terms.
 
-## 9. Ratings, reviews and content
+## 9. Ratings, reviews and complaints
 
-If you leave a rating, review, photo or other content, it must be honest and follow the Community Guidelines. You give Send Koro a worldwide, royalty-free license to use, display and remove that content in connection with the Services. We may remove content that breaks our rules.
+- After a completed order you can rate the restaurant once, within 14 days, with stars, tags and an optional review. Your rating, review and first name with last initial are shown publicly on the restaurant’s page, and the restaurant can reply publicly.
+- You can also send a **private complaint** to Send Koro about the order. Complaint details are shared only with Send Koro and, where needed to resolve it, the restaurant. The complaint category (for example “Missing item”) is counted, anonymously, in the restaurant’s public complaint summary.
+- Send Koro reviews complaints and may refund you, warn the restaurant, pause it or end its partnership. Allergen and hygiene complaints are always reviewed by a person.
+- Ratings, reviews, photos and complaints must be honest, about your own order, and follow the Community Guidelines. No paid or incentivised reviews. You give Send Koro a worldwide, royalty-free license to use, display and remove that content in connection with the Services. We may remove content that breaks our rules.
 
 ## 10. Acceptable use
 

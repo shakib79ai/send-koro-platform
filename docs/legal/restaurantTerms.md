@@ -50,26 +50,33 @@ Refunds follow the [Refund and Cancellation Policy](refunds.md). You request ref
 - Restaurant promotions are funded 100% by you and lower the food price; Send Koro charges nothing to run them.
 - Send Koro promo credit used by customers on your orders is funded by Send Koro. The card charge on the order is lower by the credit; Send Koro pays the credit back on your next monthly invoice as a negative line, and sends any amount above your plan to your Stripe account in the same monthly run.
 
-## 9. Customer data
+## 9. Ratings and complaints
+
+- Customers who complete an order can rate each location, leave a review and send a private complaint to Send Koro. Your rating, the complaint categories with counts, reviews and your public replies are shown to customers.
+- You can reply publicly to reviews and report reviews that break the Community Guidelines. You must not offer anything in return for reviews, review your own store, or contact customers about their reviews outside Send Koro.
+- Send Koro reviews every complaint with you before acting. Depending on how serious and how frequent complaints are, Send Koro may require corrective steps, issue a warning, pause a location or end this Agreement. Two confirmed allergen or hygiene complaints within 90 days, or a complaint rate above 5% of orders for a month, pauses the location until you meet with Send Koro. A rating alone never deactivates a location.
+- Refunds for complaints follow the Refund and Cancellation Policy.
+
+## 10. Customer data
 
 You receive customer information only to fulfil orders. You must not use it to market to customers, sell it or share it, except as required by law or with the customer’s consent, and must protect it with reasonable security.
 
-## 10. Content and brand license
+## 11. Content and brand license
 
 You grant Send Koro a non-exclusive, royalty-free license to use your name, logos, menu and photos to list and promote your restaurant on Send Koro. You confirm you have the rights to the content you upload. Send Koro may edit content for formatting and accuracy.
 
-## 11. Term and termination
+## 12. Term and termination
 
 This Agreement continues until ended. You may close a location or your account with 30 days’ notice in the portal; the plan for the current month remains due. Send Koro may suspend a location for safety, legal or payment reasons (an unpaid plan deactivates locations automatically as described under Fees), end this Agreement with 30 days’ notice, or end it immediately for serious breach, fraud or a plan that remains unpaid for 60 days. Amounts owed before the end remain due.
 
-## 12. Liability and indemnity
+## 13. Liability and indemnity
 
 Each party is responsible for its own acts. You indemnify Send Koro for claims arising from the food you prepare and sell, your taxes, and your breach of this Agreement. Send Koro indemnifies you for claims that Send Koro’s own platform, as provided by Send Koro, infringes a third party’s intellectual property. Neither party is liable for indirect, incidental, special or consequential damages, or lost profits. Except for indemnities, your payment obligations and a party’s gross negligence or wilful misconduct, each party’s total liability is limited to the plan fees paid in the 12 months before the claim. The Services are provided “as is”, and Send Koro does not guarantee any volume of orders.
 
-## 13. Disputes
+## 14. Disputes
 
 Each party will first try to resolve a dispute in good faith by written notice and discussion for 30 days. If unresolved, the dispute will be settled by binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules, held in Brooklyn, New York or by video, before one arbitrator. Claims are brought only individually, not as a class or representative action. Either party may bring a qualifying claim in small claims court, or ask a court for an injunction to protect its intellectual property or confidential information.
 
-## 14. General
+## 15. General
 
 Governed by the laws of the State of New York; courts in Kings County, New York have jurisdiction for any matter not subject to arbitration. Send Koro may update this Agreement with 30 days’ notice for material changes. You may not assign this Agreement without Send Koro’s consent. If any part is unenforceable, the rest remains in effect. Notices: **info@sendkoro.com** · SHL Global Consulting Inc., doing business as Send Koro, 1088 Liberty Ave, Brooklyn, NY 11208.

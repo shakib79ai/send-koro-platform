@@ -192,6 +192,13 @@ The customer always sees a single line, **"Delivery fee"**, then any "Free deliv
 
 Platform account from the brief: `acct_1UVa9IQzpvBKCndf`. Support contact info@shlglobal.biz, +1 917-624-8233. Website https://sendkoro.com.
 
+## Ratings and complaints (10 Nov 2026)
+
+- After a completed order the customer can rate the restaurant once (1–5 stars, tags, optional public review) within 14 days, and send a **private complaint** to Send Koro. Allergen and hygiene complaints are always sent and reviewed by a person the same day.
+- **Customers see** each location's rating and star distribution, the complaint categories with counts and the complaint rate for the last 90 days, reviews (first name + last initial) and the restaurant's replies. Complaint details are never public.
+- **Restaurants see** their ratings, reviews, complaints with Send Koro's status and action, and Send Koro notices; they can reply publicly and report reviews that break the Community Guidelines.
+- **Admin sees** every rating and complaint, a restaurant health table, and acts: resolve, warn, pause the location, no action, remove a review. Two confirmed serious complaints in 90 days, or a complaint rate over 5% for a month, pauses the location until the owner meets Send Koro. A rating alone never deactivates a location.
+
 ## Company and legal (10 Nov 2026)
 
 - Send Koro is a DBA of **SHL Global Consulting Inc.**, 1088 Liberty Ave, Brooklyn, NY 11208. One contact email everywhere: **info@sendkoro.com**.

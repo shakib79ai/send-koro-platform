@@ -70,7 +70,7 @@
     licAccount: {},
     signup: { step: 1, owner: '', phone: '', email: '', code: '', name: '', address: '', cuisines: [], locs: '1', agree: false, tax: false },
     taxAccepted: true, stripe: true, agree: { signed: true, licenses: true, food: true, bathroom: true },
-    sub: { cancel: false, unpaid: false, card: 'Visa •••• 4242 · expires 08/28' },
+    rv: { loc: 'all', f: 'all', replyId: null, draft: '' }, sub: { cancel: false, unpaid: false, card: 'Visa •••• 4242 · expires 08/28' },
     help: { topic: 'order', order: '', msg: '', sent: [] },
     modal: null, toast: '',
   };
@@ -151,7 +151,7 @@
   // ---------- roles ----------
   const ACCESS = {
     owner: null,
-    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'settings', 'more', 'noAccess'],
+    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'reviews', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'settings', 'more', 'noAccess'],
     staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'learn', 'lesson', 'legalDoc', 'legalList', 'more', 'noAccess'],
   };
   const can = (s) => !ACCESS[S.role] || ACCESS[S.role].includes(s);
@@ -235,6 +235,29 @@
     ${S.codeSent ? `<label class="f">6-digit code<input class="in" id="r-code" data-m="code" inputmode="numeric" maxlength="6" value="${esc(S.code)}" style="font-size:22px;letter-spacing:.4em;text-align:center;font-weight:800"></label><button class="btn" data-a="verify">Sign in</button><button class="btn gh" data-a="changePhone">Use a different number</button>` : `<label class="f">Mobile number<input class="in" id="r-phone" data-m="phone" inputmode="tel" placeholder="(718) 555-0100" value="${esc(S.phone)}"></label><button class="btn" data-a="sendCode">Text me a code</button>`}
     <div class="note n-g row wrap" style="gap:8px"><span class="grow"><b>New to Send Koro?</b> List your restaurant: $0 commission, first month free.</span><button class="btn sm" data-a="toSignup">Create account</button></div><button class="btn ln" data-a="lcTab" data-to="learn" style="white-space:normal;line-height:1.25;padding-block:10px">How Send Koro works: Learning center</button></div></div>`;
 
+  const RV = window.SK_REVIEWS;
+  const RV_LOCS = Object.entries(RV.LOCS).filter(([, L]) => L.branch).map(([k, L]) => [k, L]);
+  if (!S.reviews) S.reviews = RV.clone().filter((r) => RV_LOCS.some(([k]) => k === r.loc));
+  const rvLocKey = (bid) => (RV_LOCS.find(([, L]) => L.branch === bid) || [])[0];
+  const rvMini = () => { const k = rvLocKey(B().id); const sm = k && RV.summary(k); if (!sm || B().status !== 'live') return '';
+    const open = S.reviews.filter((r) => r.loc === k && r.complaint && r.complaint.status === 'open').length; const noReply = S.reviews.filter((r) => r.loc === k && !r.reply).length;
+    return `<button class="card pad row wrap" data-a="${PHONE ? 'go' : 'tabTo'}" data-to="reviews" style="text-align:left;width:100%;gap:12px;align-items:center"><span class="col" style="gap:2px"><span class="mut sm-t">Customer rating · ${esc(B().name)}</span><b style="font-size:24px;color:var(--ink)">★ ${sm.rating.toFixed(1)} <span class="mut sm-t" style="font-weight:600">${sm.count.toLocaleString('en-US')} ratings</span></b></span><span class="grow"></span><span class="pill ${open ? 'p-r' : 'p-g'}">${open} open complaint${open === 1 ? '' : 's'}</span><span class="pill p-n">${noReply} without a reply</span><span class="mut">›</span></button>`; };
+  V.reviews = () => {
+    const st = S.rv; const locs = RV_LOCS.filter(([, L]) => S.branches.some((b) => b.id === L.branch));
+    const keys = st.loc === 'all' ? locs.map(([k]) => k) : [st.loc];
+    const list = S.reviews.filter((r) => keys.includes(r.loc)).filter((r) => st.f === 'all' || (st.f === 'complaints' ? r.complaint : st.f === 'low' ? r.stars <= 3 : !r.reply));
+    const sums = keys.map((k) => RV.summary(k)).filter(Boolean);
+    const notices = RV.NOTICES.filter((n) => keys.includes(n.loc));
+    const actions = (r) => st.replyId === r.id ? `<div class="col" style="gap:8px"><label class="f">Public reply<textarea class="in" id="rv-reply" data-m="rv.draft" maxlength="600" placeholder="Thank the customer or explain what you’re doing about it">${esc(st.draft)}</textarea></label><div class="row wrap"><button class="btn sm" data-a="rvReplySave" data-id="${r.id}">Post reply</button><button class="btn gh sm" data-a="rvReplyCancel">Cancel</button></div><span class="mut sm-t">Replies are public. Don’t share personal details or argue; refunds go through “Report a problem”.</span></div>`
+      : `<div class="row wrap" style="gap:8px">${r.reply ? `<button class="btn gh sm" data-a="rvReplyOpen" data-id="${r.id}">Edit reply</button>` : `<button class="btn ln sm" data-a="rvReplyOpen" data-id="${r.id}">Reply</button>`}${r.reported ? '<span class="pill p-n">Reported to Send Koro</span>' : `<button class="btn gh sm" data-a="rvReport" data-id="${r.id}">Report review</button>`}</div>`;
+    return `${head('Ratings and reviews', 'What customers say about your store · complaints and replies')}${body(`
+      ${notices.map((n) => `<div class="note n-r"><b>Notice from Send Koro · ${esc(n.date)}</b><br>${esc(n.text)}</div>`).join('')}
+      ${locs.length > 1 ? `<div class="chips" role="tablist">${[['all', 'All locations'], ...locs.map(([k, L]) => [k, L.area])].map(([k, l]) => `<button class="chip ${st.loc === k ? 'on' : ''}" role="tab" aria-selected="${st.loc === k}" data-a="rvLoc" data-v="${k}">${esc(l)}</button>`).join('')}</div>` : ''}
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(${PHONE ? 260 : 340}px,1fr));gap:12px">${sums.map((sm) => `<div class="card pad col" style="gap:12px"><b style="font-size:18px">${esc(sm.area)}</b>${RV.summaryHTML(sm)}${RV.complaintsHTML(sm)}</div>`).join('')}</div>
+      <div class="note n-w sm-t">Customers see your rating, the complaint categories and counts, the reviews and your replies. Complaint details go only to Send Koro. Repeated or serious complaints (allergen, hygiene) can lead to a warning, a pause or deactivation (Partner Agreement, “Ratings and complaints”).</div>
+      <div class="chips" role="tablist">${[['all', 'All'], ['complaints', 'Complaints'], ['low', '1–3 stars'], ['noreply', 'Needs a reply']].map(([k, l]) => `<button class="chip ${st.f === k ? 'on' : ''}" role="tab" aria-selected="${st.f === k}" data-a="rvF" data-v="${k}">${l}</button>`).join('')}</div>
+      <div class="rv-list">${list.map((r) => RV.cardHTML(r, 'restaurant', { showLoc: st.loc === 'all' && locs.length > 1, actions: actions(r) })).join('') || '<span class="mut">Nothing here.</span>'}</div>`)}`;
+  };
   V.overview = V.home = () => {
     const L = ledgerCalc(LEDGER.oct);
     const today = allOrders().filter((o) => o.status === 'completed' && fmtDay(o.placed) === 'Today');
@@ -247,6 +270,7 @@
       ${openCard()}
       ${nw.length ? `<button class="note" data-a="${PHONE ? 'go' : 'tabTo'}" data-to="${PHONE ? 'newOrder' : 'orders'}" style="border:0;text-align:left;background:var(--o);color:#fff;font-size:17px;width:100%"><b>${nw.length} new order${nw.length > 1 ? 's' : ''} waiting</b> · answer before the timer ends →</button>` : ''}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(${PHONE ? 150 : 200}px,1fr));gap:12px">${tiles.map(([l, v]) => `<div class="card pad"><div class="mut sm-t">${l}</div><b style="font-size:24px;color:var(--ink)">${v}</b></div>`).join('')}</div>
+      ${rvMini()}
       ${PHONE ? '<button class="btn" data-a="simNew">Simulate a new order</button>' : ''}
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start">
       <div class="card pad col" style="flex:2 1 340px"><div class="row between"><b style="font-size:18px">Live orders</b><button class="btn gh" data-a="tabTo" data-to="orders" style="min-height:0">See all →</button></div>${S.orders.length ? S.orders.map((o) => `<button data-a="detail" data-id="${o.id}" class="row" style="border:0;border-top:1px solid var(--line);background:none;padding:10px 0;text-align:left;width:100%"><b style="width:70px">${o.id}</b><span class="grow">${esc(o.customer)} · ${o.lines.reduce((a, l) => a + l[1], 0)} items</span>${o.status === 'new' ? `<b data-cd="${o.deadline}">5:00</b>` : statusPill(o)}</button>`).join('') : '<div class="empty">No live orders.</div>'}</div>
@@ -669,7 +693,7 @@
   V.settings = V.more = () => {
     const link = (to, l, d) => can(to) ? `<button class="row card pad" data-a="go" data-to="${to}" style="text-align:left;width:100%"><span class="grow"><b>${l}</b><span class="mut sm-t" style="display:block">${d}</span></span><span class="mut">›</span></button>` : '';
     const groups = [
-      ['Orders', PHONE ? [['history', 'Order history', 'Search past orders'], ['newOrder', 'New order screen', 'Full-screen alert for new orders']] : []],
+      ['Orders', PHONE ? [['reviews', 'Ratings and reviews', 'What customers say, complaints and your replies'], ['history', 'Order history', 'Search past orders'], ['newOrder', 'New order screen', 'Full-screen alert for new orders']] : []],
       ['Money', PHONE ? [['earnings', 'Earnings', 'Net sales and order money'], ['payouts', 'Payouts', 'Weekly payouts to your bank'], ['stripe', 'Stripe', 'Balance, payments, payouts, statements, bank'], ['subscription', 'Subscription', 'A plan for each location, from its own sales']] : []],
       ['Store', [['setup', 'Store setup', S.branches.every((b) => b.status === 'live') ? 'All locations live ✓' : 'Finish setup for ' + S.branches.filter((b) => b.status !== 'live').map((b) => b.name).join(', ')], ['locations', 'Locations', S.branches.length + ' branches'], ['profile', 'Store profile', 'Name, photos, cuisines, extra charges'], ['hours', 'Hours', 'Weekly hours and closures'], ['team', 'Team and roles', `${S.team.length} people`], ['delivery', 'Delivery fee', 'Who pays the delivery fee'], ['tax', 'Sales tax', `${B().taxRate || '—'}% · you file and pay it`], ['legal', 'Licenses and legal', 'Permits, certificates, business details'], ['notifications', 'Notifications', 'Sounds, texts and emails']]],
       ['Support', [['learn', 'Learning center', 'Short videos and guides for every part of Send Koro'], ['legalList', 'Legal documents', 'Partner agreement, privacy, refunds, guidelines'], ['help', 'Help', 'Contact the Send Koro team']]],
@@ -1031,7 +1055,7 @@
   }
 
   // ---------- frame ----------
-  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center'], ['legalList', 'Legal documents']]]];
+  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['reviews', 'Ratings and reviews'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center'], ['legalList', 'Legal documents']]]];
   const PARENT = { lesson: 'learn', legalDoc: 'legal', legalList: 'legal', branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
   function sidebar() {
     const cur = PARENT[S.screen] || S.screen;
@@ -1065,8 +1089,8 @@
     return `<nav aria-label="Main" style="flex:none;height:72px;padding:6px 6px 12px;background:var(--g);display:grid;grid-template-columns:repeat(${T.length},1fr)">${T.map(([k, l]) => `<button data-a="tab" data-to="${k}" aria-current="${cur === k ? 'page' : 'false'}" style="position:relative;border:0;background:transparent;font-size:13px;font-weight:800;color:${cur === k ? '#FCE910' : '#C9D3CD'}">${l}${k === 'orders' && nNew ? `<span style="position:absolute;top:6px;right:22%;min-width:18px;height:18px;border-radius:99px;background:#FF7A2E;color:var(--ink);font-size:11px;display:flex;align-items:center;justify-content:center">${nNew}</span>` : ''}</button>`).join('')}</nav>`;
   }
   const PAGES = PHONE
-    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
-    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
+    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['reviews', 'Ratings and reviews'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
+    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['legalList', 'Legal documents'], ['legalDoc', 'Partner agreement'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['reviews', 'Ratings and reviews'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
   function pagesBar() {
     return `<nav class="pages" aria-label="Open a page"><span class="pages-l">Open a page</span>${PAGES.map(([k, l], i) => `<button data-a="page" data-k="${k}" class="${S.screen === k ? 'on' : ''}" aria-current="${S.screen === k ? 'page' : 'false'}">${i + 1}. ${l}</button>`).join('')}</nav>`;
   }
@@ -1107,6 +1131,12 @@
   const find = (id) => S.orders.find((o) => o.id === id);
   const toCents = (v) => (typeof v === 'number' ? v : Math.round((parseFloat(v) || 0) * 100));
   const A = {
+    rvLoc: (d) => { S.rv.loc = d.v; render(); },
+    rvF: (d) => { S.rv.f = d.v; render(); },
+    rvReplyOpen: (d) => { const r = S.reviews.find((x) => x.id === d.id); S.rv.replyId = d.id; S.rv.draft = r.reply ? r.reply.text : ''; render(); },
+    rvReplyCancel: () => { S.rv.replyId = null; render(); },
+    rvReplySave: (d) => { const t = S.rv.draft.trim(); if (t.length < 5) return toast('Write a short reply first.'); const r = S.reviews.find((x) => x.id === d.id); r.reply = { text: t, date: 'Today' }; S.rv.replyId = null; toast('Reply posted. Customers can see it under the review.'); render(); },
+    rvReport: (d) => { const r = S.reviews.find((x) => x.id === d.id); r.reported = true; toast('Sent to Send Koro. We remove reviews that break the Community Guidelines (abuse, personal details, not about the order).'); render(); },
     back, go: (d) => go(d.to), tab: (d) => tabTo(d.to), tabTo: (d) => tabTo(d.to), toastMsg: (d) => toast(d.msg),
     info: (d) => { S.modal = { type: 'info', k: d.k }; render(); },
     sendCode: () => { if (S.phone.replace(/\D/g, '').length !== 10) return toast('Enter a 10-digit mobile number.'); S.codeSent = true; toast('Code sent (prototype: any 6 digits work).'); render(); },
