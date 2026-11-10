@@ -119,8 +119,8 @@ The customer always sees a single line, **"Delivery fee"**, then any "Free deliv
 - **Driver onboarding, minimum requirements only** (7 Nov 2026, designed in the driver app prototype; backend to follow):
   - **Applying:**
     - Legal name, email, date of birth (18+).
-    - Vehicle: bike, e-bike (UL-certified, required in NYC), moped or car. Mopeds and cars also need a driver's license with its expiry, vehicle registration and a plate.
-    - Photo ID, plus license and registration photos for mopeds and cars.
+    - Vehicle: bike, e-bike (UL-certified, required in NYC), moped or car. Mopeds and cars also need a driver's license with its expiry, plate, and make, model, year and color (shown to restaurants and customers for pickup).
+    - **Documents (10 Nov 2026, matching Uber Eats / DoorDash):** everyone uploads a profile photo (selfie, checked against the ID). Bikes and e-bikes: government photo ID front and back (driver's license, state ID, IDNYC; passport photo page only). Cars and mopeds: driver's license front and back, vehicle registration, the driver's own insurance card and its expiry date. Reminders before a document expires; car or moped deliveries pause if one lapses.
     - Independent contractor agreement.
     - Background check disclosure and authorization (FCRA), covering identity, SSN trace and, for mopeds and cars, the driving record.
     - Stripe account. Stripe verifies identity and bank and collects tax details like a W-9.
@@ -133,7 +133,7 @@ The customer always sees a single line, **"Delivery fee"**, then any "Free deliv
     - Restroom access is shown at pickup.
     - The Notice of Rights page sits under Account.
   - **Taxes:** Send Koro is the payer and issues a **1099-NEC** to each driver paid $2,000 or more in the year (2026 threshold). It covers locked pay, tips and NYC top-ups and is filed through Stripe's 1099 product. Stripe doesn't issue 1099-Ks to drivers, because they take no card payments.
-  - **Insurance (10 Nov 2026):** Send Koro provides no insurance for its own drivers or third-party couriers for now, and the apps and legal documents say nothing about insurance. Revisit later.
+  - **Insurance (10 Nov 2026):** car and moped drivers must carry and upload their own vehicle insurance. Send Koro itself provides no insurance for its own drivers or third-party couriers for now; revisit later.
 
 ## Processing fees on delivery money (3 Nov 2026)
 

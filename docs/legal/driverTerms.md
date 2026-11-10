@@ -12,8 +12,8 @@ This Courier Agreement is between SHL Global Consulting Inc., doing business as 
 
 - Be at least 18 years old (21 if you deliver by car or moped).
 - Be legally allowed to work in the United States.
-- For cars and mopeds: a valid driver’s license and vehicle registration, and follow all vehicle laws. For e-bikes and bicycles: follow local equipment rules.
-- Pass identity verification through Stripe and any screening Send Koro requires.
+- Everyone: a clear profile photo of yourself. For bikes and e-bikes: a valid government photo ID (front and back; passport photo page). For cars and mopeds: a valid driver’s license (front and back), current vehicle registration and your own vehicle insurance card, with the vehicle’s make, model, year, color and plate. Follow all vehicle and local equipment rules.
+- Pass identity verification through Stripe and any screening Send Koro requires. Keep your documents current; we remind you before they expire and pause deliveries by car or moped if they lapse.
 
 ## 3. Offers and pay
 

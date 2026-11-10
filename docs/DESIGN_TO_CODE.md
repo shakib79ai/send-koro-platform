@@ -52,7 +52,7 @@ Both must get the same features. Match `customer-web.html` (desktop), `customer-
 | 3 | Drop-off photo | In-app camera + choose from Photos; photo required where the order asks for it | `POST /v1/driver/trips/:id/proof` (upload) |
 | 4 | Pay labels | "$X total" at the top; "Locked pay + tips = total" at the bottom | — |
 | 5 | Stripe tab | Built (`lib/screens/stripe.dart`) | — |
-| 6 | No insurance | Application asks cars and mopeds for license, expiry, registration and plate only; no insurance fields or documents anywhere | Remove any insurance fields from the courier application API |
+| 6 | Application documents by vehicle | Step 2: cars and mopeds add license number and expiry, plate, make, model, year, color; bikes and e-bikes choose their ID type. Step 3: profile photo (front camera, preview) for everyone; bikes/e-bikes: ID front + back (passport: photo page only); cars/mopeds: license front + back, registration, own insurance card + expiry date | `POST /v1/driver/application/documents` (types `profile_photo, id_front, id_back, license_front, license_back, registration, insurance`), `insurance_expires_on`, vehicle fields; human review queue in admin Verification; expiry reminders and auto-pause of car/moped deliveries when a document lapses |
 
 ## Admin console (`apps/admin-web`)
 
