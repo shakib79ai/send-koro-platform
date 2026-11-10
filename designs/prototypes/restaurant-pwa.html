@@ -2297,8 +2297,8 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 
   // ---------- create account ----------
   V.signup = () => {
-    const u = S.signup; const steps = ['You', 'Verify', 'Restaurant', 'Agree'];
-    const bar = `<div class="row" style="gap:6px">${steps.map((t, i) => `<div class="col grow" style="gap:4px"><div style="height:6px;border-radius:99px;background:${i < u.step ? '#1E5442' : 'var(--line)'}"></div><span class="sm-t" style="font-weight:700;color:${i + 1 === u.step ? 'var(--ink)' : 'var(--mut)'}">${i + 1}. ${t}</span></div>`).join('')}</div>`;
+    const u = S.signup; const steps = ['You', 'Verify', 'Store', 'Agree'];
+    const bar = `<div style="display:grid;grid-template-columns:repeat(${steps.length},minmax(0,1fr));gap:6px;align-items:start">${steps.map((t, i) => `<div class="col" style="gap:6px;min-width:0"><div style="height:6px;border-radius:99px;background:${i < u.step ? '#0B3B6E' : 'var(--line)'}"></div><span style="font-weight:700;font-size:${PHONE ? 12.5 : 13.5}px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:${i + 1 === u.step ? 'var(--ink)' : 'var(--mut)'}">${i + 1}. ${t}</span></div>`).join('')}</div>`;
     let inner = '';
     if (u.step === 1) inner = `<h1 style="font-size:26px;color:var(--ink)">List your restaurant on Send Koro</h1><p class="mut" style="margin:0">$0 commission, a flat monthly plan, and your first month free. Takes about 5 minutes.</p>
       <label class="f">Your full name<input class="in" id="su-owner" data-m="signup.owner" value="${esc(u.owner)}" placeholder="e.g. Shakib Haider"></label>
