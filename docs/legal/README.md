@@ -1,8 +1,8 @@
 # Send Koro legal documents
 
-**DRAFT for review by a licensed attorney before launch.** Bracketed items (legal entity name, address, dispute terms, insurance) are completed by the company. Last updated November 10, 2026.
+Final texts, in effect from November 10, 2026. Send Koro is a DBA of **SHL Global Consulting Inc.**, 1088 Liberty Ave, Brooklyn, NY 11208 · info@sendkoro.com.
 
-These texts are shown in every app (source: `designs/source/legal.js`; regenerate with `node designs/source/legal-to-md.js docs/legal`). They are original drafts written for Send Koro’s business model, organised the way large delivery marketplaces organise theirs.
+These texts are shown in every app (source: `designs/source/legal.js`; regenerate with `node designs/source/legal-to-md.js docs/legal`). They are written for Send Koro’s business model, organised the way large delivery marketplaces organise theirs.
 
 | Document | For | File |
 |---|---|---|

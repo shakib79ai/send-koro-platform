@@ -1,6 +1,6 @@
 # Community Guidelines and Acceptable Use Policy
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 How everyone on Send Koro treats each other, and what isn’t allowed.
 
@@ -53,4 +53,4 @@ Depending on how serious it is, we may warn you, limit features, remove content,
 
 ## 8. Report a problem
 
-Use Help in the app, or **safety@sendkoro.com**. In an emergency, call 911 first.
+Use Help in the app, or **info@sendkoro.com**. In an emergency, call 911 first.

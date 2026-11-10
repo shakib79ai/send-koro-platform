@@ -1,12 +1,12 @@
 # Privacy Policy
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 What we collect, why, who sees it, and your choices.
 
 ## 1. Who this covers
 
-This Privacy Policy explains how [Send Koro legal entity name] (“Send Koro”) collects, uses and shares personal information when you use our websites, apps and services as a **customer**, a **restaurant partner** (owners, managers and staff) or a **courier** using the Send Koro driver app. We do not sell your personal information.
+This Privacy Policy explains how SHL Global Consulting Inc., doing business as Send Koro (“Send Koro”) collects, uses and shares personal information when you use our websites, apps and services as a **customer**, a **restaurant partner** (owners, managers and staff) or a **courier** using the Send Koro driver app. We do not sell your personal information.
 
 ## 2. Information we collect
 
@@ -58,7 +58,7 @@ Our websites use cookies that are needed to sign you in and keep your cart, and 
 ## 8. Your choices and rights
 
 - See and update your profile, addresses and notification settings in the app.
-- **Download your data** or **delete your account** in Account → Privacy center, or email privacy@sendkoro.com.
+- **Download your data** or **delete your account** in Account → Privacy center, or email info@sendkoro.com.
 - Turn off marketing emails and texts in notification settings, or reply STOP to texts.
 - Depending on where you live, you may have rights to access, correct, delete or port your information, and to appeal a decision about your request. We will not discriminate against you for using these rights. We verify requests with a code sent to your phone or email.
 
@@ -76,4 +76,4 @@ We will post updates here and tell you in the app or by email before material ch
 
 ## 12. Contact
 
-Privacy questions and requests: **privacy@sendkoro.com** · [Send Koro legal entity name], [registered business address], New York, NY.
+Privacy questions and requests: **info@sendkoro.com** · SHL Global Consulting Inc., doing business as Send Koro, 1088 Liberty Ave, Brooklyn, NY 11208.

@@ -1,6 +1,6 @@
 # Refund and Cancellation Policy
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 Cancellations, refunds and who pays for what.
 
@@ -54,4 +54,4 @@ Refunds are for genuine problems. We may decline refunds, limit future refunds, 
 
 ## 7. Contact
 
-Order problems: Help in the app or **help@sendkoro.com**.
+Order problems: Help in the app or **info@sendkoro.com**.

@@ -1,18 +1,18 @@
 # Courier Agreement
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 Terms for delivering with the Send Koro driver app.
 
 ## 1. About this agreement
 
-This Courier Agreement is between [Send Koro legal entity name] (“Send Koro”) and you, an independent courier using the Send Koro driver app. You are an independent contractor, not an employee: you decide when, where and whether to go online and which offers to accept. The [Privacy Policy](privacy.md), [Community Guidelines](usage.md) and [Text Message Terms](sms.md) are part of this agreement.
+This Courier Agreement is between SHL Global Consulting Inc., doing business as Send Koro (“Send Koro”) and you, an independent courier using the Send Koro driver app. You are an independent contractor, not an employee: you decide when, where and whether to go online and which offers to accept. The [Privacy Policy](privacy.md), [Community Guidelines](usage.md) and [Text Message Terms](sms.md) are part of this agreement.
 
 ## 2. Eligibility
 
-- Be at least 18 years old (21 if you deliver by car or motorcycle, or as required by local rules or insurance).
+- Be at least 18 years old (21 if you deliver by car or moped).
 - Be legally allowed to work in the United States.
-- For cars and mopeds: a valid driver’s license, registration and the insurance required by law. For e-bikes and bicycles: follow local equipment rules.
+- For cars and mopeds: a valid driver’s license and vehicle registration, and follow all vehicle laws. For e-bikes and bicycles: follow local equipment rules.
 - Pass identity verification through Stripe and any screening Send Koro requires.
 
 ## 3. Offers and pay
@@ -28,7 +28,7 @@ This Courier Agreement is between [Send Koro legal entity name] (“Send Koro”
 - Connect a Stripe account to receive payments and accept the Stripe Connected Account Agreement.
 - Pay and tips for each delivery are sent to your Stripe balance after the delivery; top-ups arrive on Monday. Stripe pays your bank on your payout schedule.
 - Payment for an order may be held while a card dispute on that order is open.
-- Send Koro issues you a Form 1099-NEC when required. You are responsible for your own taxes, expenses and insurance.
+- Send Koro issues you a Form 1099-NEC when required. You are responsible for your own taxes and expenses, including your vehicle, phone and data plan.
 
 ## 5. Doing deliveries
 
@@ -48,14 +48,18 @@ The app collects your precise location while you are online and on a trip, to se
 - Send Koro may deactivate accounts for safety issues, fraud, serious or repeated breaches of the Community Guidelines, or failure to meet eligibility requirements.
 - We will tell you the reason. You may ask for a review within 30 days by contacting support, and we will consider any information you provide.
 
-## 8. Insurance and liability
+## 8. Liability
 
-You are responsible for your vehicle and for carrying the insurance required by law. [Any occupational accident or liability coverage Send Koro provides while you are on a trip, and final liability and dispute terms, to be confirmed by counsel.]
+You are responsible for your vehicle, equipment and the way you deliver, and for following traffic and vehicle laws. You indemnify Send Koro for claims caused by your breach of this agreement or your negligence while delivering. Send Koro is not liable for indirect or consequential damages, and its total liability to you is limited to the amounts paid to you in the 3 months before the claim, except where the law does not allow this limit. Nothing here reduces pay you have earned.
 
-## 9. Ending the agreement
+## 9. Disputes and arbitration
+
+Contact us first at info@sendkoro.com; we will try to resolve the issue within 30 days. If not resolved, you and Send Koro agree to binding individual arbitration administered by the American Arbitration Association under its rules, held by video or in the county where you deliver, with Send Koro paying the arbitration fees beyond what a court filing fee would cost you. No class, collective or representative actions, except where the law does not allow this waiver. Either party may use small claims court instead. You can opt out of arbitration by emailing info@sendkoro.com within 30 days after you first accept this agreement.
+
+## 10. Ending the agreement
 
 You can stop delivering and close your account at any time. Send Koro may end this agreement as described above. Pay you have earned is paid out in full.
 
-## 10. General
+## 11. General
 
-Governed by New York law, except where local law gives you rights that cannot be waived. Send Koro may update this agreement with at least 14 days’ notice for material changes. Contact: couriers@sendkoro.com · [Send Koro legal entity name], [registered business address], New York, NY.
+Governed by New York law, except where local law gives you rights that cannot be waived. Send Koro may update this agreement with at least 14 days’ notice for material changes. Contact: **info@sendkoro.com** · SHL Global Consulting Inc., doing business as Send Koro, 1088 Liberty Ave, Brooklyn, NY 11208.

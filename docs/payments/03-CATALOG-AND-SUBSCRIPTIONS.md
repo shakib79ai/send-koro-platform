@@ -41,6 +41,20 @@ Each location's plan comes from **that location's** net food sales in the previo
 4. **Safety net** on `invoice.created` (`billing_reason = subscription_cycle`): if there's no snapshot or the price doesn't match, pause the invoice (`auto_advance: false`) and alert.
 5. Dashboard settings (person): Smart Retries, 4 tries over 2 weeks, then mark the subscription **unpaid** (not cancelled); email customers about failed payments.
 
+## 3.3a Unpaid plan: automatic deactivation (To build)
+
+Business rule (BUSINESS_MODEL.md, 10 Nov 2026): when retries are exhausted, the restaurant's locations on that invoice are deactivated automatically, the restaurant and admin are notified, and an admin reviews the account.
+
+1. **Trigger.** Webhook `customer.subscription.updated` with `status` changing to `unpaid` (after the last Smart Retry), or `invoice.marked_uncollectible`. Dedupe by event id like every other webhook.
+2. **Deactivate.** Payments calls the API (internal key) `POST /internal/restaurants/:id/plan-unpaid` with `{ invoiceId, amountDue, attempts }`. The API sets every live location on that billing owner to `status = 'deactivated_unpaid'` (not `suspended`, so the reason is clear): no new orders, hidden from search and storefronts. Orders already accepted keep going and pay out normally. Idempotent on `invoiceId` (unique row in `plan_unpaid_cases`).
+3. **Notify.** Restaurant: email + SMS + a portal banner with "Pay now" (Stripe hosted invoice page) and "Update card". Admin: an alert on Operations and a row in Billing → **Unpaid plans · human review** (`plan_unpaid_cases`: `restaurant_id, invoice_id, amount_due, deactivated_at, review_status (new | contacted | reviewed | paid), reviewer_id, note`).
+4. **Reactivate automatically** on `invoice.paid` for that invoice: locations deactivated by this case go back to `live`, the case becomes `paid`, the restaurant gets a confirmation. Locations paused or suspended for other reasons stay as they were.
+5. **Admin actions:** Contact (sends a reminder with the pay link), Reactivate (back to live, invoice stays open and Stripe keeps it), Keep deactivated (marks reviewed). Every action is written to the audit log.
+6. **Never** deduct plan fees from food payouts or hold food money to collect a plan (direct charges: food money is the restaurant's).
+7. **Tests:** `unpaid` event deactivates all live locations once (repeat event changes nothing); accepted orders still complete; `invoice.paid` reactivates only the case's locations; admin reactivate and keep-deactivated paths; no payout is touched.
+
+Example: Bed-Stuy Bagels, November plan 10000 cents. Retries fail Nov 1 → Nov 15; subscription becomes `unpaid` → location deactivated, case `new`. Owner pays 10000 on Nov 16 → `invoice.paid` → location live, case `paid`. Food payouts for orders placed before Nov 15: unchanged.
+
 ## 3.4 Gap: one line per location (To build)
 
 Today there is **one subscription with one price per restaurant record**. The business model needs one invoice with **a line per location**, each priced from that location's own sales. Stripe doesn't allow two items with the same price in one subscription, so don't model locations as subscription items.

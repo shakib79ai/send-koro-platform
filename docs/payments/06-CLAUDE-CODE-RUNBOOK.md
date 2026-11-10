@@ -47,6 +47,7 @@ Work through the tasks in order. Each has commands and a check that must pass be
 | C8 | Apps: customer wallet / refer / sign-up code / checkout toggle; restaurant credit lines and card; admin Customer credit page | prototypes | screens call the new endpoints; totals still come only from the API |
 | C9 | Restaurant promotions (restaurant-funded, lower F) | 1 §1.8 | tests: discount lowers F and net food sales; no Send Koro charge |
 | C10 | Saved cards across restaurants (platform customer + clone to each restaurant account) | 2 §2.9 item 9 | **Needs confirmation** first |
+| C11 | Unpaid plan → automatic deactivation, notifications, admin review queue, auto-reactivation on `invoice.paid` | 3 §3.3a | tests in 3 §3.3a pass; repeated events change nothing |
 
 ## D. Going live (Person + Claude Code)
 

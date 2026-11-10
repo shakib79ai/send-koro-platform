@@ -67,10 +67,10 @@
       b1: { health: { number: '50123456', expires: '2027-06-30', file: 'fse-permit-park-slope.pdf', status: 'verified' }, manager: { number: 'FPC 1189234', holder: 'Shakib Haider', file: 'food-protection-cert.pdf', status: 'verified' }, tax: { number: '12-3456789', file: 'certificate-of-authority.pdf', status: 'verified' }, grade: { number: 'A', status: 'verified' } },
       b2: { tax: { number: '12-3456789', file: 'certificate-of-authority.pdf', status: 'review' } },
     },
-    licAccount: { ins: { number: 'GL-778215', expires: '2026-12-15', file: 'liability-insurance.pdf', status: 'verified' } },
+    licAccount: {},
     signup: { step: 1, owner: '', phone: '', email: '', code: '', name: '', address: '', cuisines: [], locs: '1', agree: false, tax: false },
     taxAccepted: true, stripe: true, agree: { signed: true, licenses: true, food: true, bathroom: true },
-    sub: { cancel: false, card: 'Visa •••• 4242 · expires 08/28' },
+    sub: { cancel: false, unpaid: false, card: 'Visa •••• 4242 · expires 08/28' },
     help: { topic: 'order', order: '', msg: '', sent: [] },
     modal: null, toast: '',
   };
@@ -690,7 +690,7 @@
         <label class="f">What do you need?<textarea class="in" id="h-msg" data-m="help.msg">${esc(h.msg)}</textarea></label>
         <button class="btn" data-a="sendHelp">Send request</button></div>
       <div class="card pad col"><b>Quick answers</b><details><summary><b>When do I get paid?</b></summary><p class="mut">Stripe pays your bank every Monday. Food money goes straight to your Stripe account on every order.</p></details><details><summary><b>What if I miss an order?</b></summary><p class="mut">After 5 minutes it auto-declines and the customer's hold is released. They are never charged.</p></details><details><summary><b>Who sets the tax?</b></summary><p class="mut">You do. You file and pay your own sales tax. Send Koro never collects it.</p></details><details><summary><b>Who handles refunds?</b></summary><p class="mut">Report the problem on the order. Our team reviews it with you and the customer.</p></details></div>
-      <div class="card pad col"><b>Call or email</b><span>Restaurant line: <b style="user-select:all">(718) 555-0150</b></span><span>Email: <b style="user-select:all">restaurants@sendkoro.com</b></span></div>`))}`;
+      <div class="card pad col"><b>Call or email</b><span>Restaurant line: <b style="user-select:all">(718) 555-0150</b></span><span>Email: <b style="user-select:all">info@sendkoro.com</b></span></div>`))}`;
   };
 
   // ---------- subscription: one plan per location, from that location's sales ----------
@@ -710,6 +710,7 @@
     const infos = S.branches.map((b) => [b, planInfo(b)]); const total = infos.reduce((a, [, p]) => a + p.now, 0); const nextTotal = infos.reduce((a, [, p]) => a + (p.next || 0), 0);
     const credOrders = PAST.filter((o) => o.credit && o.status === 'completed'); const monthCredit = credOrders.reduce((a, o) => a + o.credit, 0);
     return `${head('Subscription', 'Each location has its own plan, based on its own sales · $0 commission')}${body(`
+      ${S.sub.unpaid ? `<div class="note n-r row wrap" role="alert"><span class="grow"><b>Your locations are paused: the November plan ($150.00) is unpaid.</b> After the last automatic retry, your locations were deactivated: they don’t receive orders and are hidden from customers. Pay now and they go live again automatically. Our team has been notified and may contact you.</span><button class="btn sm" data-a="subPayNow">Pay $150.00 now</button><button class="btn ln sm" data-a="info" data-k="billingcard">Update card</button></div>` : ''}
       ${S.sub.cancel ? `<div class="note n-r row wrap"><span class="grow"><b>Subscription ends November 30, 2026.</b> After that your locations stop taking orders.</span><button class="btn sm" data-a="resumeSub" style="background:var(--g)">Keep my subscription</button></div>` : ''}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(${PHONE ? 160 : 230}px,1fr));gap:12px">
         <div class="card pad col" style="background:var(--g);color:#fff;border:0;gap:4px"><span style="color:#C9D3CD;font-size:13px">This month · November · all locations</span><b style="font-size:28px">${money(total)}</b><span style="font-size:13px">Paid Nov 1 on Visa •••• 4242</span></div>
@@ -724,7 +725,7 @@
       <div class="card pad col" style="flex:2 1 360px;gap:0"><b style="font-size:18px;margin-bottom:6px">Invoices</b>
         <div class="row" style="border-top:1px solid var(--line);padding:10px 0"><span class="grow"><b>December 2026</b><span class="mut sm-t" style="display:block">Billed Dec 1 · one line per location${monthCredit ? ` · less ${money(monthCredit)} promo credit paid back` : ''}</span></span><span class="pill p-n">Upcoming</span><b style="width:80px;text-align:right">≈ ${money(Math.max(0, nextTotal - monthCredit))}</b></div>
         ${INVOICES.slice().reverse().map((iv) => `<div class="row" style="border-top:1px solid var(--line);padding:10px 0"><span class="grow"><b>${iv.month}</b><span class="mut sm-t" style="display:block">${iv.date} · ${iv.lines.length} location${iv.lines.length > 1 ? 's' : ''}</span></span><span class="pill p-g">${iv.status}</span><b style="width:80px;text-align:right">${money(iv.amount)}</b><button class="btn gh" data-a="invoice" data-id="${iv.id}" style="min-height:32px">View</button></div>`).join('')}</div>
-      <div class="card pad col" style="flex:1 1 280px"><b style="font-size:18px">Billing</b><div class="row"><span class="pill" style="background:#1A1F71;color:#fff">VISA</span><span class="grow">${esc(S.sub.card)}</span></div><button class="btn ln sm" data-a="info" data-k="billingcard" style="align-self:flex-start">Update card</button><label class="f">Billing email<input class="in" id="bill-email" data-m="business.email" value="${esc(S.business.email)}"></label><button class="btn sm" data-a="saveBillingEmail" style="align-self:flex-start">Save email</button><span class="mut sm-t">One card pays the plans for all your locations. If a payment fails, Stripe retries and we email you.</span></div></div>
+      <div class="card pad col" style="flex:1 1 280px"><b style="font-size:18px">Billing</b><div class="row"><span class="pill" style="background:#1A1F71;color:#fff">VISA</span><span class="grow">${esc(S.sub.card)}</span></div><button class="btn ln sm" data-a="info" data-k="billingcard" style="align-self:flex-start">Update card</button><label class="f">Billing email<input class="in" id="bill-email" data-m="business.email" value="${esc(S.business.email)}"></label><button class="btn sm" data-a="saveBillingEmail" style="align-self:flex-start">Save email</button><span class="mut sm-t">One card pays the plans for all your locations. If a payment fails, it’s retried automatically and we email you each time.</span><div class="note n-w sm-t"><b>If a plan stays unpaid</b> after the last retry (about 2 weeks), your locations are deactivated automatically and stop taking orders. We tell you by email, text and here, and our team reviews the account. Paying the invoice turns them back on right away.</div><button class="btn gh sm" data-a="subUnpaidDemo" style="align-self:flex-start">${S.sub.unpaid ? 'End preview' : 'Preview an unpaid plan'}</button></div></div>
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start">
       <div class="card pad col" style="flex:1 1 320px"><b style="font-size:18px">Fee calculator (one location)</b><label class="f">That location’s net food sales for a month (USD)<input class="in" id="p-in" data-m="planInput" data-live="1" inputmode="decimal" value="${esc(S.planInput)}"></label><div class="note n-g" style="font-size:16px">Its plan next month: <b>${money(fee)}</b>${net <= 0 ? ' (live locations with no sales pay the lowest plan)' : ''}</div><div class="row wrap">${['0', '2400', '6240', '9800', '14000', '22000'].map((v) => `<button class="chip" data-a="planSet" data-v="${v}">$${Number(v).toLocaleString()}</button>`).join('')}</div></div>
       <div class="card pad col" style="flex:1 1 320px;gap:0"><b style="font-size:18px;margin-bottom:8px">Tiers (per location)</b>${TIERS.map((t, i) => `<div class="row" style="padding:9px 8px;border-radius:8px;${i === idx ? 'background:var(--ot);font-weight:800' : 'border-top:1px solid var(--line)'}"><span class="grow">${tierLabel(i)}</span><b>${money(t[1]).replace('.00', '')}/mo</b></div>`).join('')}</div></div>
@@ -863,7 +864,6 @@
     return JURIS[st] ? st : 'other';
   }
   const OPTIONAL_ALL = [{ key: 'liquor', short: 'Liquor license', name: 'Liquor license', issuer: 'Your state liquor authority', why: 'Only if you sell alcohol. Alcohol ordering is not available on Send Koro at launch.', req: false, scope: 'branch', expires: true }];
-  const INSURANCE = { key: 'ins', short: 'Insurance', name: 'General liability insurance certificate', issuer: 'Your insurer', why: 'Recommended. Covers the business and all locations.', req: false, scope: 'account', expires: true };
   const jFor = (b) => JURIS[b.juris] || JURIS.other;
   const minimize = (d) => (!d.req || d.key === 'health' ? d : d.key === 'tax' ? { ...d, noFile: true } : { ...d, attest: true });
   const defsFor = (b) => jFor(b).reqs.map(minimize);
@@ -1288,6 +1288,8 @@
     invoice: (d) => { S.modal = { type: 'invoice', id: d.id }; render(); },
     cancelSubAsk: () => { S.modal = { type: 'cancelSub' }; render(); },
     cancelSubDo: () => { S.sub.cancel = true; S.modal = null; toast('Your subscription will end on November 30.'); render(); },
+    subUnpaidDemo: () => { S.sub.unpaid = !S.sub.unpaid; toast(S.sub.unpaid ? 'Preview: November invoice unpaid after the last retry. Your locations are paused.' : 'Preview ended.'); render(); },
+    subPayNow: () => { S.sub.unpaid = false; toast('Paid $150.00. Your locations are live again.'); render(); },
     resumeSub: () => { S.sub.cancel = false; toast('Subscription kept.'); render(); },
     saveBillingEmail: () => { if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(S.business.email)) return toast('Enter a valid email.'); toast('Billing email saved.'); },
     dayToggle: (d) => { const w = B().week[+d.i]; w[1] = !w[1]; render(); },
@@ -2154,11 +2156,11 @@
     { id: 'billing', t: 'money', title: 'Paying your subscription', sum: 'One invoice on the 1st, card or bank, and what happens if a payment fails.', go: 'subscription', scenes: [
       PH('Your monthly invoice', 'Billed on the 1st at 12:00 PM ET', 'Invoice · December', [['Park Slope plan', '$150.00'], ['Williamsburg (first month)', '$0.00'], ['Send Koro promo credit', '−$15.00', 1], ['Total', '$135.00']], 'On the first of each month at noon Eastern, you get one invoice with a line for each location.'),
       ST('How to pay', ['Add a card or US bank account', 'Charged automatically on the 1st', 'Invoices and receipts by email'], 'Add a card or bank account once. It’s charged automatically, and invoices are emailed to you.'),
-      ST('If a payment fails', ['Stripe retries up to 4 times in 2 weeks', 'You get an email each time', 'Update your card on the Subscription page'], 'If a payment fails, Stripe retries it and emails you. Update your card on the Subscription page.'),
+      ST('If a payment fails', ['Retried up to 4 times in 2 weeks', 'You get an email each time', 'Update your card on the Subscription page'], 'If a payment fails, it is retried automatically and you get an email each time. Update your card on the Subscription page.'),
     ], body: [
       ['Steps', ol(['Open <b>Subscription</b> and add a billing card or US bank account (stored securely by Stripe).', 'On the 1st at 12:00 PM ET, your invoice is created with one line per location and charged automatically.', 'See past invoices and download receipts on the same page.'])],
       ['Example invoice', tbl([['Park Slope plan (October sales $6,240)', '$150.00'], ['Williamsburg (first month free)', '$0.00'], ['Send Koro promo credit paid back', '−$15.00'], ['Total charged', '$135.00', 1]])],
-      ['Good to know', ul(['There’s no proration: plans change on the 1st.', 'If a payment fails, Stripe retries up to 4 times over 2 weeks and emails you. Please update your card quickly to avoid interruption.', 'Promo credit and some refund fee credits appear as negative lines that lower your invoice.'])],
+      ['Good to know', ul(['There’s no proration: plans change on the 1st.', 'If a payment fails, it is retried up to 4 times over about 2 weeks and you are emailed each time. Update your card quickly to avoid interruption.', '<b>Unpaid plan:</b> if the invoice is still unpaid after the last retry, every location on it is deactivated automatically: it stops taking orders and is hidden from customers. Orders already accepted are still completed. You are told by email, text and a banner in the portal, and the Send Koro team reviews the account. Pay the invoice on the Subscription page and your locations go live again automatically.', 'Your food payouts are never held back or reduced to pay a plan.', 'Promo credit and some refund fee credits appear as negative lines that lower your invoice.'])],
     ] },
     { id: 'credit', t: 'money', title: 'Referral and promo credit', sum: 'Customers use Send Koro credit; we pay you back in full.', go: 'subscription', scenes: [
       T('Send Koro credit', 'Paid by Send Koro, never by you', 'Customers can use Send Koro credit from referrals and promo codes. Send Koro pays for it, never you.'),
@@ -2191,7 +2193,7 @@
     processing: (o) => [o[0], o[1], LV('orderMoney', 'text:You get', 'See it on every order', 'Open any order’s money breakdown to see the card processing on your part, your delivery share, and what you get.'), o[2]],
     payouts: (o) => [o[0], o[1], LV('stripe', 'text:Every day (2 days to arrive)', 'Your payout schedule', 'In the Stripe tab you see your payout schedule and bank. Change the schedule in your Stripe Dashboard.'), LV('payouts', 'text:Nov 3', 'Every payout', 'On Payouts, open any payout to see the orders, fees and refunds in it.')],
     plans: (o) => [o[0], o[1], LV('subscription', 'text:Plan by location', 'Your plan by location', 'On the Subscription page, you see this month’s plan for each location, and an estimate of next month’s.'), o[2]],
-    billing: (o) => [LV('subscription', 'text:Invoices', 'Your invoices', 'Every invoice is listed on the Subscription page, with one line for each location.'), LV('subscription', 'text:Update card', 'How you pay', 'Add or update your billing card or bank account here. It’s charged automatically on the first of the month at noon Eastern.'), o[2]],
+    billing: (o) => [LV('subscription', 'text:Invoices', 'Your invoices', 'Every invoice is listed on the Subscription page, with one line for each location.'), LV('subscription', 'text:Update card', 'How you pay', 'Add or update your billing card or bank account here. It’s charged automatically on the first of the month at noon Eastern.'), o[2], LV('subscription', 'text:If a plan stays unpaid', 'If it stays unpaid', 'If the invoice is still unpaid after the last retry, your locations pause automatically and our team is told. Pay the invoice and they go live again right away.')],
     credit: (o) => [o[0], o[1], LV('subscription', 'text:Send Koro promo credit this month', 'Paid back on your invoice', 'On the Subscription page, the promo credit card lists every order where customers used credit. It comes off your next invoice.'), o[2]],
   };
   LESSONS.forEach((l) => { if (LIVE_SCENES[l.id]) l.scenes = LIVE_SCENES[l.id](l.scenes); });
@@ -2364,7 +2366,7 @@
   // ---- Legal documents (shared texts in legal.js) ----
   const LG = window.SK_LEGAL;
   const LG_KEY = { agreement: 'restaurantTerms', terms: 'restaurantTerms', privacy: 'privacy', refunds: 'refunds', usage: 'usage', sms: 'sms' };
-  V.legalList = () => { const inner = `${S.signedIn ? head('Legal documents', 'For your restaurant') : ''}${body(narrow(`${S.signedIn ? '' : '<h1 class="lc-title">Legal documents</h1>'}<span class="mut">The agreement and policies that apply to restaurants on Send Koro.</span><div class="card col lg-list" style="padding:4px 16px">${LG.listHTML('restaurant')}</div><span class="mut sm-t">Last updated ${LG.UPDATED}. Questions: legal@sendkoro.com</span>`))}`; return S.signedIn ? inner : `<div class="lc-page">${inner}</div>`; };
+  V.legalList = () => { const inner = `${S.signedIn ? head('Legal documents', 'For your restaurant') : ''}${body(narrow(`${S.signedIn ? '' : '<h1 class="lc-title">Legal documents</h1>'}<span class="mut">The agreement and policies that apply to restaurants on Send Koro.</span><div class="card col lg-list" style="padding:4px 16px">${LG.listHTML('restaurant')}</div><span class="mut sm-t">Last updated ${LG.UPDATED}. Questions: info@sendkoro.com</span>`))}`; return S.signedIn ? inner : `<div class="lc-page">${inner}</div>`; };
   V.legalDoc = () => { const d = LG.DOCS[S.legalId] || LG.DOCS.restaurantTerms;
     const inner = `${S.signedIn ? head(d.title, 'Legal') : ''}${body(narrow(`${S.signedIn ? '' : `<button class="btn gh" data-a="lgBack" style="align-self:flex-start;padding:0">← Back</button><h1 class="lc-title">${d.title}</h1>`}${LG.docHTML(S.legalId)}`))}`;
     return S.signedIn ? inner : `<div class="lc-page">${inner}</div>`; };

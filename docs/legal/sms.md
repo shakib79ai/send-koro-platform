@@ -1,6 +1,6 @@
 # Text Message Terms
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 Sign-in codes, order updates and how to stop texts.
 
@@ -18,7 +18,7 @@ By entering your mobile number and requesting a code, you agree to receive these
 
 - Message frequency varies with your activity.
 - Message and data rates may apply.
-- Reply **HELP** for help or contact help@sendkoro.com.
+- Reply **HELP** for help or contact info@sendkoro.com.
 - Reply **STOP** to stop marketing and non-essential texts. You can’t receive sign-in codes after replying STOP to all messages; reply START to turn them back on.
 - Carriers are not liable for delayed or undelivered messages.
 

@@ -1,12 +1,12 @@
 # Restaurant Partner Agreement
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 Terms for restaurants selling on Send Koro.
 
 ## 1. Parties and scope
 
-This Restaurant Partner Agreement (“Agreement”) is between [Send Koro legal entity name] (“Send Koro”) and the business that signs up (“Restaurant”, “you”). It covers listing your restaurant on Send Koro, receiving orders, delivery, payments and your monthly plan, for every location you add. The [Privacy Policy](privacy.md), [Community Guidelines](usage.md), [Refund and Cancellation Policy](refunds.md) and [Text Message Terms](sms.md) are part of this Agreement.
+This Restaurant Partner Agreement (“Agreement”) is between SHL Global Consulting Inc., doing business as Send Koro (“Send Koro”) and the business that signs up (“Restaurant”, “you”). It covers listing your restaurant on Send Koro, receiving orders, delivery, payments and your monthly plan, for every location you add. The [Privacy Policy](privacy.md), [Community Guidelines](usage.md), [Refund and Cancellation Policy](refunds.md) and [Text Message Terms](sms.md) are part of this Agreement.
 
 ## 2. What Send Koro provides
 
@@ -40,7 +40,6 @@ Send Koro charges **no commission** on food sales and no per-order fees. Each li
 - Accept or decline orders within 5 minutes; prepare accepted orders on time and package them securely.
 - Hand orders only to the courier with the matching order number.
 - Comply with the Community Guidelines and applicable laws, including labor and health laws.
-- Keep appropriate business insurance.
 
 ## 7. Refunds, disputes and chargebacks
 
@@ -61,12 +60,16 @@ You grant Send Koro a non-exclusive, royalty-free license to use your name, logo
 
 ## 11. Term and termination
 
-This Agreement continues until ended. You may close a location or your account with 30 days’ notice in the portal; the plan for the current month remains due. Send Koro may suspend a location for safety, legal or payment reasons, or end this Agreement with 30 days’ notice, or immediately for serious breach.
+This Agreement continues until ended. You may close a location or your account with 30 days’ notice in the portal; the plan for the current month remains due. Send Koro may suspend a location for safety, legal or payment reasons (an unpaid plan deactivates locations automatically as described under Fees), end this Agreement with 30 days’ notice, or end it immediately for serious breach, fraud or a plan that remains unpaid for 60 days. Amounts owed before the end remain due.
 
 ## 12. Liability and indemnity
 
-Each party is responsible for its own acts. You indemnify Send Koro for claims arising from the food you prepare and sell, your taxes, and your breach of this Agreement. Except for indemnities and payment obligations, each party’s liability is limited to the plan fees paid in the 12 months before the claim. [Final liability, insurance and dispute terms to be confirmed by counsel.]
+Each party is responsible for its own acts. You indemnify Send Koro for claims arising from the food you prepare and sell, your taxes, and your breach of this Agreement. Send Koro indemnifies you for claims that Send Koro’s own platform, as provided by Send Koro, infringes a third party’s intellectual property. Neither party is liable for indirect, incidental, special or consequential damages, or lost profits. Except for indemnities, your payment obligations and a party’s gross negligence or wilful misconduct, each party’s total liability is limited to the plan fees paid in the 12 months before the claim. The Services are provided “as is”, and Send Koro does not guarantee any volume of orders.
 
-## 13. General
+## 13. Disputes
 
-Governed by New York law. Send Koro may update this Agreement with 30 days’ notice for material changes. Notices: legal@sendkoro.com · [Send Koro legal entity name], [registered business address], New York, NY.
+Each party will first try to resolve a dispute in good faith by written notice and discussion for 30 days. If unresolved, the dispute will be settled by binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules, held in Brooklyn, New York or by video, before one arbitrator. Claims are brought only individually, not as a class or representative action. Either party may bring a qualifying claim in small claims court, or ask a court for an injunction to protect its intellectual property or confidential information.
+
+## 14. General
+
+Governed by the laws of the State of New York; courts in Kings County, New York have jurisdiction for any matter not subject to arbitration. Send Koro may update this Agreement with 30 days’ notice for material changes. You may not assign this Agreement without Send Koro’s consent. If any part is unenforceable, the rest remains in effect. Notices: **info@sendkoro.com** · SHL Global Consulting Inc., doing business as Send Koro, 1088 Liberty Ave, Brooklyn, NY 11208.

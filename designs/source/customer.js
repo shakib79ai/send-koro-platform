@@ -1041,7 +1041,7 @@
         <details><summary><b>Does my courier get my whole tip?</b></summary><p class="mut">Yes. 100% of your tip goes to your courier.</p></details>
         <details><summary><b>Why is there no service fee?</b></summary><p class="mut">Restaurants pay a flat monthly plan instead of commission, so we don’t add service fees.</p></details>
       </div>
-      <div class="row wrap"><button class="btn ln" data-a="toastMsg" data-msg="Support chat would open here (prototype)">Chat with us</button><button class="btn ln" data-a="toastMsg" data-msg="Email support: help@sendkoro.com">Email us</button></div></div>`;
+      <div class="row wrap"><button class="btn ln" data-a="toastMsg" data-msg="Support chat would open here (prototype)">Chat with us</button><button class="btn ln" data-a="toastMsg" data-msg="Email support: info@sendkoro.com">Email us</button></div></div>`;
   };
 
   // ---------- overlays ----------
@@ -1097,10 +1097,10 @@
     partner: ['Add your restaurant', `<p>Flat monthly plan from <b>$50</b>, <b>first month free</b>, and <b>$0 commission</b>. Food money goes straight to your own Stripe account on every order.</p><ul class="mut" style="margin:0;padding-left:18px"><li>You set your prices, tax and hours</li><li>Choose who pays delivery: customer, split, free over an amount, or you</li><li>Card processing on food is 2.9% + 30¢</li></ul><a class="btn dk" href="https://claude.ai/artifact/K9LXa63KacHGUGyWuc1HFu" target="_blank" rel="noopener">Open the restaurant portal prototype</a>`],
     restsignin: ['Restaurant sign in', `<p>Owners, managers and staff sign in to the restaurant portal with a text code. No passwords.</p><a class="btn dk" href="https://claude.ai/artifact/K9LXa63KacHGUGyWuc1HFu" target="_blank" rel="noopener">Open the restaurant portal prototype</a>`],
     courier: ['Deliver with Send Koro', `<p>See the pay for every trip before you accept it, and it never goes down after you accept.</p><ul class="mut" style="margin:0;padding-left:18px"><li>100% of every tip goes to you</li><li>No fees taken from your pay or tips</li><li>Meets New York City’s minimum pay rules for delivery workers</li><li>No subscription to drive</li></ul>`],
-    contact: ['Contact us', `<p>Chat with us in the app from 11 AM to 11 PM, or email:</p><p style="font-size:18px;font-weight:800;user-select:all">help@sendkoro.com</p><p class="mut">For a problem with an order, the Help center form is fastest.</p>`],
+    contact: ['Contact us', `<p>Chat with us in the app from 11 AM to 11 PM, or email:</p><p style="font-size:18px;font-weight:800;user-select:all">info@sendkoro.com</p><p class="mut">For a problem with an order, the Help center form is fastest.</p>`],
     apps: ['Get the app', `<p>The Send Koro app for iPhone and Android has the same restaurants, prices and order tracking as the website.</p><a class="btn dk" href="https://claude.ai/artifact/KwU9YEmqULMaFRV57DpdRW" target="_blank" rel="noopener">Open the app prototype</a>`],
     privacy: ['Privacy', `<p>We use your phone number to sign you in and your address to deliver. Card details are stored by Stripe, never by Send Koro. We don’t sell your personal information.</p><p class="mut">Prototype text. The full policy will be written with a lawyer.</p>`],
-    accessibility: ['Accessibility', `<p>Send Koro aims to meet WCAG 2.1 AA: readable contrast, keyboard access and screen-reader labels. Tell us about any barrier at help@sendkoro.com.</p>`],
+    accessibility: ['Accessibility', `<p>Send Koro aims to meet WCAG 2.1 AA: readable contrast, keyboard access and screen-reader labels. Tell us about any barrier at info@sendkoro.com.</p>`],
     terms: ['Terms', `<p>Restaurants sell you the food and set its price and tax. Send Koro runs the marketplace and arranges delivery.</p><p class="mut">Prototype text. The full terms will be written with a lawyer.</p>`],
     cookies: ['Cookie settings', `<label class="row" style="padding:8px 0"><span class="grow"><b>Needed</b><span class="mut sm-t" style="display:block">Sign-in and your cart. Always on.</span></span><span class="switch"><input type="checkbox" checked disabled aria-label="Needed cookies"></span></label><label class="row" style="padding:8px 0;border-top:1px solid var(--line)"><span class="grow"><b>Analytics</b><span class="mut sm-t" style="display:block">Helps us improve the site.</span></span><span class="switch"><input type="checkbox" aria-label="Analytics cookies"></span></label>`],
   };
@@ -1145,7 +1145,7 @@
       <span class="mut">The terms that apply when you order on Send Koro, how we handle your data, and our refund rules.</span>
       <div class="card col lg-list" style="padding:4px 16px">${LG.listHTML('customer')}</div>
       <button class="card pad row" data-a="go" data-to="privacyCenter" style="text-align:left;width:100%"><span class="grow"><b>Privacy center</b><span class="mut sm-t" style="display:block">Download your data, delete your account, marketing choices</span></span><span class="mut">›</span></button>
-      <span class="mut sm-t">Last updated ${LG.UPDATED}. Questions: legal@sendkoro.com</span></div>${PHONE ? phoneFooter() : ''}`;
+      <span class="mut sm-t">Last updated ${LG.UPDATED}. Questions: info@sendkoro.com</span></div>${PHONE ? phoneFooter() : ''}`;
   V.legalDoc = () => { const d = LG.DOCS[S.legalId] || LG.DOCS.terms;
     return `${topbar(d.title)}<div class="col" style="padding:${PHONE ? '14px 16px 24px' : 0};gap:14px;${PHONE ? '' : 'max-width:820px'}">${PHONE ? '' : `${webBack('Back')}<h1 style="font-size:32px;color:var(--ink)">${d.title}</h1>`}${LG.docHTML(S.legalId)}</div>${PHONE ? phoneFooter() : ''}`; };
   V.privacyCenter = () => { const pc = S.pc || (S.pc = { email: true, sms: false, push: true, analytics: false });

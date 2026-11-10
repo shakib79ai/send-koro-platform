@@ -1,12 +1,12 @@
 # Terms of Service
 
-_Last updated November 10, 2026 · Draft for legal review_
+_Last updated November 10, 2026 · SHL Global Consulting Inc., doing business as Send Koro_
 
 Customer terms for ordering on Send Koro.
 
 ## 1. Who we are
 
-Send Koro is an online marketplace that connects you with local restaurants and arranges delivery. Send Koro is operated by [Send Koro legal entity name], [registered business address], New York, NY (“Send Koro”, “we”, “us”). These Terms of Service (“Terms”) apply when you use the Send Koro website, progressive web app and mobile apps (the “Services”) to browse, order, pick up or receive food.
+Send Koro is an online marketplace that connects you with local restaurants and arranges delivery. Send Koro is operated by SHL Global Consulting Inc., doing business as Send Koro, 1088 Liberty Ave, Brooklyn, NY 11208 (“Send Koro”, “we”, “us”). These Terms of Service (“Terms”) apply when you use the Send Koro website, progressive web app and mobile apps (the “Services”) to browse, order, pick up or receive food.
 
 By creating an account or placing an order you agree to these Terms, the [Privacy Policy](privacy.md), the [Refund and Cancellation Policy](refunds.md) and the [Community Guidelines and Acceptable Use Policy](usage.md). If you don’t agree, please don’t use the Services.
 
@@ -92,9 +92,9 @@ To the fullest extent allowed by law, Send Koro is not liable for indirect, inci
 
 You agree to defend and indemnify Send Koro against claims arising from your misuse of the Services or your breach of these Terms, to the extent allowed by law.
 
-## 17. Disputes
+## 17. Disputes and arbitration
 
-Please contact us first; most problems are solved quickly through Help. [Dispute resolution, arbitration and class-action waiver terms to be drafted and confirmed by counsel.] These Terms are governed by the laws of the State of New York, without regard to conflict-of-law rules, except where your local law gives you rights that cannot be waived.
+**Please read this section carefully. It affects how disputes are resolved.**
 
 ## 18. Ending your account
 
@@ -106,4 +106,4 @@ We may update these Terms. If a change is material, we will tell you in the app 
 
 ## 20. Contact
 
-Questions about these Terms: **legal@sendkoro.com** · [Send Koro legal entity name], [registered business address], New York, NY. Order help: in the app under Help, or **help@sendkoro.com**.
+SHL Global Consulting Inc., doing business as Send Koro1088 Liberty Ave, Brooklyn, NY 11208Email: **info@sendkoro.com**Order help is fastest in the app under Help.

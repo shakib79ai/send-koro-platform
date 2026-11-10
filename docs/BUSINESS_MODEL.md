@@ -32,6 +32,7 @@ This is the source of truth for product and money rules. Where it differs from `
   - The first month is free.
   - Zero or negative months pay the lowest plan.
   - **Each location has its own plan**, from that location's own net food sales (5 Nov 2026; replaces "one plan covers all locations"). All locations are billed together on one invoice, one line each.
+  - **Unpaid plan → automatic deactivation (10 Nov 2026).** Failed plan payments are retried automatically (4 tries over about 2 weeks) and the restaurant is emailed each time. If the invoice is still unpaid after the last retry, every location on that invoice is **deactivated automatically**: no new orders, hidden from customers; orders already accepted are completed and paid out as usual. The restaurant is notified by email, text and a portal banner, and the account goes to the admin **Unpaid plans · human review** queue (Billing). Paying the invoice reactivates the locations automatically; an admin can also contact the restaurant, reactivate, or keep it deactivated. A plan unpaid for 60 days may end the partner agreement. Food payouts are never held back or reduced to collect a plan.
   - A new location's first month is free; locations that aren't live yet aren't billed (5 Nov 2026, proposed in the prototype; confirm).
   - **Each location may use its own connected Stripe account** or the account's main one (5 Nov 2026). Direct charges for a location's orders go to that location's account.
   - Billed on the 1st at 12:00 ET, with no proration.
@@ -118,8 +119,8 @@ The customer always sees a single line, **"Delivery fee"**, then any "Free deliv
 - **Driver onboarding, minimum requirements only** (7 Nov 2026, designed in the driver app prototype; backend to follow):
   - **Applying:**
     - Legal name, email, date of birth (18+).
-    - Vehicle: bike, e-bike (UL-certified, required in NYC), moped or car. Mopeds and cars also need a driver's license with its expiry, insurance that covers delivery, and a plate.
-    - Photo ID, plus license and insurance photos for mopeds and cars.
+    - Vehicle: bike, e-bike (UL-certified, required in NYC), moped or car. Mopeds and cars also need a driver's license with its expiry, vehicle registration and a plate.
+    - Photo ID, plus license and registration photos for mopeds and cars.
     - Independent contractor agreement.
     - Background check disclosure and authorization (FCRA), covering identity, SSN trace and, for mopeds and cars, the driving record.
     - Stripe account. Stripe verifies identity and bank and collects tax details like a W-9.
@@ -132,7 +133,7 @@ The customer always sees a single line, **"Delivery fee"**, then any "Free deliv
     - Restroom access is shown at pickup.
     - The Notice of Rights page sits under Account.
   - **Taxes:** Send Koro is the payer and issues a **1099-NEC** to each driver paid $2,000 or more in the year (2026 threshold). It covers locked pay, tips and NYC top-ups and is filed through Stripe's 1099 product. Stripe doesn't issue 1099-Ks to drivers, because they take no card payments.
-  - **To confirm with counsel and a broker:** contractor classification in NY (Matter of Vega, 2020), and insurance (occupational accident cover, contingent auto liability, general liability).
+  - **Insurance (10 Nov 2026):** Send Koro provides no insurance for its own drivers or third-party couriers for now, and the apps and legal documents say nothing about insurance. Revisit later.
 
 ## Processing fees on delivery money (3 Nov 2026)
 
@@ -190,6 +191,11 @@ The customer always sees a single line, **"Delivery fee"**, then any "Free deliv
 - **Note:** driver money reaches the driver's Stripe balance after each delivery (one transfer per order), and NYC top-ups on Monday; Stripe then pays the bank on the account's own payout schedule. "Weekly on Mondays" below describes top-ups, not a forced payout schedule, because platforms can't set the schedule on full-Dashboard accounts.
 
 Platform account from the brief: `acct_1UVa9IQzpvBKCndf`. Support contact info@shlglobal.biz, +1 917-624-8233. Website https://sendkoro.com.
+
+## Company and legal (10 Nov 2026)
+
+- Send Koro is a DBA of **SHL Global Consulting Inc.**, 1088 Liberty Ave, Brooklyn, NY 11208. One contact email everywhere: **info@sendkoro.com**.
+- The legal documents in every app are final (no attorney review step): Terms of Service, Privacy Policy, Refund and Cancellation Policy, Community Guidelines, Text Message Terms, Restaurant Partner Agreement, Courier Agreement. Disputes: informal resolution first, then individual AAA arbitration, small-claims option, class-action waiver, 30-day opt-out, New York law. Source: `designs/source/legal.js`; Markdown copies in `docs/legal/`.
 
 ## Open decisions
 
