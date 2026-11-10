@@ -1231,6 +1231,92 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 .m2-bar .m2-search{flex:1 1 220px}
 .cx.navy .m2-bulk .btn.gh{color:#FFFFFF!important;text-decoration-color:#E3242B}
 .cx.navy .btn.gh.m2-iconbtn:disabled{opacity:.35}
+/* ---- restaurant learning center ---- */
+.lc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));background:#FFFFFF;border-bottom:1px solid #DCE5EF;position:sticky;top:0;z-index:6}
+.lc-brand{display:flex;align-items:center;gap:8px;border:0;background:none;padding:0;font-size:19px;color:#0E1E33;font-weight:800}
+.cx.navy .lc-brand .sk-name{color:#0B3B6E}
+.lc-tabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:#EEF3F8;overflow-x:auto;max-width:100%}
+.lc-tabs button{flex:none;height:36px;padding:0 12px;border:0;border-radius:9px;background:transparent;font-weight:800;font-size:14px;color:#0E1E33;white-space:nowrap}
+.lc-tabs button.on{background:#0B3B6E;color:#FFFFFF}
+.lc-page{max-width:1080px;margin:0 auto;width:100%;padding-block:8px 32px;padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+.web .lc-page>.col,.web .lc-page{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.web .lc-page{display:flex;flex-direction:column;gap:16px;background:#EEF3F8}
+.web:has(.lc-page){background:#EEF3F8;min-height:100vh}
+.lc-hero{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:18px;background:#0B3B6E;color:#FFFFFF}
+.lc-hero h1{font-family:var(--serif);font-size:clamp(24px,4vw,36px);line-height:1.15;margin:0;color:#FFFFFF;text-wrap:balance}
+.lc-hero p{margin:0;color:#DCE5EF;max-width:62ch}
+.lc-kick{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#E3242B}
+.lc-hero .lc-kick{color:#FFFFFF;background:#E3242B;align-self:flex-start;padding:4px 10px;border-radius:999px}
+.lc-prog{height:8px;border-radius:99px;background:#082D55;overflow:hidden;max-width:420px}.lc-prog i{display:block;height:100%;background:#E3242B;border-radius:99px}
+.lc-search{max-width:560px;border-color:#FFFFFF}
+.lc-h2{font-family:var(--serif);font-size:20px;margin:6px 0 0;color:#0E1E33}
+.lc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.lc-card{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:start;text-align:left;padding:12px;border-radius:14px;border:1px solid #DCE5EF;background:#FFFFFF;cursor:pointer;color:#0E1E33}
+.lc-card:hover{border-color:#C9D6E4;box-shadow:0 6px 18px -10px rgba(14,30,51,.35)}
+.lc-thumb{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;border-radius:10px;background:linear-gradient(135deg,#0B3B6E,#082D55)}
+.lc-thumb svg{background:#E3242B;border-radius:99px;padding:8px;box-sizing:content-box}
+.lc-thumb i{position:absolute;right:6px;bottom:6px;font-style:normal;font-size:11px;font-weight:800;color:#FFFFFF;background:rgba(14,30,51,.7);padding:1px 6px;border-radius:6px}
+.lc-ct{display:flex;flex-direction:column;gap:4px;min-width:0}.lc-ct b{font-size:15.5px}
+.lc-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;font-weight:700;color:#5B6B80}
+.lc-lesson{display:flex;flex-direction:column;gap:14px;max-width:860px;width:100%}
+.lc-title{font-family:var(--serif);font-size:clamp(24px,4vw,34px);margin:0;color:#0E1E33;text-wrap:balance}
+.lc-art{background:#FFFFFF;border:1px solid #DCE5EF;border-radius:16px;padding:18px 20px;line-height:1.6;color:#0E1E33;max-width:100%}
+.lc-art h2{font-size:18px;margin:16px 0 6px;font-family:var(--sans)}.lc-art h2:first-child{margin-top:0}
+.lc-art ul,.lc-art ol{margin:0;padding-left:22px}.lc-art li{margin:4px 0}
+.lc-art details{margin-top:16px;border-top:1px solid #DCE5EF;padding-top:10px}.lc-art summary{cursor:pointer;font-weight:800}
+.lc-tbl{display:flex;flex-direction:column;border:1px solid #DCE5EF;border-radius:12px;overflow:hidden;margin:6px 0 10px;max-width:520px}
+.lc-tbl>div{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;border-top:1px solid #DCE5EF;font-size:14.5px}.lc-tbl>div:first-child{border-top:0}
+.lc-tbl>div.tot{background:#EAF1F8;font-weight:800}
+.lc-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lc-navb{display:flex;flex-direction:column;gap:2px;text-align:left;padding:12px;border-radius:12px;border:1px solid #DCE5EF;background:#FFFFFF;color:#0E1E33;min-width:0}.lc-navb.r{text-align:right;grid-column:2}
+/* video player */
+.vp{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#082D55;box-shadow:0 14px 36px -18px rgba(8,45,85,.7)}
+.vp-screen{position:relative;aspect-ratio:16/9;container-type:inline-size;cursor:pointer;background:radial-gradient(120% 90% at 20% 10%,#0B3B6E 0%,#082D55 70%);overflow:hidden}
+.vp-scene{position:absolute;inset:0;padding:5cqw 6cqw 11cqw;display:flex;flex-direction:column;gap:2cqw;color:#FFFFFF;opacity:0;visibility:hidden;transition:opacity .35s}
+.vp-scene.on{opacity:1;visibility:visible}
+.vp-in{opacity:0}
+.vp-scene.on .vp-in{animation:vpUp .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+@keyframes vpUp{from{opacity:0;transform:translateY(2.4cqw)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.vp-scene.on .vp-in{animation:none;opacity:1}}
+.vp-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;gap:1.6cqw}
+.vp-center h3{font-family:var(--serif);font-size:6cqw;line-height:1.1;margin:0;color:#FFFFFF}
+.vp-center p{font-size:2.6cqw;margin:0;color:#DCE5EF;font-weight:700}
+.vp-logo{width:11cqw;height:11cqw}
+.vp-scene h4{font-family:var(--serif);font-size:4.4cqw;margin:0;color:#FFFFFF}
+.vp-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.3cqw}
+.vp-steps li{display:flex;align-items:center;gap:1.8cqw;font-size:2.7cqw;font-weight:700}
+.vp-steps b{flex:none;width:4.4cqw;height:4.4cqw;border-radius:99px;background:#E3242B;display:flex;align-items:center;justify-content:center;font-size:2.4cqw}
+.vp-receipt{background:#FFFFFF;color:#0E1E33;border-radius:2cqw;padding:1.2cqw 2.4cqw;display:flex;flex-direction:column;max-width:68cqw}
+.vp-row{display:flex;justify-content:space-between;gap:3cqw;padding:1cqw 0;border-top:1px solid #DCE5EF;font-size:2.6cqw}.vp-row:first-child{border-top:0}
+.vp-row.tot{font-weight:800;color:#0B3B6E;font-size:3cqw}.vp-row.tot b{color:#E3242B}
+.vp-note{font-size:2.3cqw;margin:0;color:#DCE5EF;font-weight:700}
+.vp-flow{display:flex;align-items:stretch;gap:1.6cqw;margin-top:2cqw}
+.vp-node{flex:1;display:flex;flex-direction:column;gap:.8cqw;padding:2.2cqw;border-radius:2cqw;background:#FFFFFF;color:#0E1E33;min-width:0}
+.vp-node b{font-size:2.8cqw;color:#0B3B6E}.vp-node span{font-size:2.2cqw;color:#5B6B80;font-weight:700}
+.vp-arrow{align-self:center;font-size:4cqw;color:#E3242B;font-weight:900}
+.vp-split{display:grid;grid-template-columns:38cqw 1fr;gap:4cqw;align-items:center;height:100%}
+.vp-phone{background:#FFFFFF;color:#0E1E33;border-radius:3cqw;padding:1.4cqw;border:1cqw solid #0E1E33;display:flex;flex-direction:column;gap:.8cqw}
+.vp-ph-bar{background:#0B3B6E;color:#FFFFFF;font-weight:800;font-size:2.2cqw;padding:1.2cqw 1.6cqw;border-radius:1.6cqw}
+.vp-ui{display:flex;justify-content:space-between;gap:1.4cqw;padding:1.1cqw 1.4cqw;border-radius:1.4cqw;background:#EEF3F8;font-size:1.9cqw}.vp-ui b{text-align:right}
+.vp-ui.hl{background:#FFFFFF;box-shadow:0 0 0 .45cqw #E3242B}
+.vp-ph-btn{background:#E3242B;color:#FFFFFF;text-align:center;font-weight:800;font-size:2.2cqw;padding:1.3cqw;border-radius:99px}
+.vp-side p{font-size:2.6cqw;color:#DCE5EF;font-weight:700;margin:1cqw 0 0}
+.vp-cap{position:absolute;left:4cqw;right:4cqw;bottom:2.6cqw;background:rgba(14,30,51,.86);color:#FFFFFF;font-size:max(12px,2.3cqw);font-weight:700;line-height:1.35;padding:1.2cqw 2cqw;border-radius:1.6cqw;text-align:center}
+.vp-cap.off{display:none}
+.vp-big{position:absolute;inset:0;margin:auto;width:84px;height:84px;border-radius:99px;border:0;background:#E3242B;box-shadow:0 10px 30px rgba(8,45,85,.6);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.vp-len{position:absolute;right:12px;top:12px;background:rgba(14,30,51,.8);color:#FFFFFF;font-weight:800;font-size:12px;padding:3px 8px;border-radius:8px}
+.vp-ctrl{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#0E1E33;color:#FFFFFF;flex-wrap:nowrap}
+.vp-b{flex:none;width:36px;height:36px;border-radius:9px;border:0;background:transparent;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;cursor:pointer}
+.vp-b:hover{background:#082D55}.vp-t{border:1.5px solid #5B6B80}.vp-t.on{background:#E3242B;border-color:#E3242B}
+.vp-segs{flex:1;display:flex;gap:3px;min-width:40px}
+.vp-seg{height:8px;border:0;padding:0;border-radius:99px;background:#5B6B80;overflow:hidden;cursor:pointer;min-width:6px}.vp-seg i{display:block;height:100%;background:#E3242B}
+.vp-time{flex:none;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;color:#DCE5EF}
+@media (max-width:480px){.vp-time{display:none}.lc-card{grid-template-columns:92px minmax(0,1fr)}.lc-hero{padding:18px}.lc-art{padding:16px}.vp-b{width:32px}}
+.cx.navy .lc-top{background:#FFFFFF!important;color:#0E1E33!important}
+.cx.navy .lc-hero h1{color:#FFFFFF!important}.cx.navy .lc-hero p{color:#DCE5EF!important}
+.cx.navy .lc-brand .sk-name .k{color:#E3242B}
+.cx.navy .vp-scene h4,.cx.navy .vp-center h3{color:#FFFFFF!important}
+.vp-logo .mk-r,.vp-logo .mk-t{stroke:#FFFFFF!important}.vp-logo .mk-f{fill:#FFFFFF!important}.vp-logo .mk-a{stroke:#E3242B!important}.vp-logo .mk-h{fill:#E3242B!important;stroke:#E3242B!important}
 
 </style>
 <div id="app"></div>
@@ -1314,6 +1400,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   };
   S.branches.forEach((b) => { b.week = S.week.map((d) => [...d]); });
   const M2MODAL = {};
+  Object.assign(S, { learnDone: {}, learnQ: '', learnTrack: 'all', lessonId: 'start' });
   const bIdx = () => Math.max(0, S.branches.findIndex((b) => b.id === S.branchId));
   const B = () => S.branches[bIdx()];
   const tax = (food) => Math.round((food * Math.round((parseFloat(B().taxRate) || 0) * 1000)) / 100000);
@@ -1388,8 +1475,8 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   // ---------- roles ----------
   const ACCESS = {
     owner: null,
-    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'settings', 'more', 'noAccess'],
-    staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'more', 'noAccess'],
+    manager: ['overview', 'home', 'orders', 'newOrder', 'orderDetail', 'history', 'menu', 'editItem', 'cats', 'mods', 'editGroup', 'menus', 'promos', 'editPromo', 'hours', 'notifications', 'help', 'learn', 'lesson', 'settings', 'more', 'noAccess'],
+    staff: ['orders', 'newOrder', 'orderDetail', 'notifications', 'help', 'learn', 'lesson', 'more', 'noAccess'],
   };
   const can = (s) => !ACCESS[S.role] || ACCESS[S.role].includes(s);
   const ROLE = { owner: 'Owner', manager: 'Manager', staff: 'Staff' };
@@ -1470,7 +1557,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     <h1 style="font-size:26px;color:var(--ink)">${S.codeSent ? 'Enter your code' : 'Sign in to your restaurant'}</h1>
     <p class="mut" style="margin:0">${S.codeSent ? `We texted a 6-digit code to ${esc(S.phone)}. <b>Prototype: any 6 digits work.</b>` : 'Owners, managers and staff sign in with a text code. No passwords.'}</p>
     ${S.codeSent ? `<label class="f">6-digit code<input class="in" id="r-code" data-m="code" inputmode="numeric" maxlength="6" value="${esc(S.code)}" style="font-size:22px;letter-spacing:.4em;text-align:center;font-weight:800"></label><button class="btn" data-a="verify">Sign in</button><button class="btn gh" data-a="changePhone">Use a different number</button>` : `<label class="f">Mobile number<input class="in" id="r-phone" data-m="phone" inputmode="tel" placeholder="(718) 555-0100" value="${esc(S.phone)}"></label><button class="btn" data-a="sendCode">Text me a code</button>`}
-    <div class="note n-g row wrap" style="gap:8px"><span class="grow"><b>New to Send Koro?</b> List your restaurant: $0 commission, first month free.</span><button class="btn sm" data-a="toSignup">Create account</button></div></div></div>`;
+    <div class="note n-g row wrap" style="gap:8px"><span class="grow"><b>New to Send Koro?</b> List your restaurant: $0 commission, first month free.</span><button class="btn sm" data-a="toSignup">Create account</button></div><button class="btn ln" data-a="lcTab" data-to="learn" style="white-space:normal;line-height:1.25;padding-block:10px">How Send Koro works: Learning center</button></div></div>`;
 
   V.overview = V.home = () => {
     const L = ledgerCalc(LEDGER.oct);
@@ -1909,7 +1996,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       ['Orders', PHONE ? [['history', 'Order history', 'Search past orders'], ['newOrder', 'New order screen', 'Full-screen alert for new orders']] : []],
       ['Money', PHONE ? [['earnings', 'Earnings', 'Net sales and order money'], ['payouts', 'Payouts', 'Weekly payouts to your bank'], ['stripe', 'Stripe', 'Balance, payments, payouts, statements, bank'], ['subscription', 'Subscription', 'A plan for each location, from its own sales']] : []],
       ['Store', [['setup', 'Store setup', S.branches.every((b) => b.status === 'live') ? 'All locations live ✓' : 'Finish setup for ' + S.branches.filter((b) => b.status !== 'live').map((b) => b.name).join(', ')], ['locations', 'Locations', S.branches.length + ' branches'], ['profile', 'Store profile', 'Name, photos, cuisines, extra charges'], ['hours', 'Hours', 'Weekly hours and closures'], ['team', 'Team and roles', `${S.team.length} people`], ['delivery', 'Delivery fee', 'Who pays the delivery fee'], ['tax', 'Sales tax', `${B().taxRate || '—'}% · you file and pay it`], ['legal', 'Licenses and legal', 'Permits, certificates, business details'], ['notifications', 'Notifications', 'Sounds, texts and emails']]],
-      ['Support', [['help', 'Help', 'Contact the Send Koro team']]],
+      ['Support', [['learn', 'Learning center', 'Short videos and guides for every part of Send Koro'], ['help', 'Help', 'Contact the Send Koro team']]],
     ];
     return `${head(PHONE ? 'More' : 'Settings', S.profile.name)}${body(`
       ${groups.map(([g, ls]) => { const inner = ls.map((x) => link(...x)).join(''); return inner ? `<b class="mut sm-t" style="letter-spacing:.08em;text-transform:uppercase">${g}</b><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(${PHONE ? 260 : 300}px,1fr));gap:10px">${inner}</div>` : ''; }).join('')}
@@ -1919,6 +2006,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   V.help = () => {
     const h = S.help;
     return `${head('Help', 'Send Koro restaurant support')}${body(narrow(`
+      <button class="card pad row" data-a="go" data-to="learn" style="text-align:left;width:100%"><span class="grow"><b>Learning center</b><span class="mut sm-t" style="display:block">Short videos and guides: setup, menu, orders, delivery fees, refunds, payouts and your plan.</span></span><span class="mut">›</span></button>
       ${h.sent.map((s) => `<div class="note n-g"><b>Request ${s.id} received.</b> ${esc(s.topic)}${s.order ? ' · ' + esc(s.order) : ''} · we reply by text within 1 hour, 11 AM–11 PM.</div>`).join('')}
       <div class="card pad col"><b style="font-size:17px">Contact us</b>
         <label class="f">Topic<select class="in" id="h-topic" data-m="help.topic">${[['order', 'A live order'], ['money', 'Payouts or earnings'], ['menu', 'Menu or photos'], ['delivery', 'Delivery or courier'], ['other', 'Something else']].map(([k, l]) => `<option value="${k}" ${h.topic === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
@@ -2267,8 +2355,8 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   }
 
   // ---------- frame ----------
-  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]]];
-  const PARENT = { branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
+  const NAV = [['Run', [['overview', 'Overview'], ['orders', 'Live orders'], ['history', 'Order history'], ['menu', 'Menu'], ['promos', 'Promotions']]], ['Money', [['earnings', 'Earnings'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription']]], ['Store', [['setup', 'Store setup'], ['locations', 'Locations'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['settings', 'All settings']]], ['Learn', [['learn', 'Learning center']]]];
+  const PARENT = { lesson: 'learn', branchEdit: 'locations', editItem: 'menu', cats: 'menu', mods: 'menu', editGroup: 'menu', menus: 'menu', editPromo: 'promos', orderMoney: 'earnings', orderDetail: 'orders', newOrder: 'orders', notifications: 'settings', help: 'settings' };
   function sidebar() {
     const cur = PARENT[S.screen] || S.screen;
     const nNew = S.orders.filter((o) => o.status === 'new').length;
@@ -2301,21 +2389,22 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     return `<nav aria-label="Main" style="flex:none;height:72px;padding:6px 6px 12px;background:var(--g);display:grid;grid-template-columns:repeat(${T.length},1fr)">${T.map(([k, l]) => `<button data-a="tab" data-to="${k}" aria-current="${cur === k ? 'page' : 'false'}" style="position:relative;border:0;background:transparent;font-size:13px;font-weight:800;color:${cur === k ? '#FCE910' : '#C9D3CD'}">${l}${k === 'orders' && nNew ? `<span style="position:absolute;top:6px;right:22%;min-width:18px;height:18px;border-radius:99px;background:#FF7A2E;color:var(--ink);font-size:11px;display:flex;align-items:center;justify-content:center">${nNew}</span>` : ''}</button>`).join('')}</nav>`;
   }
   const PAGES = PHONE
-    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
-    : [['signin', 'Sign in'], ['signup', 'Create account'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
+    ? [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['setup', 'Store setup'], ['home', 'Home'], ['newOrder', 'New order'], ['orders', 'Live orders'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['more', 'More'], ['help', 'Help']]
+    : [['signin', 'Sign in'], ['signup', 'Create account'], ['learn', 'Learning center'], ['lesson', 'Lesson video'], ['overview', 'Overview'], ['orders', 'Live orders'], ['newOrder', 'New order'], ['orderDetail', 'Order details'], ['history', 'Order history'], ['menu', 'Menu'], ['editItem', 'Edit item'], ['cats', 'Categories'], ['mods', 'Option groups'], ['editGroup', 'Edit option group'], ['menus', 'Menus and hours'], ['promos', 'Promotions'], ['editPromo', 'Create promotion'], ['earnings', 'Earnings'], ['orderMoney', 'Order money'], ['payouts', 'Payouts'], ['stripe', 'Stripe'], ['subscription', 'Subscription'], ['setup', 'Store setup'], ['locations', 'Locations'], ['branchEdit', 'Edit location'], ['profile', 'Store profile'], ['hours', 'Hours'], ['team', 'Team'], ['delivery', 'Delivery fee'], ['tax', 'Sales tax'], ['legal', 'Licenses and legal'], ['notifications', 'Notifications'], ['settings', 'All settings'], ['help', 'Help']];
   function pagesBar() {
     return `<nav class="pages" aria-label="Open a page"><span class="pages-l">Open a page</span>${PAGES.map(([k, l], i) => `<button data-a="page" data-k="${k}" class="${S.screen === k ? 'on' : ''}" aria-current="${S.screen === k ? 'page' : 'false'}">${i + 1}. ${l}</button>`).join('')}</nav>`;
   }
 
   let lastScreen;
   function render(top) {
-    const content = (V[S.screen] || V.home)();
+    const content = (!S.signedIn && ['signin', 'signup', 'learn', 'lesson'].includes(S.screen) ? pubHead(S.screen) : '') + (V[S.screen] || V.home)();
     const scr = root.querySelector('.scr');
     const keep = !top && lastScreen === S.screen && scr ? scr.scrollTop : 0;
     const winKeep = !top && lastScreen === S.screen ? window.scrollY : 0;
     const act = document.activeElement && document.activeElement.id; let caret = null; try { caret = act ? document.activeElement.selectionStart : null; } catch (e) { caret = null; }
     const ov = modal() + (S.toast ? `<div class="toast" role="status">${esc(S.toast)}</div>` : '');
-    const signin = S.screen === 'signin' || S.screen === 'signup';
+    const pub = !S.signedIn && ['signin', 'signup', 'learn', 'lesson'].includes(S.screen);
+    const signin = S.screen === 'signin' || S.screen === 'signup' || pub;
     if (PHONE) root.innerHTML = `<div class="stage">${pagesBar()}<div class="device"><div class="scr">${content}</div>${signin ? '' : tabBar()}${ov}</div><p class="stage-note">${esc(M.note || '')}</p></div>`;
     else if (signin) root.innerHTML = `<div class="web">${pagesBar()}${content}${ov}</div>`;
     else root.innerHTML = `<div class="web rw-shell" style="display:flex;min-height:100vh;background:var(--bg)">${sidebar()}<div class="col grow" style="min-width:0;gap:0"><div class="demo"><b>Prototype.</b> Pretend data, no real orders or payments. Try “Simulate new order”.</div>${pagesBar()}<main class="scr col" style="padding:24px max(16px,env(safe-area-inset-right,0px)) 0 24px;gap:18px;overflow:visible;flex:1">${content}${webFooter()}</main></div>${ov}</div>`;
@@ -2577,7 +2666,8 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
   function setHash(k) { try { history.replaceState(null, '', '#' + hashOf(k)); } catch (e) { try { location.hash = hashOf(k); } catch (e2) { /* ignore */ } } }
   function openPage(k) {
     S.modal = null; S.stack = [];
-    if (k !== 'signin' && k !== 'signup') S.signedIn = true;
+    if (k !== 'signin' && k !== 'signup' && k !== 'learn' && k !== 'lesson') S.signedIn = true;
+    if (k === 'learn' || k === 'lesson') { S.signedIn = false; S.learnQ = ''; S.learnTrack = 'all'; if (k === 'lesson') S.lessonId = 'delivery'; }
     if (['overview', 'home'].includes(k)) S.branchId = (S.branches.find((b) => b.status === 'live') || S.branches[0]).id;
     if (!can(k)) S.role = 'owner';
     if ((k === 'orders' || k === 'newOrder') && !S.orders.some((o) => o.status === 'new')) S.orders.unshift(mkOrder(FIRST[firstIdx++ % FIRST.length], 0));
@@ -3225,6 +3315,275 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
       const ng = item.mods.length; toast(`Saved “${item.name}” · ${sizes ? `${sizes.length} sizes from ${money(Math.min(...sizes.map((s) => s.p)))}` : money(cents)}${ng ? ` · ${ng} option group${ng > 1 ? 's' : ''}` : ''}.`); back();
     },
     delItem: () => { const it = itemById(S.edit.id); const s = S.menu[catOf(it)]; s.items.splice(s.items.indexOf(it), 1); toast(`Deleted “${it.name}”.`); back(); },
+  });
+
+  // ================= Learning center (public on the welcome page, also inside the portal) =================
+  // Each lesson = a short animated video (scenes + captions + optional voice) and an article.
+  const LTRACKS = [['start', 'Get started'], ['menu', 'Menu and prices'], ['orders', 'Orders and delivery'], ['money', 'Money']];
+  const T = (h, sub, cap) => ({ k: 'title', h, sub, cap });
+  const ST = (h, items, cap) => ({ k: 'steps', h, items, cap });
+  const MO = (h, rows, cap, note) => ({ k: 'money', h, rows, cap, note });
+  const FL = (h, nodes, cap) => ({ k: 'flow', h, nodes, cap });
+  const PH = (h, sub, title, ui, cap, btn) => ({ k: 'phone', h, sub, title, ui, cap, btn });
+  const ul = (a) => `<ul>${a.map((x) => `<li>${x}</li>`).join('')}</ul>`;
+  const ol = (a) => `<ol>${a.map((x) => `<li>${x}</li>`).join('')}</ol>`;
+  const tbl = (rows) => `<div class="lc-tbl">${rows.map((r) => `<div class="${r[2] ? 'tot' : ''}"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div>`;
+  const LESSONS = [
+    { id: 'start', t: 'start', title: 'How to get started', sum: 'From sign-up to your first order in about a day.', go: 'setup', scenes: [
+      T('Welcome to Send Koro', '$0 commission · a flat monthly plan · first month free', 'Welcome to Send Koro. You keep your food sales, pay no commission, and your first month is free.'),
+      ST('Create your account', ['Your name, mobile and email', 'Verify the 6-digit text code', 'Restaurant name, address, cuisines', 'Accept the partner agreement'], 'Create your account in four short steps. You sign in with a text code, so there are no passwords.'),
+      ST('Finish store setup', ['Business details and licenses', 'Sales tax rate', 'Menu (at least 5 items)', 'Opening hours', 'Delivery fee rule', 'Connect Stripe for payouts'], 'Then finish the store setup checklist. Each item has a short guide in this learning center.'),
+      FL('Go live', [['Setup done', 'All green'], ['We review', 'Usually within 1 business day'], ['You’re live', 'Orders start coming in']], 'When every item is green, we review your permit and turn your store on. Then the orders start coming in.'),
+    ], body: [
+      ['What you need', ul(['A mobile phone for sign-in codes and order alerts.', 'Your food service permit for each location (in NYC, the Health Department permit).', 'Your federal EIN and your New York sales tax ID (Certificate of Authority).', 'A bank account and the owner’s ID, which Stripe checks when you connect payouts.', 'Your menu with prices. Photos help but can be added later.'])],
+      ['Steps', ol(['Tap <b>Create account</b>, enter your name, mobile and email, and verify the 6-digit code.', 'Add your restaurant name, address and up to 3 cuisines, then accept the partner agreement.', 'Open <b>Store setup</b> and complete each item: business details, licenses, sales tax, menu, hours, delivery fee rule and payouts (Stripe).', 'When every item is green, Send Koro reviews your food permit and turns your store live.'])],
+      ['Good to know', ul(['Your first month is free. After that each location pays a flat plan based on its last month’s food sales.', 'Send Koro takes <b>$0 commission</b>. You pay only card processing on your part of each order and any delivery help you choose to give.', 'Owners, managers and staff each sign in with their own phone. Add them under <b>Team</b>.'])],
+    ] },
+    { id: 'licenses', t: 'start', title: 'Licenses you need', sum: 'Only the minimum we need to list you, and what Stripe checks.', go: 'legal', scenes: [
+      T('Licenses and legal', 'Only the minimum we need to list you', 'Here is the short list of documents Send Koro asks for before your store goes live.'),
+      ST('What we ask for', ['Business details: legal name, DBA, entity, EIN, owner', 'Food permit for each location (number, expiry, photo or PDF)', 'Sales tax ID for each location (number only)', 'Your confirmations: other state licenses, food safety, agreement'], 'Business details once, then a food permit and a sales tax ID for each location, plus a few confirmations.'),
+      FL('Who checks what', [['Send Koro', 'Food permit for each location'], ['Stripe', 'Owner’s ID and bank account'], ['You', 'Keep everything current']], 'Send Koro checks the food permit. Stripe checks the owner’s identity and bank. You keep everything up to date.'),
+    ], body: [
+      ['What Send Koro asks for', ol(['<b>Business details</b> (whole business): legal name, doing-business-as name, entity type, federal EIN and the owner or authorized person.', '<b>Food permit for each location</b>: permit number, expiry date and a photo or PDF. In New York City this is the Health Department (DOHMH) Food Service Establishment permit. This is the one document we review.', '<b>Sales tax ID for each location</b>: in New York, the Certificate of Authority number from the Department of Taxation and Finance. Just the number.', '<b>Your confirmations</b>: other licenses your state requires (for example a food protection certificate holder on site), food safety, and the partner agreement.'])],
+      ['Good to know', ul(['There is no VAT in the US. The closest thing is your sales tax ID.', 'Stripe asks for the owner’s ID and bank details when you connect payouts. Send Koro never sees your full bank number.', 'When a permit is close to expiring, we remind you to upload the new one. An expired permit pauses that location.', 'Open <b>Licenses and legal</b> to see the exact list for each location’s city or state.'])],
+    ] },
+    { id: 'setup', t: 'start', title: 'Store setup', sum: 'Profile, photos, hours, prep time, team and alerts.', go: 'profile', scenes: [
+      PH('Your store profile', 'What customers see first', 'Store profile', [['Name', 'Brooklyn Bowl Co.'], ['Cuisines', 'Bowls · Salads · Halal', 1], ['Cover photo', 'Uploaded'], ['About', 'Fresh grain bowls…']], 'Start with your store profile: name, cover photo, up to three cuisines and a short description.'),
+      PH('Hours and prep time', 'When you take orders', 'Hours', [['Mon–Thu', '11:00 AM – 10:00 PM'], ['Fri–Sat', '11:00 AM – 11:30 PM'], ['Closures', 'Thanksgiving', 1], ['Prep time', '20 min']], 'Set your weekly hours, add holiday closures, and choose your usual prep time.'),
+      ST('Team and alerts', ['Owner: everything, including money', 'Manager: orders, menu, hours', 'Staff: live orders only', 'Turn on order sounds, texts and emails'], 'Invite your team with the right role, and turn on order alerts so you never miss an order.'),
+    ], body: [
+      ['Steps', ol(['<b>Store profile</b>: name, cover photo (wide, real food), up to 3 cuisines (the first is your main one), a short description, and extra charges if you use them (service charge or packaging fee, always shown to customers before they pay).', '<b>Hours</b>: weekly hours for each location, plus closures for holidays. Customers can’t order while you’re closed.', '<b>Prep time</b>: your usual time to get an order ready. You can change it for each order when you accept.', '<b>Team</b>: invite people by phone. Owners see everything, managers run orders, menu and hours, staff see live orders.', '<b>Notifications</b>: order sounds that repeat until you answer, plus texts and emails.'])],
+      ['Good to know', ul(['Delivery areas are set by Send Koro for each neighborhood, so there’s nothing to draw. You control Open/Close, hours, prep time and “Accepting orders”.', 'Busy? Use <b>Close store</b> or slow down prep time instead of letting orders time out.'])],
+    ] },
+    { id: 'branches', t: 'start', title: 'Locations (branches)', sum: 'Run several locations with their own hours, prices, tax and plan.', go: 'locations', scenes: [
+      FL('One account, many locations', [['Park Slope', 'Live'], ['Williamsburg', 'Setting up'], ['+ Add location', '']], 'One account can run many locations. Each one is set up and goes live on its own.'),
+      ST('What each location has', ['Its own address, phone and hours', 'Its own sales tax rate and permit', 'Its own prices and sold-out items (optional)', 'Its own monthly plan, from its own sales', 'Its own Stripe account (optional)'], 'Each location has its own hours, tax rate, permit and plan, and can have its own prices and its own Stripe account.'),
+    ], body: [
+      ['Steps', ol(['Open <b>Locations</b> and tap <b>Add location</b>.', 'Enter the address, phone and cuisines. The sales tax rate is suggested from the address.', 'Finish that location’s checklist in <b>Store setup</b>: permit, sales tax ID, hours, delivery fee rule and payouts.', 'Choose whether its money goes to your main Stripe account or the location’s own Stripe account.'])],
+      ['Good to know', ul(['A new location’s first month is free, and a location that isn’t live yet isn’t billed.', 'All locations are billed on one invoice, with one line each.', 'On the Menu page, pick a location to change prices or mark items sold out at just that location.'])],
+    ] },
+    { id: 'tax', t: 'start', title: 'Sales tax setup', sum: 'You set the rate, collect it with each order, and file it.', go: 'tax', scenes: [
+      T('Sales tax', 'You set it · you collect it · you file it', 'Sales tax is your responsibility. Send Koro never collects, files or pays it for you.'),
+      MO('How it’s charged', [['Food after your discounts', '$30.00'], ['Sales tax 8.875%', '$2.66'], ['Goes to you with the food', '$32.66', 1]], 'Tax is charged on the food after your discounts, and it reaches your Stripe account with the food payment.', 'New York City rate: 8.875%'),
+      ST('Set it up', ['Accept “I’m responsible for sales tax”', 'Check the suggested rate for each location', 'Mark items not taxable only if your accountant agrees'], 'Accept responsibility, confirm the rate for each location, and mark items not taxable only if your accountant agrees.'),
+    ], body: [
+      ['How it works', ul(['Each location has its own rate. We suggest one from the address (NYC: 8.875%); you confirm it.', 'Tax is charged on the food price after your own discounts, and on service charges (in NY a service charge is taxable).', 'The tax goes to your Stripe account together with the food money. You report and pay it to the state.', 'Send Koro never collects, files or pays sales tax.'])],
+      ['Example', tbl([['Food after discounts', '$30.00'], ['Sales tax 8.875%', '$2.66'], ['You receive with the food', '$32.66', 1]])],
+      ['Good to know', ul(['A location with no rate charges no tax. The item editor warns you when a location has no rate.', 'A mandatory gratuity is untaxed only if it’s listed separately, labelled “gratuity”, and paid 100% to staff.', 'Your monthly statements in the Stripe tab help you file.'])],
+    ] },
+    { id: 'stripe', t: 'start', title: 'Connect Stripe', sum: 'Where your money goes, and how to set it up in minutes.', go: 'stripe', scenes: [
+      FL('Your money, your account', [['Customer pays', 'Card, Apple Pay, Google Pay'], ['Your Stripe account', 'Food + tax'], ['Your bank', 'On your payout schedule']], 'Payments go straight to your own Stripe account, then to your bank. Send Koro never holds your food money.'),
+      ST('Connect in minutes', ['Open Stripe (Store setup → Payouts)', 'Enter business and owner details', 'Add your bank account', 'Done: Stripe shows “Active”'], 'Open the Stripe setup, enter your business and owner details, add your bank, and you’re done.'),
+      PH('The Stripe tab', 'Balance, payouts, statements', 'Stripe', [['Balance', '$1,284.20'], ['Next payout', 'Tomorrow', 1], ['Bank', '•••• 6789'], ['Statements', '1099-K']], 'Afterwards, the Stripe tab shows your balance, payouts, payments, statements and tax forms.'),
+    ], body: [
+      ['Steps', ol(['Open <b>Store setup → Payouts</b> (or the <b>Stripe</b> tab) and tap <b>Connect Stripe</b>.', 'Stripe’s secure page asks for your business details, the owner’s ID and your bank account.', 'Come back to Send Koro. When Stripe says <b>Active</b>, you can take orders.', 'Optional: give a location its own Stripe account instead of the main one.'])],
+      ['Good to know', ul(['You get the full Stripe Dashboard. Stripe asks you to sign in to Stripe for sensitive changes like your bank.', 'Refunds are done from the Send Koro order screen, not in Stripe, so the delivery part is refunded correctly.', 'You can answer card disputes on your own payments in Stripe.', 'Only the owner can open the Stripe tab.'])],
+    ] },
+    { id: 'menusetup', t: 'menu', title: 'Set up your menu', sum: 'Templates, categories, items, sizes and photos.', go: 'menu', scenes: [
+      ST('Start fast', ['Pick a template for your type of restaurant', 'Or import: photos, PDF or a CSV', 'Or add items one by one'], 'Start from a template for your type of restaurant, import your menu, or add items one by one.'),
+      FL('How a menu is built', [['Menu', 'All day · Lunch'], ['Category', 'Curries'], ['Item', 'Tikka masala'], ['Option groups', 'Protein · Spice · Naan']], 'Every menu is built the same way: menus with hours, categories, items, and option groups for choices.'),
+      PH('Add an item', 'Name, price, photo, choices', 'Add item', [['Name', 'Tikka masala'], ['Price', '$15.99'], ['Category', 'Curries'], ['Option groups', 'Protein · Spice level', 1]], 'For each item add a name, description, photo and price, then attach option groups like protein and spice level.'),
+    ], body: [
+      ['Steps', ol(['Open <b>Menu → Templates</b> and pick your type of restaurant (coffee shop, Indian, Bangladeshi, Mexican, burgers, fried chicken, steakhouse and more). Sample items are marked “check price”.', 'Or tap <b>Import menu</b> to send photos, a PDF or a CSV. Our team builds it free within 48 hours and you approve it.', 'Add or edit items: photo (wide, at least 1200 × 800), name, description, price or <b>price by size</b>, category, labels, dietary tags, spice level and allergens.', 'Add <b>option groups</b>: required or optional, how many to pick, free choices, extra prices, and follow-up questions (for example “Make it a meal” → choose a drink).', 'Use <b>Preview</b> to see the item exactly as customers will.'])],
+      ['Good to know', ul(['Option groups are shared: build “Milk” or “Spice level” once and add it to many items.', 'An item can appear in more than one category.', 'Menus and hours let you run breakfast, lunch specials or late-night menus.'])],
+    ] },
+    { id: 'menuedit', t: 'menu', title: 'Edit your menu', sum: 'Sold out, per-location changes, bulk edits and option groups.', go: 'menu', scenes: [
+      PH('Sold out in one tap', 'Today only, or until you turn it back on', 'Menu', [['Grilled Chicken Bowl', 'Available'], ['Salmon Bowl', 'Sold out today', 1], ['Mint Lemonade', 'Available']], 'Mark an item sold out for today, or until you turn it back on. It comes back automatically when you open tomorrow.'),
+      ST('Change many at once', ['Select items', 'Sold out · Available', 'Move to a category', 'Raise or lower prices by % or $'], 'Select several items to mark them sold out, move them, or change prices by a percent or an amount.'),
+      ST('Per location', ['Pick a location on the Menu page', 'Set a different price there', 'Mark sold out only there', 'Choose which items it sells'], 'Pick a location to change prices or availability there only. Your other locations stay the same.'),
+    ], body: [
+      ['Steps', ol(['<b>Sold out</b>: use the switch on the item. Choose “today” (back automatically tomorrow) or “until I turn it back on”.', '<b>Bulk edit</b>: tick items, then Sold out, Available, Move to…, Change price or Delete.', '<b>One location only</b>: choose the location at the top of the Menu page, then change price or availability.', '<b>Option groups</b>: edit a group once on the Option groups tab and every item using it updates. Mark a single choice out of stock (for example oat milk).', '<b>Categories</b>: rename, reorder, hide or choose which menus they appear in.'])],
+      ['Good to know', ul(['Changes show to customers right away.', 'Deleting an item doesn’t change past orders.', 'Running a deal? Use Promotions instead of lowering the price.'])],
+    ] },
+    { id: 'pricing', t: 'menu', title: 'Food pricing', sum: 'Set your own prices with no commission to cover.', go: 'menu', scenes: [
+      T('Your prices, your call', 'Send Koro takes $0 commission', 'You set your own prices. Because Send Koro takes no commission, you don’t need to mark prices up to cover one.'),
+      ST('Price tools', ['One price or price by size', 'Extra prices on choices', 'Optional pickup price', 'Different price at a location'], 'Use one price or sizes, extra prices on choices, an optional pickup price, and different prices at a location.'),
+      MO('What you keep on a $15 item', [['Item price', '$15.00'], ['Commission', '$0.00'], ['Card processing on your part', 'about 2.9% + share of 30¢'], ['You keep', 'the rest', 1]], 'On every item you keep your full price, minus only card processing on your part of the order.'),
+    ], body: [
+      ['How pricing works', ul(['<b>One price</b> or <b>price by size</b> (for example 12 oz $4.75, 16 oz $5.25). Customers see “From $4.75”.', '<b>Choice prices</b> are added to the item: oat milk +$0.75, steak +$2.50. Free choices make the cheapest picks free.', '<b>Pickup price</b> is optional, if you want pickup to cost less.', '<b>Per-location price</b> for a location with different costs.', '<b>Promotions</b> (BOGO, % off, spend $X save $Y, free delivery) are paid by you and cost nothing to run.'])],
+      ['Good to know', ul(['Prices are what customers pay before tax. Tax is added at checkout at each location’s rate.', 'Send Koro adds no service fee, small-order fee or surge fee to your customers.'])],
+    ] },
+    { id: 'delivery', t: 'orders', title: 'Delivery fee: who pays and how', sum: 'Choose your rule: customer pays, you pay all, split, or free above an amount.', go: 'delivery', scenes: [
+      T('The delivery fee', 'Covers the courier, nothing else', 'The delivery fee only covers the courier. Send Koro adds no service fee, no small-order fee and no surge fee.'),
+      ST('Choose your rule', ['Customer pays the full fee', 'You pay all (free delivery)', 'Split: you cover $ or %', 'Free above an order amount'], 'Choose who pays: the customer, you, a split, or free delivery above an order amount.'),
+      MO('Example: you pay $3', [['Delivery fee', '$8.48'], ['Brooklyn Bowl Co. pays part', '−$3.00'], ['Customer pays for delivery', '$5.48', 1]], 'For example, if you pay three dollars of an eight forty-eight fee, the customer pays five forty-eight.', 'In NYC your share is limited to 15% of the food on that order.'),
+      FL('Where your share comes from', [['Order paid', '$43.54 card charge'], ['Your share', 'Kept from your payment'], ['Courier', 'Paid in full + 100% tip']], 'Your share is kept from that order’s payment. The courier always gets full pay and the whole tip.'),
+    ], body: [
+      ['Your options', ol(['<b>Customer pays</b> the full delivery fee.', '<b>You pay all</b> (free delivery for customers).', '<b>Split</b>: you cover a fixed amount (for example $3) or a percent of the fee.', '<b>Free above an amount</b> (for example orders over $30), with optional help below it.'])],
+      ['Extra controls', ul(['A per-order cap: you never pay more than a set amount on one order.', 'A monthly budget: once it’s used up, customers pay the full fee.', 'In NYC, your share is limited to 15% of the food on that order.'])],
+      ['Example', tbl([['Food', '$30.00'], ['Delivery fee', '$8.48'], ['Your share (split $3)', '−$3.00'], ['Customer pays for delivery', '$5.48'], ['Tax 8.875%', '$2.66'], ['Tip (100% to courier)', '$5.40'], ['Customer card total', '$43.54', 1]])],
+      ['Good to know', ul(['Customers see one line, “Delivery fee”, and then your discount (“Brooklyn Bowl Co. pays part”).', 'Delivery areas are set by Send Koro for each neighborhood.', 'Change your rule anytime on the <b>Delivery fee</b> page. Each change applies to new orders.'])],
+    ] },
+    { id: 'ordersmgmt', t: 'orders', title: 'Managing orders', sum: 'The live orders board, alerts, and busy-time controls.', go: 'orders', scenes: [
+      PH('Live orders', 'New · Preparing · Ready', 'Live orders', [['SK1052 · New', '4:38 left', 1], ['SK1051 · Preparing', 'Ready in 12 min'], ['SK1050 · Ready', 'Courier arriving']], 'The live orders board shows new orders, orders you’re preparing, and orders ready for pickup.'),
+      ST('Never miss an order', ['A sound repeats every 10 seconds', 'Phone notifications and tab alerts', 'Keep the screen awake on a tablet'], 'New orders ring every ten seconds until someone answers, with phone notifications too.'),
+      ST('Busy?', ['Raise prep time for new orders', 'Pause: stop accepting orders', 'Close early for the day'], 'If you get busy, raise prep time, pause new orders, or close early, instead of letting orders time out.'),
+    ], body: [
+      ['The board', ul(['<b>New</b>: waiting for you to accept. Each has a 5-minute timer.', '<b>Preparing</b>: accepted, with the time it should be ready.', '<b>Ready</b>: waiting for the courier or the pickup customer.', '<b>Order history</b>: search past orders by number or customer.'])],
+      ['Alerts', ul(['Order sounds repeat every 10 seconds until you answer.', 'Install the PWA on a tablet or phone and keep it plugged in; the screen stays awake on the live board.', 'Text and email alerts are in <b>Notifications</b>.'])],
+    ] },
+    { id: 'accept', t: 'orders', title: 'Accepting an order', sum: 'Accept within 5 minutes; the card is charged only when you accept.', go: 'newOrder', scenes: [
+      PH('A new order', 'Check items and notes', 'New order', [['2× Grilled Chicken Bowl', '$30.00'], ['Note', 'No onions', 1], ['Prep time', '20 min'], ['Time to answer', '4:52']], 'When an order arrives, check the items and notes, and set the prep time.', 'Accept order'),
+      FL('Accept or decline', [['Accept', 'Card is charged'], ['Decline', 'Customer pays nothing'], ['No answer in 5 min', 'Declined automatically']], 'Accept, and the customer’s card is charged. Decline, or let five minutes pass, and the customer pays nothing.'),
+      ST('After you accept', ['Start preparing', 'Adjust prep time if needed', 'Tap Ready when it’s packed'], 'After accepting, start preparing, adjust the time if needed, and tap Ready when the order is packed.'),
+    ], body: [
+      ['Steps', ol(['Read the items, choices and special instructions.', 'Set the prep time (your default is filled in).', 'Tap <b>Accept</b>. The customer’s card is charged now.', 'Or tap <b>Decline</b> and choose a reason (too busy, item sold out, closing soon). The customer’s hold is released and they pay nothing.', 'When it’s packed, tap <b>Ready</b>.'])],
+      ['Good to know', ul(['At checkout the customer’s card is only authorized (held). It’s charged when you accept.', 'Orders not answered in 5 minutes are declined automatically. Too many missed orders can pause your store.', 'If an item is sold out, mark it on the menu so new customers can’t order it.'])],
+    ] },
+    { id: 'handoff', t: 'orders', title: 'Handing the order to the courier', sum: 'Check the order number, hand it over, done.', go: 'orders', scenes: [
+      FL('Pickup to door', [['You tap Ready', 'Packed and sealed'], ['Courier arrives', 'Shows the order number'], ['Handed over', 'Order is on its way']], 'When you tap Ready, a courier is on the way. Check the order number they show, then hand it over.'),
+      ST('Packing checklist', ['Match the order number on the bag', 'Check items and notes', 'Seal the bag', 'Include utensils only if asked'], 'Before handing over, match the order number, check items and notes, and seal the bag.'),
+      ST('At the door', ['Leave at door: courier takes a photo', 'Hand it to me: customer gives a 4-digit PIN'], 'The courier completes the delivery with a photo at the door or a four-digit PIN from the customer.'),
+    ], body: [
+      ['Steps', ol(['Tap <b>Ready</b> when the order is packed. The courier is told it’s ready.', 'When the courier arrives, ask for the <b>order number</b> (for example SK1052) and check it matches the bag.', 'Hand the order over. The order moves to “On the way” and you’re done.', 'Pickup orders: the customer shows the order number and their name.'])],
+      ['Good to know', ul(['Couriers may be Send Koro drivers or partner couriers. Treat them all the same.', 'Couriers deliver with a photo at the door or a 4-digit PIN the customer gives them, depending on what the customer chose.', 'Courier late or a problem at handoff? Use <b>Help</b> on the order. Please give couriers access to a restroom when asked.'])],
+    ] },
+    { id: 'refunds', t: 'orders', title: 'Refunds', sum: 'Refund an item or a whole order from the order screen.', go: 'history', scenes: [
+      ST('Refund from the order', ['Open the order', 'Choose items or the whole order', 'Pick a reason', 'Confirm'], 'Refunds are done from the order screen: pick the items or the whole order, choose a reason, and confirm.'),
+      FL('Who pays back what', [['Food and tax', 'From your Stripe balance'], ['Delivery part', 'From Send Koro'], ['Tip', 'Returned if refunded']], 'Food and tax come back from your Stripe balance. The delivery part is returned by Send Koro.'),
+      MO('Card fee on a refund', [['Card processing on the order', 'kept by Stripe'], ['Delivery’s share of that fee', 'credited on your next invoice', 1]], 'Stripe keeps its card fee on refunds. The delivery’s share of that fee is credited back to you on your next invoice.'),
+    ], body: [
+      ['Steps', ol(['Open the order (Live orders or Order history).', 'Tap <b>Refund</b>, choose items or the whole order, and the reason.', 'Confirm. The customer sees the refund on their card in 5–10 business days.'])],
+      ['Who pays what', ul(['<b>Food, tax and your service charge</b>: refunded from your Stripe balance.', '<b>Delivery</b> (the customer’s part): refunded by Send Koro.', '<b>Your delivery share</b> is restored if the delivery is refunded.', 'Stripe keeps its processing fee on refunds. The delivery’s share of that lost fee is credited to you on your next plan invoice.'])],
+      ['Good to know', ul(['Always refund in Send Koro, not in Stripe, so every part is returned correctly.', 'Refunds lower your net food sales in the month they’re made, which can lower next month’s plan.'])],
+    ] },
+    { id: 'processing', t: 'money', title: 'Card processing fees', sum: 'What you pay on each order, with a worked example.', go: 'earnings', scenes: [
+      T('Card processing', '2.9% + 30¢ · only on your part of the order', 'Card processing is Stripe’s standard 2.9% plus 30 cents. You pay it only on your part of the order.'),
+      MO('One $30 order', [['Card charge (whole order)', '$43.54'], ['Stripe fee on it', '$1.57'], ['Paid by the delivery money', '−$0.39'], ['Your part of the fee', '$1.18', 1]], 'On a forty-three fifty-four order, Stripe’s fee is one fifty-seven. The delivery money pays thirty-nine cents, so your part is one eighteen.'),
+      ST('Never charged', ['No commission', 'No card fee to customers', 'No fee on the delivery money for you'], 'Customers never pay a card fee, and you never pay processing on the delivery money.'),
+    ], body: [
+      ['How it works', ul(['Stripe takes its fee (2.9% + 30¢ standard pricing) from the whole card charge, in your Stripe account.', 'The delivery money pays its own share of that fee, so you pay processing only on your part: food, tax and service charges.', 'Customers are never charged a card processing fee. Send Koro takes no commission.'])],
+      ['Example', tbl([['Card charge', '$43.54'], ['Stripe fee (2.9% + 30¢)', '$1.57'], ['Delivery money’s share', '−$0.39'], ['Your part of the fee', '$1.18', 1]])],
+      ['Good to know', ul(['International cards can cost more; the delivery share is adjusted to the real fee.', 'See fees on each order under <b>Earnings → Order money</b>, and monthly in the Stripe tab.'])],
+    ] },
+    { id: 'payouts', t: 'money', title: 'Getting paid (payouts)', sum: 'How order money reaches your bank.', go: 'payouts', scenes: [
+      FL('From order to bank', [['You accept', 'Card is charged'], ['Stripe balance', 'Food + tax − fees'], ['Your bank', 'Stripe payout']], 'When you accept, the payment lands in your Stripe balance. Stripe then pays your bank on your payout schedule.'),
+      MO('What reaches you on a $30 order', [['Food + tax', '$32.66'], ['Your delivery share', '−$3.00'], ['Your part of card processing', '−$1.18'], ['Commission', '$0.00'], ['You receive', '$28.48', 1]], 'On a thirty dollar order with three dollars of delivery help, twenty-eight forty-eight reaches you.'),
+      ST('Payout schedule', ['Set in your Stripe Dashboard', 'Daily, weekly or monthly', 'See every payout in the Stripe tab'], 'Choose daily, weekly or monthly payouts in your Stripe Dashboard, and see every payout in the Stripe tab.'),
+    ], body: [
+      ['How it works', ul(['Each order is a payment on your own Stripe account, created when you accept.', 'Stripe pays your bank on your payout schedule. New US accounts usually start with daily payouts a couple of business days after each payment; you can switch to weekly or monthly in Stripe.', 'The first payout can take longer while Stripe finishes checks.'])],
+      ['Example', tbl([['Food', '$30.00'], ['Sales tax', '$2.66'], ['Your delivery share', '−$3.00'], ['Your part of card processing', '−$1.18'], ['Commission', '$0.00'], ['You receive', '$28.48', 1]])],
+      ['Good to know', ul(['Your monthly plan is billed separately; it isn’t taken from payouts.', 'Send Koro promo credit used on your orders is paid back on your invoice (see “Referral and promo credit”).', 'Instant payouts are off at launch.'])],
+    ] },
+    { id: 'plans', t: 'money', title: 'Subscription plans', sum: 'A flat plan for each location, from its last month’s food sales.', go: 'subscription', scenes: [
+      T('A flat monthly plan', 'No commission · first month free', 'Instead of commission, each location pays a flat monthly plan. The first month is free.'),
+      MO('Plans by last month’s food sales', [['Up to $2,500', '$50'], ['$2,500.01 – $5,000', '$100'], ['$5,000.01 – $7,500', '$150'], ['$7,500.01 – $10,000', '$250'], ['$10,000.01 – $15,000', '$350'], ['Over $15,000', '$500', 1]], 'The plan comes from that location’s net food sales last month, from fifty to five hundred dollars.'),
+      MO('Example: Park Slope', [['October net food sales', '$6,240.00'], ['November plan', '$150.00', 1]], 'For example, six thousand two hundred forty dollars of food sales in October means a one hundred fifty dollar plan in November.'),
+    ], body: [
+      ['The plans', tbl([['Up to $2,500', '$50'], ['$2,500.01 – $5,000', '$100'], ['$5,000.01 – $7,500', '$150'], ['$7,500.01 – $10,000', '$250'], ['$10,000.01 – $15,000', '$350'], ['Over $15,000', '$500', 1]])],
+      ['How it’s worked out', ul(['<b>Net food sales</b> = food after your discounts, minus food refunds, for the previous calendar month (New York time).', 'Tips, tax, delivery fees and service charges are not counted. Send Koro promo credit doesn’t lower your food sales.', 'Each location has its own plan. A new location’s first month is free; a location that isn’t live isn’t billed.', 'A month with zero or negative sales pays the lowest plan.'])],
+    ] },
+    { id: 'billing', t: 'money', title: 'Paying your subscription', sum: 'One invoice on the 1st, card or bank, and what happens if a payment fails.', go: 'subscription', scenes: [
+      PH('Your monthly invoice', 'Billed on the 1st at 12:00 PM ET', 'Invoice · December', [['Park Slope plan', '$150.00'], ['Williamsburg (first month)', '$0.00'], ['Send Koro promo credit', '−$15.00', 1], ['Total', '$135.00']], 'On the first of each month at noon Eastern, you get one invoice with a line for each location.'),
+      ST('How to pay', ['Add a card or US bank account', 'Charged automatically on the 1st', 'Invoices and receipts by email'], 'Add a card or bank account once. It’s charged automatically, and invoices are emailed to you.'),
+      ST('If a payment fails', ['Stripe retries up to 4 times in 2 weeks', 'You get an email each time', 'Update your card on the Subscription page'], 'If a payment fails, Stripe retries it and emails you. Update your card on the Subscription page.'),
+    ], body: [
+      ['Steps', ol(['Open <b>Subscription</b> and add a billing card or US bank account (stored securely by Stripe).', 'On the 1st at 12:00 PM ET, your invoice is created with one line per location and charged automatically.', 'See past invoices and download receipts on the same page.'])],
+      ['Example invoice', tbl([['Park Slope plan (October sales $6,240)', '$150.00'], ['Williamsburg (first month free)', '$0.00'], ['Send Koro promo credit paid back', '−$15.00'], ['Total charged', '$135.00', 1]])],
+      ['Good to know', ul(['There’s no proration: plans change on the 1st.', 'If a payment fails, Stripe retries up to 4 times over 2 weeks and emails you. Please update your card quickly to avoid interruption.', 'Promo credit and some refund fee credits appear as negative lines that lower your invoice.'])],
+    ] },
+    { id: 'credit', t: 'money', title: 'Referral and promo credit', sum: 'Customers use Send Koro credit; we pay you back in full.', go: 'subscription', scenes: [
+      T('Send Koro credit', 'Paid by Send Koro, never by you', 'Customers can use Send Koro credit from referrals and promo codes. Send Koro pays for it, never you.'),
+      MO('An order with $10 credit', [['Customer’s order total', '$42.98'], ['Send Koro credit', '−$10.00'], ['Card charged now', '$32.98'], ['Paid back to you on your invoice', '$10.00', 1]], 'With ten dollars of credit, the card is charged ten dollars less, and Send Koro pays you that ten dollars back.'),
+      FL('How you’re paid back', [['Monthly run', 'On the 1st'], ['Invoice line', '−credit used'], ['More than your plan?', 'Rest sent to your Stripe']], 'Each month the credit used lowers your plan invoice. If it’s more than the plan, the rest goes straight to your Stripe account.'),
+    ], body: [
+      ['How it works', ul(['Customers earn credit from “Refer a friend: give $5, get $5” and Send Koro promo codes. Credit is valid 30 days and covers food and tax only.', 'The customer’s card is charged the order total minus the credit, so you receive the credit amount less at the time of the order.', 'Send Koro pays it back on your next monthly invoice as a “Send Koro promo credit” line.', 'If the credit is more than that month’s plan, the rest is sent to your Stripe account in the same monthly run.'])],
+      ['Examples', tbl([['Park Slope plan', '$150.00'], ['Promo credit used in October', '−$15.00'], ['Invoice', '$135.00', 1]]) + tbl([['Plan', '$50.00'], ['Promo credit used', '−$80.00'], ['Invoice', '$0.00'], ['Sent to your Stripe account', '$30.00', 1]])],
+      ['Good to know', ul(['Credit doesn’t lower your net food sales, so it never changes your plan.', 'Each order shows the credit and the amount paid back later, under <b>Earnings → Order money</b>.', 'The “Promo credit this month” card on the Subscription page lists every order.'])],
+    ] },
+  ];
+  const sceneDur = (sc) => Math.max(5, Math.round(sc.cap.split(/\s+/).length / 2.4 + 1.5));
+  const lessonDur = (l) => l.scenes.reduce((a, sc) => a + sceneDur(sc), 0);
+  const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+  const lessonById = (id) => LESSONS.find((l) => l.id === id) || LESSONS[0];
+  const IC = { play: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>', pause: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>', prev: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z" fill="currentColor"/></svg>', next: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z" fill="currentColor"/></svg>', vol: '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' };
+  const VP = { id: null, i: 0, t: 0, playing: false, cc: true, voice: false, timer: null, started: false };
+
+  function sceneHTML(sc, i, on) {
+    const d = (n) => `style="--d:${n}s"`;
+    let inner = '';
+    if (sc.k === 'title') inner = `<div class="vp-center">${LOGO('', 60).replace('class="sk-mark"', 'class="sk-mark vp-in vp-logo"')}<h3 class="vp-in" ${d(0.2)}>${sc.h}</h3><p class="vp-in" ${d(0.6)}>${sc.sub}</p></div>`;
+    if (sc.k === 'steps') inner = `<h4 class="vp-in">${sc.h}</h4><ol class="vp-steps">${sc.items.map((t, j) => `<li class="vp-in" ${d(0.4 + j * 0.7)}><b>${j + 1}</b><span>${t}</span></li>`).join('')}</ol>`;
+    if (sc.k === 'money') inner = `<h4 class="vp-in">${sc.h}</h4><div class="vp-receipt">${sc.rows.map((r, j) => `<div class="vp-row ${r[2] ? 'tot' : ''} vp-in" ${d(0.4 + j * 0.5)}><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div>${sc.note ? `<p class="vp-note vp-in" ${d(0.6 + sc.rows.length * 0.5)}>${sc.note}</p>` : ''}`;
+    if (sc.k === 'flow') inner = `<h4 class="vp-in">${sc.h}</h4><div class="vp-flow">${sc.nodes.map((n, j) => `${j ? `<span class="vp-arrow vp-in" ${d(0.2 + j * 0.9)}>→</span>` : ''}<div class="vp-node vp-in" ${d(0.4 + j * 0.9)}><b>${n[0]}</b>${n[1] ? `<span>${n[1]}</span>` : ''}</div>`).join('')}</div>`;
+    if (sc.k === 'phone') inner = `<div class="vp-split"><div class="vp-phone vp-in"><div class="vp-ph-bar">${sc.title}</div>${sc.ui.map((r, j) => `<div class="vp-ui ${r[2] ? 'hl' : ''} vp-in" ${d(0.4 + j * 0.45)}><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}${sc.btn ? `<div class="vp-ph-btn vp-in" ${d(0.6 + sc.ui.length * 0.45)}>${sc.btn}</div>` : ''}</div><div class="vp-side"><h4 class="vp-in" ${d(0.2)}>${sc.h}</h4><p class="vp-in" ${d(0.5)}>${sc.sub}</p></div></div>`;
+    return `<div class="vp-scene ${on ? 'on' : ''}" data-i="${i}" aria-hidden="${!on}">${inner}</div>`;
+  }
+  function playerHTML(l) {
+    if (VP.id !== l.id) { vpStop(); Object.assign(VP, { id: l.id, i: 0, t: 0, playing: false, started: false }); }
+    const total = lessonDur(l); const before = l.scenes.slice(0, VP.i).reduce((a, sc) => a + sceneDur(sc), 0);
+    return `<div class="vp" data-lesson="${l.id}"><div class="vp-screen" data-a="vpToggle" role="region" aria-label="Video: ${esc(l.title)}">${l.scenes.map((sc, i) => sceneHTML(sc, i, i === VP.i)).join('')}
+      <div class="vp-cap ${VP.cc ? '' : 'off'}" aria-live="polite">${l.scenes[VP.i].cap}</div>
+      ${VP.started ? '' : `<button class="vp-big" data-a="vpToggle" aria-label="Play video"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#FFFFFF"/></svg></button><span class="vp-len">${mmss(total)}</span>`}</div>
+      <div class="vp-ctrl"><button class="vp-b" data-a="vpToggle" aria-label="${VP.playing ? 'Pause' : 'Play'}">${VP.playing ? IC.pause : IC.play}</button><button class="vp-b" data-a="vpStep" data-d="-1" aria-label="Previous scene">${IC.prev}</button><button class="vp-b" data-a="vpStep" data-d="1" aria-label="Next scene">${IC.next}</button>
+        <div class="vp-segs">${l.scenes.map((sc, i) => `<button class="vp-seg" data-a="vpSeek" data-i="${i}" aria-label="Scene ${i + 1}" style="flex:${sceneDur(sc)}"><i style="width:${i < VP.i ? 100 : i === VP.i ? Math.min(100, (VP.t / sceneDur(sc)) * 100) : 0}%"></i></button>`).join('')}</div>
+        <span class="vp-time">${mmss(before + VP.t)} / ${mmss(total)}</span><button class="vp-b vp-t ${VP.cc ? 'on' : ''}" data-a="vpCC" aria-pressed="${VP.cc}">CC</button><button class="vp-b vp-t ${VP.voice ? 'on' : ''}" data-a="vpVoice" aria-pressed="${VP.voice}" aria-label="Read captions aloud">${IC.vol}</button></div></div>`;
+  }
+  function vpEl() { return root.querySelector(`.vp[data-lesson="${VP.id}"]`); }
+  function vpStop() { clearInterval(VP.timer); VP.timer = null; VP.playing = false; try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { /* no speech */ } }
+  function vpSay() { if (!VP.voice) return; try { const s = window.speechSynthesis; if (!s) return; s.cancel(); const u = new SpeechSynthesisUtterance(lessonById(VP.id).scenes[VP.i].cap.replace(/<[^>]+>/g, '')); u.lang = 'en-US'; u.rate = 1.02; s.speak(u); } catch (e) { /* no speech */ } }
+  function vpPaint(sceneChanged) {
+    const el = vpEl(); if (!el) { vpStop(); return; }
+    const l = lessonById(VP.id); const total = lessonDur(l); const before = l.scenes.slice(0, VP.i).reduce((a, sc) => a + sceneDur(sc), 0);
+    if (sceneChanged) { el.querySelectorAll('.vp-scene').forEach((s) => { const on = +s.dataset.i === VP.i; s.classList.toggle('on', on); s.setAttribute('aria-hidden', String(!on)); }); el.querySelector('.vp-cap').innerHTML = l.scenes[VP.i].cap; }
+    el.querySelectorAll('.vp-seg i').forEach((b, i) => { b.style.width = (i < VP.i ? 100 : i === VP.i ? Math.min(100, (VP.t / sceneDur(l.scenes[i])) * 100) : 0) + '%'; });
+    el.querySelector('.vp-time').textContent = `${mmss(before + VP.t)} / ${mmss(total)}`;
+    const pb = el.querySelector('.vp-ctrl .vp-b'); pb.innerHTML = VP.playing ? IC.pause : IC.play; pb.setAttribute('aria-label', VP.playing ? 'Pause' : 'Play');
+    const big = el.querySelector('.vp-big'); if (big && VP.started) { big.remove(); const ln = el.querySelector('.vp-len'); if (ln) ln.remove(); }
+  }
+  function vpGo(i) { const l = lessonById(VP.id); VP.i = Math.max(0, Math.min(l.scenes.length - 1, i)); VP.t = 0; vpPaint(true); if (VP.playing) vpSay(); }
+  function vpPlay() {
+    const l = lessonById(VP.id); VP.playing = true; VP.started = true;
+    if (VP.i === l.scenes.length - 1 && VP.t >= sceneDur(l.scenes[VP.i])) { VP.i = 0; VP.t = 0; }
+    clearInterval(VP.timer); vpPaint(true); vpSay();
+    VP.timer = setInterval(() => {
+      if (!vpEl()) { vpStop(); return; }
+      VP.t += 0.1; const d = sceneDur(l.scenes[VP.i]);
+      if (VP.t >= d) { if (VP.i < l.scenes.length - 1) { VP.i++; VP.t = 0; vpPaint(true); vpSay(); return; } VP.t = d; vpStop(); vpPaint(false); S.learnDone[VP.id] = true; return; }
+      vpPaint(false);
+    }, 100);
+  }
+
+  const pubHead = (cur) => `<div class="lc-top"><button class="lc-brand" data-a="lcTab" data-to="signin">${LOGO('', 34)}${WORD}<span class="pill p-n">for restaurants</span></button><nav class="lc-tabs" aria-label="Welcome">${[['signin', 'Sign in'], ['signup', PHONE ? 'Join' : 'Create account'], ['learn', 'Learning center']].map(([k, l]) => `<button data-a="lcTab" data-to="${k}" class="${cur === k || (k === 'learn' && cur === 'lesson') ? 'on' : ''}" aria-current="${cur === k ? 'page' : 'false'}">${l}</button>`).join('')}</nav></div>`;
+  const lcWrap = (inner) => (S.signedIn ? inner : `<div class="lc-page">${inner}</div>`);
+
+  V.learn = () => {
+    const q = String(S.learnQ || '').trim().toLowerCase(); const tr = S.learnTrack || 'all';
+    const done = LESSONS.filter((l) => S.learnDone[l.id]).length;
+    const list = LESSONS.filter((l) => (tr === 'all' || l.t === tr) && (!q || (l.title + ' ' + l.sum + ' ' + l.body.map((b) => b[0] + b[1]).join(' ')).toLowerCase().includes(q)));
+    const card = (l) => `<button class="lc-card" data-a="lcOpen" data-id="${l.id}"><span class="lc-thumb"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#FFFFFF"/></svg><i>${mmss(lessonDur(l))}</i></span><span class="lc-ct"><b>${esc(l.title)}</b><span class="mut sm-t">${esc(l.sum)}</span><span class="lc-meta">${S.learnDone[l.id] ? '<span class="pill p-g">✓ Done</span>' : ''}<span>Video ${mmss(lessonDur(l))} · ${Math.max(2, Math.round(l.body.map((b) => b[1]).join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).length / 200))} min read</span></span></span></button>`;
+    const inner = `${S.signedIn ? head('Learning center', `${done} of ${LESSONS.length} lessons done`) : ''}${body(`
+      <div class="lc-hero"><span class="lc-kick">Learning center</span><h1>Everything you need to sell on Send Koro</h1><p>Short videos and simple guides: getting started, licenses, Stripe, menus, orders, delivery fees, refunds, payouts and your monthly plan.</p>
+        <div class="lc-prog"><i style="width:${(done / LESSONS.length) * 100}%"></i></div><span class="sm-t">${done} of ${LESSONS.length} lessons done</span>
+        <label class="m2-search lc-search"><span class="mut" aria-hidden="true">⌕</span><input id="lc-q" data-m="learnQ" data-live="1" placeholder="Search: payouts, refund, tax, delivery fee…" value="${esc(S.learnQ || '')}"></label></div>
+      <div class="m2-chips">${[['all', 'All lessons'], ...LTRACKS].map(([k, l]) => `<button class="chip ${tr === k ? 'on' : ''}" data-a="lcTrack" data-v="${k}">${l}</button>`).join('')}</div>
+      ${LTRACKS.filter(([k]) => list.some((l) => l.t === k)).map(([k, lbl]) => `<section class="col" style="gap:10px"><h2 class="lc-h2">${lbl}</h2><div class="lc-grid">${list.filter((l) => l.t === k).map(card).join('')}</div></section>`).join('') || '<div class="card empty">No lessons match. Try “payout”, “menu” or “tax”.</div>'}
+      <div class="card pad col"><b>Still have a question?</b><span class="mut sm-t">Restaurant support: <b style="user-select:all">(718) 555-0150</b>, 11 AM–11 PM, or text us from Help in the portal.</span>${S.signedIn ? '' : '<div class="row wrap" style="gap:8px"><button class="btn sm" data-a="lcTab" data-to="signup">Create your account</button><button class="btn ln sm" data-a="lcTab" data-to="signin">Sign in</button></div>'}</div>`)}`;
+    return lcWrap(inner);
+  };
+  V.lesson = () => {
+    const l = lessonById(S.lessonId); const ix = LESSONS.indexOf(l); const prev = LESSONS[ix - 1]; const next = LESSONS[ix + 1];
+    const inner = `${S.signedIn ? head(l.title, LTRACKS.find((t) => t[0] === l.t)[1]) : ''}${body(`<div class="lc-lesson">
+      ${S.signedIn ? '' : `<button class="btn gh" data-a="lcTab" data-to="learn" style="align-self:flex-start;padding:0">← Learning center</button>`}
+      <div class="col" style="gap:4px"><span class="lc-kick">${LTRACKS.find((t) => t[0] === l.t)[1]} · Lesson ${ix + 1} of ${LESSONS.length}</span>${S.signedIn ? '' : `<h1 class="lc-title">${esc(l.title)}</h1>`}<span class="mut">${esc(l.sum)}</span></div>
+      ${playerHTML(l)}
+      <article class="lc-art">${l.body.map(([h, html]) => `<h2>${h}</h2>${html}`).join('')}
+        <details><summary>Video transcript</summary><p>${l.scenes.map((sc) => sc.cap).join(' ')}</p></details></article>
+      <div class="row wrap" style="gap:8px"><button class="btn ${S.learnDone[l.id] ? 'ln' : ''}" data-a="lcDone">${S.learnDone[l.id] ? '✓ Marked as done' : 'Mark as done'}</button>${S.signedIn && l.go && can(l.go) ? `<button class="btn ln" data-a="lcGo" data-to="${l.go}">Open this in the portal</button>` : ''}</div>
+      <div class="lc-nav">${prev ? `<button class="lc-navb" data-a="lcOpen" data-id="${prev.id}"><span class="mut sm-t">Previous</span><b>${esc(prev.title)}</b></button>` : '<span></span>'}${next ? `<button class="lc-navb r" data-a="lcOpen" data-id="${next.id}"><span class="mut sm-t">Next</span><b>${esc(next.title)}</b></button>` : ''}</div></div>`)}`;
+    return lcWrap(inner);
+  };
+  Object.assign(A, {
+    lcTab: (d) => { vpStop(); if (d.to === 'signin' || d.to === 'signup') { if (d.to === 'signup') { A.toSignup(); return; } S.codeSent = false; } S.stack = []; S.screen = d.to; render(true); },
+    lcOpen: (d) => { vpStop(); S.lessonId = d.id; if (S.signedIn) { if (S.screen === 'lesson') { S.screen = 'lesson'; render(true); } else go('lesson'); } else { S.screen = 'lesson'; render(true); } },
+    lcTrack: (d) => { S.learnTrack = d.v; render(); },
+    lcDone: () => { S.learnDone[S.lessonId] = !S.learnDone[S.lessonId]; render(); },
+    lcGo: (d) => { vpStop(); tabTo(d.to); },
+    vpToggle: () => { if (VP.playing) { vpStop(); vpPaint(false); } else vpPlay(); },
+    vpStep: (d) => { VP.started = true; vpGo(VP.i + +d.d); },
+    vpSeek: (d) => { VP.started = true; vpGo(+d.i); },
+    vpCC: () => { VP.cc = !VP.cc; const el = vpEl(); if (el) { el.querySelector('.vp-cap').classList.toggle('off', !VP.cc); const b = el.querySelector('[data-a="vpCC"]'); b.classList.toggle('on', VP.cc); b.setAttribute('aria-pressed', String(VP.cc)); } },
+    vpVoice: () => { VP.voice = !VP.voice; const el = vpEl(); if (el) { const b = el.querySelector('[data-a="vpVoice"]'); b.classList.toggle('on', VP.voice); b.setAttribute('aria-pressed', String(VP.voice)); } if (VP.voice && VP.playing) vpSay(); if (!VP.voice) { try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { /* no speech */ } } },
   });
 
   A.page = (d) => openPage(d.k);
