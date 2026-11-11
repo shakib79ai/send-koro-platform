@@ -1400,6 +1400,9 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 .rv-rate-cta .rv-pick button{width:40px;height:40px;font-size:24px}
 .rx-strip .rv-btn{display:flex;flex-direction:column;align-items:center;gap:1px;width:100%;min-height:40px}
 .rx-strip .rv-btn span{text-decoration:underline;text-underline-offset:2px}
+.consent{margin:0;text-align:center;line-height:1.6;text-wrap:balance;max-width:34em;align-self:center}
+.consent .lg-link{display:inline;white-space:nowrap}
+.consent .nw{white-space:nowrap}
 
 </style>
 <div id="app"></div>
@@ -2635,7 +2638,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
     if (u.step === 4) inner = `<h1 style="font-size:26px;color:var(--ink)">Almost done</h1>
       <div class="card pad col" style="gap:4px;background:var(--bg)"><b>${esc(u.name)}</b><span class="mut sm-t">${esc(u.address)}</span><span class="sm-t">${u.cuisines.map(esc).join(' · ')} · ${esc(u.locs)} location${u.locs === '1' ? '' : 's'}</span><span class="sm-t">${esc(u.owner)} · ${esc(u.phone)} · ${esc(u.email)}</span></div>
       <div class="card pad col" style="gap:4px"><b>Your plan</b><span class="sm-t">First month free. Then each location pays $50 to $500 a month based on its own net food sales last month. $0 commission.</span></div>
-      <label class="row" style="align-items:flex-start"><input type="checkbox" data-m="signup.agree" data-rr="1" ${u.agree ? 'checked' : ''} style="width:20px;height:20px;margin-top:2px"><span>I accept the Send Koro <button class="lg-link" data-a="legalOpen" data-id="restaurantTerms">Restaurant Partner Agreement</button>, the <button class="lg-link" data-a="legalOpen" data-id="usage">Community Guidelines</button> and the <button class="lg-link" data-a="legalOpen" data-id="privacy">Privacy Policy</button>, and agree to get text codes and order alerts (<button class="lg-link" data-a="legalOpen" data-id="sms">Text Message Terms</button>).</span></label>
+      <label class="row" style="align-items:flex-start"><input type="checkbox" data-m="signup.agree" data-rr="1" ${u.agree ? 'checked' : ''} style="width:20px;height:20px;margin-top:2px"><span class="consent" style="text-align:left;max-width:none;align-self:auto">I accept the Send Koro <span class="nw"><button class="lg-link" data-a="legalOpen" data-id="restaurantTerms">Restaurant Partner Agreement</button>,</span> <span class="nw"><button class="lg-link" data-a="legalOpen" data-id="usage">Community Guidelines</button>,</span> <button class="lg-link" data-a="legalOpen" data-id="privacy">Privacy Policy</button> and <span class="nw"><button class="lg-link" data-a="legalOpen" data-id="sms">Text Message Terms</button>,</span> including text codes and order alerts.</span></label>
       <label class="row" style="align-items:flex-start"><input type="checkbox" data-m="signup.tax" data-rr="1" ${u.tax ? 'checked' : ''} style="width:20px;height:20px;margin-top:2px"><span>I’m responsible for charging, reporting and paying sales tax.</span></label>
       <button class="btn" data-a="suCreate">Create account</button><button class="btn gh" data-a="suBack">Back</button>
       <span class="mut sm-t">Next you’ll finish store setup: menu, hours, food permit, sales tax ID, Stripe payouts. You can save and come back any time.</span>`;

@@ -1400,6 +1400,9 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 .rv-rate-cta .rv-pick button{width:40px;height:40px;font-size:24px}
 .rx-strip .rv-btn{display:flex;flex-direction:column;align-items:center;gap:1px;width:100%;min-height:40px}
 .rx-strip .rv-btn span{text-decoration:underline;text-underline-offset:2px}
+.consent{margin:0;text-align:center;line-height:1.6;text-wrap:balance;max-width:34em;align-self:center}
+.consent .lg-link{display:inline;white-space:nowrap}
+.consent .nw{white-space:nowrap}
 
 </style>
 <div id="app"></div>
@@ -1681,7 +1684,7 @@ button:hover>.addr-chev{background:#E3242B;color:#FFFFFF;transform:translateY(1p
 
   V.signin = () => `${head('Sign in')}${body(`<h1 style="font-size:26px;color:var(--ink)">${S.codeSent ? 'Enter your code' : 'Your mobile number'}</h1>
     <p class="mut" style="margin:0">${S.codeSent ? `We texted a code to ${esc(S.phone)}. <b>Prototype: any 6 digits work.</b>` : 'We’ll text you a 6-digit code. No passwords.'}</p>
-    ${S.codeSent ? `<label class="f">6-digit code<input class="in" id="d-code" data-m="code" inputmode="numeric" maxlength="6" value="${esc(S.code)}" style="font-size:22px;letter-spacing:.4em;text-align:center;font-weight:800"></label><button class="btn" data-a="verify">Continue</button><button class="btn gh" data-a="changePhone">Use a different number</button>` : `<label class="f">Mobile number<input class="in" id="d-phone" data-m="phone" inputmode="tel" placeholder="(347) 555-0123" value="${esc(S.phone)}"></label><label class="row sm-t"><input type="checkbox" data-m="newDriver" ${S.newDriver ? 'checked' : ''}>I’m new and want to apply</label><button class="btn" data-a="sendCode">Text me a code</button><p class="mut sm-t" style="margin:0">By continuing you agree to the <button class="lg-link" data-a="legalOpen" data-id="driverTerms">Courier Agreement</button> and <button class="lg-link" data-a="legalOpen" data-id="privacy">Privacy Policy</button>, and to get text codes and trip messages (<button class="lg-link" data-a="legalOpen" data-id="sms">Text Message Terms</button>).</p>`}`)}`;
+    ${S.codeSent ? `<label class="f">6-digit code<input class="in" id="d-code" data-m="code" inputmode="numeric" maxlength="6" value="${esc(S.code)}" style="font-size:22px;letter-spacing:.4em;text-align:center;font-weight:800"></label><button class="btn" data-a="verify">Continue</button><button class="btn gh" data-a="changePhone">Use a different number</button>` : `<label class="f">Mobile number<input class="in" id="d-phone" data-m="phone" inputmode="tel" placeholder="(347) 555-0123" value="${esc(S.phone)}"></label><label class="row sm-t"><input type="checkbox" data-m="newDriver" ${S.newDriver ? 'checked' : ''}>I’m new and want to apply</label><button class="btn" data-a="sendCode">Text me a code</button><p class="mut sm-t consent">By continuing, you agree to our <span class="nw"><button class="lg-link" data-a="legalOpen" data-id="driverTerms">Courier Agreement</button>,</span> <button class="lg-link" data-a="legalOpen" data-id="privacy">Privacy Policy</button> and <span class="nw"><button class="lg-link" data-a="legalOpen" data-id="sms">Text Message Terms</button>.</span></p>`}`)}`;
 
   const VEH = { bike: 'Bike', ebike: 'E-bike', scooter: 'Moped', car: 'Car' };
   const ageOf = (d) => { const b = new Date(d); if (isNaN(b)) return 0; const n = new Date(); let a = n.getFullYear() - b.getFullYear(); if (n < new Date(n.getFullYear(), b.getMonth(), b.getDate())) a--; return a; };
