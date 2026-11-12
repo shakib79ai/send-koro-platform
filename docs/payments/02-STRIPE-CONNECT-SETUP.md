@@ -78,7 +78,7 @@ stripe.v2.core.accounts.create({
 
 - Onboarding link with `configurations: ['recipient']`. Stripe verifies identity and bank and collects W-9-style tax details.
 - Ready when `configuration.recipient.capabilities.stripe_balance.stripe_transfers.status === 'active'`.
-- **Needs confirmation:** that recipient-only accounts may use `fees_collector = stripe` and the full Dashboard. If Stripe says no, switch drivers to `application` and book payout costs as delivery costs.
+- **Needs confirmation:** that recipient-only accounts may use `fees_collector = stripe` and the full Dashboard. If Stripe says no, switch drivers to `application` and book payout costs as delivery costs. A sandbox-only `--sandbox-express` setup is an explicit test deviation, not the production account configuration.
 
 ## 2.5 Keeping status in sync (Built)
 

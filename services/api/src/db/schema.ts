@@ -197,6 +197,9 @@ export const orderStatus = pgEnum('order_status', [
 ]);
 export const fulfilmentType = pgEnum('fulfilment_type', ['delivery', 'pickup']);
 export const deliveryProvider = pgEnum('delivery_provider', ['uber_direct', 'doordash_drive', 'own_driver']);
+export const dispatchStrategy = pgEnum('dispatch_strategy', [
+  'own_driver_only', 'uber_direct_only', 'own_driver_then_uber',
+]);
 
 export const orders = pgTable('orders', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -207,6 +210,8 @@ export const orders = pgTable('orders', {
   locationId: uuid('location_id').notNull().references(() => locations.id),
   fulfilment: fulfilmentType('fulfilment').notNull(),
   status: orderStatus('status').notNull().default('pending_payment'),
+  /** Admin override; null keeps the server's default DISPATCH_ORDER sequence. */
+  dispatchStrategy: dispatchStrategy('dispatch_strategy'),
   /** Snapshot of the cart and the delivery address at checkout. */
   items: jsonb('items').notNull(),
   dropoff: jsonb('dropoff'),
@@ -266,6 +271,8 @@ export const deliveries = pgTable('deliveries', {
   providerQuoteCents: bigint('provider_quote_cents', { mode: 'number' }),
   /** Own drivers: the locked offer pay (never reduced). */
   driverPayCents: bigint('driver_pay_cents', { mode: 'number' }),
+  /** Non-null while a provider call is in flight; prevents automatic duplicate dispatches. */
+  providerDispatchStartedAt: timestamp('provider_dispatch_started_at', { withTimezone: true }),
   distanceMeters: integer('distance_meters'),
   durationSeconds: integer('duration_seconds'),
   batchId: uuid('batch_id'),

@@ -12,6 +12,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx src/db/migrate.ts",
     "db:seed": "tsx scripts/seed.ts",
+    "uber:sandbox:test": "tsx scripts/test-uber-sandbox.ts",
     "db:migrate:prod": "node dist/db/migrate.js"
   },
   "license": "UNLICENSED",

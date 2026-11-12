@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { TOKENS } from '../common/tokens';
 import { centsSchema, parse, phoneSchema, run } from '../common/http';
 import { AuthUser, CurrentUser, Roles } from '../auth/auth.guard';
+import { ADMIN_DISPATCH_STRATEGIES } from '../dispatch/dispatch-strategy';
 import { AdminService } from './admin.service';
 
 const Range = z.object({ from: z.coerce.date(), to: z.coerce.date() });
@@ -25,6 +26,9 @@ export class AdminController {
   @Get('orders') orders(@Query() q: unknown) { return this.admin.orders(parse(z.object({ status: z.string().optional(), search: z.string().optional(), limit: z.coerce.number().int().max(500).optional() }), q)); }
   @Get('orders/:id') order(@Param('id') id: string) { return run(() => this.admin.order(id)); }
   @Post('orders/:id/refunds') refund(@CurrentUser() u: AuthUser, @Param('id') id: string, @Body() b: unknown) { return run(() => this.admin.refund(id, parse(Refund, b), `admin:${u.id}`)); }
+  @Post('orders/:id/dispatch-strategy') dispatchStrategy(@CurrentUser() u: AuthUser, @Param('id') id: string, @Body() b: unknown) {
+    return run(() => this.admin.setDispatchStrategy(id, parse(z.object({ strategy: z.enum(ADMIN_DISPATCH_STRATEGIES).nullable() }), b).strategy, `admin:${u.id}`));
+  }
   @Post('orders/:id/retry-dispatch') retry(@CurrentUser() u: AuthUser, @Param('id') id: string) { return run(() => this.admin.retryDispatch(id, `admin:${u.id}`)); }
   @Get('integrations') integrations() { return this.admin.integrationStatus(); }
   @Get('tax-compliance') tax() { return this.admin.taxCompliance(); }

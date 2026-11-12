@@ -3,7 +3,8 @@ import { and, desc, eq, gte, ilike, or, sql } from 'drizzle-orm';
 import type { Db } from '../db/client';
 import { deliveries, driverOffers, drivers, locations, orderEvents, orders, restaurants, users } from '../db/schema';
 import { BLOCKED_STATES, LAUNCH_STATES } from '../core/tax';
-import { badRequest, notFound } from '../common/http';
+import { badRequest, conflict, notFound } from '../common/http';
+import type { AdminDispatchStrategy } from '../dispatch/dispatch-strategy';
 import type { PaymentsClient } from '../integrations/payments.client';
 import type { DispatchService } from '../dispatch/dispatch.service';
 import type { OrderStateService } from '../orders/order-state.service';
@@ -99,6 +100,21 @@ export class AdminService {
     return { order: o, delivery: d ?? null, events, offers, customer };
   }
 
+  async setDispatchStrategy(id: string, strategy: AdminDispatchStrategy | null, actor: string) {
+    const [updated] = await this.db.update(orders).set({ dispatchStrategy: strategy }).where(and(
+      eq(orders.id, id),
+      eq(orders.fulfilment, 'delivery'),
+      eq(orders.status, 'placed'),
+      sql`NOT EXISTS (SELECT 1 FROM ${deliveries} WHERE ${deliveries.orderId} = ${orders.id})`,
+    )).returning();
+    if (!updated) {
+      await this.state.load(id);
+      throw conflict('dispatch_strategy_locked', 'Dispatch strategy can only be changed on a placed delivery order before dispatch starts.');
+    }
+    await this.state.log(id, 'dispatch.strategy_updated', actor, { strategy });
+    return { id: updated.id, dispatchStrategy: updated.dispatchStrategy };
+  }
+
   /** Component refund through the payments service; requestId makes retries safe. */
   async refund(id: string, body: { requestId: string; reason: string; foodCents?: number; serviceChargeCents?: number; taxCents?: number; customerDeliveryCents?: number; restoreSubsidyCents?: number; tipCents?: number }, actor: string) {
     const o = await this.state.load(id);
@@ -111,6 +127,10 @@ export class AdminService {
   async retryDispatch(id: string, actor: string) {
     const o = await this.state.load(id);
     if (o.fulfilment !== 'delivery' || !['accepted', 'preparing', 'ready'].includes(o.status)) throw badRequest('not_dispatchable', `Order is ${o.status}`);
+    const [delivery] = await this.db.select().from(deliveries).where(eq(deliveries.orderId, id));
+    if (delivery && delivery.provider !== 'own_driver' && delivery.providerDispatchStartedAt) {
+      throw conflict('dispatch_already_attempted', 'A courier provider has already been contacted. Verify its delivery status before taking further action.');
+    }
     await this.state.log(o.id, 'dispatch.retry', actor);
     return this.dispatch.sendToThirdParty(o, 'admin retry');
   }

@@ -60,6 +60,7 @@ export class UberDirectProvider implements DeliveryProviderAdapter {
       manifest_items: req.items.map((i) => ({ name: i.name, quantity: i.quantity, size: 'small' })),
       manifest_total_value: req.orderValueCents,
       tip: req.tipCents, // 100% of the customer's tip, in cents
+      ...(req.testSpecifications ? { test_specifications: req.testSpecifications } : {}),
     });
     return { providerDeliveryId: d.id, status: d.status, trackingUrl: d.tracking_url, feeCents: d.fee };
   }

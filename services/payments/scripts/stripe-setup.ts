@@ -16,10 +16,17 @@ const args = new Set(process.argv.slice(2));
 const key = process.env.STRIPE_SECRET_KEY ?? '';
 const base = (process.env.PUBLIC_BASE_URL ?? '').replace(/\/$/, '');
 const expectedPlatform = process.env.STRIPE_PLATFORM_ACCOUNT_ID;
+const withTestAccounts = args.has('--with-test-accounts');
+const sandboxExpress = args.has('--sandbox-express');
 
 if (!key) throw new Error('Set STRIPE_SECRET_KEY in .env');
 if (key.includes('_live_') && !args.has('--live')) throw new Error('Live key detected. Run against a sandbox (sk_test_…), or pass --live deliberately.');
 if (!/^https:\/\//.test(base)) throw new Error('PUBLIC_BASE_URL must be a public https URL (use your tunnel URL while developing)');
+if (key.startsWith('sk_test_') && ['api.sendkoro.com', 'sendkoro.com'].includes(new URL(base).hostname.toLowerCase())) {
+  throw new Error('A Stripe sandbox must not send webhooks to the production Send Koro host. Set PUBLIC_BASE_URL to a test tunnel or staging endpoint.');
+}
+if (sandboxExpress && !withTestAccounts) throw new Error('--sandbox-express requires --with-test-accounts.');
+if (sandboxExpress && !key.startsWith('sk_test_')) throw new Error('--sandbox-express is allowed only with a Stripe sandbox key.');
 
 const stripe = createStripe(key);
 const step = (s: string) => console.log(`\n▸ ${s}`);
@@ -114,19 +121,24 @@ async function main() {
     console.log('  portal configuration created');
   } else console.log('  portal configuration ✓');
 
-  if (args.has('--with-test-accounts')) {
+  if (withTestAccounts) {
     step('Test connected accounts (Accounts v2)');
     const portal = process.env.RESTAURANT_PORTAL_URL ?? 'https://example.com';
+    const dashboard = sandboxExpress ? 'express' : 'full';
+    const responsibilities = sandboxExpress
+      ? { fees_collector: 'application' as const, losses_collector: 'application' as const }
+      : { fees_collector: 'stripe' as const, losses_collector: 'stripe' as const };
+    if (sandboxExpress) console.log('  TEST-ONLY Connect deviation: Express dashboard; application-managed fees and losses.');
     const restaurant = await stripe.v2.core.accounts.create({
-      display_name: 'Sandbox – Dhaka Kitchen', contact_email: 'sandbox-restaurant@sendkoro.com', dashboard: 'full', identity: { country: 'us' },
-      defaults: { currency: 'usd', responsibilities: { fees_collector: 'stripe', losses_collector: 'stripe' } },
+      display_name: 'Sandbox – Dhaka Kitchen', contact_email: 'sandbox-restaurant@sendkoro.com', dashboard, identity: { country: 'us' },
+      defaults: { currency: 'usd', responsibilities },
       configuration: { merchant: { capabilities: { card_payments: { requested: true } } }, customer: {} },
       metadata: { send_koro_type: 'restaurant', sandbox: 'true' },
     }, { idempotencyKey: 'sandbox-restaurant-v1' });
     const rLink = await stripe.v2.core.accountLinks.create({ account: restaurant.id, use_case: { type: 'account_onboarding', account_onboarding: { configurations: ['merchant', 'customer'], refresh_url: `${portal}/refresh`, return_url: `${portal}/return` } } });
     const driver = await stripe.v2.core.accounts.create({
-      display_name: 'Sandbox – Rahim Uddin (driver)', contact_email: 'sandbox-driver@sendkoro.com', dashboard: 'full', identity: { country: 'us', entity_type: 'individual' },
-      defaults: { currency: 'usd', responsibilities: { fees_collector: 'stripe', losses_collector: 'stripe' } },
+      display_name: 'Sandbox – Rahim Uddin (driver)', contact_email: 'sandbox-driver@sendkoro.com', dashboard, identity: { country: 'us', entity_type: 'individual' },
+      defaults: { currency: 'usd', responsibilities },
       configuration: { recipient: { capabilities: { stripe_balance: { stripe_transfers: { requested: true } } } } },
       metadata: { send_koro_type: 'driver', sandbox: 'true' },
     }, { idempotencyKey: 'sandbox-driver-v2' });

@@ -12,6 +12,9 @@ export interface CreateDeliveryRequest extends QuoteRequest {
   /** Full tip in cents — 100% goes to the courier through the provider's own tip field. */
   tipCents: number;
   items: { name: string; quantity: number }[];
+  testSpecifications?: {
+    robo_courier_specification: { mode: 'auto' };
+  };
 }
 export interface ProviderDelivery { providerDeliveryId: string; status: string; trackingUrl?: string; feeCents?: number }
 

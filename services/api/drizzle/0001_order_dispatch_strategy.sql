@@ -1,0 +1,2 @@
+CREATE TYPE "public"."dispatch_strategy" AS ENUM('own_driver_only', 'uber_direct_only', 'own_driver_then_uber');--> statement-breakpoint
+ALTER TABLE "orders" ADD COLUMN "dispatch_strategy" "dispatch_strategy";

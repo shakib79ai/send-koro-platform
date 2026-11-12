@@ -236,6 +236,23 @@ describe('ordering → third-party courier', () => {
     expect(del.provider).toBe('doordash_drive');
   });
 
+  it('lets admin choose a per-order provider before dispatch and locks the choice afterward', async () => {
+    const app = build();
+    const s = await liveRestaurant(app);
+    const cu = await customerWithAddress(app);
+    const { orderId } = await placedOrder(app, s, cu);
+
+    await expect(app.admin.setDispatchStrategy(orderId, 'uber_direct_only', 'admin:test'))
+      .resolves.toEqual({ id: orderId, dispatchStrategy: 'uber_direct_only' });
+    await app.orders.accept(s.owner, orderId);
+
+    expect(app.uber.calls.some((call) => call.op === 'create')).toBe(true);
+    expect(app.doordash.calls).toHaveLength(0);
+    expect((await app.admin.order(orderId)).delivery?.provider).toBe('uber_direct');
+    await expect(app.admin.setDispatchStrategy(orderId, null, 'admin:test'))
+      .rejects.toMatchObject({ code: 'dispatch_strategy_locked' });
+  });
+
   it('a changed price is caught before payment', async () => {
     const app = build();
     const s = await liveRestaurant(app);

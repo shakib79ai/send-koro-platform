@@ -86,10 +86,13 @@
 | GET | `/admin/restaurants?q=` · POST `/admin/restaurants/:id/status` `{ status: live\|paused\|suspended }` |
 | GET | `/admin/drivers?status=` · POST `/admin/drivers/:id/status` `{ status: approved\|suspended }` |
 | GET | `/admin/orders?status&search` · `/admin/orders/:id` (includes the courier company, events and offers) |
+| POST | `/admin/orders/:id/dispatch-strategy` `{ strategy: own_driver_only\|uber_direct_only\|own_driver_then_uber\|null }` — only before restaurant acceptance or delivery dispatch; `null` restores the configured default |
 | POST | `/admin/orders/:id/refunds` `{ requestId, reason, foodCents?, … }` — component refunds; retries are safe |
-| POST | `/admin/orders/:id/retry-dispatch` |
+| POST | `/admin/orders/:id/retry-dispatch` — blocked after a provider has already been contacted; verify the provider's status to avoid duplicate fulfillment |
 | POST | `/admin/admins` `{ phone, name }` · `/admin/users/:id/disabled` `{ disabled }` |
 | SSE | `/live/admin` |
+
+Dispatch strategy values are sequential, never simultaneous: `own_driver_then_uber` offers to Send Koro drivers first and uses Uber Direct only if no driver accepts in time. The other values select one provider. If no override is saved, the API uses `DISPATCH_ORDER`.
 
 ## Webhooks (public, signature-checked)
 

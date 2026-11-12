@@ -17,6 +17,7 @@ Platform account (from the brief): `acct_1UVa9IQzpvBKCndf`
   npm run stripe:setup -- --with-test-accounts
   ```
   Paste the three `whsec_…` secrets it prints into `.env`.
+- [ ] If this sandbox cannot create the required Full Dashboard / Stripe-managed test accounts, a person may explicitly approve the sandbox-only deviation and run `npm run stripe:setup -- --sandbox-express`. This creates Express accounts with application-managed fees and losses; it does not change the production money model and must never be used with a live key. The script refuses sandbox webhooks pointed at `api.sendkoro.com` or `sendkoro.com`.
 - [ ] **Complete test onboarding.** Open the two onboarding links the script printed. Use Stripe test data: SSN `000-00-0000`, DOB `01/01/1901`, routing `110000000`, account `000123456789`.
 - [ ] **Billing settings.** **Settings → Billing → Subscriptions and emails**:
   - Retry schedule: Smart Retries, 4 tries over 2 weeks.

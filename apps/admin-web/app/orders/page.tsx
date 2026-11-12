@@ -9,7 +9,7 @@ import { MoneyInput, useAction } from '@/components/ui';
 
 interface OrderRow { id: string; code: string; status: string; fulfilment: string; restaurantName: string; totalCents: number; createdAt: string }
 interface Detail {
-  order: OrderRow & { foodCents: number; serviceChargeCents: number; taxCents: number; tipCents: number; deliveryCents: number; customerDeliveryCents: number; restaurantDeliveryCents: number; items: { name: string; quantity: number }[]; receipt: { lines: { label: string; amountCents: number }[] }; paymentsOrderId: string | null; cancelReason: string | null };
+  order: OrderRow & { dispatchStrategy: 'own_driver_only' | 'uber_direct_only' | 'own_driver_then_uber' | null; foodCents: number; serviceChargeCents: number; taxCents: number; tipCents: number; deliveryCents: number; customerDeliveryCents: number; restaurantDeliveryCents: number; items: { name: string; quantity: number }[]; receipt: { lines: { label: string; amountCents: number }[] }; paymentsOrderId: string | null; cancelReason: string | null };
   delivery: { provider: string; status: string; providerDeliveryId: string | null; providerQuoteCents: number | null; driverPayCents: number | null; trackingUrl: string | null } | null;
   events: { id: string; type: string; actor: string; createdAt: string; data: unknown }[];
   offers: { id: string; driverId: string; payCents: number; status: string; createdAt: string }[];
@@ -48,7 +48,9 @@ function OrderDetail({ id, onChanged }: { id: string; onChanged: () => void }) {
   const { busy, run, Status: ActionStatus } = useAction();
   const [refund, setRefund] = useState({ foodCents: 0, serviceChargeCents: 0, taxCents: 0, customerDeliveryCents: 0, restoreSubsidyCents: 0, tipCents: 0, reason: '' });
   const [requestId, setRequestId] = useState(() => crypto.randomUUID());
+  const [dispatchStrategy, setDispatchStrategy] = useState('');
   useEffect(() => { setRequestId(crypto.randomUUID()); }, [id]);
+  useEffect(() => { setDispatchStrategy(d.data?.order.dispatchStrategy ?? ''); }, [id, d.data?.order.dispatchStrategy]);
   if (!d.data) return <div className="card pad muted">{d.error || 'Loading…'}</div>;
   const { order: o, delivery, events, offers, customer } = d.data;
   const total = refund.foodCents + refund.serviceChargeCents + refund.taxCents + refund.customerDeliveryCents + refund.tipCents;
@@ -77,6 +79,22 @@ function OrderDetail({ id, onChanged }: { id: string; onChanged: () => void }) {
           {delivery.trackingUrl && <a className="link small" href={delivery.trackingUrl} target="_blank" rel="noreferrer">Provider tracking ↗</a>}
         </> : <p className="small muted">{o.fulfilment === 'pickup' ? 'Pickup order.' : 'Not dispatched yet.'}</p>}
         {offers.length > 0 && <div className="tiny muted">{offers.length} driver offer(s): {offers.map((x) => `${x.status} ${usd(x.payCents)}`).join(', ')}</div>}
+        {o.fulfilment === 'delivery' && o.status === 'placed' && !delivery && <>
+          <div className="field">
+            <label htmlFor="dispatch-strategy">Fulfillment routing (admin only)</label>
+            <select id="dispatch-strategy" className="input" value={dispatchStrategy} onChange={(e) => setDispatchStrategy(e.target.value)}>
+              <option value="">Use system default</option>
+              <option value="own_driver_only">Send Koro drivers only</option>
+              <option value="uber_direct_only">Uber Direct only</option>
+              <option value="own_driver_then_uber">Send Koro drivers, then Uber Direct</option>
+            </select>
+          </div>
+          <p className="tiny muted" style={{ margin: 0 }}>One fulfillment provider at a time. This locks when the restaurant accepts or dispatch starts.</p>
+          <button className="btn sm" disabled={busy || dispatchStrategy === (o.dispatchStrategy ?? '')} onClick={() => run(async () => {
+            await api(`/admin/orders/${id}/dispatch-strategy`, { body: { strategy: dispatchStrategy || null } });
+            d.reload(); onChanged();
+          }, 'Routing saved')}>Save routing</button>
+        </>}
         {o.fulfilment === 'delivery' && ['accepted', 'preparing', 'ready'].includes(o.status) && <button className="btn sm" disabled={busy} onClick={() => run(async () => { await api(`/admin/orders/${id}/retry-dispatch`, { method: 'POST' }); d.reload(); }, 'Sent to courier company')}>Send to Uber Direct / DoorDash now</button>}
       </div>
       {o.paymentsOrderId && ['accepted', 'preparing', 'ready', 'picked_up', 'delivered', 'completed'].includes(o.status) && (

@@ -16,7 +16,8 @@ import { addresses, deliveries, driverOffers, drivers, locations, orders, restau
 import { haversineMeters, Point } from '../core/geo';
 import { planOffers, PendingDelivery, PlannedOffer } from '../core/batching';
 import type { PaymentsClient } from '../integrations/payments.client';
-import type { DeliveryProviderAdapter, ProviderQuote, Stop, ThirdPartyProvider } from './providers/types';
+import type { DeliveryProviderAdapter, ProviderDelivery, ProviderQuote, Stop, ThirdPartyProvider } from './providers/types';
+import { providersForStrategy, type DispatchProvider } from './dispatch-strategy';
 import type { NotificationsService } from '../notifications/notifications.service';
 import type { Order, OrderStateService } from '../orders/order-state.service';
 
@@ -30,10 +31,8 @@ export const DISPATCH_TIMING = {
   driverFreshSeconds: 120,
 } as const;
 
-type ProviderName = 'own_driver' | ThirdPartyProvider;
-
 export class DispatchService {
-  private readonly order: ProviderName[];
+  private readonly order: DispatchProvider[];
 
   constructor(
     private readonly db: Db,
@@ -44,11 +43,15 @@ export class DispatchService {
     dispatchOrder: string,
     private readonly now: () => Date = () => new Date(),
   ) {
-    this.order = dispatchOrder.split(',').map((s) => s.trim()).filter((s): s is ProviderName => ['own_driver', 'uber_direct', 'doordash_drive'].includes(s));
+    this.order = dispatchOrder.split(',').map((s) => s.trim()).filter((s): s is DispatchProvider => ['own_driver', 'uber_direct', 'doordash_drive'].includes(s));
   }
 
-  private thirdParty(): DeliveryProviderAdapter[] {
-    return this.order.filter((p): p is ThirdPartyProvider => p !== 'own_driver').map((p) => this.providers[p]).filter((p): p is DeliveryProviderAdapter => !!p);
+  private sequence(o: Order): DispatchProvider[] {
+    return providersForStrategy(o.dispatchStrategy, this.order);
+  }
+
+  private thirdParty(order: readonly DispatchProvider[] = this.order): DeliveryProviderAdapter[] {
+    return order.filter((p): p is ThirdPartyProvider => p !== 'own_driver').map((p) => this.providers[p]).filter((p): p is DeliveryProviderAdapter => !!p);
   }
 
   /** Checkout price: first third-party provider that quotes. */
@@ -64,49 +67,99 @@ export class DispatchService {
   async start(o: Order) {
     if (o.fulfilment !== 'delivery') return null;
     const [existing] = await this.db.select().from(deliveries).where(eq(deliveries.orderId, o.id));
-    if (existing) return existing;
+    if (existing) {
+      if (existing.status === 'failed' && !existing.providerDispatchStartedAt) {
+        return this.sendToThirdParty(o, 'retrying after provider failure', this.sequence(o));
+      }
+      return existing;
+    }
+    const sequence = this.sequence(o);
     const loc = await this.location(o.locationId);
-    if (this.order[0] === 'own_driver' && (await this.nearbyDrivers(loc)).length) {
+    if (sequence[0] === 'own_driver' && ((await this.nearbyDrivers(loc)).length || sequence.length === 1)) {
       const [d] = await this.db.insert(deliveries).values({ orderId: o.id, provider: 'own_driver', status: 'requested' }).onConflictDoNothing().returning();
       if (d) await this.state.log(o.id, 'dispatch.own_driver_requested', 'system');
       await this.tick();
       return d ?? (await this.db.select().from(deliveries).where(eq(deliveries.orderId, o.id)))[0];
     }
-    return this.sendToThirdParty(o);
+    const remaining = sequence[0] === 'own_driver' ? sequence.slice(1) : sequence;
+    return this.sendToThirdParty(o, 'no own driver available', remaining);
   }
 
-  /** Hands an order to Uber Direct / DoorDash Drive. Re-quotes with the order ID, then creates. */
-  async sendToThirdParty(o: Order, reason = 'no own driver available') {
-    const [cur] = await this.db.select().from(deliveries).where(eq(deliveries.orderId, o.id));
-    if (cur && cur.provider !== 'own_driver') return cur;
-    if (cur?.driverId) return cur; // an own driver accepted meanwhile
+  /**
+   * Reserves the order for one third-party provider before calling it. Quote failures may try the
+   * next configured provider; a delivery-create failure is treated as uncertain and never races a
+   * second provider against a possibly-created delivery.
+   */
+  async sendToThirdParty(o: Order, reason = 'no own driver available', providerOrder: readonly DispatchProvider[] = this.sequence(o)) {
+    let [cur] = await this.db.select().from(deliveries).where(eq(deliveries.orderId, o.id));
+    if (cur?.driverId) return cur;
+    if (cur && cur.provider !== 'own_driver' && !['failed', 'cancelled'].includes(cur.status)) {
+      if (cur.status !== 'requested' || cur.providerDispatchStartedAt) return cur;
+    }
     const pickup = await this.pickupStop(o);
     const dropoff = await this.dropoffStop(o);
     const errors: string[] = [];
-    for (const p of this.thirdParty()) {
+
+    for (const p of this.thirdParty(providerOrder)) {
+      let claimed: typeof deliveries.$inferSelect | undefined;
+      if (cur) {
+        [claimed] = await this.db.update(deliveries).set({
+          provider: p.name, providerDeliveryId: null, status: 'requested', trackingUrl: null,
+          providerQuoteCents: null, driverPayCents: null, providerDispatchStartedAt: this.now(),
+        }).where(and(
+          eq(deliveries.id, cur.id), isNull(deliveries.driverId), isNull(deliveries.providerDispatchStartedAt),
+          inArray(deliveries.status, ['requested', 'offered', 'failed', 'cancelled']),
+        )).returning();
+      } else {
+        [claimed] = await this.db.insert(deliveries).values({
+          orderId: o.id, provider: p.name, status: 'requested', providerDispatchStartedAt: this.now(),
+        }).onConflictDoNothing().returning();
+      }
+      if (!claimed) return (await this.db.select().from(deliveries).where(eq(deliveries.orderId, o.id)))[0] ?? null;
+      cur = claimed;
+      await this.db.update(driverOffers).set({ status: 'withdrawn' }).where(and(
+        eq(driverOffers.status, 'open'),
+        sql`${driverOffers.orderIds} @> ${JSON.stringify([o.id])}::jsonb`,
+      ));
+
+      let q: ProviderQuote;
       try {
-        const q = await p.quote({ externalId: o.id, pickup, dropoff, orderValueCents: o.foodCents });
-        const created = await p.create({
+        q = await p.quote({ externalId: o.id, pickup, dropoff, orderValueCents: o.foodCents });
+      } catch (e) {
+        errors.push(`${p.name}: ${(e as Error).message}`);
+        await this.db.update(deliveries).set({ providerDispatchStartedAt: null }).where(eq(deliveries.id, claimed.id));
+        continue;
+      }
+
+      let created: ProviderDelivery;
+      try {
+        created = await p.create({
           externalId: o.id, quoteId: q.quoteId, pickup, dropoff, orderValueCents: o.foodCents,
           tipCents: o.tipCents, // 100% of the tip, through the provider's tip field
           items: (o.items as { name: string; quantity: number }[]).map((i) => ({ name: i.name, quantity: i.quantity })),
         });
-        const values = { provider: p.name, providerDeliveryId: created.providerDeliveryId, status: 'assigned' as const, trackingUrl: created.trackingUrl, providerQuoteCents: created.feeCents ?? q.feeCents, driverId: null, driverPayCents: null };
-        const [row] = cur
-          ? await this.db.update(deliveries).set(values).where(eq(deliveries.id, cur.id)).returning()
-          : await this.db.insert(deliveries).values({ orderId: o.id, ...values }).onConflictDoUpdate({ target: deliveries.orderId, set: values }).returning();
-        if (cur) await this.db.update(driverOffers).set({ status: 'withdrawn' }).where(and(eq(driverOffers.status, 'open'), sql`${driverOffers.orderIds} @> ${JSON.stringify([o.id])}::jsonb`));
-        await this.state.log(o.id, 'dispatch.third_party_assigned', 'system', { provider: p.name, reason });
-        if (o.paymentsOrderId) {
-          await this.payments.supplierAssigned(o.paymentsOrderId, p.name, created.providerDeliveryId);
-          if (o.tipCents > 0) await this.payments.supplierTipSubmitted(o.paymentsOrderId);
-        }
-        this.notify.live('admin', 'delivery.assigned', { orderId: o.id, provider: p.name });
-        return row;
       } catch (e) {
-        errors.push(`${p.name}: ${(e as Error).message}`);
+        await this.db.update(deliveries).set({ status: 'failed' }).where(eq(deliveries.id, claimed.id));
+        await this.state.log(o.id, 'dispatch.provider_create_uncertain', 'system', { provider: p.name });
+        this.notify.live('admin', 'delivery.failed', { orderId: o.id, provider: p.name, uncertain: true });
+        throw new Error(`Could not confirm ${p.name} delivery creation; automatic fallback stopped to avoid duplicate fulfillment.`);
       }
+
+      const [row] = await this.db.update(deliveries).set({
+        provider: p.name, providerDeliveryId: created.providerDeliveryId, status: 'assigned',
+        trackingUrl: created.trackingUrl, providerQuoteCents: created.feeCents ?? q.feeCents,
+        driverId: null, driverPayCents: null,
+      }).where(eq(deliveries.id, claimed.id)).returning();
+      await this.state.log(o.id, 'dispatch.third_party_assigned', 'system', { provider: p.name, reason });
+      if (o.paymentsOrderId) {
+        await this.payments.supplierAssigned(o.paymentsOrderId, p.name, created.providerDeliveryId);
+        if (o.tipCents > 0) await this.payments.supplierTipSubmitted(o.paymentsOrderId);
+      }
+      this.notify.live('admin', 'delivery.assigned', { orderId: o.id, provider: p.name });
+      return row;
     }
+
+    if (cur) await this.db.update(deliveries).set({ status: 'failed', providerDispatchStartedAt: null }).where(eq(deliveries.id, cur.id));
     await this.state.log(o.id, 'dispatch.failed', 'system', { errors });
     this.notify.live('admin', 'delivery.failed', { orderId: o.id, errors });
     throw new Error(`Could not assign a courier: ${errors.join('; ')}`);
@@ -131,7 +184,19 @@ export class DispatchService {
     for (const { d, o } of waiting) {
       if (now.getTime() - d.createdAt.getTime() > DISPATCH_TIMING.ownDriverWaitSeconds * 1000) {
         if (onOffer.has(o.id)) continue; // let the current offer run out first
-        await this.sendToThirdParty(o, 'no own driver accepted in time').then(() => handedOff++).catch(() => undefined);
+        const sequence = this.sequence(o);
+        const ownIndex = sequence.indexOf('own_driver');
+        const fallback = ownIndex < 0 ? [] : sequence.slice(ownIndex + 1);
+        if (fallback.some((provider) => provider !== 'own_driver')) {
+          await this.sendToThirdParty(o, 'no own driver accepted in time', fallback).then(() => handedOff++).catch(() => undefined);
+        } else {
+          const [failed] = await this.db.update(deliveries).set({ status: 'failed' })
+            .where(and(eq(deliveries.id, d.id), isNull(deliveries.driverId), eq(deliveries.status, 'requested'))).returning();
+          if (failed) {
+            await this.state.log(o.id, 'dispatch.failed', 'system', { reason: 'no driver accepted; no fallback provider selected' });
+            this.notify.live('admin', 'delivery.failed', { orderId: o.id, reason: 'no driver accepted; no fallback provider selected' });
+          }
+        }
         continue;
       }
       if (onOffer.has(o.id)) continue;
@@ -240,4 +305,3 @@ export class DispatchService {
     return { line1: a.line2 ? `${a.line1} ${a.line2}` : a.line1, city: a.city, state: a.state, postalCode: a.postalCode, lat: a.lat, lng: a.lng, instructions: a.dropoffInstructions ?? undefined, name: '', phone: '' };
   }
 }
-
